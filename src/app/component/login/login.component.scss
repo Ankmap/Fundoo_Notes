@@ -1,8 +1,11 @@
-.next{
-    margin-left: 85%
+@import '../../scss/color.scss';
+@import '../../scss/theme.scss';
+
+.card{
+    border-radius: 3%;
+    padding: 10%
 }
-.account{
-    margin-top: 10%
+
+#inputEmail{
+    padding: 6%
 }
-// @import '../../scss/color.scss';
-// @import '../../scss/theme.scss'

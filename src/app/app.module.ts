@@ -4,10 +4,7 @@ import { NgModule } from '@angular/core';
  * @Purpose : Configure animations
  **/ 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-/**
- * @Purpose : Router imports
- **/ 
-import { RouterModule, Routes } from '@angular/router';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component';
@@ -21,12 +18,6 @@ import { from } from 'rxjs';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCardModule } from '@angular/material'; 
 import {MatMenuModule} from '@angular/material/menu';
 
-const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'registration', component: RegistrationComponent },
-  { path: 'forgotPassword', component: ForgotPasswordComponent },
-  { path: 'resetPassword', component: ResetPasswordComponent },
-];
 
 @NgModule({
   declarations: [
@@ -40,11 +31,7 @@ const appRoutes: Routes = [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    ),
+  
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
@@ -52,10 +39,6 @@ const appRoutes: Routes = [
     MatListModule,
     MatCardModule,
     MatMenuModule
-  ],
-
-  exports: [
-    RouterModule
   ],
 
   providers: [],
