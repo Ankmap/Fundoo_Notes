@@ -1,0 +1,27 @@
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h1 class="card-title text-center">Fundo Notes</h1>
+            <h5 class="card-title text-center">Hii...</h5>
+            <h6 class="card-title text-center">Continue to Gmail....</h6>
+            <form class="form-signin">
+              <mat-form-field appearance="outline">
+                <mat-label>Enter your password</mat-label>
+                <input matInput placeholder="Enter your password" type="password" id="inputPassword" [type]="hide ? 'text' : 'password'"required autofocus>
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+              </mat-form-field>
+              <div>
+                <p class="pull-left" routerLink="/forgotPassword">Forgot password?</p>
+                <button class="pull-right" mat-raised-button color="primary" routerLink="/">Next</button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

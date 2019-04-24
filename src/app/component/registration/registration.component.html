@@ -1,37 +1,88 @@
-<body>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-9 mx-auto">
-        <div class="card card-register my-5">
-          <div class="card-body">
-            <h1 class="card-title" class="pull-left">Fundo Notes</h1><br><br><br>
-            <h5 class="card-title" class="pull-left">Create your Google Account</h5><br><br><br>
-            <form>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-9 my-5">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-10">
+              <p class="title">
+                <span style='color: darkslateblue'>F</span>
+                <span style='color: red'>u</span>
+                <span style='color: purple'>n</span>
+                <span style='color: blue'>d</span>
+                <span style='color: green'>o</span>
+                <span style='color: red'>o</span>
+                <span style='color: teal'>n</span>
+                <span style='color: purple'>o</span>
+                <span style='color: blue'>t</span>
+                <span style='color: green'>e</span>
+                <span style='color: red'>s</span>
+              </p>
+              <h5 class="card-title" class="pull-left">Create your Fundoo Account</h5><br><br><br>
+              <form>
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <mat-form-field class="name" appearance="outline">
+                      <mat-label>First Name</mat-label>
+                      <input matInput placeholder="First Name" type="text" id="firstName" required autofocus>
+                    </mat-form-field>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <mat-form-field class="name" appearance="outline">
+                      <mat-label>Last Name</mat-label>
+                      <input matInput placeholder="Last Name" type="text" id="lastName" required autofocus>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-8">
+                    <mat-form-field class="username" appearance="outline">
+                      <mat-label>Username</mat-label>
+                      <input matInput placeholder="Username" type="text" id="username" required autofocus>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <mat-form-field class="password" appearance="outline">
+                      <mat-label>Password</mat-label>
+                      <input matInput placeholder="Last Name" type="text" id="password"
+                        [type]="hide ? 'text' : 'password'" required autofocus>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm-3">
+                    <mat-form-field class="password" appearance="outline">
+                      <mat-label>Confirm</mat-label>
+                      <input matInput placeholder="Last Name" type="text" id="confirm"
+                        [type]="hide ? 'text' : 'password'" required autofocus>
+                    </mat-form-field>
+                  </div>
+                  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="btn-group btn-group-lg">
+                      <button type="button" mat-raised-button class="btn">Advance</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <button type="button" mat-raised-button class="btn">Basic</button>
+                    </div>
+                  </div>
+                </div>
+              </form><br>
               <div class="row">
-                <div class="col-lg-4">
-                  <input type="text" class="form-control" placeholder="First name">
+                <div class="col-md-4">
+                  <p class="pull-left" mat-button routerLink="/login">Sign in instead</p>
                 </div>
-                <div class="col-lg-4">
-                  <input type="text" class="form-control" placeholder="Last name">
-                </div>
-              </div><br>
-              <div class="row">
-                <div class="col-lg-8">
-                  <input type="text" class="form-control" placeholder="First name">
-                </div>
-              </div><br>
-              <div class="row">
-                <div class="col-lg-3">
-                  <input type="text" class="form-control" placeholder="First name">
-                </div>
-                <div class="col-lg-3">
-                  <input type="text" class="form-control" placeholder="First name">
+                <div class="col-md-4">
+                  <button class="pull-right" mat-raised-button color="primary" routerLink="/">Next</button>
                 </div>
               </div>
-            </form>
+            </div>
+            <div class="col-sm-2">
+              <img src="https://cdn.dribbble.com/users/129991/screenshots/4399126/01.png">
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</body>
+</div>
