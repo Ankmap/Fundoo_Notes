@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 /**
  * @Purpose : Configure animations
  **/ 
@@ -21,6 +23,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+/** Form Validation **/
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -36,6 +40,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
   
     MatToolbarModule,
     MatButtonModule,
@@ -47,7 +52,9 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     MatFormFieldModule,
     MatInputModule,
     MatRadioModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
 
   providers: [],

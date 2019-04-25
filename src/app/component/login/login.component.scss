@@ -3,11 +3,24 @@
 
 .card{
     border-radius: 3%;
-    padding: 10%
+    padding: 10%;
+    height: 100%;
+    width: 100%;
 }
 mat-form-field{
     width: 100%;
 }
 .title{
     font-size: 150%
+}
+
+@media only screen 
+and (max-width : 320px) {
+/* Styles */
+    button{
+        margin-top: -30px;
+    }
+    p{
+        margin-top: -22px;
+    }
 }

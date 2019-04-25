@@ -1,88 +1,97 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-9 my-5">
-      <div class="card">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-sm-10">
-              <p class="title">
-                <span style='color: darkslateblue'>F</span>
-                <span style='color: red'>u</span>
-                <span style='color: purple'>n</span>
-                <span style='color: blue'>d</span>
-                <span style='color: green'>o</span>
-                <span style='color: red'>o</span>
-                <span style='color: teal'>n</span>
-                <span style='color: purple'>o</span>
-                <span style='color: blue'>t</span>
-                <span style='color: green'>e</span>
-                <span style='color: red'>s</span>
-              </p>
-              <h5 class="card-title" class="pull-left">Create your Fundoo Account</h5><br><br><br>
-              <form>
-                <div class="form-row">
-                  <div class="form-group col-md-4">
-                    <mat-form-field class="name" appearance="outline">
-                      <mat-label>First Name</mat-label>
-                      <input matInput placeholder="First Name" type="text" id="firstName" required autofocus>
-                    </mat-form-field>
-                  </div>
-                  <div class="form-group col-md-4">
-                    <mat-form-field class="name" appearance="outline">
-                      <mat-label>Last Name</mat-label>
-                      <input matInput placeholder="Last Name" type="text" id="lastName" required autofocus>
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-8">
-                    <mat-form-field class="username" appearance="outline">
-                      <mat-label>Username</mat-label>
-                      <input matInput placeholder="Username" type="text" id="username" required autofocus>
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-3">
-                    <mat-form-field class="password" appearance="outline">
-                      <mat-label>Password</mat-label>
-                      <input matInput placeholder="Last Name" type="text" id="password"
-                        [type]="hide ? 'text' : 'password'" required autofocus>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-sm-3">
-                    <mat-form-field class="password" appearance="outline">
-                      <mat-label>Confirm</mat-label>
-                      <input matInput placeholder="Last Name" type="text" id="confirm"
-                        [type]="hide ? 'text' : 'password'" required autofocus>
-                    </mat-form-field>
-                  </div>
-                  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-                </div>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="btn-group btn-group-lg">
-                      <button type="button" mat-raised-button class="btn">Advance</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <button type="button" mat-raised-button class="btn">Basic</button>
+<body fxLayout='row' fxLayoutGap="100%" fxLayoutAlign="center">
+  <div class="container" fxLayout="column" fxFlex.lg="70%" fxLayoutGap="15%">
+    <div fxFlex.lg="15%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%">
+      <div class="row justify-content-center">
+        <div class="col-md-10 my-5" max-auto>
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-8">
+                  <p class="title">
+                    <span style='color: darkslateblue'>F</span>
+                    <span style='color: red'>u</span>
+                    <span style='color: purple'>n</span>
+                    <span style='color: blue'>d</span>
+                    <span style='color: green'>o</span>
+                    <span style='color: red'>o</span>
+                    <span style='color: teal'>n</span>
+                    <span style='color: purple'>o</span>
+                    <span style='color: blue'>t</span>
+                    <span style='color: green'>e</span>
+                    <span style='color: red'>s</span>
+                  </p>
+                  <h3 class="card-title" class="pull-left">Create your Fundoo Account</h3><br><br>
+                  <h6 class="card-title" class="pull-left">to continue to Fundoo</h6><br><br>
+                  <form>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <mat-form-field class="name" appearance="outline">
+                          <mat-label>First Name</mat-label>
+                          <input matInput type="text" placeholder="First Name" id="firstName" name="firstName" required
+                            minlength="4">
+                        </mat-form-field>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <mat-form-field class="name" appearance="outline">
+                          <mat-label>Last Name</mat-label>
+                          <input matInput placeholder="Last Name" type="text" id="lastName" name="lastName" required
+                            minlength="4">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <mat-form-field class="username" appearance="outline">
+                          <mat-label>Username</mat-label>
+                          <input matInput placeholder="Username" type="text" id="username" name="username">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <mat-form-field class="password" appearance="outline">
+                          <mat-label>Password</mat-label>
+                          <input matInput placeholder="Password" type="password" id="password" name="password"
+                            [type]="hide ? 'text' : 'password'">
+                        </mat-form-field>
+                      </div>
+                      <div class="col-sm-5">
+                        <mat-form-field class="password" appearance="outline">
+                          <mat-label>Confirm</mat-label>
+                          <input matInput placeholder="Confirm" type="password" id="confirm" name="confirmPassword"
+                            [type]="hide ? 'text' : 'password'">
+                        </mat-form-field>
+                      </div>
+                      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="btn-group btn-group-lg">
+                          <button type="button" mat-raised-button
+                            class="btn">Advance</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <button type="button" mat-raised-button class="btn">Basic</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form><br><br><br>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p class="pull-left" mat-button routerLink="/login">Sign in instead</p>
+                    </div>
+                    <div class="col-md-6">
+                      <button class="pull-right" mat-raised-button color="primary" routerLink="/">Next</button>
                     </div>
                   </div>
                 </div>
-              </form><br>
-              <div class="row">
-                <div class="col-md-4">
-                  <p class="pull-left" mat-button routerLink="/login">Sign in instead</p>
-                </div>
-                <div class="col-md-4">
-                  <button class="pull-right" mat-raised-button color="primary" routerLink="/">Next</button>
+                <div class="col-sm-4">
+                  <img src="https://ssl.gstatic.com/accounts/signup/glif/account.svg">
+                  <h5 class="card-title text-center">One account. All of Google working for you. </h5>
                 </div>
               </div>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://cdn.dribbble.com/users/129991/screenshots/4399126/01.png">
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</body>
