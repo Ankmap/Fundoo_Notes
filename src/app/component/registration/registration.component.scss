@@ -1,11 +1,13 @@
 @import '../../scss/color.scss';
 p{
-    margin-left: 10px;
-
+    margin-left: 20px;
+    margin-bottom: 7px;
 }
 button{
     margin-top: -38px;
-
+    margin-right: 40px;
+    padding: 6px;
+    width: 100px
 }
 mat-icon{
     margin-top: 60%;
@@ -14,5 +16,26 @@ mat-icon{
     margin-left: 25%;
  }
 img{
-    margin-left: 78px;
+    margin-left: 40px;
+    margin-inline-end: 39px;
+    margin-bottom: 140px;
+    margin-top: -4px;
+
+}
+.username{
+    width: 500px;
+}
+.password{
+    width: 225px;
+
+}
+.name{
+    width: 250px;
+}
+
+td    {
+    padding: 6px;
+}
+h4,h5{
+    margin-left: 15px;
 }
