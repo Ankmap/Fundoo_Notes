@@ -14,6 +14,8 @@ import { Login1Component } from './component/login1/login1.component';
 import { RegistrationComponent } from './component/registration/registration.component';
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
+import { Login2Component } from './component/login2/login2.component';
+
 import { from } from 'rxjs';
 /**
  * @Purpose : Material Required file
@@ -23,6 +25,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
 /** Form Validation **/
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -34,7 +37,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RegistrationComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    Login1Component
+    Login1Component,
+    Login2Component
   ],
   imports: [
     BrowserModule,

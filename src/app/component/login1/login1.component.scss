@@ -1,29 +1,15 @@
 @import '../../scss/color.scss';
-@import '../../scss/theme.scss';
 
-.card{
-    border-radius: 3%;
-    padding: 10%;
-    height: 80%;
-    width: 120%;
-}
 mat-form-field{
     width: 100%;
 }
-.title{
-    font-size: 150%
+// Forgot email?
+p{
+    margin-left: 10px;
+
 }
 
-@media only screen 
-and (max-width : 320px) {
-/* Styles */
-    button{
-        margin-top: -30px;
-    }
-    p{
-        margin-top: -22px;
-    }
-}
-button{
-    margin-top: -110px;
+p{
+    margin-bottom: -53px;
+
 }

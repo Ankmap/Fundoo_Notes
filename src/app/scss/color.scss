@@ -2,6 +2,8 @@ $color-red: #FF0000;
 $color-green: #00FF00;
 $color-blue: #0000FF;
 $color-navy:navy;
+$color-yellow:yellow;
+$color-purple:purple;
 
 h2,h3,h4,h5,h6,p,a { color: $color-navy; }
 
@@ -24,3 +26,27 @@ $color-link-visited : $regent-st-blue;
 
 $color-shadow       : rgba($black,.8);
 $color-body         : $white;
+//color
+mat-card-title .blue{
+    color: $color-blue
+  }
+  
+  mat-card-title .red{
+      color: $color-red
+  }
+  
+  mat-card-title .yellow{
+    color: $color-yellow
+  }
+  
+  mat-card-title .green{
+    color: $color-green
+  }
+  
+  mat-card-title .navy{
+   color: $color-navy
+  }
+  
+  mat-card-title .purple{
+      color: $color-purple
+  }
