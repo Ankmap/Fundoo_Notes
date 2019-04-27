@@ -1,113 +1,40 @@
-/*
-Css
-*/ 
 @import '../../scss/color.scss';
+
 mat-icon{
     margin-top: 2%;
     font-size: 250%;
- }
-
- img{
+}
+img{
     margin-right: 70px;
     margin-top: -450px;
- }
+}
 .username{
     width: 500px;
 }
 .password{
     width: 225px;
-
 }
 .name{
     width: 250px;
 }
-/* (768x1024) iPad 1 & 2, Portrait */
+
+
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
-    /* insert styles here */
     button{
         margin-left: 230px;
     }
     mat-icon{
-                margin-left: 495px;
-                margin-top: -20px;
-            }
+        margin-left: 495px;
+        margin-top: -20px;
+    }
 }
-/* On screens that are 600px or less, set the background color to olive */
+
 @media (min-width: 320px) and (max-width: 600px) and (orientation: landscape) {
     body {
-      background-color: olive;
+        background-color: olive;
     }
     .username{
         width: 200px;
-    }
-  }
+    }  
+}
 
-
-
-
-
-
-
-
-
-
-
-//  @import '../../scss/color.scss';
-// p{
-//     margin-left: 20px;
-//     margin-bottom: 7px;
-// }
-// button{
-//     margin-top: -38px;
-//     margin-right: 40px;
-//     padding: 6px;
-//     width: 100px
-// }
-// mat-icon{
-//     margin-top: 60%;
-//     padding: 0%;
-//     font-size: 250%;
-//     margin-left: 25%;
-//  }
-// .username{
-//     width: 500px;
-// }
-// .password{
-//     width: 225px;
-
-// }
-// .name{
-//     width: 250px;
-// }
-
-// td    {
-//     padding: 6px;
-// }
-// h4,h5{
-//     margin-left: 15px;
-// }
-// @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-
-//     mat-icon{
-//         margin-left: 495px;
-//         margin-top: -20px;
-//     }
-//   }
-
-
-// @import '../../scss/color.scss';
-// .username{
-//         width: 500px;
-//     }
-
-//     .password{
-//     width: 225px;
-
-// }
-// .name{
-//     width: 250px;
-// }
-// mat-icon{
-//     margin-top: 2%;
-//     font-size: 250%;
-//  }
