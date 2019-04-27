@@ -1,27 +1,55 @@
-@import '../../scss/color.scss';
-p{
-    margin-left: 20px;
-    margin-bottom: 7px;
-}
-button{
-    margin-top: -38px;
-    margin-right: 40px;
-    padding: 6px;
-    width: 100px
-}
-mat-icon{
-    margin-top: 60%;
-    padding: 0%;
-    font-size: 250%;
-    margin-left: 25%;
- }
-img{
-    margin-left: 40px;
-    margin-inline-end: 39px;
-    margin-bottom: 140px;
-    margin-top: -4px;
+//  @import '../../scss/color.scss';
+// p{
+//     margin-left: 20px;
+//     margin-bottom: 7px;
+// }
+// button{
+//     margin-top: -38px;
+//     margin-right: 40px;
+//     padding: 6px;
+//     width: 100px
+// }
+// mat-icon{
+//     margin-top: 60%;
+//     padding: 0%;
+//     font-size: 250%;
+//     margin-left: 25%;
+//  }
+// .username{
+//     width: 500px;
+// }
+// .password{
+//     width: 225px;
 
-}
+// }
+// .name{
+//     width: 250px;
+// }
+
+// td    {
+//     padding: 6px;
+// }
+// h4,h5{
+//     margin-left: 15px;
+// }
+// @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+//     mat-icon{
+//         margin-left: 495px;
+//         margin-top: -20px;
+//     }
+//   }
+
+@import '../../scss/color.scss';
+mat-icon{
+    margin-top: 2%;
+    font-size: 250%;
+ }
+
+ img{
+    margin-right: 70px;
+    margin-top: -450px;
+ }
 .username{
     width: 500px;
 }
@@ -32,10 +60,10 @@ img{
 .name{
     width: 250px;
 }
-
-td    {
-    padding: 6px;
-}
-h4,h5{
-    margin-left: 15px;
+/* (768x1024) iPad 1 & 2, Portrait */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+    /* insert styles here */
+    button{
+        margin-left: 230px;
+    }
 }
