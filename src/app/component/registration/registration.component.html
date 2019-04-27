@@ -1,3 +1,149 @@
+<div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="6%">
+    <div fxLayout='column' fxFlex="60" fxLayoutGap="5%">
+        <div fxFlex.lg="100%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
+        <mat-card>
+            <form>
+                <div fxLayoutAlign=left>
+                    <mat-card-title>
+                        <h4>
+                            <span class="blue">F</span>
+                            <span class="red">u</span>
+                            <span class="navy">n</span>
+                            <span class="purple">d</span>
+                            <span class="yellow">o</span>
+                            <span class="red">o</span>
+                            <span class="navy">n</span>
+                            <span class="green">o</span>
+                            <span class="purple">t</span>
+                            <span class="red">e</span>
+                            <span class="navy">s</span>
+                        </h4>
+                        <h5>Create your Fundoo Account</h5>
+                    </mat-card-title>
+                </div>
+                <mat-card-content>
+                    <div>
+                        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="1%" fxLayout.xs="column wrap"
+                            fxLayout.md="column wrap">
+                            <div>
+                                <mat-form-field class="name" appearance="outline">
+                                    <mat-label>Firstname</mat-label>
+                                    <input matInput placeholder="Firstname" type="email" id="inputEmail" required
+                                        autofocus>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field class="name" appearance="outline">
+                                    <mat-label>Lastname</mat-label>
+                                    <input matInput placeholder="Lastname" type="email" id="inputEmail" required
+                                        autofocus>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="start">
+                            <div fxFlex="100" fxLayout.xs="column wrap" fxLayout.md="column wrap">
+                                <mat-form-field class="username" appearance="outline">
+                                    <mat-label>Username</mat-label>
+                                    <input matInput placeholder="Username" type="text" id="username" name="username">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="1%" fxLayout.xs="column wrap"
+                            fxLayout.md="column wrap">
+                            <div>
+                                <mat-form-field class="password" appearance="outline">
+                                    <mat-label>Password</mat-label>
+                                    <input matInput placeholder="Password" type="password" id="password" name="password"
+                                        [type]="hide ? 'text' : 'password'">
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field class="password" appearance="outline">
+                                    <mat-label>Confirm</mat-label>
+                                    <input matInput placeholder="Confirm" type="password" id="confirm"
+                                        name="confirmPassword" [type]="hide ? 'text' : 'password'">
+                                </mat-form-field>
+                            </div>
+                            <mat-icon matSuffix (click)="hide = !hide">
+                                {{hide ? 'visibility' : 'visibility_off'}}
+                            </mat-icon>
+                        </div>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <div>
+                        <div fxLayout="column" fxLayoutGap="3%" fxLayout.xs="column wrap" fxLayout.md="column wrap">
+                            <div fxLayout="row" fxLayoutAlign="start start">
+                                <button mat-button>Advance</button>
+                                <button mat-button>Basic</button>
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="40%">
+                                <div>
+                                    <p style="margin-left:18px;" mat-button routerLink="/login">Sign in instead</p>
+                                </div>
+                                <div fxLayoutAlign="end end">
+                                    <button mat-flat-button color="primary" routerLink="/login1">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div fxLayoutAlign="end" fxHide fxShow.gt-md fxLayout.md='row' fxFlex.md="10px"
+                            fxLayout.sm='row' fxFlex.sm="50px">
+                            <img src="https://ssl.gstatic.com/accounts/signup/glif/account.svg">
+                        </div>
+                    </div>
+                </mat-card-actions>
+            </form>
+        </mat-card>
+        <div fxFlex.lg="20%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+<!-- 1 attempt -->
+<!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
 <!-- <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5%">
     <div fxLayout='column' fxLayoutGap="5%">
         <div fxFlex.lg="100%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
@@ -106,7 +252,11 @@
         <div fxFlex.lg="20%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
     </div>
 </div> -->
-<div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="6%">
+
+<!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+<!-- 2 attempt -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="6%">
     <div fxLayout='column' fxFlex="60" fxLayoutGap="5%">
         <div fxFlex.lg="100%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
         <mat-card>
@@ -131,7 +281,8 @@
                 </div>
                 <mat-card-content>
                     <div>
-                        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="1%" fxLayout.xs="column wrap" fxLayout.md="column wrap">
+                        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="1%" fxLayout.xs="column wrap"
+                            fxLayout.md="column wrap">
                             <div>
                                 <mat-form-field class="name" appearance="outline">
                                     <mat-label>Firstname</mat-label>
@@ -155,7 +306,8 @@
                                 </mat-form-field>
                             </div>
                         </div>
-                        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="1%" fxLayout.xs="column wrap" fxLayout.md="column wrap">
+                        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="1%" fxLayout.xs="column wrap"
+                            fxLayout.md="column wrap">
                             <div>
                                 <mat-form-field class="password" appearance="outline">
                                     <mat-label>Password</mat-label>
@@ -192,8 +344,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div fxLayoutAlign="end" fxHide fxShow.gt-md fxLayout.md='row' fxFlex.md="10px" fxLayout.sm='row' fxFlex.sm="50px">
-                                <img src="https://ssl.gstatic.com/accounts/signup/glif/account.svg">
+                        <div fxLayoutAlign="end" fxHide fxShow.gt-md fxLayout.md='row' fxFlex.md="10px"
+                            fxLayout.sm='row' fxFlex.sm="50px">
+                            <img src="https://ssl.gstatic.com/accounts/signup/glif/account.svg">
                         </div>
                     </div>
                 </mat-card-actions>
@@ -201,4 +354,110 @@
         </mat-card>
         <div fxFlex.lg="20%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
     </div>
-</div>
+</div> -->
+
+<!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+<!-- 3 attempt -->
+<!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+
+<!-- <div fxLayout="column" fxLayoutGap="5%">
+    <div fxFlex.lg="20%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
+    <div fxLayout="row">
+        <div fxFlex.lg="27%" fxFlex.md="10%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
+        <div fxFlex.lg="46%" fxFlex.md="80%" fxFlex.sm="100%" fxFlex.xs="100%">
+            <mat-card>
+                <form>
+                    <div fxLayoutAlign=left>
+                        <mat-card-title>
+                            <h4>
+                                <span class="blue">F</span>
+                                <span class="red">u</span>
+                                <span class="navy">n</span>
+                                <span class="purple">d</span>
+                                <span class="yellow">o</span>
+                                <span class="red">o</span>
+                                <span class="navy">n</span>
+                                <span class="green">o</span>
+                                <span class="purple">t</span>
+                                <span class="red">e</span>
+                                <span class="navy">s</span>
+                            </h4>
+                            <h5>Create your Fundoo Account</h5>
+                        </mat-card-title>
+                    </div>
+                    <mat-card-content>
+                        <div>
+                            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="1%" fxLayout.xs="column wrap"
+                                fxLayout.md="column wrap">
+                                <div>
+                                    <mat-form-field class="name" appearance="outline">
+                                        <mat-label>Firstname</mat-label>
+                                        <input matInput placeholder="Firstname" type="email" id="inputEmail" required
+                                            autofocus>
+                                    </mat-form-field>
+                                </div>
+                                <div>
+                                    <mat-form-field class="name" appearance="outline">
+                                        <mat-label>Lastname</mat-label>
+                                        <input matInput placeholder="Lastname" type="email" id="inputEmail" required
+                                            autofocus>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="start">
+                                <div fxFlex="100" fxLayout.xs="column wrap" fxLayout.md="column wrap">
+                                    <mat-form-field class="username" appearance="outline">
+                                        <mat-label>Username</mat-label>
+                                        <input matInput placeholder="Username" type="text" id="username"
+                                            name="username">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="1%" fxLayout.xs="column wrap"
+                                fxLayout.md="column wrap">
+                                <div>
+                                    <mat-form-field class="password" appearance="outline">
+                                        <mat-label>Password</mat-label>
+                                        <input matInput placeholder="Password" type="password" id="password"
+                                            name="password" [type]="hide ? 'text' : 'password'">
+                                    </mat-form-field>
+                                </div>
+                                <div>
+                                    <mat-form-field class="password" appearance="outline">
+                                        <mat-label>Confirm</mat-label>
+                                        <input matInput placeholder="Confirm" type="password" id="confirm"
+                                            name="confirmPassword" [type]="hide ? 'text' : 'password'">
+                                    </mat-form-field>
+                                </div>
+                                <mat-icon matSuffix (click)="hide = !hide">
+                                    {{hide ? 'visibility' : 'visibility_off'}}
+                                </mat-icon>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <div>
+                            <div fxLayout="column" fxLayoutGap="3%" fxLayout.xs="column wrap" fxLayout.md="column wrap">
+                                <div fxLayout="row" fxLayoutAlign="start start">
+                                    <button mat-button>Advance</button>
+                                    <button mat-button>Basic</button>
+                                </div>
+                                <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="40%">
+                                    <div>
+                                        <p style="margin-left:18px;" mat-button routerLink="/login">Sign in instead</p>
+                                    </div>
+                                    <div fxLayoutAlign="end end">
+                                        <button mat-flat-button color="primary" routerLink="/login1">Next</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card-actions>
+                </form>
+            </mat-card>
+        </div>
+        <div fxFlex.lg="27%" fxFlex.md="10%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
+    </div>
+    <div fxFlex.lg="2%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
+</div> -->
+<!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
