@@ -5,7 +5,7 @@
         <div fxFlex.lg="30%" fxFlex.md="50%" fxFlex.sm="60%" fxFlex.xs="100%">
             <!-- login Form start -->
             <mat-card>
-                <form (ngSubmit)="onSubmit()">
+                <form >
                     <mat-card-title fxLayoutAlign="center">
                         <h4>
                             <span class="blue">F</span>
@@ -41,7 +41,7 @@
                             <p mat-button routerLink="/registration">Create account</p>
                         </div>
                         <div fxLayoutAlign="end end">
-                            <button type="submit" mat-flat-button color="primary" routerLink="/login1">Next</button>
+                            <button type="submit" mat-flat-button [disabled]="email.invalid" color="primary" routerLink="/login1">Next</button>
                         </div>
                     </mat-card-actions>
                 </form>
