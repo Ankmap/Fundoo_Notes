@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-  register: User = new User();
+  register: User = new User();  
   service: any;
   constructor(private userService: UserserviceService, private snackbar: MatSnackBar, private router: Router) {
     //Button
@@ -57,7 +57,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   submit() {
-    console.log('console@@@@@@@@@@@@@@@@@', this.register);
+    console.log('console @@@@@@@@@@@@@@@@@=======================>', this.register);
     try {
       if (this.password.value != this.confirmPassword.value) 
       throw "password and confirmpassword does not match"
@@ -65,8 +65,8 @@ export class RegistrationComponent implements OnInit {
 
       this.userService.postRequest('user/userSignUp', this.register).subscribe(
         data => {
-          console.log("Response================>", data);
-          this.snackbar.open('Register successfully......!', 'Stop...!', { duration: 1000 });
+          console.log("console =======================>", data);
+          this.snackbar.open('Register successfully......!', 'Done...!', { duration: 1000 });
           this.router.navigateByUrl('login');
         },
         error => {
@@ -78,7 +78,3 @@ export class RegistrationComponent implements OnInit {
     }
   }
 }
-
-
-
-
