@@ -28,15 +28,17 @@
                             <div>
                                 <mat-form-field class="name" appearance="outline">
                                     <mat-label>Firstname</mat-label>
-                                    <input matInput placeholder="Firstname" [formControl]="firstname" required>
-                                    <mat-error *ngIf="firstname.invalid">{{firstnameValidation()}}</mat-error>
+                                    <input matInput placeholder="Firstname" [(ngModel)]="register.firstName"
+                                        [formControl]="firstName" required>
+                                    <mat-error *ngIf="firstName.invalid">{{firstNameValidation()}}</mat-error>
                                 </mat-form-field>
                             </div>
                             <div>
                                 <mat-form-field class="name" appearance="outline">
                                     <mat-label>Lastname</mat-label>
-                                    <input matInput placeholder="Lastname" [formControl]="lastname" required>
-                                    <mat-error *ngIf="lastname.invalid">{{lastnameValidation()}}</mat-error>
+                                    <input matInput placeholder="Lastname" [(ngModel)]="register.lastName"
+                                        [formControl]="lastName" required>
+                                    <mat-error *ngIf="lastName.invalid">{{lastNameValidation()}}</mat-error>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -44,7 +46,8 @@
                             <div fxFlex="100" fxLayout.xs="column wrap" fxLayout.md="column wrap">
                                 <mat-form-field class="username" appearance="outline">
                                     <mat-label>Username</mat-label>
-                                    <input matInput placeholder="Username" [formControl]="email" required>
+                                    <input matInput placeholder="Username" [(ngModel)]="register.email"
+                                        [formControl]="email" required>
                                     <mat-error *ngIf="email.invalid">{{emailValidation()}}</mat-error>
                                 </mat-form-field>
                             </div>
@@ -54,17 +57,17 @@
                             <div>
                                 <mat-form-field class="password" appearance="outline">
                                     <mat-label>Password</mat-label>
-                                    <input matInput placeholder="Password" [formControl]="password" required
-                                        [type]="hide ? 'text' : 'password'">
+                                    <input matInput placeholder="Password" [(ngModel)]="register.password"
+                                        [formControl]="password" required [type]="hide ? 'text' : 'password'">
                                     <mat-error *ngIf="password.invalid">{{passwordValidation()}}</mat-error>
                                 </mat-form-field>
                             </div>
                             <div>
                                 <mat-form-field class="password" appearance="outline">
                                     <mat-label>Confirm</mat-label>
-                                    <input matInput placeholder="Confirm" [formControl]="confirmpassword" required
-                                        [type]="hide ? 'text' : 'password'">
-                                    <mat-error *ngIf="confirmpassword.invalid">{{confirmpasswordValidation()}}
+                                    <input matInput placeholder="Confirm" [(ngModel)]="register.confirmPassword"
+                                        [formControl]="confirmPassword" required [type]="hide ? 'text' : 'password'">
+                                    <mat-error *ngIf="confirmPassword.invalid">{{confirmPasswordValidation()}}
                                     </mat-error>
                                 </mat-form-field>
                             </div>
@@ -80,7 +83,7 @@
                             <div class="butttons" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="4%">
                                 <p>
                                     <mat-button-toggle-group appearance="legacy" name="fontStyle"
-                                        aria-label="Font Style">
+                                        aria-label="Font Style" [(ngModel)]="register.service">
                                         <mat-button-toggle value="advanced" (click)="currentLesson = '1'"
                                             [disabled]="currentLesson !== '1'" class="primair">Advanced
                                         </mat-button-toggle>
@@ -88,7 +91,7 @@
                                 </p>
                                 <p>
                                     <mat-button-toggle-group appearance="legacy" name="fontStyle"
-                                        aria-label="Font Style">
+                                        aria-label="Font Style" [(ngModel)]="register.service">
                                         <mat-button-toggle value="basic" (click)="currentLesson = '2'"
                                             [disabled]="currentLesson !== '2'" class="primair">Basic</mat-button-toggle>
                                     </mat-button-toggle-group>
@@ -99,7 +102,9 @@
                                     <p style="margin-left:18px;" mat-button routerLink="/login">Sign in instead</p>
                                 </div>
                                 <div fxLayoutAlign="end end">
-                                    <button mat-flat-button color="primary" [disabled]="email.invalid || firstname.invalid || lastname.invalid || password.invalid || confirmpassword.invalid" routerLink="/login">signup</button>
+                                    <!-- <button mat-flat-button color="primary" [disabled]="email.invalid || firstName.invalid || lastName.invalid || password.invalid || confirmPassword.invalid" (click)="submit(register)" routerLink="/login">signup</button> -->
+                                    <button mat-flat-button color="primary" (click)="submit(register)"
+                                        routerLink="/login">signup</button>
                                 </div>
                             </div>
                         </div>

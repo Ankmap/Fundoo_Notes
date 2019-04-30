@@ -13,7 +13,7 @@ import { LoginComponent } from './component/login/login.component';
 import { RegistrationComponent } from './component/registration/registration.component';
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
-
+import { HttpClientModule } from '@angular/common/http';
 import { from } from 'rxjs';
 /**
  * @Purpose : Material Required file
@@ -23,6 +23,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 /** Form Validation **/
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -41,6 +42,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
+    HttpClientModule,
   
     MatToolbarModule,
     MatButtonModule,
@@ -54,7 +56,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatRadioModule,
     MatButtonToggleModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule
   ],
 
   providers: [],
