@@ -9,7 +9,7 @@ img{
     margin-top: -450px;
 }
 .username{
-    width: 460px;
+    width: 462px;
 }
 .password{
     width: 200px;
@@ -17,7 +17,9 @@ img{
 .name{
     width: 225px;
 }
-
+.butttons{
+    margin-left: 12px;
+}
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
     button{

@@ -28,15 +28,15 @@
                             <div>
                                 <mat-form-field class="name" appearance="outline">
                                     <mat-label>Firstname</mat-label>
-                                    <input matInput placeholder="Firstname" type="email" id="inputEmail" required
-                                        autofocus>
+                                    <input matInput placeholder="Firstname" [formControl]="firstname" required>
+                                    <mat-error *ngIf="firstname.invalid">{{firstnameValidation()}}</mat-error>
                                 </mat-form-field>
                             </div>
                             <div>
                                 <mat-form-field class="name" appearance="outline">
                                     <mat-label>Lastname</mat-label>
-                                    <input matInput placeholder="Lastname" type="email" id="inputEmail" required
-                                        autofocus>
+                                    <input matInput placeholder="Lastname" [formControl]="lastname" required>
+                                    <mat-error *ngIf="lastname.invalid">{{lastnameValidation()}}</mat-error>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -44,7 +44,8 @@
                             <div fxFlex="100" fxLayout.xs="column wrap" fxLayout.md="column wrap">
                                 <mat-form-field class="username" appearance="outline">
                                     <mat-label>Username</mat-label>
-                                    <input matInput placeholder="Username" type="text" id="username" name="username">
+                                    <input matInput placeholder="Username" [formControl]="email" required>
+                                    <mat-error *ngIf="email.invalid">{{emailValidation()}}</mat-error>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -53,15 +54,18 @@
                             <div>
                                 <mat-form-field class="password" appearance="outline">
                                     <mat-label>Password</mat-label>
-                                    <input matInput placeholder="Password" type="password" id="password" name="password"
+                                    <input matInput placeholder="Password" [formControl]="password" required
                                         [type]="hide ? 'text' : 'password'">
+                                    <mat-error *ngIf="password.invalid">{{passwordValidation()}}</mat-error>
                                 </mat-form-field>
                             </div>
                             <div>
                                 <mat-form-field class="password" appearance="outline">
                                     <mat-label>Confirm</mat-label>
-                                    <input matInput placeholder="Confirm" type="password" id="confirm"
-                                        name="confirmPassword" [type]="hide ? 'text' : 'password'">
+                                    <input matInput placeholder="Confirm" [formControl]="confirmpassword" required
+                                        [type]="hide ? 'text' : 'password'">
+                                    <mat-error *ngIf="confirmpassword.invalid">{{confirmpasswordValidation()}}
+                                    </mat-error>
                                 </mat-form-field>
                             </div>
                             <mat-icon matSuffix (click)="hide = !hide">
@@ -73,16 +77,29 @@
                 <mat-card-actions>
                     <div>
                         <div fxLayout="column" fxLayoutGap="3%" fxLayout.xs="column wrap" fxLayout.md="column wrap">
-                            <div fxLayout="row" fxLayoutAlign="start start">
-                                <button mat-button>Advance</button>
-                                <button mat-button>Basic</button>
+                            <div class="butttons" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="4%">
+                                <p>
+                                    <mat-button-toggle-group appearance="legacy" name="fontStyle"
+                                        aria-label="Font Style">
+                                        <mat-button-toggle value="advanced" (click)="currentLesson = '1'"
+                                            [disabled]="currentLesson !== '1'" class="primair">Advanced
+                                        </mat-button-toggle>
+                                    </mat-button-toggle-group>
+                                </p>
+                                <p>
+                                    <mat-button-toggle-group appearance="legacy" name="fontStyle"
+                                        aria-label="Font Style">
+                                        <mat-button-toggle value="basic" (click)="currentLesson = '2'"
+                                            [disabled]="currentLesson !== '2'" class="primair">Basic</mat-button-toggle>
+                                    </mat-button-toggle-group>
+                                </p>
                             </div>
                             <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="40%">
                                 <div>
                                     <p style="margin-left:18px;" mat-button routerLink="/login">Sign in instead</p>
                                 </div>
                                 <div fxLayoutAlign="end end">
-                                    <button mat-flat-button color="primary" routerLink="/.">signup</button>
+                                    <button mat-flat-button color="primary" [disabled]="email.invalid || firstname.invalid || lastname.invalid || password.invalid || confirmpassword.invalid" routerLink="/login">signup</button>
                                 </div>
                             </div>
                         </div>

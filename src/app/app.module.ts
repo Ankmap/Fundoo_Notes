@@ -10,11 +10,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component';
-import { Login1Component } from './component/login1/login1.component';
 import { RegistrationComponent } from './component/registration/registration.component';
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
-import { Login2Component } from './component/login2/login2.component';
 
 import { from } from 'rxjs';
 /**
@@ -36,9 +34,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     RegistrationComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent,
-    Login1Component,
-    Login2Component
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
