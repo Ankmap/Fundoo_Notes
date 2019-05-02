@@ -5,7 +5,7 @@
         <div fxFlex.lg="30%" fxFlex.md="50%" fxFlex.sm="60%" fxFlex.xs="100%">
             <!-- login Form start -->
             <mat-card>
-                <form >
+                <form>
                     <mat-card-title fxLayoutAlign="center">
                         <h4>
                             <span class="blue">F</span>
@@ -30,14 +30,16 @@
                     <mat-card-content>
                         <mat-form-field appearance="outline">
                             <mat-label>Enter your Email</mat-label>
-                            <input matInput placeholder="Email" [formControl]="email" required>
+                            <input matInput placeholder="Email" [(ngModel)]="register.email" [formControl]="email">
                             <mat-error *ngIf="email.invalid">{{emailValidation()}}</mat-error>
                         </mat-form-field>
                         <mat-form-field appearance="outline">
                             <mat-label>Enter your password</mat-label>
                             <mat-error *ngIf="password.invalid">{{passwordValidation()}}</mat-error>
-                            <input matInput placeholder="Enter your password" [formControl]="password" [type]="hide ? 'text' : 'password'" >
-                            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                            <input matInput placeholder="Enter your password" [(ngModel)]="register.password"
+                                [formControl]="password" [type]="hide ? 'text' : 'password'">
+                            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}
+                            </mat-icon>
                         </mat-form-field>
                     </mat-card-content>
                     <mat-card-actions>
@@ -47,7 +49,9 @@
                             <p mat-button routerLink="/registration">Create account</p>
                         </div>
                         <div fxLayoutAlign="end end">
-                            <button type="submit" mat-flat-button  color="primary" [disabled]="email.invalid || password.invalid" routerLink="/registration">Next</button>
+                            <!-- <button type="submit" mat-flat-button  color="primary" [disabled]="email.invalid || password.invalid" routerLink="/registration">Next</button> -->
+                            <button mat-flat-button color="primary" (click)="login(register)"
+                                routerLink="/login">signup</button>
                         </div>
                     </mat-card-actions>
                 </form>

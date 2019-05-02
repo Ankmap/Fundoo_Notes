@@ -12,7 +12,12 @@ export class UserserviceService {
   baseUrl = environment.baseUrl
   constructor(private http: HttpClient) { }
 
+  // Registration
   postRequest(url,data){
+    return this.http.post(this.baseUrl + url, data);
+  }
+  // Login
+  postRequest1(url,data){
     return this.http.post(this.baseUrl + url, data);
   }
 }

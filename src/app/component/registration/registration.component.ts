@@ -14,7 +14,7 @@ export class RegistrationComponent implements OnInit {
   register: User = new User();
   service: any;
   constructor(private userService: UserserviceService, private snackbar: MatSnackBar, private router: Router) {
-    //Button
+    // Enable and disabel Button Button
     this.currentLesson = this.classes[0].currentLesson
   }
   firstName = new FormControl('', [Validators.required]);
@@ -46,15 +46,12 @@ export class RegistrationComponent implements OnInit {
   }
   advancedServiceValidation() {
     return this.advancedService.hasError('required') ? 'You must choose a value' : '';
-    // this.advancedService.hasError('advancedService') ? 'Enter min 4 digit confirmPassword' : '';
   }
   basicServiceValidation() {
     return this.basicService.hasError('required') ? 'You must choose a value' : '';
-    // this.basicService.hasError('basicService') ? 'Enter min 4 digit confirmPassword' : '';
   }
-  //Button
+  // Enable and disabel Button
   currentLesson: string;
-
   classes = [
     {
       name: 'string',
@@ -70,13 +67,6 @@ export class RegistrationComponent implements OnInit {
     console.log('console forthis.register @@@@@@@@@@@@@@@@@=======================>', this.register);
     try {
       if (this.password.value == this.confirmPassword.value)
-        // if (this.firstName.value == '' || this.lastName.value == ''
-        //   || this.email.value == '' || this.service.value == ''
-        //   || this.password.value == '' || this.confirmPassword.value == '')
-        //throw "Fields are missing"
-        // console.log("password and confirmpassword does not match");
-        // this.snackbar.open('password and confirmpassword does not match......!', 'Error...!', { duration: 1000 });
-
         this.userService.postRequest('user/userSignUp', this.register).subscribe(
           data => {
             console.log("console for data =======================>", data);

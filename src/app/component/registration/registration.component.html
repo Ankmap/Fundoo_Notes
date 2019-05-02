@@ -60,6 +60,7 @@
                                     <input matInput placeholder="Password" [(ngModel)]="register.password"
                                         [formControl]="password" required [type]="hide ? 'text' : 'password'">
                                     <mat-error *ngIf="password.invalid">{{passwordValidation()}}</mat-error>
+                                    <mat-hint>Enter min 4 digit password</mat-hint>
                                 </mat-form-field>
                             </div>
                             <div>
@@ -69,6 +70,7 @@
                                         [formControl]="confirmPassword" required [type]="hide ? 'text' : 'password'">
                                     <mat-error *ngIf="confirmPassword.invalid">{{confirmPasswordValidation()}}
                                     </mat-error>
+                                    <mat-hint>Enter min 4 digit password</mat-hint>
                                 </mat-form-field>
                             </div>
                             <mat-icon matSuffix (click)="hide = !hide">
@@ -83,7 +85,8 @@
                             <div class="butttons" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="4%">
                                 <p>
                                     <mat-button-toggle-group appearance="legacy" name="fontStyle"
-                                        aria-label="Font Style" [formControl]="advancedService" [(ngModel)]="register.service">
+                                        aria-label="Font Style" [formControl]="advancedService"
+                                        [(ngModel)]="register.service">
                                         <mat-button-toggle value="advanced" (click)="currentLesson = '1'"
                                             [disabled]="currentLesson !== '1'" class="primair">Advanced
                                         </mat-button-toggle>
@@ -95,10 +98,11 @@
                                 </p>
                                 <p>
                                     <mat-button-toggle-group appearance="legacy" name="fontStyle"
-                                        aria-label="Font Style" [formControl]="basicService" [(ngModel)]="register.service">
+                                        aria-label="Font Style" [formControl]="basicService"
+                                        [(ngModel)]="register.service">
                                         <mat-button-toggle value="basic" (click)="currentLesson = '2'"
                                             [disabled]="currentLesson !== '2'" class="primair">Basic</mat-button-toggle>
-                                            <!-- <mat-error *ngIf="basicService.invalid">{{basicServiceValidation()}}
+                                        <!-- <mat-error *ngIf="basicService.invalid">{{basicServiceValidation()}}
                                             </mat-error> -->
                                     </mat-button-toggle-group>
                                     <mat-error *ngIf="basicService.invalid">{{basicServiceValidation()}}
