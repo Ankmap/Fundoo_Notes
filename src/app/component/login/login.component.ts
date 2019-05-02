@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     console.log('console forthis.register @@@@@@@@@@@@@@@@@=======================>', this.register);
     try {
       if (this.email.value == this.register.email) {
-        this.userService.postRequest1('user/login', this.register).subscribe(
+        this.userService.postRequest('user/login', this.register).subscribe(
           data => {
             console.log("console for data =======================>", data);
             this.snackbar.open('Login done successfully......!', 'Done...!', { duration: 1000 });

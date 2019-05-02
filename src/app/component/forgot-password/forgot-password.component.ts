@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class ForgotPasswordComponent implements OnInit {
 
   register: User = new User();
-  service: any;
+  model: any;
   constructor(private userService: UserserviceService, private snackbar: MatSnackBar, private router: Router) { }
 
   ngOnInit() {
@@ -26,25 +26,27 @@ export class ForgotPasswordComponent implements OnInit {
 
   // On click login button
   forgotPassword() {
-    console.log('console forthis.register @@@@@@@@@@@@@@@@@=======================>', this.register);
-    try {
-      if (this.email.value == this.register.email) {
-        this.userService.postRequest2('user/reset', this.register).subscribe(
-          data => {
-            console.log("console for data =======================>", data);
-            this.snackbar.open('Set password link sent to you registered email, please check.......!', 'Done...!', { duration: 1000 });
-            this.router.navigateByUrl('resetPassword');
-          },
-          error => {
-            this.snackbar.open('Error while reset password......!', 'Error', { duration: 3000 });
-            console.log("Error while reset password......!", error)
-          });
+    console.log("model----",this.model);
+    try{
+     
+      if( this.email.value == '') throw "Fields are missing"
+      this.model = {
+      "email":this.email.value
       }
-      else {
-        this.snackbar.open('Email not exist......!', 'Error...!', { duration: 1000 });
-      }
-    } catch (error) {
-      this.snackbar.open('error', "", { duration: 3000 });
+      this.userService.postRequest('user/reset',this.model).subscribe(
+      data => {
+      console.log("Response",data);
+     // localStorage.setItem('access-token',data.token)
+      this.snackbar.open('check ur mail..', 'End now', {duration: 1000});
+      // this.router.navigateByUrl('reset-password');
+    },
+    error=> {
+      this.snackbar.open('invalid email', 'End now', {duration: 3000});
+      console.log("error: ",error)
+    });
+    }catch(error){
+      this.snackbar.open('error',"", {duration: 3000});
     }
+
   }
 }

@@ -80,10 +80,10 @@ export class RegistrationComponent implements OnInit {
           });
       else {
         this.snackbar.open('password and confirmpassword does not match......!', 'Error...!', { duration: 1000 });
+        console.log("password and confirmpassword does not match");
       }
     } catch (error) {
       this.snackbar.open('error', "Must enter the all filed..!", { duration: 3000 });
-      console.log("password and confirmpassword does not match");
     }
   }
 }

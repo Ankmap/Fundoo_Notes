@@ -50,9 +50,9 @@
                         </div>
                         <div fxLayoutAlign="end end">
                             <!-- For Onclick disable button -->
-                            <!-- <button type="submit" mat-flat-button  color="primary" [disabled]="email.invalid || password.invalid" routerLink="/registration">Next</button> -->
-                            <button mat-flat-button color="primary" (click)="login(register)"
-                                routerLink="/registration">signup</button>
+                            <button type="submit" mat-flat-button  color="primary" [disabled]="email.invalid || password.invalid" (click)="login(register)" routerLink="/registration">Next</button>
+                            <!-- <button mat-flat-button color="primary" (click)="login(register)"
+                                routerLink="/registration">signup</button> -->
                         </div>
                     </mat-card-actions>
                 </form>

@@ -114,9 +114,9 @@
                                     <p style="margin-left:18px;" mat-button routerLink="/login">Sign in instead</p>
                                 </div>
                                 <div fxLayoutAlign="end end">
-                                    <!-- <button mat-flat-button color="primary" (click)="submit(register)" [disabled]="email.invalid || firstName.invalid || lastName.invalid || password.invalid || confirmPassword.invalid" (click)="submit(register)" routerLink="/login">signup</button> -->
-                                    <button mat-flat-button color="primary" (click)="submit(register)"
-                                        routerLink="/login">signup</button>
+                                    <button mat-flat-button color="primary" (click)="submit(register)" [disabled]="email.invalid || firstName.invalid || lastName.invalid || password.invalid || confirmPassword.invalid" (click)="submit(register)" (click)="submit(register)" routerLink="/login">signup</button>
+                                    <!-- <button mat-flat-button color="primary" (click)="submit(register)"
+                                        routerLink="/login">signup</button> -->
                                 </div>
                             </div>
                         </div>
