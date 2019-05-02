@@ -15,7 +15,7 @@ export class UserserviceService {
   constructor(private http: HttpClient) { }
 
   /**
-   * @description this method is for convert the data into encoded form 
+   * @description : Convert the data into encoded form 
    */
   getEncodData(toConvert) {
     const formBody = [];
@@ -26,7 +26,7 @@ export class UserserviceService {
     }
     return formBody.join('&');
   }
- 
+
   post(url, data) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -34,9 +34,7 @@ export class UserserviceService {
         'Authorization': localStorage.getItem('token')
       })
     };
-    console.log('token', localStorage.getItem('token')
-    );
+    console.log('token', localStorage.getItem('token'));
     return this.http.post(this.baseUrl + url, this.getEncodData(data), httpOptions);
   }
-
 }

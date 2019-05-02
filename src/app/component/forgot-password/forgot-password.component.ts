@@ -36,16 +36,13 @@ export class ForgotPasswordComponent implements OnInit {
   forgotPassword() {
     // console.log("model----",this.model);
     try {
-      this.model = {
-        "email": this.email.value
-      }
-      this.userService.postRequest('user/reset', this.model).subscribe(
+      this.userService.postRequest('user/reset', this.register).subscribe(
         data => {
-          console.log("Response", data);
-          this.snackbar.open('check ur mail..', 'End now', { duration: 1000 });
+          this.snackbar.open('Reset link send to ur register email id...', 'Check now', { duration: 3000 });
+          console.log('data', data);
         },
         error => {
-          this.snackbar.open('invalid email', 'End now', { duration: 3000 });
+          this.snackbar.open('Please enter valid email', 'End now', { duration: 3000 });
           console.log("error: ", error)
         });
     } catch (error) {

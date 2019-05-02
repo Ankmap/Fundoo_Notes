@@ -28,11 +28,13 @@ export class ResetPasswordComponent implements OnInit {
   accesstoken = this.activeRoute.snapshot.paramMap.get('token');
 
   ngOnInit() {
-    // console.log('@@@@@@@@@@@@@=========>', this.accesstoken);
+    console.log('accesstoken =========>', this.accesstoken);
     localStorage.setItem('token', this.accesstoken)
   }
-
-  // Password validation 
+  /**
+   * @Purpose : Password validation
+   **/
+ 
   password = new FormControl('', [Validators.required, Validators.minLength(4)]);
   confirmpassword = new FormControl('', [Validators.required, Validators.minLength(4)])
 
@@ -52,15 +54,16 @@ export class ResetPasswordComponent implements OnInit {
       }
       var data = new FormData();
       data.append('newPassword', this.password.value);
+
       this.userService.post('user/reset-password', this.model).subscribe(
         data => {
-          // console.log("@@@@@@@@=========>", data);
-          this.snackbar.open('Password Set successfully.......!', 'Done...!', { duration: 1000 });
+          console.log("Data =========>", data);
+          this.snackbar.open('Password Set successfully.......!', 'Done...!', { duration: 3000 });
           this.router.navigateByUrl('login');
         },
         error => {
-          this.snackbar.open('Password not set successfully.......!', 'Error...!', { duration: 1000 });
-          console.log("@@@@Error", error)
+          console.log("Error =========>", error);
+          this.snackbar.open('Error while set the password.......!', 'Error...!', { duration: 3000 });
         })
     } catch (err) {
       console.log('Try-Catch:', err);
