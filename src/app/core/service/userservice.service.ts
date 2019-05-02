@@ -20,4 +20,8 @@ export class UserserviceService {
   postRequest1(url,data){
     return this.http.post(this.baseUrl + url, data);
   }
+  // forgotpassword
+  postRequest2(url,data){
+    return this.http.post(this.baseUrl + url, data);
+  }
 }
