@@ -83,18 +83,26 @@
                             <div class="butttons" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="4%">
                                 <p>
                                     <mat-button-toggle-group appearance="legacy" name="fontStyle"
-                                        aria-label="Font Style" [(ngModel)]="register.service">
+                                        aria-label="Font Style" [formControl]="advancedService" [(ngModel)]="register.service">
                                         <mat-button-toggle value="advanced" (click)="currentLesson = '1'"
                                             [disabled]="currentLesson !== '1'" class="primair">Advanced
                                         </mat-button-toggle>
+                                        <!-- <mat-error *ngIf="advancedService.invalid">{{advancedServiceValidation()}}
+                                        </mat-error> -->
                                     </mat-button-toggle-group>
+                                    <mat-error *ngIf="advancedService.invalid">{{advancedServiceValidation()}}
+                                    </mat-error>
                                 </p>
                                 <p>
                                     <mat-button-toggle-group appearance="legacy" name="fontStyle"
-                                        aria-label="Font Style" [(ngModel)]="register.service">
+                                        aria-label="Font Style" [formControl]="basicService" [(ngModel)]="register.service">
                                         <mat-button-toggle value="basic" (click)="currentLesson = '2'"
                                             [disabled]="currentLesson !== '2'" class="primair">Basic</mat-button-toggle>
+                                            <!-- <mat-error *ngIf="basicService.invalid">{{basicServiceValidation()}}
+                                            </mat-error> -->
                                     </mat-button-toggle-group>
+                                    <mat-error *ngIf="basicService.invalid">{{basicServiceValidation()}}
+                                    </mat-error>
                                 </p>
                             </div>
                             <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="40%">
