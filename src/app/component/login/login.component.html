@@ -1,3 +1,12 @@
+<!-- 
+/*****************************************************************************************************
+ *@Purpose - FundoNotes.
+ *@file    - login.componet.html
+ *@author  - Ankita Mapari <mapariit@gmail.com>
+ *@version - 1.0
+ *@since   - 22/04/2019
+**************************************************************************************************/
+ -->
 <div fxLayout='column' fxLayoutGap="5%" style="height:100vh">
     <div fxFlex.lg="20%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
     <div flexLayout="row" fxFlex.lg="70%" fxLayoutAlign='center' fxFlex="35">
@@ -50,7 +59,8 @@
                         </div>
                         <div fxLayoutAlign="end end">
                             <!-- For Onclick disable button -->
-                            <button type="submit" mat-flat-button  color="primary" [disabled]="email.invalid || password.invalid" (click)="login(register)" routerLink="/registration">Next</button>
+                            <button type="submit" mat-flat-button color="primary"
+                                [disabled]="email.invalid || password.invalid" (click)="login(register)">Next</button>
                             <!-- <button mat-flat-button color="primary" (click)="login(register)"
                                 routerLink="/registration">signup</button> -->
                         </div>

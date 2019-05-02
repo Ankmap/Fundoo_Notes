@@ -1,3 +1,10 @@
+/*****************************************************************************************************
+ *@Purpose - FundoNotes.
+ *@file    - registration.componet.ts
+ *@author  - Ankita Mapari <mapariit@gmail.com>
+ *@version - 1.0
+ *@since   - 22/04/2019
+**************************************************************************************************/
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { User } from '../../core/model/user';
@@ -24,6 +31,7 @@ export class RegistrationComponent implements OnInit {
   confirmPassword = new FormControl('', [Validators.required, Validators.minLength(4)])
   advancedService = new FormControl('', [Validators.required]);
   basicService = new FormControl('', [Validators.required]);
+  
   firstNameValidation() {
     return this.firstName.hasError('required') ? 'You must enter a firstName' :
       this.firstName.hasError('firstName') ? 'Not a valid firstName' : '';

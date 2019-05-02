@@ -1,3 +1,10 @@
+/*****************************************************************************************************
+ *@Purpose - FundoNotes.
+ *@file    - registration.componet.scss
+ *@author  - Ankita Mapari <mapariit@gmail.com>
+ *@version - 1.0
+ *@since   - 22/04/2019
+**************************************************************************************************/
 @import '../../core/scss/color.scss';
 
 mat-icon{
@@ -20,7 +27,9 @@ img{
 .butttons{
     margin-left: 12px;
 }
-
+/**
+@Purpose : Media Query
+*/ 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
     button{
         margin-left: 230px;

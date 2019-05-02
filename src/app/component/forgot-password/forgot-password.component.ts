@@ -1,16 +1,24 @@
+/*****************************************************************************************************
+ *@Purpose - FundoNotes.
+ *@file    - forgot-password.ts
+ *@author  - Ankita Mapari <mapariit@gmail.com>
+ *@version - 1.0
+ *@since   - 22/04/2019
+**************************************************************************************************/
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { User } from '../../core/model/user';
 import { UserserviceService } from '../../core/service/userservice.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.scss']
 })
-export class ForgotPasswordComponent implements OnInit {
 
+export class ForgotPasswordComponent implements OnInit {
   register: User = new User();
   model: any;
   constructor(private userService: UserserviceService, private snackbar: MatSnackBar, private router: Router) { }
@@ -26,27 +34,22 @@ export class ForgotPasswordComponent implements OnInit {
 
   // On click login button
   forgotPassword() {
-    console.log("model----",this.model);
-    try{
-     
-      if( this.email.value == '') throw "Fields are missing"
+    // console.log("model----",this.model);
+    try {
       this.model = {
-      "email":this.email.value
+        "email": this.email.value
       }
-      this.userService.postRequest('user/reset',this.model).subscribe(
-      data => {
-      console.log("Response",data);
-     // localStorage.setItem('access-token',data.token)
-      this.snackbar.open('check ur mail..', 'End now', {duration: 1000});
-      // this.router.navigateByUrl('reset-password');
-    },
-    error=> {
-      this.snackbar.open('invalid email', 'End now', {duration: 3000});
-      console.log("error: ",error)
-    });
-    }catch(error){
-      this.snackbar.open('error',"", {duration: 3000});
+      this.userService.postRequest('user/reset', this.model).subscribe(
+        data => {
+          console.log("Response", data);
+          this.snackbar.open('check ur mail..', 'End now', { duration: 1000 });
+        },
+        error => {
+          this.snackbar.open('invalid email', 'End now', { duration: 3000 });
+          console.log("error: ", error)
+        });
+    } catch (error) {
+      this.snackbar.open('error', "", { duration: 3000 });
     }
-
   }
 }

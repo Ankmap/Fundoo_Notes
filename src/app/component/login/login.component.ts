@@ -1,21 +1,30 @@
+/*****************************************************************************************************
+ *@Purpose - FundoNotes.
+ *@file    - login.componet.ts
+ *@author  - Ankita Mapari <mapariit@gmail.com>
+ *@version - 1.0
+ *@since   - 22/04/2019
+**************************************************************************************************/
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { User } from '../../core/model/user';
 import { UserserviceService } from '../../core/service/userservice.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
 
+export class LoginComponent implements OnInit {
   register: User = new User();
-  service: any;
   constructor(private userService: UserserviceService, private snackbar: MatSnackBar, private router: Router) { }
 
-  // Validation
+  /**
+   * @Purpose : Validation for login page
+   **/
   email = new FormControl('', [Validators.required, Validators.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]);
   password = new FormControl('', [Validators.required, Validators.minLength(4)])
   emailValidation() {
@@ -26,18 +35,22 @@ export class LoginComponent implements OnInit {
     return this.password.hasError('required') ? 'You must enter a password' :
       this.password.hasError('password') ? 'Enter min 4 digit password' : '';
   }
-  // ngOnInit function is called whenever the component is loaded. And used to load the data for the component
+  /*
+  * @Purpose :ngOnInit function is called whenever the component is loaded.
+  */
   ngOnInit() {
   }
 
-  // On click login button
+  /*
+  * @Purpose : On click login button
+  */
   login() {
-    console.log('console forthis.register @@@@@@@@@@@@@@@@@=======================>', this.register);
+    console.log('console for this.register @@@@@@@@@@@@@@@@@=======================>', this.register);
     try {
       if (this.email.value == this.register.email) {
         this.userService.postRequest('user/login', this.register).subscribe(
           data => {
-            console.log("console for data =======================>", data);
+            // console.log("console for data =======================>", data);
             this.snackbar.open('Login done successfully......!', 'Done...!', { duration: 1000 });
             this.router.navigateByUrl('registration');
           },
