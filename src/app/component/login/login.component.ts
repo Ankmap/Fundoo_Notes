@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   service: any;
   constructor(private userService: UserserviceService, private snackbar: MatSnackBar, private router: Router) { }
 
+  // Validation
   email = new FormControl('', [Validators.required, Validators.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]);
   password = new FormControl('', [Validators.required, Validators.minLength(4)])
   emailValidation() {
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  // On click login button
   login() {
     console.log('console forthis.register @@@@@@@@@@@@@@@@@=======================>', this.register);
     try {
