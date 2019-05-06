@@ -78,7 +78,7 @@ export class RegistrationComponent implements OnInit {
         this.userService.postRequest('user/userSignUp', this.register).subscribe(
           data => {
             console.log("console for data =======================>", data);
-            this.snackbar.open('Register done successfully......!', 'Done...!', { duration: 1000 });
+            this.snackbar.open('Register done successfully......!', 'Done...!', { duration: 3000 });
             this.router.navigateByUrl('login');
             console.log('Register infor ==========>', data);
           },
@@ -87,7 +87,7 @@ export class RegistrationComponent implements OnInit {
             console.log("Error something wrong: ", error)
           });
       else {
-        this.snackbar.open('password and confirmpassword does not match......!', 'Error...!', { duration: 1000 });
+        this.snackbar.open('password and confirmpassword does not match......!', 'Error...!', { duration: 3000 });
         console.log("password and confirmpassword does not match");
       }
     } catch (error) {

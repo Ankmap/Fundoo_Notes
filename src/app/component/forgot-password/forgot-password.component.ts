@@ -38,11 +38,11 @@ export class ForgotPasswordComponent implements OnInit {
     try {
       this.userService.postRequest('user/reset', this.register).subscribe(
         data => {
-          this.snackbar.open('Reset link send to ur register email id...', 'Check now', { duration: 3000 });
+          this.snackbar.open('Reset link send to ur register email id...', 'Check it', { duration: 3000 });
           console.log('data', data);
         },
         error => {
-          this.snackbar.open('Please enter valid email', 'End now', { duration: 3000 });
+          this.snackbar.open('Please enter register email', 'Error', { duration: 3000 });
           console.log("error: ", error)
         });
     } catch (error) {

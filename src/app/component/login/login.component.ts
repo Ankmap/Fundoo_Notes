@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     return this.password.hasError('required') ? 'You must enter a password' :
       this.password.hasError('password') ? 'Enter min 4 digit password' : '';
   }
-  /*
+  /**
   * @Purpose :ngOnInit function is called whenever the component is loaded.
   */
   ngOnInit() {
@@ -47,21 +47,16 @@ export class LoginComponent implements OnInit {
   login() {
     console.log('console for this.register @@@@@@@@@@@@@@@@@=======================>', this.register);
     try {
-      if (this.email.value == this.register.email) {
-        this.userService.postRequest('user/login', this.register).subscribe(
-          data => {
-            // console.log("console for data =======================>", data);
-            this.snackbar.open('Login done successfully......!', 'Done...!', { duration: 1000 });
-            this.router.navigateByUrl('registration');
-          },
-          error => {
-            this.snackbar.open('Error while login account......!', 'Error', { duration: 3000 });
-            console.log("Error while login account: ", error)
-          });
-      }
-      else {
-        this.snackbar.open('Email not exist......!', 'Error...!', { duration: 1000 });
-      }
+      this.userService.postRequest('user/login', this.register).subscribe(
+        data => {
+          console.log("Data while login account: ", data)
+          this.snackbar.open('Login done successfully......!', 'Done...!', { duration: 3000 });
+          this.router.navigateByUrl('registration');
+        },
+        error => {
+          this.snackbar.open('Error while login account......!', 'Error', { duration: 3000 });
+          console.log("Error while login account: ", error)
+        });
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
