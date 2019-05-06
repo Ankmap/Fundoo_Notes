@@ -1,12 +1,12 @@
 <mat-toolbar-row>
     <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-evenly center">
-        <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFlex="30" fxFlex.sm="100" fxLayoutGap="10px"
-            style="height:10vh">
-
-            <div class="example-sidenav-content" fxLayoutAlign="center center">
+        <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFlex="25" fxLayoutGap="10px" style="height:10vh">
+            <div fxFlex="5">
                 <button type="button" mat-button (click)="drawer.toggle()">
+
+
                     <i class="material-icons">
-                        menu
+                        view_headline
                     </i>
                 </button>
             </div>
@@ -20,15 +20,12 @@
                 <span>Fundoo</span>
             </div>
         </div>
-        <div fxLayout="row" fxLayoutAlign="center center" fxFlex="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="35">
+        <div fxLayout="row" fxLayoutAlign="center center" fxFlex="40">
             <div class="search">
-                <i class="material-icons">
-                    search<input autocomplete="off" placeholder="Search" value="" type="text">
-                </i>
+                <input fxFlex='100' autocomplete="off" placeholder="Search" value="" type="text">
             </div>
         </div>
-        <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFlex="30" fxLayoutGap="20px" fxFlex.sm="100"
-            fxFlex.md="50" fxFlex.lg="35">
+        <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFlex="30" fxLayoutGap="20px">
             <div>
                 <i class="material-icons">
                     refresh
@@ -61,16 +58,11 @@
 <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side">
         <p>Auto-resizing sidenav</p>
-        <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-        <button (click)="showFiller = !showFiller" mat-raised-button>
-            Toggle extra text
-        </button>
+        Toggle extra text
     </mat-drawer>
-
     <div class="example-sidenav-content">
         <button type="button" mat-button (click)="drawer.toggle()">
-            Toggle sidenav
+
         </button>
     </div>
-
 </mat-drawer-container>
