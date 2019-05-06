@@ -1,0 +1,76 @@
+<mat-toolbar-row>
+    <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-evenly center">
+        <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFlex="30" fxFlex.sm="100" fxLayoutGap="10px"
+            style="height:10vh">
+
+            <div class="example-sidenav-content" fxLayoutAlign="center center">
+                <button type="button" mat-button (click)="drawer.toggle()">
+                    <i class="material-icons">
+                        menu
+                    </i>
+                </button>
+            </div>
+            <div>
+                <img class="gb_ma gb_Cd" alt="" aria-hidden="true"
+                    src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png"
+                    srcset="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_48dp.png 2x "
+                    style="width:40px;height:40px">
+            </div>
+            <div>
+                <span>Fundoo</span>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" fxFlex="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="35">
+            <div class="search">
+                <i class="material-icons">
+                    search<input autocomplete="off" placeholder="Search" value="" type="text">
+                </i>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFlex="30" fxLayoutGap="20px" fxFlex.sm="100"
+            fxFlex.md="50" fxFlex.lg="35">
+            <div>
+                <i class="material-icons">
+                    refresh
+                </i>
+            </div>
+            <div>
+                <i class="material-icons">
+                    view_module
+                </i>
+            </div>
+            <div>
+                <i class="material-icons">
+                    settings
+                </i>
+            </div>
+            <div>
+                <i class="material-icons">
+                    drag_indicator
+                </i>
+            </div>
+            <div>
+                <i class="material-icons">
+                    power_settings_new
+                </i>
+            </div>
+        </div>
+    </div>
+</mat-toolbar-row>
+<hr>
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <p>Auto-resizing sidenav</p>
+        <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+        <button (click)="showFiller = !showFiller" mat-raised-button>
+            Toggle extra text
+        </button>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+        <button type="button" mat-button (click)="drawer.toggle()">
+            Toggle sidenav
+        </button>
+    </div>
+
+</mat-drawer-container>

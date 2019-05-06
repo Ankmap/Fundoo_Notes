@@ -91,7 +91,7 @@ export class RegistrationComponent implements OnInit {
         console.log("password and confirmpassword does not match");
       }
     } catch (error) {
-      this.snackbar.open('error', "Must enter the all filed..!", { duration: 3000 });
+      this.snackbar.open('error', "", { duration: 3000 });
     }
   }
 }

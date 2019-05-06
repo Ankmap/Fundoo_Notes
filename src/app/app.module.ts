@@ -13,6 +13,8 @@ import { LoginComponent } from './component/login/login.component';
 import { RegistrationComponent } from './component/registration/registration.component';
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
+
 import { HttpClientModule } from '@angular/common/http';
 import { from } from 'rxjs';
 /**
@@ -27,6 +29,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 /** Form Validation **/
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HomeComponent } from './component/home/home.component';
 
 
 @NgModule({
@@ -35,7 +38,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     RegistrationComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    DashboardComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

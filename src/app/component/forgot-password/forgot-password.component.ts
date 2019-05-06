@@ -34,7 +34,6 @@ export class ForgotPasswordComponent implements OnInit {
 
   // On click login button
   forgotPassword() {
-    // console.log("model----",this.model);
     try {
       this.userService.postRequest('user/reset', this.register).subscribe(
         data => {
