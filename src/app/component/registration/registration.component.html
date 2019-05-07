@@ -121,7 +121,7 @@
                                 </div>
                                 <div fxLayoutAlign="end end">
                                     <button mat-flat-button color="primary" (click)="submit(register)"
-                                        [disabled]="email.invalid || firstName.invalid || lastName.invalid || password.invalid || confirmPassword.invalid"
+                                        [disabled]="email.invalid || firstName.invalid || lastName.invalid || password.invalid || confirmPassword.invalid || advancedService.invalid || basicService.invalid"
                                         (click)="submit(register)" (click)="submit(register)"
                                         routerLink="/login">signup</button>
                                     <!-- <button mat-flat-button color="primary" (click)="submit(register)"

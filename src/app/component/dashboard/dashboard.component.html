@@ -3,10 +3,8 @@
         <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFlex="25" fxLayoutGap="10px" style="height:10vh">
             <div fxFlex="5">
                 <button type="button" mat-button (click)="drawer.toggle()">
-
-
                     <i class="material-icons">
-                        view_headline
+                        menu
                     </i>
                 </button>
             </div>
@@ -22,7 +20,7 @@
         </div>
         <div fxLayout="row" fxLayoutAlign="center center" fxFlex="40">
             <div class="search">
-                <input fxFlex='100' autocomplete="off" placeholder="Search" value="" type="text">
+                <mat-card fxFlex='100' autocomplete="off" placeholder="Search" value="" type="text"></mat-card>
             </div>
         </div>
         <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFlex="30" fxLayoutGap="20px">
@@ -55,14 +53,57 @@
     </div>
 </mat-toolbar-row>
 <hr>
-<mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer class="example-sidenav" mode="side">
-        <p>Auto-resizing sidenav</p>
-        Toggle extra text
-    </mat-drawer>
-    <div class="example-sidenav-content">
-        <button type="button" mat-button (click)="drawer.toggle()">
 
-        </button>
-    </div>
+<!-- ***************************** side menu start ************************************* -->
+<mat-drawer-container class="example-container">
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <div class="side_icon">
+            <a>
+                <img>
+                <small class="name">Note</small>
+            </a>
+        </div>
+        <div class="side_icon">
+            <a>
+                <img>
+                <small class="name">Reminder</small>
+            </a>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div fxLayout="row">
+            <div>
+                <small>Labels</small>
+            </div>
+            <div>
+                <button mat-button class=side_icon>
+                    <mat-icon class=label>label</mat-icon>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+
+        <div>
+            <button mat-button class=side_icon>
+                <mat-icon>pencile</mat-icon>
+                <span>Edit label</span>
+            </button>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div class="side_icon">
+            <a>
+                <img>
+                <small class="name">Archive</small>
+            </a>
+        </div>
+        <div class="side_icon">
+            <a>
+                <img>
+                <small class="name">Trash</small>
+            </a>
+        </div>
+    </mat-drawer>
 </mat-drawer-container>
+<!-- ******************************** side menu end ************************************* -->
+

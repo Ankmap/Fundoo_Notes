@@ -21,9 +21,10 @@ export class RegistrationComponent implements OnInit {
   register: User = new User();
   service: any;
   constructor(private userService: UserserviceService, private snackbar: MatSnackBar, private router: Router) {
-    // Enable and disabel Button Button
+    /*Enable and disabel Button Button*/
     this.currentLesson = this.classes[0].currentLesson
   }
+  /*Validation*/
   firstName = new FormControl('', [Validators.required]);
   lastName = new FormControl('', [Validators.required]);
   email = new FormControl('', [Validators.required, Validators.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]);
@@ -31,7 +32,7 @@ export class RegistrationComponent implements OnInit {
   confirmPassword = new FormControl('', [Validators.required, Validators.minLength(4)])
   advancedService = new FormControl('', [Validators.required]);
   basicService = new FormControl('', [Validators.required]);
-  
+
   firstNameValidation() {
     return this.firstName.hasError('required') ? 'You must enter a firstName' :
       this.firstName.hasError('firstName') ? 'Not a valid firstName' : '';
@@ -58,14 +59,14 @@ export class RegistrationComponent implements OnInit {
   basicServiceValidation() {
     return this.basicService.hasError('required') ? 'You must choose a value' : '';
   }
-  // Enable and disabel Button
+  /**Enable and disabel Button**/
   currentLesson: string;
   classes = [
     {
       name: 'string',
       level: 'string',
       code: 'number',
-      currentLesson: '1'
+      currentLesson: ''
     }]
 
   ngOnInit() {
