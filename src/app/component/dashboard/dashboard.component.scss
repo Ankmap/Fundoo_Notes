@@ -2,10 +2,16 @@
     width: -webkit-fill-available;
 }
 .example-container {
-    width: 1000%;
+    // width: 1000%;
     height: 3000px;
     overflow: hidden;
 }
 .example-sidenav{
-    width: 260px;
+    width: 300px;
+}
+@media screen and (device-width: 360px) and (device-height: 640px) and (orientation: portrait) {
+    .search{ display: none; }   /* hide it elsewhere */
+    .img{ display: none;}
+    .fundoo{    margin-left: 40px;
+    }
 }

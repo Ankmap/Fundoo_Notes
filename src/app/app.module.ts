@@ -28,6 +28,7 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 /** Form Validation **/
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -66,7 +67,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatButtonToggleModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatAutocompleteModule
   ],
 
   providers: [],
