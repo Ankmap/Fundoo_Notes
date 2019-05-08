@@ -17,7 +17,9 @@ import { RegistrationComponent } from './component/registration/registration.com
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
-import { HomeComponent } from './component/home/home.component';
+/*Child Components*/
+import { NotesAddComponent } from './component/notes-add/notes-add.component';
+import { CardComponent } from './component/card/card.component';
 
 /**
  * @Purpose : Material Required file
@@ -44,7 +46,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ForgotPasswordComponent,
     ResetPasswordComponent,
     DashboardComponent,
-    HomeComponent
+    NotesAddComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,

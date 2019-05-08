@@ -70,11 +70,12 @@
         </div>
         <mat-divider></mat-divider>
 
-        <div fxLayout="column" fxLayoutGap="20px" style="height:15vh">
+        <div fxLayout="column" fxLayoutGap="10px" style="height:18vh">
             <div class="label" fxLayout="row" fxLayoutGap="20px">
-                <mat-icon class=label>label</mat-icon>
-                <h5 class="name">Label</h5>
+                <p class="name">Label</p>
             </div>
+            <mat-icon class=label>label</mat-icon>
+
             <div class="edit" fxLayout="row" fxLayoutGap="20px">
                 <mat-icon class=label>create</mat-icon>
                 <button mat-button class="name"><h5>Edit Note</h5></button>
@@ -94,5 +95,6 @@
         </div>
         <mat-divider></mat-divider>
     </mat-drawer>
+    <router-outlet></router-outlet>
 </mat-drawer-container>
 <!-- ******************************** side menu end ************************************* -->

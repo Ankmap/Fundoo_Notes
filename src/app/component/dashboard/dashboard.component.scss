@@ -2,8 +2,7 @@
     width: -webkit-fill-available;
 }
 .example-container {
-    // width: 1000%;
-    height: 310px;
+    height: 400px;
     overflow: hidden;
 }
 .example-sidenav{
@@ -13,5 +12,8 @@
     .search{ display: none; }   /* hide it elsewhere */
     .img{ display: none;}
     .fundoo{    margin-left: 40px;
+    }
+    .example-sidenav{
+        width: 180px;
     }
 }
