@@ -3,7 +3,7 @@
   <mat-card class="card" (click)="notecardOpen()" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px'
     fxFlex.sm='400px' fxFlex.xs='150px'>
     <div fxLayoutGap="35px">
-      <span fxFlex="calc(50% - 25px)">Take a note.......</span>
+      <input fxFlex="calc(50% - 25px)" style="border-style: hidden;" placeholder="Take a note.......">
       <mat-icon class="icon">brush</mat-icon>
       <mat-icon class="icon">panorama</mat-icon>
       <mat-icon class="icon">view_list</mat-icon>
@@ -17,11 +17,11 @@
   <mat-card class="card" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
     <div>
       <div>
-        <span fxFlex="calc(50% - 25px)" style="height:10vh;">Title</span>
+        <input fxFlex="calc(50% - 25px)" style="height:10vh; border-style: hidden" [formControl]="title" placeholder="Title">
         <mat-icon class="icon">mood</mat-icon>
       </div>
       <div>
-        <div *ngIf="list" (click)="listOpen()">Take a note...</div>
+        <input style="border-style: hidden;" [formControl]="description" placeholder="Take a note...">
         <div contenteditable="true" role="textbox" spellcheck="true"></div>
         <div class="row" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
           <!--1-->
@@ -53,7 +53,7 @@
           <mat-icon class="icon">undo</mat-icon>
           <!--8-->
           <mat-icon class="icon">redo</mat-icon>
-          <!--9--><button mat-button>Close</button>
+          <!--9--><button mat-button (click)="addNote()">Close</button>
         </div>
       </div>
     </div>
@@ -61,3 +61,4 @@
   <router-outlet></router-outlet>
 </div>
 <!-- add notecard end -->
+

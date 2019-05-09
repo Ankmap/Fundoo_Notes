@@ -34,7 +34,7 @@ export class ResetPasswordComponent implements OnInit {
   /**
    * @Purpose : Password validation
    **/
- 
+
   password = new FormControl('', [Validators.required, Validators.minLength(4)]);
   confirmpassword = new FormControl('', [Validators.required, Validators.minLength(4)])
 
@@ -58,14 +58,13 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   login() {
-    
+
     try {
       var body = {
         "newPassword": this.register.password
       }
       var data = new FormData();
       data.append('newPassword', this.password.value);
-
       this.userService.userResetpassword(this.getEncodData(body)).subscribe(
         data => {
           console.log("Data =========>", data);

@@ -10,7 +10,7 @@ export class HttpService {
   constructor(private http: HttpClient) { }
 
   postData(path, body) {
-    return this.http.post(environment.baseUrl + path, body, {});
+    return this.http.post(environment.baseUrl + path, body);
   }
 
   postDataForEncoded(path, body) {
@@ -20,7 +20,8 @@ export class HttpService {
         'Authorization': localStorage.getItem('token')
       })
     };
-    console.log('token', localStorage.getItem('token'));
+    console.log('token ==================>', localStorage.getItem('token'));
     return this.http.post(environment.baseUrl + path, body, httpOptions);
   }
+
 }

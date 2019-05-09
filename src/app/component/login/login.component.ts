@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
         data => {
           console.log("Data while login account: ", data)
           this.snackbar.open('Login done successfully......!', 'Done...!', { duration: 3000 });
-          this.router.navigateByUrl('dashboard');
+          this.router.navigateByUrl('/home');
         },
         error => {
           this.snackbar.open('Error while login account......!', 'Error', { duration: 3000 });
