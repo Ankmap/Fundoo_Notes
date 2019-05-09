@@ -34,8 +34,11 @@ export class ForgotPasswordComponent implements OnInit {
 
   // On click login button
   forgotPassword() {
+    var body = {
+      "email": this.register.email
+    }
     try {
-      this.userService.postRequest('user/reset', this.register).subscribe(
+      this.userService.userReset(body).subscribe(
         data => {
           this.snackbar.open('Reset link send to ur register email id...', 'Check it', { duration: 3000 });
           console.log('data', data);

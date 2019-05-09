@@ -19,6 +19,7 @@ import { Router } from '@angular/router';
 })
 
 export class LoginComponent implements OnInit {
+
   register: User = new User();
   constructor(private userService: UserserviceService, private snackbar: MatSnackBar, private router: Router) { }
 
@@ -45,9 +46,13 @@ export class LoginComponent implements OnInit {
   * @Purpose : On click login button
   */
   login() {
+    var body = {
+      "email": this.register.email,
+      "password": this.register.password
+    }
     console.log('console for this.register @@@@@@@@@@@@@@@@@=======================>', this.register);
     try {
-      this.userService.postRequest('user/login', this.register).subscribe(
+      this.userService.userLogin(body).subscribe(
         data => {
           console.log("Data while login account: ", data)
           this.snackbar.open('Login done successfully......!', 'Done...!', { duration: 3000 });

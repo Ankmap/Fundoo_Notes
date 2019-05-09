@@ -19,7 +19,6 @@ import { Router } from '@angular/router';
 })
 export class RegistrationComponent implements OnInit {
   register: User = new User();
-  service: any;
   constructor(private userService: UserserviceService, private snackbar: MatSnackBar, private router: Router) {
     /*Enable and disabel Button Button*/
     this.currentLesson = this.classes[0].currentLesson
@@ -73,10 +72,18 @@ export class RegistrationComponent implements OnInit {
   }
 
   submit() {
+    var body = {
+      "firstName": this.register.firstName,
+      "lastName": this.register.lastName,
+      "email": this.register.email,
+      "password": this.register.password,
+      "confirmPassword": this.register.confirmPassword,
+      "service": this.register.service
+    }
     console.log('console forthis.register @@@@@@@@@@@@@@@@@=======================>', this.register);
     try {
       if (this.password.value == this.confirmPassword.value)
-        this.userService.postRequest('user/userSignUp', this.register).subscribe(
+        this.userService.userSignup(body).subscribe(
           data => {
             console.log("console for data =======================>", data);
             this.snackbar.open('Register done successfully......!', 'Done...!', { duration: 3000 });
