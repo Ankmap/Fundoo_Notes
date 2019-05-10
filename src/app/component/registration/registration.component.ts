@@ -8,7 +8,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { User } from '../../core/model/user';
-import { UserserviceService } from '../../core/service/userservice.service';
+import { UserserviceService } from '../../core/service/user/user-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 

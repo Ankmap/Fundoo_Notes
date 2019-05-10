@@ -8,7 +8,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { User } from '../../core/model/user';
-import { UserserviceService } from '../../core/service/userservice.service';
+import { UserserviceService } from '../../core/service/user/user-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
@@ -48,13 +48,16 @@ export class LoginComponent implements OnInit {
   login() {
     var body = {
       "email": this.register.email,
-      "password": this.register.password
+      "password": this.register.password,
+      "UserId": this.register.id,
     }
-    console.log('console for this.register @@@@@@@@@@@@@@@@@=======================>', this.register);
+
+    console.log('console for this.register @@@@@@@@@@@@@@@@@=======================>',body);
     try {
       this.userService.userLogin(body).subscribe(
         data => {
           console.log("Data while login account: ", data)
+          localStorage.setItem('token',data['id']);
           this.snackbar.open('Login done successfully......!', 'Done...!', { duration: 3000 });
           this.router.navigateByUrl('/home');
         },

@@ -3,10 +3,9 @@
   <mat-card class="card" (click)="notecardOpen()" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px'
     fxFlex.sm='400px' fxFlex.xs='150px'>
     <div fxLayoutGap="35px">
-      <input fxFlex="calc(50% - 25px)" style="border-style: hidden;" placeholder="Take a note.......">
-      <mat-icon class="icon">brush</mat-icon>
-      <mat-icon class="icon">panorama</mat-icon>
-      <mat-icon class="icon">view_list</mat-icon>
+        <span  fxFlex="calc(50% - 25px)" >Take a note...</span>
+        <mat-icon class="icon">panorama</mat-icon>
+        <mat-icon class="icon" (click)="list()">view_list</mat-icon>
     </div>
   </mat-card>
 </div>

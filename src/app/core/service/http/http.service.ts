@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient ,HttpHeaders } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +14,11 @@ export class HttpService {
   }
 
   postDataForEncoded(path, body) {
+    console.log(body);
+    
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded',
+        // 'Content-Type': 'application/x-www-form-urlencoded',
         'Authorization': localStorage.getItem('token')
       })
     };

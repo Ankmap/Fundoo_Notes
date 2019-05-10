@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NotesService } from '../../core/service/notes.service';
+import { NotesService } from '../../core/service/notes/notes.service';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -48,3 +48,12 @@ export class NotesAddComponent implements OnInit {
     }
   }
 }
+
+
+
+
+
+
+
+
+

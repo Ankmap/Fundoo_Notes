@@ -39,6 +39,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 /** Form Validation **/
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ComponentLifecycleComponent } from './component/component-lifecycle/component-lifecycle.component';
+import { NoteComponent } from './component/note/note.component';
 
 
 
@@ -58,6 +60,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ArchiveComponent,
     TrashComponent,
     SearchNoteComponent,
+    ComponentLifecycleComponent,
+    NoteComponent,
   ],
   imports: [
     BrowserModule,

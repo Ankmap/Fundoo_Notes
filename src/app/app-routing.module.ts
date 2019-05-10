@@ -16,6 +16,8 @@ import { ArchiveComponent } from './component/archive/archive.component';
 import { TrashComponent } from './trash/trash.component';
 import { SearchNoteComponent } from './search-note/search-note.component';
 
+import { ComponentLifecycleComponent } from './component/component-lifecycle/component-lifecycle.component';
+
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -25,14 +27,17 @@ const appRoutes: Routes = [
   {
     path: '', component: NavbarComponent,
     children: [
-      { path: 'home', component: NotesAddComponent},
+      { path: 'home',
+      canActivate:[],
+       component: NotesAddComponent},
       { path: 'reminder', component:ReminderComponent},
       { path: 'label', component:LabelComponent},
       { path: 'archive', component:ArchiveComponent},
       { path: 'trash', component:TrashComponent},
       { path: 'search', component:SearchNoteComponent}
     ]
-  }
+  },
+  {path: 'lifecycle' , component:ComponentLifecycleComponent}
 ];
 
 @NgModule({
