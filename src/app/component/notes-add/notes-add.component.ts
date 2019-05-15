@@ -28,7 +28,6 @@ export class NotesAddComponent implements OnInit {
     var body = {
       "title": this.title.value,
       "description": this.description.value,
-      // "UserId" : ,
     }
     console.log('console for this.register @@@@@@@@@@@@@@@@@=======================>', body);
     try {

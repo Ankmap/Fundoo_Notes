@@ -24,4 +24,8 @@ export class UserserviceService {
   userResetpassword(body){
     return this.service.postDataForEncoded("/user/reset-password",body)
   }
+
+  userLogout(){
+    return this.service.postDataForJSON("/user/logout",{})
+  }
 }

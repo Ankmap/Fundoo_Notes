@@ -1,0 +1,19 @@
+<div fxLayoutAlign="center">
+    <div fxLayout="column" fxLayoutAlign="end" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px' fxFlex.sm='400px'
+        fxFlex.xs='150px' fxLayoutGap="50px">
+        <div *ngFor="let data of notes">
+            <mat-card>
+                <div>
+                    {{data.title}}
+                </div>
+                <div>
+                    {{data.description }}
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px">
+                    <!-- ICON Selector -->
+                    <app-icon></app-icon>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

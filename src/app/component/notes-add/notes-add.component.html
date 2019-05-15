@@ -1,63 +1,117 @@
-<!-- Notecard start -->
-<div fxLayoutAlign="center center" *ngIf="notecard">
-  <mat-card class="card" (click)="notecardOpen()" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px'
-    fxFlex.sm='400px' fxFlex.xs='150px'>
-    <div fxLayoutGap="35px">
-        <span  fxFlex="calc(50% - 25px)" >Take a note...</span>
-        <mat-icon class="icon">panorama</mat-icon>
-        <mat-icon class="icon" (click)="list()">view_list</mat-icon>
-    </div>
-  </mat-card>
-</div>
-<!-- Notecard end -->
-
-<!-- add notecard start -->
-<div fxLayoutAlign="center center" *ngIf="!notecard">
-  <mat-card class="card" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
-    <div>
-      <div>
-        <input fxFlex="calc(50% - 25px)" style="height:10vh; border-style: hidden" [formControl]="title" placeholder="Title">
-        <mat-icon class="icon">mood</mat-icon>
-      </div>
-      <div>
-        <input style="border-style: hidden;" [formControl]="description" placeholder="Take a note...">
-        <div contenteditable="true" role="textbox" spellcheck="true"></div>
-        <div class="row" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
-          <!--1-->
-          <mat-icon class="icon">mood</mat-icon>
-          <!--2-->
-          <mat-icon class="icon">person_add</mat-icon>
-          <!--3-->
-          <mat-icon class="icon">color_lens</mat-icon>
-          <!--4-->
-          <mat-icon class="icon">photo_size_select_actual</mat-icon>
-          <!--5-->
-          <mat-icon class="icon">archive</mat-icon>
-          <!--6-->
-          <button mat-icon-button [matMenuTriggerFor]="menu">
-            <mat-icon class="icon">more_vert</mat-icon>
+<div fxLayout='column' fxLayoutGap='50px'>
+  <!-- Notecard start -->
+  <div fxLayoutAlign="center center" *ngIf="notecard">
+    <mat-card class="card" (click)="notecardOpen()" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px'
+      fxFlex.sm='400px' fxFlex.xs='150px'>
+      <div fxLayoutGap="35px">
+        <span fxFlex="calc(50% - 25px)">Take a note...</span>
+        <abbr title="Gallary">
+          <button mat-icon-button>
+            <mat-icon class="icon">panorama</mat-icon>
           </button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item>
-              <span>Add label</span>
+        </abbr>
+        <abbr title="List">
+          <button mat-icon-button>
+            <mat-icon class="icon">view_list</mat-icon>
+          </button>
+        </abbr>
+        <!-- <mat-icon class="icon" (click)="list()">view_list</mat-icon> -->
+      </div>
+    </mat-card>
+  </div>
+  <!-- Notecard end -->
+
+  <!-- add notecard start -->
+  <div fxLayoutAlign="center center" *ngIf="!notecard">
+    <mat-card class="card" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
+      <div>
+        <div>
+          <input fxFlex="calc(50% - 25px)" style="height:10vh; border-style: hidden" [formControl]="title"
+            placeholder="Title">
+          <mat-icon class="icon">mood</mat-icon>
+        </div>
+        <div>
+          <input style="border-style: hidden;" [formControl]="description" placeholder="Take a note...">
+          <div contenteditable="true" role="textbox" spellcheck="true"></div>
+          <div class="row" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+            <button mat-icon-button>
+              <i class="material-icons">
+                add_alert
+              </i>
             </button>
-            <button mat-menu-item>
-              <span>Add drawing</span>
+            <button mat-icon-button>
+              <i class="material-icons">
+                person_add
+              </i>
             </button>
-            <button mat-menu-item>
-              <span>Show checkboxes</span>
+            <!-- Change Color start -->
+
+            <abbr title="Change color">
+              <button mat-icon-button [matMenuTriggerFor]=menuColor>
+                <i class="material-icons">
+                  color_lens </i>
+              </button>
+            </abbr>
+
+            <mat-menu #menuColor="matMenu">
+              <div class="color">
+                <abbr title="white"><span class=border></span></abbr>
+                <abbr title="salmon"><span class=salmon></span></abbr>
+                <abbr title="orange"><span class=orange></span></abbr>
+                <abbr title="yellow"><span class=yellow_color></span></abbr>
+              </div>
+              <div class="color">
+                <abbr title="green"><span class=green_color></span></abbr>
+                <abbr title="teal"><span class=teal></span></abbr>
+                <abbr title="blue"><span class=blue></span></abbr>
+                <abbr title="aqua"><span class=aqua></span></abbr>
+              </div>
+              <div class="color">
+                <abbr title="purple"><span class=purple></span></abbr>
+                <abbr title="pink"><span class=pink></span></abbr>
+                <abbr title="red"><span class=red></span></abbr>
+                <abbr title="gray"><span class=gray></span></abbr>
+              </div>
+            </mat-menu>
+            <!-- Change Color end -->
+            <button mat-icon-button>
+              <i class="material-icons">
+                crop_original
+              </i>
             </button>
-          </mat-menu>
-          <!--7-->
-          <mat-icon class="icon">undo</mat-icon>
-          <!--8-->
-          <mat-icon class="icon">redo</mat-icon>
-          <!--9--><button mat-button (click)="addNote()">Close</button>
+            <button mat-icon-button>
+              <i class="material-icons">
+                archive
+              </i>
+            </button>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <i class="material-icons">
+                more_vert
+              </i>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>
+                <span>Add label</span>
+              </button>
+              <button mat-menu-item>
+                <span>Add drawing</span>
+              </button>
+              <button mat-menu-item>
+                <span>Show checkboxes</span>
+              </button>
+            </mat-menu>
+            <button mat-icon-button>
+              <mat-icon class="icon">undo</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon class="icon">redo</mat-icon>
+            </button>
+            <!--9--><button mat-button (click)="addNote()">Close</button>
+          </div>
         </div>
       </div>
-    </div>
-  </mat-card>
-  <router-outlet></router-outlet>
+    </mat-card>
+  </div>
+  <app-note-list></app-note-list>
+  <!-- add notecard end -->
 </div>
-<!-- add notecard end -->
-

@@ -12,4 +12,10 @@ export class NotesService {
     return this.service.postDataForEncoded("/notes/addNotes",body)
   }
 
+  getNotes(){
+    return this.service.getdDta("notes/getNotesList")
+  }
+  cardColorChange(){
+    return this.service.chnageColor("notes/changesColorNotes")
+  }
 }

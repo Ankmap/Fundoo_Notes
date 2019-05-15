@@ -6,18 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./component-lifecycle.component.scss']
 })
 export class ComponentLifecycleComponent implements OnInit {
-  data: number = 100;
 
   constructor() {
-    console.log(`new - data is ${this.data}`);
+    console.log(' in construtor');
   }
 
   ngOnChanges() {
-    console.log(`ngOnChanges - data is11 ${this.data}`);
+    console.log('ngOnChanges11');
   }
-  ngOnInit() {
-    console.log(`ngOnInit  - data is22 ${this.data}`);
-  }
+
   ngDoCheck() {
     console.log("ngDoCheck33")
   }
@@ -28,7 +25,7 @@ export class ComponentLifecycleComponent implements OnInit {
   ngOnDestroy() {
     console.log("ngOnDestroy88");
   }
-  
+
   ngAfterContentInit() {
     console.log("ngAfterContentInit44");
   }
@@ -38,11 +35,8 @@ export class ComponentLifecycleComponent implements OnInit {
   ngAfterViewInit() {
     console.log("ngAfterViewInit66");
   }
-  
-  fnAddNumber(): void {
-    this.data += 100;
-  }
-  deleteNumber(): void {
-    this.data -= 10;
+
+  ngOnInit() {
+    console.log('ngOnInit22');
   }
 }

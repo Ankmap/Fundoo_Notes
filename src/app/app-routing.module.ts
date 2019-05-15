@@ -16,7 +16,10 @@ import { ArchiveComponent } from './component/archive/archive.component';
 import { TrashComponent } from './trash/trash.component';
 import { SearchNoteComponent } from './search-note/search-note.component';
 
+/*AuthGuard service*/
+import { AuthGuard } from './core/service/auth/auth.guard'
 import { ComponentLifecycleComponent } from './component/component-lifecycle/component-lifecycle.component';
+import { from } from 'rxjs';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -25,19 +28,18 @@ const appRoutes: Routes = [
   { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'resetpassword/:token', component: ResetPasswordComponent },
   {
-    path: '', component: NavbarComponent,
+    path: '', component: NavbarComponent,canActivate: [AuthGuard],
     children: [
-      { path: 'home',
-      canActivate:[],
-       component: NotesAddComponent},
-      { path: 'reminder', component:ReminderComponent},
-      { path: 'label', component:LabelComponent},
-      { path: 'archive', component:ArchiveComponent},
-      { path: 'trash', component:TrashComponent},
-      { path: 'search', component:SearchNoteComponent}
+      {path: 'home', component: NotesAddComponent },
+      { path: 'reminder', component: ReminderComponent },
+      { path: 'label', component: LabelComponent },
+      { path: 'archive', component: ArchiveComponent },
+      { path: 'trash', component: TrashComponent },
+      { path: 'search', component: SearchNoteComponent }
     ]
   },
-  {path: 'lifecycle' , component:ComponentLifecycleComponent}
+  /*Componnet Lifecycle Demo*/ 
+  { path: 'lifecycle', component: ComponentLifecycleComponent }
 ];
 
 @NgModule({

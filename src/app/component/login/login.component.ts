@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
   * @Purpose :ngOnInit function is called whenever the component is loaded.
   */
   ngOnInit() {
+
   }
 
   /*
@@ -52,12 +53,13 @@ export class LoginComponent implements OnInit {
       "UserId": this.register.id,
     }
 
-    console.log('console for this.register @@@@@@@@@@@@@@@@@=======================>',body);
+    console.log('console for this.register @@@@@@@@@@@@@@@@@=======================>', body);
     try {
       this.userService.userLogin(body).subscribe(
         data => {
           console.log("Data while login account: ", data)
-          localStorage.setItem('token',data['id']);
+          localStorage.setItem('token', data['id']);
+
           this.snackbar.open('Login done successfully......!', 'Done...!', { duration: 3000 });
           this.router.navigateByUrl('/home');
         },

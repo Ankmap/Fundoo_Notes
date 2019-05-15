@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { from } from 'rxjs';
+
+import { AuthGuard } from '../app/core/service/auth/auth.guard';
 /**
  * @Purpose : Configure animations and FlexLayoutModule
  **/
@@ -40,7 +42,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 /** Form Validation **/
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentLifecycleComponent } from './component/component-lifecycle/component-lifecycle.component';
-import { NoteComponent } from './component/note/note.component';
+import { NoteListComponent } from './component/note-list/note-list.component';
+import { IconComponent } from './component/icon/icon.component';
 
 
 
@@ -61,7 +64,8 @@ import { NoteComponent } from './component/note/note.component';
     TrashComponent,
     SearchNoteComponent,
     ComponentLifecycleComponent,
-    NoteComponent,
+    NoteListComponent,
+    IconComponent,
   ],
   imports: [
     BrowserModule,
