@@ -12,6 +12,10 @@ import { LabelComponent } from '../../component/label/label.component';
 })
 export class NavbarComponent implements OnInit {
 
+  signoutCard:boolean=false;
+  firstName = localStorage.getItem("firstname");
+  lastName = localStorage.getItem("lastname");
+  email = localStorage.getItem("email");
   private gridView: boolean = true
   constructor(private NavbarServiceUser: UserserviceService, private router: Router, private notes: NotesService, private dialog: MatDialog, private data: DataService) { }
 
@@ -21,9 +25,18 @@ export class NavbarComponent implements OnInit {
     this.NavbarServiceUser.userLogout().subscribe((response) => {
       console.log("response ====>", response);
       localStorage.removeItem("token");
-      localStorage.removeItem("fundooUserId");
+      localStorage.removeItem("userId");
+      localStorage.removeItem("firstname");
+      localStorage.removeItem("lastname");
+      localStorage.removeItem("email");
       this.router.navigateByUrl('/login');
     });
+  }
+  account(){
+    this.signoutCard=!(this.signoutCard);
+  }
+  addAccount(){
+    this.router.navigateByUrl('/registration');
   }
   createLabel() {
     this.dialog.open(LabelComponent, {

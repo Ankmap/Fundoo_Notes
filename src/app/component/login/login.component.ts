@@ -59,7 +59,10 @@ export class LoginComponent implements OnInit {
         data => {
           console.log("Data while login account: ", data)
           localStorage.setItem('token', data['id']);
-
+          localStorage.setItem('firstname', data['firstName']);
+          localStorage.setItem('lastname', data['lastName']);
+          localStorage.setItem('email', data['email']);
+          localStorage.setItem('userId', data['userId']);
           this.snackbar.open('Login done successfully......!', 'Done...!', { duration: 3000 });
           this.router.navigateByUrl('/home');
         },
