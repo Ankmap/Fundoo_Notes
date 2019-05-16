@@ -70,4 +70,14 @@ export class HttpService {
     console.log('token ==================>', localStorage.getItem('token'));
     return this.http.get(environment.baseUrl + path,httpOptions);
   }
+  //Edit label
+  postDataForEdit(path, body) {
+    let httpAuthOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      })
+    }
+    return this.http.post(environment.baseUrl + path, body, httpAuthOptions);
+  }
 }

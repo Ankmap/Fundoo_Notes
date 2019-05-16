@@ -15,7 +15,12 @@ export class NotesService {
   getNotes(){
     return this.service.getdDta("notes/getNotesList")
   }
+
   cardColorChange(){
     return this.service.chnageColor("notes/changesColorNotes")
+  }
+
+  addLabel(body){
+    return this.service.postDataForEdit("noteLabels",body)
   }
 }

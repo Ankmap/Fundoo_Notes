@@ -1,5 +1,6 @@
 <mat-toolbar-row>
     <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-evenly center">
+
         <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFlex="25" fxLayoutGap="10px" style="height:10vh">
             <div fxFlex="5" fxFlex.sm="100">
                 <abbr title="Main menu">
@@ -20,25 +21,19 @@
                 <h6>Fundoo</h6>
             </div>
         </div>
+
         <div fxLayout="row" fxLayoutAlign="center center" fxFlex="40">
-            <!-- <div class="search"> -->
             <input type="search" class="search" style="width: 600px;">
             <div class="spacer"></div>
-            <!-- </div> -->
+
         </div>
         <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFlex="30" fxLayoutGap="20px">
-            <!-- <div>
-              <i class="material-icons">
-                  refresh
-              </i>
-          </div> -->
+
             <abbr title="List view">
-                <div>
-                    <i class="material-icons">
-                        view_module
-                    </i>
-                </div>
+                <mat-icon *ngIf=gridView (click)=view()>view_stream</mat-icon>
+                <mat-icon *ngIf=!gridView (click)=view()>view_module</mat-icon>
             </abbr>
+
             <abbr title="Setting">
                 <div>
                     <i class="material-icons">
@@ -46,11 +41,7 @@
                     </i>
                 </div>
             </abbr>
-            <!-- <div>
-              <i class="material-icons">
-                  drag_indicator
-              </i>
-          </div> -->
+
             <abbr title="Logout">
                 <div>
                     <i class="material-icons" (click)="logout()">
@@ -58,6 +49,7 @@
                     </i>
                 </div>
             </abbr>
+
         </div>
     </div>
 </mat-toolbar-row>
@@ -69,7 +61,7 @@
     <mat-drawer #drawer class="example-sidenav" mode="side">
 
         <div fxLayout="column" fxLayoutGap="20px" style="height:18vh">
-            <button type="button" class="button" mat-button>
+            <button type="button" class="button" mat-button (click)="displayNote=null">
                 <div class="notes" fxLayout="row" fxLayoutGap="20px">
                     <mat-icon class=label>notes</mat-icon>
                     <h6 class="name">Notes</h6>
@@ -85,7 +77,7 @@
         <mat-divider></mat-divider>
 
 
-        <div fxLayout="column" fxLayoutGap="10px" style="height:18vh">
+        <div fxLayout="column" fxLayoutGap="10px" style="height:20vh">
             <div class="label" fxLayout="row">
                 <h6>
                     <p class="name">Label</p>
