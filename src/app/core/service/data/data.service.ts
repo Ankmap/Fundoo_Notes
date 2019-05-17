@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { NotesService } from '../notes/notes.service';
+
 
 /**
  * Purpose : The BehaviorSubject has the characteristic that it stores the “current” value. This means that you can always directly get the last emitted value from the BehaviorSubject.
@@ -8,17 +10,16 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
-
-  private viewSource = new BehaviorSubject (false)
-  private messageSource = new BehaviorSubject('default message');
-
-  constructor() { }
-
-  changeView(message: boolean){
-    this.viewSource.next(message);
+  private assignData = new BehaviorSubject<any[]>([]);
+  allNote = this.assignData.asObservable();
+  constructor(private noteService: NotesService) {
+    this.getAllNote();
   }
-
-  changeMessage(message: string) {
-    this.messageSource.next(message)
+  getAllNote() {
+    this.noteService.getNotes().subscribe(data => {
+      console.log(data.data.data);
+      ; this.assignData.next(data.data.data)
+    })
   }
+ 
 }

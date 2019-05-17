@@ -69,10 +69,7 @@ export class NavbarComponent implements OnInit {
   /**
    * @Purpose : Grid View
    **/
-  view() {
-    this.data.changeView(this.gridView)
-    this.gridView = !this.gridView;
-  }
+  
 
 }
 

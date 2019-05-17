@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 import { NotesService } from '../../core/service/notes/notes.service';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { DemoService } from 'src/app/core/service/demo.service';
+import { DataService } from 'src/app/core/service/data/data.service';
 
 
 @Component({
@@ -20,7 +20,7 @@ import { DemoService } from 'src/app/core/service/demo.service';
 export class NotesAddComponent implements OnInit {
 
   constructor(private NoteAddService: NotesService , private snackbar: MatSnackBar,
-    private updateNote : DemoService) { }
+    private updateNote : DataService) { }
 
   private notecard: boolean = true;
   title = new FormControl('')

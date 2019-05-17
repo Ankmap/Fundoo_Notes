@@ -9,7 +9,6 @@ import { Component, OnInit } from '@angular/core';
 import { NotesService } from '../../core/service/notes/notes.service'
 import { Note } from '../../core/model/note'
 import { DataService } from '../../core/service/data/data.service'
-import { DemoService } from 'src/app/core/service/demo.service';
 
 @Component({
   selector: 'app-note-list',
@@ -21,12 +20,11 @@ export class NoteListComponent implements OnInit {
   notes: Note[] = [];
   message: string;
 
-  constructor(private noteService: NotesService, private data: DataService,
-    private getNoteService: DemoService) { }
+  constructor(private noteService: NotesService, private data: DataService) { }
 
   ngOnInit() {
    // this.getNotes();
-    this.getNoteService.allNote.subscribe(data => this.notes = data);
+    this.data.allNote.subscribe(data => this.notes = data);
     console.log('all note -->',this.notes);
     
   }

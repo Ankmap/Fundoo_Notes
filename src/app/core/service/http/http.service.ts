@@ -49,7 +49,7 @@ export class HttpService {
     }
     return this.http.post(environment.baseUrl + path, body, httpAuthOptions);
   }
-  //get data
+  //get data without refresh
   getdDta(path) {
     const httpOptions = {
       headers: new HttpHeaders({
