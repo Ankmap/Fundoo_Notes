@@ -1,7 +1,22 @@
+/*****************************************************************************************************
+ *@Purpose - FundoNotes.
+ *@file    - notes-add.component.scss
+ *@author  - Ankita Mapari <mapariit@gmail.com>
+ *@version - 1.0
+ *@since   - 22/04/2019
+**************************************************************************************************/
 @import '../../core/scss/color.scss';
 @import '../../core/scss/mixin';
-
-
+button{
+    outline: none;
+    border-radius: 200px;
+}
+.card{
+    margin-top: 20px;
+}
+.main{
+    outline: none;
+}
 .color{
     margin: 2px;
     padding: 7px;

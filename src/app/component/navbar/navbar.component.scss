@@ -1,18 +1,24 @@
-
-.search{
-    width: -webkit-fill-available;
-}
+/*****************************************************************************************************
+ *@Purpose - FundoNotes.
+ *@file    - navbar.component.scss
+ *@author  - Ankita Mapari <mapariit@gmail.com>
+ *@version - 1.0
+ *@since   - 22/04/2019
+**************************************************************************************************/
 .example-sidenav{
     width: 300px;
 }
+button{
+    outline: none;
+    border-radius: 200px;
+}
+.fundoo{
+    margin-top: 7px;
+}
 @media screen and (device-width: 360px) and (device-height: 640px) and (orientation: portrait) {
-    .search{ display: none; }   /* hide it elsewhere */
-    .img{ display: none;}
-    .fundoo{    margin-left: 40px;
-    }
-    .example-sidenav{
-        width: 180px;
-    }
+    .img{ display: none; }
+    .fundoo{ margin-left: 40px; }
+    .example-sidenav{ width: 180px; }
 }
 
 .button{
@@ -24,23 +30,27 @@
     font-weight: 500;
     line-height: 1.25rem;
     height: 70px;
+    outline: none;
 }
 
 .search {
-    width:100%;
+    padding:2% 4% 2% 9%;
+    width:120%;
     color:black;
     background-color: gainsboro;
     font-size: 25px;
     border: none;
     margin:-1% -3% 0% -3%;
     border-radius: 7px;
+    outline: none;
 } 
-.searchbutton{
+.searchbutton {
     background-color: transparent;
     cursor: pointer;
     position: absolute;
-    opacity: 0.7;
-    margin-left: -270px
+    opacity:0.7;
+    margin-top: 10px;
+    font-size: 25px;
 }
 
 .account{
@@ -58,6 +68,7 @@
     border-radius: 5px;
     margin-top:5px;
 }
+
 .addAccount {
     padding:3%;
     border:1px solid rgb(192, 190, 190);

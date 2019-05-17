@@ -1,7 +1,16 @@
+<!-- /*****************************************************************************************************
+ *@Purpose - FundoNotes.
+ *@file    - navbar.component.html
+ *@author  - Ankita Mapari <mapariit@gmail.com>
+ *@version - 1.0
+ *@since   - 22/04/2019
+**************************************************************************************************/ -->
+<!-- **************************** Main Menu start ********************************************* -->
 <mat-toolbar-row>
-    <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-evenly center">
+    <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-evenly center" fxLayoutGap="10px" style="height:10vh">
 
-        <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFlex="25" fxLayoutGap="10px" style="height:10vh">
+        <!-- 1st div menu, img, fundoo -->
+        <div fxLayout="row" fxLayoutAlign="space-evenly start" fxFlex="15" fxLayoutGap="50px">
             <div fxFlex="5" fxFlex.sm="100">
                 <abbr title="Main menu">
                     <button type="button" mat-button (click)="drawer.toggle()">
@@ -18,18 +27,28 @@
                     style="width:40px;height:40px">
             </div>
             <div class="fundoo">
-                <h6>Fundoo</h6>
+                <h5>Fundoo</h5>
             </div>
         </div>
 
-        <div fxLayout="row" fxLayoutAlign="center center" fxFlex="40">
-            <mat-icon ngStyle.xl="font-size:50px" class="searchbutton" aria-placeholder="search">search</mat-icon>
-            <input type="search" class="search" style="width: 600px;">
-            <div class="spacer"></div>
-
+        <!-- 2nd div search -->
+        <div fxLayoutAlign="center center" fxFlex="60" fxShow fxHide.sm fxShow fxHide.xs>
+            <div fxFlex.xs=40 fxFlex.sm="50" fxFlex.md="70" fxFlex.lg="80" fxFlex.xl="80">
+                <mat-icon ngStyle.xl="font-size:50px" class="searchbutton">search</mat-icon>
+                <input type="text" class="search" placeholder="Search.." ngStyle.md="font-size:13px"
+                    ngStyle.lg="font-size:20px" ngStyle.sm="font-style:20px;margin-top:1px;"
+                    ngStyle.xl="font-size:30px">
+            </div>
         </div>
 
-        <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFlex="30" fxLayoutGap="20px">
+        <!-- 3rd div refresh, logout, grid -->
+        <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFlex="25" fxLayoutGap="20px">
+
+            <abbr title="Refresh">
+                <button mat-icon-button class="materialicons" (click)="refresh()">
+                    <i class="material-icons">refresh</i>
+                </button>
+            </abbr>
 
             <abbr title="List view">
                 <button mat-icon-button class="materialicons" *ngIf=gridView (click)=view()>
@@ -38,12 +57,6 @@
                 </button>
                 <button mat-icon-button class="materialicons" *ngIf=!gridView (click)=view()>
                     <i class="material-icons">view_module</i>
-                </button>
-            </abbr>
-
-            <abbr title="Setting">
-                <button mat-icon-button class="materialicons" (click)="account()">
-                    <i class="material-icons">settings</i>
                 </button>
             </abbr>
 
@@ -57,7 +70,9 @@
 
     </div>
 </mat-toolbar-row>
-<hr>
+<mat-divider></mat-divider>
+<!-- **************************** Signout card start ********************************************* -->
+
 <mat-card class="account" *ngIf="signoutCard">
     <mat-card-header>
         <mat-card-title>{{firstName}} {{lastName}}</mat-card-title>
@@ -67,60 +82,68 @@
     <div><button class="addAccount" (click)="addAccount()">Create Account</button></div>
     <div><button class="signout" (click)="logout()">Sign out</button></div>
 </mat-card>
+<!-- **************************** Signout card end ********************************************* -->
+
+<!-- **************************** Main Menu end ********************************************* -->
+
 <!-- ***************************** side menu start ************************************* -->
 
 <mat-drawer-container class="example-container">
     <mat-drawer #drawer class="example-sidenav" mode="side">
 
-        <div fxLayout="column" fxLayoutGap="20px" style="height:18vh">
+        <!-- 1st div Notes, Reminder -->
+        <div fxLayout="column">
             <button type="button" class="button" mat-button (click)="displayNote=null">
-                <div class="notes" fxLayout="row" fxLayoutGap="20px">
-                    <mat-icon class=label>notes</mat-icon>
-                    <h6 class="name">Notes</h6>
+                <div class="notes" fxLayout="row" fxLayoutGap="25px">
+                    <mat-icon class=name>notes</mat-icon>
+                    <h5 class="name">Notes</h5>
                 </div>
             </button>
             <button type="button" class="button" mat-button>
-                <div class="notifications" fxLayout="row" fxLayoutGap="20px">
+                <div class="notifications" fxLayout="row" fxLayoutGap="25px">
                     <mat-icon class=notifications>notifications</mat-icon>
-                    <h6 class="name">Reminder</h6>
+                    <h5 class="name">Reminder</h5>
                 </div>
             </button>
         </div>
         <mat-divider></mat-divider>
 
-
-        <div fxLayout="column" fxLayoutGap="10px" style="height:20vh">
+        <!-- 2nd div LABELS, Edit Note -->
+        <div fxLayout="column">
             <div class="label" fxLayout="row">
-                <h6>
-                    <p class="name">Label</p>
-                </h6>
+                <p class="labels" style="margin-left: 20px;margin-top: 15px;">LABELS</p>
             </div>
-            <mat-icon class=label>label</mat-icon>
+            <!-- <div fxLayoutGap="25px">
+                <mat-icon class=label>label</mat-icon>
+            </div> -->
             <button type="button" (click)="createLabel()" class="button" mat-button>
-                <div class="edit" fxLayout="row" fxLayoutGap="20px">
+                <div class="edit" fxLayout="row" fxLayoutGap="25px">
                     <mat-icon class=label>create</mat-icon>
-                    <h6>Edit Note</h6>
+                    <h5>Edit Note</h5>
                 </div>
             </button>
         </div>
         <mat-divider></mat-divider>
-        <br><br>
-        <div fxLayout="column" fxLayoutGap="20px" style="height:18vh">
+
+        <!-- 3rd div Archive, Delete -->
+        <div fxLayout="column">
             <button type="button" class="button" mat-button>
-                <div class="archive" fxLayout="row" fxLayoutGap="20px">
+                <div class="archive" fxLayout="row" fxLayoutGap="25px">
                     <mat-icon class=label>archive</mat-icon>
-                    <h6 class="name">Archive</h6>
+                    <h5 class="name">Archive</h5>
                 </div>
             </button>
             <button type="button" class="button" mat-button>
-                <div class="delete" fxLayout="row" fxLayoutGap="20px">
+                <div class="delete" fxLayout="row" fxLayoutGap="25px">
                     <mat-icon class=delete>delete</mat-icon>
-                    <h6 class="name">Delete</h6>
+                    <h5 class="name">Delete</h5>
                 </div>
             </button>
         </div>
         <mat-divider></mat-divider>
+
     </mat-drawer>
+    <!-- @Purpose : Go to the child component -->
     <router-outlet></router-outlet>
 </mat-drawer-container>
 <!-- ******************************** side menu end ************************************* -->

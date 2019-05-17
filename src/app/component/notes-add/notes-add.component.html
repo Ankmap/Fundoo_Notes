@@ -1,21 +1,27 @@
+<!-- /*****************************************************************************************************
+ *@Purpose - FundoNotes.
+ *@file    - notes-add.component.scss
+ *@author  - Ankita Mapari <mapariit@gmail.com>
+ *@version - 1.0
+ *@since   - 22/04/2019
+**************************************************************************************************/ -->
 <div fxLayout='column' fxLayoutGap='50px'>
   <!-- Notecard start -->
   <div fxLayoutAlign="center center" *ngIf="notecard">
     <mat-card class="card" (click)="notecardOpen()" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px'
       fxFlex.sm='400px' fxFlex.xs='150px'>
-      <div fxLayoutGap="35px">
+      <div fxLayoutGap="35px" class="main">
         <span fxFlex="calc(50% - 25px)">Take a note...</span>
         <abbr title="Gallary">
-          <button mat-icon-button>
+          <button mat-button>
             <mat-icon class="icon">panorama</mat-icon>
           </button>
         </abbr>
         <abbr title="List">
-          <button mat-icon-button>
+          <button mat-button>
             <mat-icon class="icon">view_list</mat-icon>
           </button>
         </abbr>
-        <!-- <mat-icon class="icon" (click)="list()">view_list</mat-icon> -->
       </div>
     </mat-card>
   </div>
@@ -26,13 +32,12 @@
     <mat-card class="card" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
       <div>
         <div>
-          <input fxFlex="calc(50% - 25px)" style="height:10vh; border-style: hidden" [formControl]="title"
+          <input fxFlex="calc(50% - 25px)" style="height:10vh; border-style: hidden; outline: none" [formControl]="title"
             placeholder="Title">
           <mat-icon class="icon">mood</mat-icon>
         </div>
         <div>
-          <input style="border-style: hidden;" [formControl]="description" placeholder="Take a note...">
-          <div contenteditable="true" role="textbox" spellcheck="true"></div>
+          <input style="border-style: hidden; outline: none" [formControl]="description" placeholder="Take a note...">
           <div class="row" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
             <button mat-icon-button>
               <i class="material-icons">
@@ -74,6 +79,7 @@
               </div>
             </mat-menu>
             <!-- Change Color end -->
+
             <button mat-icon-button>
               <i class="material-icons">
                 crop_original
@@ -106,7 +112,7 @@
             <button mat-icon-button>
               <mat-icon class="icon">redo</mat-icon>
             </button>
-            <!--9--><button mat-button (click)="addNote()">Close</button>
+            <button mat-button (click)="addNote()">Close</button>
           </div>
         </div>
       </div>

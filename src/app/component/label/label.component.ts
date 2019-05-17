@@ -1,8 +1,15 @@
+/*****************************************************************************************************
+ *@Purpose - FundoNotes.
+ *@file    - label.component.ts
+ *@author  - Ankita Mapari <mapariit@gmail.com>
+ *@version - 1.0
+ *@since   - 22/04/2019
+**************************************************************************************************/
 import { Component, OnInit } from '@angular/core';
 import { NotesService } from '../../core/service/notes/notes.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { combineLatest } from 'rxjs';
+
 @Component({
   selector: 'app-label',
   templateUrl: './label.component.html',
@@ -18,6 +25,10 @@ export class LabelComponent implements OnInit {
 
   ngOnInit() {
   }
+  /**
+   * @purpose : Add Label
+   **/ 
+  
   addLabel() {
     const label = this.label.labelName;
     console.log(" Label =====>", label);
