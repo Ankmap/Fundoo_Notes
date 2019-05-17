@@ -14,12 +14,16 @@
         <span fxFlex="calc(50% - 25px)">Take a note...</span>
         <abbr title="Gallary">
           <button mat-button>
-            <mat-icon class="icon">panorama</mat-icon>
+            <i class="material-icons">
+              panorama
+            </i>
           </button>
         </abbr>
-        <abbr title="List">
+        <abbr title="Gallary">
           <button mat-button>
-            <mat-icon class="icon">view_list</mat-icon>
+            <i class="material-icons">
+              view_list
+            </i>
           </button>
         </abbr>
       </div>
@@ -32,8 +36,8 @@
     <mat-card class="card" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
       <div>
         <div>
-          <input fxFlex="calc(50% - 25px)" style="height:10vh; border-style: hidden; outline: none" [formControl]="title"
-            placeholder="Title">
+          <input fxFlex="calc(50% - 25px)" style="height:10vh; border-style: hidden; outline: none"
+            [formControl]="title" placeholder="Title">
           <mat-icon class="icon">mood</mat-icon>
         </div>
         <div>
@@ -97,7 +101,7 @@
             </button>
             <mat-menu #menu="matMenu">
               <button mat-menu-item>
-                <span>Add label</span>
+                <span>Delete label</span>
               </button>
               <button mat-menu-item>
                 <span>Add drawing</span>

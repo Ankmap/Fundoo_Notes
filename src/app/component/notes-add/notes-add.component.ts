@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 import { NotesService } from '../../core/service/notes/notes.service';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DemoService } from 'src/app/core/service/demo.service';
 
 
 @Component({
@@ -18,7 +19,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class NotesAddComponent implements OnInit {
 
-  constructor(private NoteAddService: NotesService , private snackbar: MatSnackBar) { }
+  constructor(private NoteAddService: NotesService , private snackbar: MatSnackBar,
+    private updateNote : DemoService) { }
 
   private notecard: boolean = true;
   title = new FormControl('')
@@ -58,6 +60,7 @@ export class NotesAddComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
+    setTimeout(() =>this.updateNote.getAllNote(),3000);
   }
 }
 

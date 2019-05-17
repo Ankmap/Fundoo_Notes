@@ -10,9 +10,15 @@ import { BehaviorSubject } from 'rxjs';
 export class DataService {
 
   private viewSource = new BehaviorSubject (false)
+  private messageSource = new BehaviorSubject('default message');
+
   constructor() { }
 
   changeView(message: boolean){
     this.viewSource.next(message);
+  }
+
+  changeMessage(message: string) {
+    this.messageSource.next(message)
   }
 }

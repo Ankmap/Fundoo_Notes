@@ -12,7 +12,7 @@ export class NotesService {
     return this.service.postDataForEncoded("/notes/addNotes",body)
   }
 
-  getNotes(){
+  getNotes():any{
     return this.service.getdDta("notes/getNotesList")
   }
 
