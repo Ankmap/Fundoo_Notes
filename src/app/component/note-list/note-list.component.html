@@ -9,7 +9,7 @@
 <div fxLayoutAlign="center">
     <div fxLayout="column" fxLayoutAlign="end" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px' fxFlex.sm='400px'
         fxFlex.xs='150px' fxLayoutGap="50px">
-        <div *ngFor="let data of notes | sortPipe" class="div" [ngClass.lg]="view ? 'list' : 'grid'">
+        <div *ngFor="let data of notes | sortPipe | searchNote : searchItem">
             <mat-card>
                 <div>
                     {{data.title}}

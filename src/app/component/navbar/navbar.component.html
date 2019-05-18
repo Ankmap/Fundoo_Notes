@@ -35,9 +35,9 @@
         <div fxLayoutAlign="center center" fxFlex="60" fxShow fxHide.sm fxShow fxHide.xs>
             <div fxFlex.xs=40 fxFlex.sm="50" fxFlex.md="70" fxFlex.lg="80" fxFlex.xl="80">
                 <mat-icon ngStyle.xl="font-size:50px" class="searchbutton">search</mat-icon>
-                <input type="text" class="search" placeholder="Search.." ngStyle.md="font-size:13px"
-                    ngStyle.lg="font-size:20px" ngStyle.sm="font-style:20px;margin-top:1px;"
-                    ngStyle.xl="font-size:30px">
+                <input type="text" [(ngModel)]="searchValue" (keyup)=newMessage() class="search" placeholder="Search.."
+                    (click)="search()" ngStyle.md="font-size:13px" ngStyle.lg="font-size:20px"
+                    ngStyle.sm="font-style:20px;margin-top:1px;" ngStyle.xl="font-size:30px">
             </div>
         </div>
 

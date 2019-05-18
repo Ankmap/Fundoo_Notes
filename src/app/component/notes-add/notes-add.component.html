@@ -38,7 +38,9 @@
         <div>
           <input fxFlex="calc(50% - 25px)" style="height:10vh; border-style: hidden; outline: none"
             [formControl]="title" placeholder="Title">
-          <mat-icon class="icon">mood</mat-icon>
+          <i class="material-icons">
+            mood
+          </i>
         </div>
         <div>
           <input style="border-style: hidden; outline: none" [formControl]="description" placeholder="Take a note...">
@@ -111,10 +113,14 @@
               </button>
             </mat-menu>
             <button mat-icon-button>
-              <mat-icon class="icon">undo</mat-icon>
+              <i class="material-icons">
+                undo
+              </i>
             </button>
             <button mat-icon-button>
-              <mat-icon class="icon">redo</mat-icon>
+              <i class="material-icons">
+                redo
+              </i>
             </button>
             <button mat-button (click)="addNote()">Close</button>
           </div>

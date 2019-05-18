@@ -25,8 +25,7 @@ export class NavbarComponent implements OnInit {
   email = localStorage.getItem("email");
 
   private signoutCard:boolean=false;
-  private gridView: boolean = true
-
+  private searchValue :any;
   constructor(private NavbarServiceUser: UserserviceService, private router: Router, private notes: NotesService, private dialog: MatDialog, private data: DataService) { }
 
   ngOnInit() {
@@ -67,9 +66,14 @@ export class NavbarComponent implements OnInit {
     })
   }
   /**
-   * @Purpose : Grid View
+   * @Purpose : Search
    **/
-  
+  search(){
+    this.router.navigateByUrl('/search');
+  }
+  newMessage(){
+    this.data.changeMessageSearch(this.searchValue)
+  }
 
 }
 

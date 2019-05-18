@@ -44,6 +44,7 @@ import { ComponentLifecycleComponent } from './component/component-lifecycle/com
 import { NoteListComponent } from './component/note-list/note-list.component';
 import { IconComponent } from './component/icon/icon.component';
 import { SortPipePipe } from './core/pipe/sort-pipe.pipe';
+import { SearchNotePipe } from './core/pipe/filter/search-note.pipe';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { SortPipePipe } from './core/pipe/sort-pipe.pipe';
     NoteListComponent,
     IconComponent,
     SortPipePipe,
+    SearchNotePipe,
   ],
   imports: [
     BrowserModule,
