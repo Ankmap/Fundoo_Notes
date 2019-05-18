@@ -15,7 +15,18 @@ export class HttpService {
   }
 
   // Reset Passwoprd
-  postDataForEncodedReset(path, body) {
+
+  getEncodData(toConvert) {
+    const formBody = [];
+    for (const property in toConvert) {
+      const encodedKey = encodeURIComponent(property);
+      const encodedValue = encodeURIComponent(toConvert[property]);
+      formBody.push(encodedKey + '=' + encodedValue);
+    }
+    return formBody.join('&');
+  }
+
+   postDataForEncodedReset(path, body) {
     console.log(body);
     const httpOptions = {
       headers: new HttpHeaders({
@@ -24,7 +35,7 @@ export class HttpService {
       })
     };
     console.log('token ==================>', localStorage.getItem('token'));
-    return this.http.post(environment.baseUrl + path, body, httpOptions);
+    return this.http.post(environment.baseUrl + path, this.getEncodData(body), httpOptions);
   }
 
   // Add Note

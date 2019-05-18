@@ -47,25 +47,17 @@ export class ResetPasswordComponent implements OnInit {
       this.confirmpassword.hasError('confirmpassword') ? 'Enter min 4 digit confirmpassword' : '';
   }
 
-  getEncodData(toConvert) {
-    const formBody = [];
-    for (const property in toConvert) {
-      const encodedKey = encodeURIComponent(property);
-      const encodedValue = encodeURIComponent(toConvert[property]);
-      formBody.push(encodedKey + '=' + encodedValue);
-    }
-    return formBody.join('&');
-  }
+  
 
   login() {
 
     try {
-      var body = {
-        "newPassword": this.register.password
-      }
+      this.model = {
+        "newPassword":this.password.value,
+        }
       var data = new FormData();
       data.append('newPassword', this.password.value);
-      this.userService.userResetpassword(this.getEncodData(body)).subscribe(
+      this.userService.userResetpassword(this.model).subscribe(
         data => {
           console.log("Data =========>", data);
           this.snackbar.open('Password Set successfully.......!', 'Done...!', { duration: 3000 });

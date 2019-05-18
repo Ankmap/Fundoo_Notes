@@ -22,7 +22,7 @@ export class UserserviceService {
   }
 
   userResetpassword(body){
-    return this.service.postDataForEncoded("/user/reset-password",body)
+    return this.service.postDataForEncodedReset("/user/reset-password",body)
   }
 
   userLogout(){

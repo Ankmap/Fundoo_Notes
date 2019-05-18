@@ -32,7 +32,7 @@ export class SearchNoteComponent implements OnInit {
     this.data.allNote.
     pipe(takeUntil(this.destroy$))
     .subscribe( (response) =>{
-      this.notes = response["data"].data
+      this.notes = response['data'].data
       this.notesArray=[];
     },(error)=>{
       console.log("Error:",error); 
