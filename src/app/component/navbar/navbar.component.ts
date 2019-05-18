@@ -74,6 +74,11 @@ export class NavbarComponent implements OnInit {
   newMessage(){
     this.data.changeMessageSearch(this.searchValue)
   }
-
+ /**
+   * @Purpose : refresh
+   **/
+  refresh(){
+    this.router.navigateByUrl('/home')
+  }
 }
 
