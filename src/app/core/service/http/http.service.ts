@@ -9,6 +9,7 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
+  // Login, registration, forgot
   postData(path, body) {
     return this.http.post(environment.baseUrl + path, body);
   }

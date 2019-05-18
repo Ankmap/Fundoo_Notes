@@ -60,7 +60,7 @@ export class NotesAddComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
-    setTimeout(() =>this.updateNote.getAllNote(),3000);
+    setTimeout(() =>this.updateNote.getAllNote(),1000);
   }
 }
 

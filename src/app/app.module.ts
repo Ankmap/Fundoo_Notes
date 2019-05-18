@@ -43,8 +43,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentLifecycleComponent } from './component/component-lifecycle/component-lifecycle.component';
 import { NoteListComponent } from './component/note-list/note-list.component';
 import { IconComponent } from './component/icon/icon.component';
-
-
+import { SortPipePipe } from './core/pipe/sort-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -65,6 +64,7 @@ import { IconComponent } from './component/icon/icon.component';
     ComponentLifecycleComponent,
     NoteListComponent,
     IconComponent,
+    SortPipePipe,
   ],
   imports: [
     BrowserModule,
