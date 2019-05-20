@@ -33,97 +33,24 @@
 
   <!-- add notecard start -->
   <div fxLayoutAlign="center center" *ngIf="!notecard">
-    <mat-card class="card" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
+    <mat-card [style.backgroundColor]="setColor" class="card" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px'
+      fxFlex.sm='400px' fxFlex.xs='150px'>
       <div>
         <div>
           <input fxFlex="calc(50% - 25px)" style="height:10vh; border-style: hidden; outline: none"
-            [formControl]="title" placeholder="Title">
-          <i class="material-icons">
+            [style.backgroundColor]="setColor" [formControl]="title" [(ngModel)]="addNotes.title" placeholder="Title">
+          <!-- <i class="material-icons">
             mood
-          </i>
+          </i> -->
         </div>
         <div>
-          <input style="border-style: hidden; outline: none" [formControl]="description" placeholder="Take a note...">
-          <div class="row" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
-            <button mat-icon-button>
-              <i class="material-icons">
-                add_alert
-              </i>
-            </button>
-            <button mat-icon-button>
-              <i class="material-icons">
-                person_add
-              </i>
-            </button>
-            <!-- Change Color start -->
-
-            <abbr title="Change color">
-              <button mat-icon-button [matMenuTriggerFor]=menuColor>
-                <i class="material-icons">
-                  color_lens </i>
-              </button>
-            </abbr>
-
-            <mat-menu #menuColor="matMenu">
-              <div class="color">
-                <abbr title="white"><span class=border></span></abbr>
-                <abbr title="salmon"><span class=salmon></span></abbr>
-                <abbr title="orange"><span class=orange></span></abbr>
-                <abbr title="yellow"><span class=yellow_color></span></abbr>
-              </div>
-              <div class="color">
-                <abbr title="green"><span class=green_color></span></abbr>
-                <abbr title="teal"><span class=teal></span></abbr>
-                <abbr title="blue"><span class=blue></span></abbr>
-                <abbr title="aqua"><span class=aqua></span></abbr>
-              </div>
-              <div class="color">
-                <abbr title="purple"><span class=purple></span></abbr>
-                <abbr title="pink"><span class=pink></span></abbr>
-                <abbr title="red"><span class=red></span></abbr>
-                <abbr title="gray"><span class=gray></span></abbr>
-              </div>
-            </mat-menu>
-            <!-- Change Color end -->
-
-            <button mat-icon-button>
-              <i class="material-icons">
-                crop_original
-              </i>
-            </button>
-            <button mat-icon-button>
-              <i class="material-icons">
-                archive
-              </i>
-            </button>
-            <button mat-icon-button [matMenuTriggerFor]="menu">
-              <i class="material-icons">
-                more_vert
-              </i>
-            </button>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item>
-                <span>Delete label</span>
-              </button>
-              <button mat-menu-item>
-                <span>Add drawing</span>
-              </button>
-              <button mat-menu-item>
-                <span>Show checkboxes</span>
-              </button>
-            </mat-menu>
-            <button mat-icon-button>
-              <i class="material-icons">
-                undo
-              </i>
-            </button>
-            <button mat-icon-button>
-              <i class="material-icons">
-                redo
-              </i>
-            </button>
+          <input style="border-style: hidden; outline: none" [formControl]="description"
+            [style.backgroundColor]="setColor" [(ngModel)]="addNotes.description" placeholder="Take a note...">
+          <div fxLayout='row' fxLayoutGap='50px'>
+            <app-icon (onChangeColor)="receivecolor($event)"></app-icon>
             <button mat-button (click)="addNote()">Close</button>
           </div>
+          <!-- </div> -->
         </div>
       </div>
     </mat-card>

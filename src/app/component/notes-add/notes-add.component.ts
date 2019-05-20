@@ -10,7 +10,7 @@ import { NotesService } from '../../core/service/notes/notes.service';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataService } from 'src/app/core/service/data/data.service';
-
+import { Note } from '../../core/model/note';
 
 @Component({
   selector: 'app-notes-add',
@@ -18,9 +18,11 @@ import { DataService } from 'src/app/core/service/data/data.service';
   styleUrls: ['./notes-add.component.scss']
 })
 export class NotesAddComponent implements OnInit {
+  setColor: any;
+  addNotes: Note = new Note();
 
-  constructor(private NoteAddService: NotesService , private snackbar: MatSnackBar,
-    private updateNote : DataService) { }
+  constructor(private NoteAddService: NotesService, private snackbar: MatSnackBar,
+    private updateNote: DataService) { }
 
   private notecard: boolean = true;
   title = new FormControl('')
@@ -30,9 +32,14 @@ export class NotesAddComponent implements OnInit {
 
   /**
    * @Purpose : Notecard open
-   **/ 
+   **/
   notecardOpen() {
     this.notecard = !(this.notecard);
+  }
+  receivecolor($event) {
+    this.setColor = $event
+    console.log("color",this.setColor);
+    
   }
 
   /**
@@ -40,27 +47,29 @@ export class NotesAddComponent implements OnInit {
    **/
   addNote() {
     this.notecard = !(this.notecard);
+    this.addNotes.color = this.setColor;
     var body = {
-      "title": this.title.value,
-      "description": this.description.value,
+      "title": this.addNotes.title,
+      "description": this.addNotes.description,
+      "color": this.addNotes.color
     }
     console.log('console for this.register @@@@@@@@@@@@@@@@@=======================>', body);
     try {
-      
-        this.NoteAddService.addNote(body).subscribe(
-          data => {
-            this.snackbar.open('Note added successfully......!', 'Done...!', { duration: 3000 });
-            console.log('Register infor ==========>', data);
-          },
-          error => {
-            this.snackbar.open('Error while adding note......!', 'Error', { duration: 3000 });
-            console.log("Error something wrong: ", error)
-          });
-     
+
+      this.NoteAddService.addNote(body).subscribe(
+        data => {
+          this.snackbar.open('Note added successfully......!', 'Done...!', { duration: 3000 });
+          console.log('Register infor ==========>', data);
+        },
+        error => {
+          this.snackbar.open('Error while adding note......!', 'Error', { duration: 3000 });
+          console.log("Error something wrong: ", error)
+        });
+
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
-    setTimeout(() =>this.updateNote.getAllNote(),1000);
+    setTimeout(() => this.updateNote.getAllNote(), 1000);
   }
 }
 

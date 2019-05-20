@@ -13,7 +13,6 @@ import { NotesAddComponent } from './component/notes-add/notes-add.component';
 import { ReminderComponent } from './component/reminder/reminder.component';
 import { LabelComponent } from './component/label/label.component';
 import { ArchiveComponent } from './component/archive/archive.component';
-import { TrashComponent } from './trash/trash.component';
 import { SearchNoteComponent } from './search-note/search-note.component';
 
 /*AuthGuard service*/
@@ -34,7 +33,6 @@ const appRoutes: Routes = [
       { path: 'reminder', component: ReminderComponent },
       { path: 'label', component: LabelComponent },
       { path: 'archive', component: ArchiveComponent },
-      { path: 'trash', component: TrashComponent },
       { path: 'search', component: SearchNoteComponent }
     ]
   },

@@ -23,7 +23,6 @@ import { NotesAddComponent } from './component/notes-add/notes-add.component';
 import { ReminderComponent } from './component/reminder/reminder.component';
 import { LabelComponent } from './component/label/label.component';
 import { ArchiveComponent } from './component/archive/archive.component';
-import { TrashComponent } from './trash/trash.component';
 import { SearchNoteComponent } from './search-note/search-note.component';
 
 /**
@@ -37,6 +36,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 /** Form Validation **/
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -60,7 +60,6 @@ import { SearchNotePipe } from './core/pipe/filter/search-note.pipe';
     ReminderComponent,
     LabelComponent,
     ArchiveComponent,
-    TrashComponent,
     SearchNoteComponent,
     ComponentLifecycleComponent,
     NoteListComponent,
@@ -91,7 +90,8 @@ import { SearchNotePipe } from './core/pipe/filter/search-note.pipe';
     ReactiveFormsModule,
     MatSnackBarModule,
     MatAutocompleteModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltipModule
   ],
 
   providers: [],

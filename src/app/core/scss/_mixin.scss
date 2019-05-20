@@ -11,3 +11,15 @@
 @mixin back-ground-color($color-value) {
   background-color: $color-value;
 }
+@mixin input-width {
+  max-width: 250px;
+  width: 100%
+}
+@mixin card-generator($card-bg-color) {
+  background-color: $card-bg-color;
+  text-align: center;
+  word-wrap: break-word;
+}
+@mixin back-ground-color ($color-value){
+  background-color: $color-value;
+}
