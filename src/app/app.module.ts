@@ -23,7 +23,7 @@ import { NotesAddComponent } from './component/notes-add/notes-add.component';
 import { ReminderComponent } from './component/reminder/reminder.component';
 import { LabelComponent } from './component/label/label.component';
 import { ArchiveComponent } from './component/archive/archive.component';
-import { SearchNoteComponent } from './search-note/search-note.component';
+import { SearchNoteComponent } from './component/search-note/search-note.component';
 
 /**
  * @Purpose : Material Required file
