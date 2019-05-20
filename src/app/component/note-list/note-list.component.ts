@@ -6,7 +6,7 @@
  *@since   - 22/04/2019
 **************************************************************************************************/
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Note } from '../../core/model/note'
+import { Note } from '../../core/model/note/note'
 import { DataService } from '../../core/service/data/data.service'
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';

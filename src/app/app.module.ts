@@ -3,13 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
-import { AuthGuard } from '../app/core/service/auth/auth.guard';
+
 /**
- * @Purpose : Configure animations and FlexLayoutModule
+ * @Purpose : Configure animations and FlexLayoutModule, AuthGuard, HttpClientModule
  **/
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from '../app/core/service/auth/auth.guard';
 
 /** Components **/
 import { LoginComponent } from './component/login/login.component';
@@ -24,6 +25,14 @@ import { ReminderComponent } from './component/reminder/reminder.component';
 import { LabelComponent } from './component/label/label.component';
 import { ArchiveComponent } from './component/archive/archive.component';
 import { SearchNoteComponent } from './component/search-note/search-note.component';
+import { ComponentLifecycleComponent } from './component/component-lifecycle/component-lifecycle.component';
+import { NoteListComponent } from './component/note-list/note-list.component';
+import { IconComponent } from './component/icon/icon.component';
+/**
+ * @Purpose : Pipe
+ **/
+import { SortPipePipe } from '../app/core/pipe/sort/sort-pipe.pipe';
+import { SearchNotePipe } from './core/pipe/filter/search-note.pipe';
 
 /**
  * @Purpose : Material Required file
@@ -40,23 +49,21 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 
 /** Form Validation **/
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ComponentLifecycleComponent } from './component/component-lifecycle/component-lifecycle.component';
-import { NoteListComponent } from './component/note-list/note-list.component';
-import { IconComponent } from './component/icon/icon.component';
-import { SortPipePipe } from './core/pipe/sort-pipe.pipe';
-import { SearchNotePipe } from './core/pipe/filter/search-note.pipe';
+
 
 @NgModule({
   declarations: [
     AppComponent,
 
-    /** Components **/
+    /** Parent Components **/
     LoginComponent,
     RegistrationComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    NotesAddComponent,
+    
+    /** Child Components **/
     NavbarComponent,
+    NotesAddComponent,
     ReminderComponent,
     LabelComponent,
     ArchiveComponent,
@@ -64,8 +71,10 @@ import { SearchNotePipe } from './core/pipe/filter/search-note.pipe';
     ComponentLifecycleComponent,
     NoteListComponent,
     IconComponent,
-    SortPipePipe,
+
+    /** Pipes **/
     SearchNotePipe,
+    SortPipePipe
   ],
   imports: [
     BrowserModule,

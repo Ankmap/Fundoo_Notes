@@ -1,10 +1,17 @@
+/*****************************************************************************************************
+ *@Purpose - FundoNotes.
+ *@file    - data.service.ts
+ *@author  - Ankita Mapari <mapariit@gmail.com>
+ *@version - 1.0
+ *@since   - 22/04/2019
+**************************************************************************************************/
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { NotesService } from '../notes/notes.service';
 
-
 /**
- * Purpose : The BehaviorSubject has the characteristic that it stores the “current” value. This means that you can always directly get the last emitted value from the BehaviorSubject.
+ * @Purpose : The BehaviorSubject has the characteristic that it stores the “current” value. 
+ * This means that you can always directly get the last emitted value from the BehaviorSubject.
  **/ 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +28,17 @@ export class DataService {
   allNote = this.assignData.asObservable();
 
   /**
+   * @Purpose : get note without refresh
+   **/ 
+  getAllNote() {
+    this.noteService.getNotes().subscribe(data => {
+      console.log(data.data.data);
+      ; this.assignData.next(data.data.data)
+    })
+  }
+  /********************************** get note without refresh End**************************************/ 
+
+  /**
    * @Purpose : search
    **/
   private messageSourceSearch = new BehaviorSubject('default');
@@ -31,15 +49,7 @@ export class DataService {
   changeMessageSearch(message : string){
     this.messageSourceSearch.next(message)
   }
+  /********************************** Search End**************************************/ 
   
-  /**
-   * @Purpose : get note without refresh
-   **/ 
-  getAllNote() {
-    this.noteService.getNotes().subscribe(data => {
-      console.log(data.data.data);
-      ; this.assignData.next(data.data.data)
-    })
-  }
  
 }

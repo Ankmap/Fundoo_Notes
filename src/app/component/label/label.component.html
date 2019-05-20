@@ -6,18 +6,18 @@
  *@since   - 22/04/2019
 **************************************************************************************************/ -->
 <div style="height:8vh;">
-    <strong>Edit label</strong>
-</div>
-<div fxLayout="row" fxLayoutGap="15">
-    <mat-form-field class="example-form-field">
-        <input matInput type="text" placeholder="Edit label" [(ngModel)]="value">
-        <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-            <mat-icon class="close" style="font-size: 25px;">close</mat-icon>
-        </button>
-    </mat-form-field>
-    <mat-icon class="done" style="font-size: 40px;">done</mat-icon>
-</div>
-<mat-divider></mat-divider>
-<div xLayout="row" fxLayoutAlign="end end">
-    <button mat-button class="done" (click)=addLabel()>Done</button>
-</div>
+        <strong>Edit label</strong>
+    </div>
+    <div fxLayout="row" fxLayoutGap="15">
+        <mat-form-field class="example-form-field">
+            <input matInput type="text" placeholder="Edit label" [(ngModel)]="label.labelName">
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                <mat-icon class="close" style="font-size: 25px;">close</mat-icon>
+            </button>
+        </mat-form-field>
+        <mat-icon class="done" style="font-size: 40px;">done</mat-icon>
+    </div>
+    <mat-divider></mat-divider>
+    <div xLayout="row" fxLayoutAlign="end end">
+        <button mat-button class="done" (click)=addLabel()>Done</button>
+    </div>

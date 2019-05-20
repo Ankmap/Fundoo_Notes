@@ -1,7 +1,14 @@
+/*****************************************************************************************************
+ *@Purpose - FundoNotes.
+ *@file    - search-note.componet.ts
+ *@author  - Ankita Mapari <mapariit@gmail.com>
+ *@version - 1.0
+ *@since   - 22/04/2019
+**************************************************************************************************/
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../core/service/data/data.service';
 import { NotesService } from '../../core/service/notes/notes.service';
-import { Note } from '../../core/model/note';
+import { Note } from '../../core/model/note/note';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -13,6 +20,7 @@ import { takeUntil } from 'rxjs/operators';
 export class SearchNoteComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
+  
   constructor(private data: DataService, private searchService: NotesService) { }
 
   private notes: Note[] = [];
@@ -25,9 +33,11 @@ export class SearchNoteComponent implements OnInit {
       .subscribe(message => {
         this.message = message
       })
-
   }
 
+  /**
+   * @Purpose : GetNotes  method for search
+   **/ 
   getNotes() {
     this.data.allNote.
       pipe(takeUntil(this.destroy$))
@@ -36,8 +46,7 @@ export class SearchNoteComponent implements OnInit {
         this.notesArray = [];
       }, (error) => {
         console.log("Error:", error);
-      }
-
-      );
+      });
   }
+
 }

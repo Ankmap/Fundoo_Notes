@@ -41,6 +41,5 @@ export class IconComponent implements OnInit {
 
  setColor(color) {
    this.onChangeColor.emit(color); 
-
   }
 }

@@ -10,7 +10,7 @@ import { NotesService } from '../../core/service/notes/notes.service';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataService } from 'src/app/core/service/data/data.service';
-import { Note } from '../../core/model/note';
+import { Note } from '../../core/model/note/note';
 
 @Component({
   selector: 'app-notes-add',
@@ -39,7 +39,6 @@ export class NotesAddComponent implements OnInit {
   receivecolor($event) {
     this.setColor = $event
     console.log("color",this.setColor);
-    
   }
 
   /**
@@ -55,7 +54,6 @@ export class NotesAddComponent implements OnInit {
     }
     console.log('console for this.register @@@@@@@@@@@@@@@@@=======================>', body);
     try {
-
       this.NoteAddService.addNote(body).subscribe(
         data => {
           this.snackbar.open('Note added successfully......!', 'Done...!', { duration: 3000 });

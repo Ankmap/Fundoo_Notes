@@ -17,9 +17,11 @@ import { SearchNoteComponent } from './component/search-note/search-note.compone
 
 /*AuthGuard service*/
 import { AuthGuard } from './core/service/auth/auth.guard'
-import { ComponentLifecycleComponent } from './component/component-lifecycle/component-lifecycle.component';
-import { from } from 'rxjs';
 
+/*Component lifecycle hook*/
+import { ComponentLifecycleComponent } from './component/component-lifecycle/component-lifecycle.component';
+
+/*Routing path set*/ 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -27,7 +29,9 @@ const appRoutes: Routes = [
   { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'resetpassword/:token', component: ResetPasswordComponent },
   {
+    /*Apply AuthGuard*/ 
     path: '', component: NavbarComponent,canActivate: [AuthGuard],
+    /*Routing path set for child component*/ 
     children: [
       {path: 'home', component: NotesAddComponent },
       { path: 'reminder', component: ReminderComponent },
@@ -36,13 +40,17 @@ const appRoutes: Routes = [
       { path: 'search', component: SearchNoteComponent }
     ]
   },
-  /*Componnet Lifecycle Demo*/ 
+  /*Componnet Lifecycle Demo path set*/ 
   { path: 'lifecycle', component: ComponentLifecycleComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes,
-    { enableTracing: true })],
+  imports: [
+    RouterModule.forRoot(appRoutes,
+    /*Tracing*/
+    { enableTracing: true }
+    )
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

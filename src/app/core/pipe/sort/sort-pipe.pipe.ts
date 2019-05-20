@@ -1,6 +1,6 @@
 /*****************************************************************************************************
  *@Purpose - FundoNotes.
- *@file    - search-note.pipe.ts
+ *@file    - sort-pipe.pipe.ts
  *@author  - Ankita Mapari <mapariit@gmail.com>
  *@version - 1.0
  *@since   - 22/04/2019
@@ -8,20 +8,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'searchNote'
+  name: 'sortPipe'
 })
-export class SearchNotePipe implements PipeTransform {
-
-  transform(value: any, args?: any): any {
-
-    if(!value)return null;
-    if(!args)return value;
-
-    args = args.toLowerCase();
-
-    return value.filter(function(item){
-        return JSON.stringify(item).toLowerCase().includes(args);
-    });
-}
+export class SortPipePipe implements PipeTransform {
+  transform(ary: any, fn: Function = (a, b) => a > b ? 1 : -1): any {
+    return ary.sort(fn)
+  }
 
 }

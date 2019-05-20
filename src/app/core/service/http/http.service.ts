@@ -1,3 +1,10 @@
+/*****************************************************************************************************
+ *@Purpose - FundoNotes.
+ *@file    - http.service.ts
+ *@author  - Ankita Mapari <mapariit@gmail.com>
+ *@version - 1.0
+ *@since   - 22/04/2019
+**************************************************************************************************/
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
@@ -9,13 +16,16 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
-  // Login, registration, forgot
+  /**
+   * @Purpose : Login, registration, forgotPassword
+   **/ 
   postData(path, body) {
     return this.http.post(environment.baseUrl + path, body);
   }
 
-  // Reset Passwoprd
-
+  /**
+   * @Purpose : Reset Passwoprd
+   **/
   getEncodData(toConvert) {
     const formBody = [];
     for (const property in toConvert) {
@@ -38,7 +48,10 @@ export class HttpService {
     return this.http.post(environment.baseUrl + path, this.getEncodData(body), httpOptions);
   }
 
-  // Add Note
+  
+  /**
+   * @Purpose : Add Note
+   **/ 
   postDataForEncoded(path, body) {
     console.log(body);
     const httpOptions = {
@@ -47,11 +60,13 @@ export class HttpService {
         'Authorization': localStorage.getItem('token')
       })
     };
-    // console.log('token ==================>', localStorage.getItem('token'));
+    console.log('token ==================>', localStorage.getItem('token'));
     return this.http.post(environment.baseUrl + path, body, httpOptions);
   }
   
-  //Logout
+  /** 
+   * @Purpose : Logout
+   **/
   postDataForJSON(path, body) {
     let httpAuthOptions = {
       headers: new HttpHeaders({
@@ -61,7 +76,10 @@ export class HttpService {
     }
     return this.http.post(environment.baseUrl + path, body, httpAuthOptions);
   }
-  //get data without refresh
+
+  /**
+   * @Purpose : get data without refresh
+   **/
   getdDta(path) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -72,7 +90,10 @@ export class HttpService {
     console.log('token ==================>', localStorage.getItem('token'));
     return this.http.get(environment.baseUrl + path,httpOptions);
   }
-  //change color
+
+  /**
+   * @Purpose : change color
+   **/
   chnageColor(path) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -82,7 +103,10 @@ export class HttpService {
     console.log('token ==================>', localStorage.getItem('token'));
     return this.http.get(environment.baseUrl + path,httpOptions);
   }
-  //Edit label
+
+  /**
+   * @Purpose : Edit label
+   **/
   postDataForEdit(path, body) {
     let httpAuthOptions = {
       headers: new HttpHeaders({
@@ -92,4 +116,17 @@ export class HttpService {
     }
     return this.http.post(environment.baseUrl + path, body, httpAuthOptions);
   }
+
+  postDataForShowLabel(path) {
+    let httpAuthOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      })
+    }
+    return this.http.post(environment.baseUrl + path, httpAuthOptions);
+  }
+
+
+
 }

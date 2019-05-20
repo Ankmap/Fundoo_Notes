@@ -18,9 +18,9 @@ import { Router } from '@angular/router';
 export class LabelComponent implements OnInit {
 
   label: any = {
-    "labelName": " "
+    "labelName": ""
   }
-  id = localStorage.getItem('token');
+  id = localStorage.getItem('userId');
   constructor(private note: NotesService, private snackbar: MatSnackBar, private router: Router) { }
 
   ngOnInit() {
@@ -34,9 +34,9 @@ export class LabelComponent implements OnInit {
     console.log(" Label =====>", label);
 
     var body = {
-      "label": "string",
-      "isDeleted": true,
-      "userId": "id"
+      "label": this.label.labelName,
+      "isDeleted": false,
+      "userId": this.id
     }
     console.log('Data after edit label', body);
 
