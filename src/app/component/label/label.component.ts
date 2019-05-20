@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 import { NotesService } from '../../core/service/notes/notes.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-
+import { Label } from '../../core/model/label/label'
 @Component({
   selector: 'app-label',
   templateUrl: './label.component.html',
@@ -17,24 +17,22 @@ import { Router } from '@angular/router';
 })
 export class LabelComponent implements OnInit {
 
-  label: any = {
-    "labelName": ""
-  }
+  
+  labels: Label = new Label();
+
   id = localStorage.getItem('userId');
   constructor(private note: NotesService, private snackbar: MatSnackBar, private router: Router) { }
 
   ngOnInit() {
+    this.showLabel();
   }
   /**
    * @purpose : Add Label
    **/ 
   
   addLabel() {
-    const label = this.label.labelName;
-    console.log(" Label =====>", label);
-
     var body = {
-      "label": this.label.labelName,
+      "label": this.labels.label,
       "isDeleted": false,
       "userId": this.id
     }
@@ -44,7 +42,6 @@ export class LabelComponent implements OnInit {
       this.note.addLabel(body).subscribe(
         data => {
           console.log("Data ====>", data);
-          this.label.labelName = null;
           this.snackbar.open('Label created successfully..', '', { duration: 3000 });
           console.log('Label created successfully..');
         },
@@ -59,4 +56,15 @@ export class LabelComponent implements OnInit {
     }
   }
 
+  /*
+   * @Purpose  : Getting label data 
+   */
+  showLabel() {
+    this.note.showNoteLabel()
+      .subscribe((response: any) => {
+        this.labels = response.data.details
+        console.log("check showLabel=====>", response);
+      }, (error) => {
+      });
+  }
 }

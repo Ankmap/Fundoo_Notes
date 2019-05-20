@@ -124,7 +124,7 @@ export class HttpService {
         'Authorization': localStorage.getItem('token')
       })
     }
-    return this.http.post(environment.baseUrl + path, httpAuthOptions);
+    return this.http.get(environment.baseUrl + path, httpAuthOptions);
   }
 
 
