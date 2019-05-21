@@ -10,6 +10,12 @@ import { NotesService } from '../../core/service/notes/notes.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Label } from '../../core/model/label/label'
+import {MatDialogRef} from "@angular/material";
+import { NavbarComponent } from '../navbar/navbar.component'
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+
+
 @Component({
   selector: 'app-label',
   templateUrl: './label.component.html',
@@ -17,11 +23,12 @@ import { Label } from '../../core/model/label/label'
 })
 export class LabelComponent implements OnInit {
 
-  
-  labels: Label = new Label();
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
+  labels: Label = new Label();
+  private labelList =[]
   id = localStorage.getItem('userId');
-  constructor(private note: NotesService, private snackbar: MatSnackBar, private router: Router) { }
+  constructor(private note: NotesService, private snackbar: MatSnackBar, private router: Router, private dialogRef : MatDialogRef<NavbarComponent>) { }
 
   ngOnInit() {
     this.showLabel();
@@ -30,25 +37,32 @@ export class LabelComponent implements OnInit {
    * @purpose : Add Label
    **/ 
   
-  addLabel() {
+  done() {
     var body = {
       "label": this.labels.label,
       "isDeleted": false,
       "userId": this.id
     }
+    const label = this.labels.label
+    if(label== " "){
+      this.dialogRef.close();
+      return false;
+    }
     console.log('Data after edit label', body);
 
     try {
-      this.note.addLabel(body).subscribe(
-        data => {
-          console.log("Data ====>", data);
-          this.snackbar.open('Label created successfully..', '', { duration: 3000 });
-          console.log('Label created successfully..');
+      this.note.addLabel(body).pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (response) => {
+          console.log("Response ====>", response);
+          this.showLabel();
+          // this.snackbar.open('Label created successfully..', '', { duration: 3000 });
+          // console.log('Label created successfully..');
         },
         error => {
           console.log("Data ====>", error);
-          this.snackbar.open('Error while creating lable..', '', { duration: 3000 });
-          console.log('Error while creating lable..');
+          // this.snackbar.open('Error while creating lable..', '', { duration: 3000 });
+          // console.log('Error while creating lable..');
         }
       )
     } catch (err) {
@@ -56,15 +70,26 @@ export class LabelComponent implements OnInit {
     }
   }
 
-  /*
+  /**
    * @Purpose  : Getting label data 
    */
   showLabel() {
     this.note.showNoteLabel()
+    .pipe(takeUntil(this.destroy$))
       .subscribe((response: any) => {
         this.labels = response.data.details
+        this.labelList=[];
+        // this.labelList = this.labels;
         console.log("check showLabel=====>", response);
       }, (error) => {
       });
+  }
+
+  /**
+   * @Purpose : ShowLabel in sideNavbar
+   **/ 
+  add(){
+    this.done();
+    this.dialogRef.close();
   }
 }

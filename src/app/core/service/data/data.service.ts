@@ -15,7 +15,7 @@ import { NotesService } from '../notes/notes.service';
  **/ 
 @Injectable({
   providedIn: 'root'
-})
+})  
 export class DataService {
 
   constructor(private noteService: NotesService) {
@@ -23,6 +23,7 @@ export class DataService {
   }
   /**
    * @Purpose : get note without refresh
+   * @Description : private BehaviorSubject hold the current value of the message
    **/
   private assignData = new BehaviorSubject<any[]>([]);
   allNote = this.assignData.asObservable();
@@ -40,6 +41,9 @@ export class DataService {
 
   /**
    * @Purpose : search
+   * @Description : private BehaviorSubject hold the current value of the message
+   *  then subscribe to the currentMessageView observable and 
+   *  set its value equal to the message variable.
    **/
   private messageSourceSearch = new BehaviorSubject('default');
   currentMessageSearch = this.messageSourceSearch.asObservable();

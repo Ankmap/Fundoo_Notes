@@ -18,27 +18,41 @@ import { Note } from '../../core/model/note/note';
   styleUrls: ['./notes-add.component.scss']
 })
 export class NotesAddComponent implements OnInit {
-  setColor: any;
-  addNotes: Note = new Note();
 
+  /**
+   * @Purpose : Inject the MatSnackBar, NotesService, 
+   *            MatDialog, DataService in the constructor
+   **/
   constructor(private NoteAddService: NotesService, private snackbar: MatSnackBar,
     private updateNote: DataService) { }
 
-  private notecard: boolean = true;
+  /**
+  * @Purpose : addNote
+  **/
+  addNotes: Note = new Note();
   title = new FormControl('')
   description = new FormControl('')
+
   ngOnInit() {
   }
 
   /**
    * @Purpose : Notecard open
    **/
+  private notecard: boolean = true;
+
   notecardOpen() {
     this.notecard = !(this.notecard);
   }
+
+  /**
+   * @Purpose :CardColor
+   **/
+  setColor: any;
+
   receivecolor($event) {
     this.setColor = $event
-    console.log("color",this.setColor);
+    console.log("color", this.setColor);
   }
 
   /**

@@ -46,8 +46,24 @@
         <div>
           <input style="border-style: hidden; outline: none" [formControl]="description"
             [style.backgroundColor]="setColor" [(ngModel)]="addNotes.description" placeholder="Take a note...">
-          <div fxLayout='row' fxLayoutGap='50px'>
+          <div fxLayout='row'>
             <app-icon (onChangeColor)="receivecolor($event)"></app-icon>
+            <div class="row" fxLayoutGap='5px'>
+              <abbr title="Undo">
+                <button mat-button>
+                  <i class="material-icons" style="margin-top: 18px;">
+                    undo
+                  </i>
+                </button>
+              </abbr>
+              <abbr title="Redo">
+                <button mat-button>
+                  <i class="material-icons" style="margin-top: 18px;">
+                    redo
+                  </i>
+                </button>
+              </abbr>
+            </div>
             <button mat-button (click)="addNote()">Close</button>
           </div>
           <!-- </div> -->

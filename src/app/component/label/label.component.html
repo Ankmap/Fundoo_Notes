@@ -14,7 +14,7 @@
     </mat-form-field>
     <abbr title="Create Label">
         <button mat-button class="done">
-            <mat-icon style="font-size: 35px;" (click)=showLabel()>done</mat-icon>
+            <mat-icon style="font-size: 35px;" (click)="done()">done</mat-icon>
         </button>
     </abbr>
 </div>
@@ -31,6 +31,6 @@
 <mat-divider></mat-divider>
 <div xLayout="row" fxLayoutAlign="end end">
     <abbr title="Save Label">
-        <button mat-button class="done" (click)=addLabel()>Done</button>
+        <button mat-button class="done" (click)="add()">Done</button>
     </abbr>
 </div>

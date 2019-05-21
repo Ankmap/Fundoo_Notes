@@ -23,20 +23,33 @@ export class NoteListComponent implements OnInit {
 
   destory$: Subject<boolean> = new Subject<boolean>();
 
-  private view :boolean;
+  private view: boolean;
+  /**
+   * @Purpose : Pass data from the parent component class to the child component class
+   *  use the @Input decorator. 
+   **/
   @Input() note;
   @Input() searchItem;
+  /**
+    * @Purpose : To emit an event from the child component class to the parent component class,
+    *   use EventEmitter with the @Output() decorator. 
+    **/
   @Output() anyChanges = new EventEmitter();
+
+  /**
+   * @Purpose : inject the DataService in the constructor
+   **/
   constructor(private data: DataService) { }
 
   ngOnInit() {
-    this.data.allNote.pipe(takeUntil(this.destory$)).subscribe(data => this.notes = data);
-    console.log('all note -->',this.notes);
+    this.data.allNote.pipe(takeUntil(this.destory$))
+      .subscribe(data => this.notes = data);
+    console.log('all note -->', this.notes);
 
     this.data.currentMessageView.pipe(takeUntil(this.destory$))
-    .subscribe(message =>{
-      this.view = message
-    })
+      .subscribe(message => {
+        this.view = message
+      })
   }
 
 }

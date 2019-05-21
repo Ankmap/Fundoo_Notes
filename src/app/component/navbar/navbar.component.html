@@ -51,7 +51,7 @@
                     </button>
                 </abbr>
             </div>
-            
+
             <abbr title="List view">
                 <button mat-icon-button class="materialicons" *ngIf=gridView (click)=view()>
                     <i class="material-icons">
@@ -121,12 +121,16 @@
             <div class="label" fxLayout="row">
                 <p class="labels" style="margin-left: 20px;margin-top: 15px;">LABELS</p>
             </div>
-            <!-- <div fxLayoutGap="25px">
-                <mat-icon class=label>label</mat-icon>
-            </div> -->
+           
+            <a *ngFor="let data of labelList | sortPipe">
+                <div fxLayout="row" fxLayoutGap="10px" style="height:5vh ; margin-left: 20px;">
+                    <img src="../../../assets/outline-label-24px.svg">
+                    <div style="font-size: 15px;">{{data}}</div>
+                </div>
+            </a>
             <button type="button" (click)="createLabel()" class="button" mat-button>
                 <div class="edit" fxLayout="row" fxLayoutGap="25px">
-                    <mat-icon class=label>create</mat-icon>
+                        <img src="../../../assets/outline-create-24px.svg">
                     <h5>Edit Note</h5>
                 </div>
             </button>
@@ -137,13 +141,13 @@
         <div fxLayout="column">
             <button type="button" class="button" mat-button>
                 <div class="archive" fxLayout="row" fxLayoutGap="25px">
-                    <mat-icon class=label>archive</mat-icon>
+                        <img class="archive" src="../../../assets/outline-archive-24px.svg">
                     <h5 class="name">Archive</h5>
                 </div>
             </button>
             <button type="button" class="button" mat-button>
                 <div class="delete" fxLayout="row" fxLayoutGap="25px">
-                    <mat-icon class=delete>delete</mat-icon>
+                    <img class="delete" src="../../../assets/outline-delete-24px.svg">
                     <h5 class="name">Delete</h5>
                 </div>
             </button>
