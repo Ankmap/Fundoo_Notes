@@ -96,10 +96,7 @@ export class NavbarComponent implements OnInit {
         }
       })
   }
-  // toolbarName(data){
-  //   this.labelShow = true
-  //   this.labelValue =data
-  // }
+  
   /**
    * @Purpose : Search
    **/

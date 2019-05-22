@@ -14,6 +14,7 @@ import { ReminderComponent } from './component/reminder/reminder.component';
 import { LabelComponent } from './component/label/label.component';
 import { ArchiveComponent } from './component/archive/archive.component';
 import { SearchNoteComponent } from './component/search-note/search-note.component';
+import { CollaboratorComponent } from './component/collaborator/collaborator.component';
 
 /*AuthGuard service*/
 import { AuthGuard } from './core/service/auth/auth.guard'
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
       { path: 'reminder', component: ReminderComponent },
       { path: 'label', component: LabelComponent },
       { path: 'archive', component: ArchiveComponent },
-      { path: 'search', component: SearchNoteComponent }
+      { path: 'search', component: SearchNoteComponent },
+      { path: 'collaborator', component:CollaboratorComponent}
     ]
   },
   /*Componnet Lifecycle Demo path set*/ 

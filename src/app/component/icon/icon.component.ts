@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-
+// import { CollaboratorComponent } from '../../component/'
 @Component({
   selector: 'app-icon',
   templateUrl: './icon.component.html',
@@ -38,11 +38,19 @@ export class IconComponent implements OnInit {
 
   ngOnInit() {
   }
-
- setColor(color) {
-   this.onChangeColor.emit(color); 
+  // Set color
+  setColor(color) {
+    this.onChangeColor.emit(color);
   }
-  deleteNote(note){
+  //Delete Note
+  deleteNote(note) {
     this.onChangeDelete.emit(note);
   }
+  //addCollaborator
+  // addCollaborator(){
+  //   const dialogRef = this.dialog.open(CollaboratorComponent, {
+  //     width: '300px',
+  //     height: '250px'
+  //   });
+  // }
 }

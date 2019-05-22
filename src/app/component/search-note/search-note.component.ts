@@ -39,8 +39,7 @@ export class SearchNoteComponent implements OnInit {
    * @Purpose : GetNotes  method for search
    **/ 
   getNotes() {
-    this.data.allNote.
-      pipe(takeUntil(this.destroy$))
+    this.data.allNote.pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         this.notes = response['data'].data
         this.notesArray = [];

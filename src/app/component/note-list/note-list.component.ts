@@ -77,7 +77,7 @@ export class NoteListComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
-
+    setTimeout(() => this.data.getAllNote(), 100);
   }
   // deleteNote
   deleteNote(data, $event) {
@@ -100,7 +100,7 @@ export class NoteListComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
-
+    setTimeout(() => this.data.getAllNote(), 100);
   }
 }
 

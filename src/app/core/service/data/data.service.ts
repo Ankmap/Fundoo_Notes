@@ -33,14 +33,15 @@ export class DataService {
    **/ 
   getAllNote() {
     this.noteService.getNotes().subscribe(data => {
-      console.log(data.data.data);
-      ; this.assignData.next(data.data.data)
+      this.assignData.next(data.data.data)
+      console.log("Get all note ==>",data.data.data);
     })
   }
   /********************************** get note without refresh End**************************************/ 
 
   /**
    * @Purpose : search
+   
    * @Description : private BehaviorSubject hold the current value of the message
    *  then subscribe to the currentMessageView observable and 
    *  set its value equal to the message variable.

@@ -15,7 +15,7 @@
   </abbr>
 
   <abbr title="Collaborator">
-    <button mat-icon-button>
+    <button mat-icon-button (click)="addCollaborator()">
       <i class="material-icons">
         person_add
       </i>
@@ -70,18 +70,14 @@
 
   <abbr>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <span>Delete label</span>
-      </button>
+
       <button mat-menu-item (click)="deleteNote(note)">
         <span>Delete Note</span>
       </button>
       <button mat-menu-item>
-        <span>Add drawing</span>
+        <span>Add Note</span>
       </button>
-      <button mat-menu-item>
-        <span>Show checkboxes</span>
-      </button>
+
     </mat-menu>
   </abbr>
 </div>

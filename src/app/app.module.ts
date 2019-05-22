@@ -28,6 +28,8 @@ import { SearchNoteComponent } from './component/search-note/search-note.compone
 import { ComponentLifecycleComponent } from './component/component-lifecycle/component-lifecycle.component';
 import { NoteListComponent } from './component/note-list/note-list.component';
 import { IconComponent } from './component/icon/icon.component';
+import { CollaboratorComponent } from './component/collaborator/collaborator.component';
+
 /**
  * @Purpose : Pipe
  **/
@@ -74,7 +76,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
     /** Pipes **/
     SearchNotePipe,
-    SortPipePipe
+    SortPipePipe,
+    CollaboratorComponent
   ],
   imports: [
     BrowserModule,
