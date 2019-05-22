@@ -9,7 +9,7 @@ export class IconComponent implements OnInit {
 
   @Input() card;
   @Output() onChangeColor = new EventEmitter()
-
+  @Output() onChangeDelete = new EventEmitter()
   constructor() { }
 
   arrayOfColors = [
@@ -41,5 +41,8 @@ export class IconComponent implements OnInit {
 
  setColor(color) {
    this.onChangeColor.emit(color); 
+  }
+  deleteNote(note){
+    this.onChangeDelete.emit(note);
   }
 }

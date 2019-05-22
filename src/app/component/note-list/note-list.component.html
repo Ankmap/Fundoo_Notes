@@ -13,7 +13,10 @@
             <div class="description"> {{data.description }}</div>
             <div class="icon">
                 <!-- Use ICON Selector to display icon in the display card-->
-                <app-icon class="iconButton" [card]='data' (setColor)=entry($event)></app-icon>
+
+  <app-icon class="iconButton" (onChangeColor)="updateColor(data,$event)"
+  
+  (onChangeDelete)="deleteNote(data,$event)"  ></app-icon>
             </div>
         </mat-card>
     </div>

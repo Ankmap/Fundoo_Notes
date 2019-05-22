@@ -17,33 +17,42 @@ export class NotesService {
 
   /**
    * @Purpose : Add Note
-   **/ 
-  addNote(body){
-    return this.service.postDataForEncoded("/notes/addNotes",body)
+   **/
+  addNote(body) {
+    return this.service.postDataForEncoded("/notes/addNotes", body)
   }
 
   /**
    * @Purpose : Get Note without refresh
    **/
-  getNotes():any{
+  getNotes(): any {
     return this.service.getdDta("notes/getNotesList")
   }
 
   /**
    * @Purpose : Color Change
    **/
-  cardColorChange(){
-    return this.service.chnageColor("notes/changesColorNotes")
+  cardColorChange(body) {
+    return this.service.chnageColor("notes/changesColorNotes", body)
   }
 
   /**
+   * @Purpose : DeleteNote
+   **/
+  deleteNote(body) {
+    return this.service.deleteNote("notes/deleteForeverNotes", body)
+  }
+  /**
    * @Purpose : Add label
    **/
-  addLabel(body){
-    return this.service.postDataForEdit("noteLabels",body)
+  addLabel(body) {
+    return this.service.postDataForEdit("noteLabels", body)
   }
 
-  showNoteLabel(){
+  /**
+    * @Purpose : Show Label
+  **/
+  showNoteLabel() {
     return this.service.postDataForShowLabel("noteLabels/getNoteLabelList")
   }
 }

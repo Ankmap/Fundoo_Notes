@@ -10,6 +10,8 @@ import { Note } from '../../core/model/note/note'
 import { DataService } from '../../core/service/data/data.service'
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { NotesService } from 'src/app/core/service/notes/notes.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-note-list',
@@ -35,11 +37,13 @@ export class NoteListComponent implements OnInit {
     *   use EventEmitter with the @Output() decorator. 
     **/
   @Output() anyChanges = new EventEmitter();
+  setColor: any;
+  deleteNote1: any;
 
   /**
    * @Purpose : inject the DataService in the constructor
    **/
-  constructor(private data: DataService) { }
+  constructor(private data: DataService, private noteService: NotesService, private snackbar: MatSnackBar) { }
 
   ngOnInit() {
     this.data.allNote.pipe(takeUntil(this.destory$))
@@ -51,7 +55,53 @@ export class NoteListComponent implements OnInit {
         this.view = message
       })
   }
+  // Update color
+  updateColor(data, $event) {
+    this.setColor = $event;
+    var colorUpdate = {
+      "color": this.setColor,
+      "noteIdList": [data.id]//backend id
+    }
+    console.log("colorUpdate", colorUpdate);
+    try {
+      this.noteService.cardColorChange(colorUpdate).subscribe(
+        data => {
+          this.snackbar.open('color update successfully......!', 'Done...!', { duration: 3000 });
+          console.log('Register infor ==========>', data);
+        },
+        error => {
+          this.snackbar.open('Error while update note color ......!', 'Error', { duration: 3000 });
+          console.log("Error something wrong: ", error)
+        });
 
+    } catch (error) {
+      this.snackbar.open('error', "", { duration: 3000 });
+    }
+
+  }
+  // deleteNote
+  deleteNote(data, $event) {
+    this.deleteNote1 = $event;
+    var deleteNote = {
+      "noteIdList": [data.id]//backend id
+    }
+    console.log("DeleteNote", deleteNote);
+    try {
+      this.noteService.deleteNote(deleteNote).subscribe(
+        data => {
+          this.snackbar.open('Note deleted successfully......!', 'Done...!', { duration: 3000 });
+          console.log('Register infor ==========>', data);
+        },
+        error => {
+          this.snackbar.open('Error while update note color ......!', 'Error', { duration: 3000 });
+          console.log("Error something wrong: ", error)
+        });
+
+    } catch (error) {
+      this.snackbar.open('error', "", { duration: 3000 });
+    }
+
+  }
 }
 
 

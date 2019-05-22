@@ -94,7 +94,7 @@ export class HttpService {
   /**
    * @Purpose : change color
    **/
-  chnageColor(path) {
+  chnageColor(path,body) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -102,9 +102,22 @@ export class HttpService {
       })
     };
     console.log('token ==================>', localStorage.getItem('token'));
-    return this.http.get(environment.baseUrl + path,httpOptions);
+    return this.http.post(environment.baseUrl + path,body, httpOptions);
   }
 
+  /**
+   * @Purpose : Delete Note
+   **/
+  deleteNote(path,body) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      })
+    };
+    console.log('token ==================>', localStorage.getItem('token'));
+    return this.http.post(environment.baseUrl + path,body, httpOptions);
+  }
   /**
    * @Purpose : Edit label
    **/
