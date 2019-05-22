@@ -7,73 +7,77 @@
 **************************************************************************************************/ -->
 <!-- **************************** Main Menu start ********************************************* -->
 <mat-toolbar-row>
-    <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-evenly center" fxLayoutGap="10px" style="height:10vh">
+    <div class="navbarMain">
+        <div  fxLayout="row" fxFlex="100" fxLayoutAlign="space-evenly center" fxLayoutGap="10px"
+            style="height:10vh">
 
-        <!-- 1st div menu, img, fundoo -->
-        <div fxLayout="row" fxLayoutAlign="space-evenly start" fxFlex="15" fxLayoutGap="50px">
-            <div fxFlex="5" fxFlex.sm="100">
-                <abbr title="Main menu">
-                    <button type="button" mat-button (click)="drawer.toggle()">
+            <!-- 1st div menu, img, fundoo -->
+            <div fxLayout="row" fxLayoutAlign="space-evenly start" fxFlex="15" fxLayoutGap="50px">
+                <div fxFlex="5" fxFlex.sm="100">
+                    <abbr title="Main menu">
+                        <button style="outline: none;" type="button" mat-button (click)="drawer.toggle()">
+                            <i class="material-icons">
+                                menu
+                            </i>
+                        </button>
+                    </abbr>
+                </div>
+                <div>
+                    <img class="img" alt="" aria-hidden="true"
+                        src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png"
+                        srcset="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_48dp.png 2x "
+                        style="width:40px;height:40px">
+                </div>
+                <div class="fundoo">
+                    <h5>Fundoo</h5>
+                </div>
+            </div>
+
+            <!-- 2nd div search -->
+            <div fxLayoutAlign="center center" fxFlex="60" fxShow fxHide.sm fxShow fxHide.xs>
+                <div fxFlex.xs=40 fxFlex.sm="50" fxFlex.md="70" fxFlex.lg="80" fxFlex.xl="80">
+                    <mat-icon ngStyle.xl="font-size:50px" class="searchbutton">search</mat-icon>
+                    <input type="text" [(ngModel)]="searchValue" (keyup)=newMessage() class="search"
+                        placeholder="Search.." (click)="search()" ngStyle.md="font-size:13px"
+                        ngStyle.lg="font-size:20px" ngStyle.sm="font-style:20px;margin-top:1px;"
+                        ngStyle.xl="font-size:30px">
+                </div>
+            </div>
+
+            <!-- 3rd div refresh, logout, grid -->
+            <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFlex="25" fxLayoutGap="20px">
+
+                <div fxShow fxHide.sm fxShow fxHide.xs>
+                    <abbr title="Refresh">
+                        <button mat-icon-button class="materialicons" (click)="refresh()">
+                            <i class="material-icons">refresh</i>
+                        </button>
+                    </abbr>
+                </div>
+
+                <abbr title="List view">
+                    <button mat-icon-button class="materialicons" *ngIf=gridView (click)=view()>
                         <i class="material-icons">
-                            menu
-                        </i>
+                            view_stream</i>
+                    </button>
+                    <button mat-icon-button class="materialicons" *ngIf=!gridView (click)=view()>
+                        <i class="material-icons">view_module</i>
+                    </button>
+                    <!-- <button mat-icon-button (click)="changeView(show)">
+                        <mat-icon *ngIf=show>view_stream</mat-icon>
+                        <mat-icon *ngIf=!show>view_module</mat-icon>
+                    </button> -->
+                </abbr>
+
+                <abbr title="Logout">
+                    <button mat-icon-button class="materialicons" (click)="account()">
+                        <i class="material-icons"> account_circle</i>
                     </button>
                 </abbr>
-            </div>
-            <div>
-                <img class="img" alt="" aria-hidden="true"
-                    src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png"
-                    srcset="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_48dp.png 2x "
-                    style="width:40px;height:40px">
-            </div>
-            <div class="fundoo">
-                <h5>Fundoo</h5>
-            </div>
-        </div>
 
-        <!-- 2nd div search -->
-        <div fxLayoutAlign="center center" fxFlex="60" fxShow fxHide.sm fxShow fxHide.xs>
-            <div fxFlex.xs=40 fxFlex.sm="50" fxFlex.md="70" fxFlex.lg="80" fxFlex.xl="80">
-                <mat-icon ngStyle.xl="font-size:50px" class="searchbutton">search</mat-icon>
-                <input type="text" [(ngModel)]="searchValue" (keyup)=newMessage() class="search" placeholder="Search.."
-                    (click)="search()" ngStyle.md="font-size:13px" ngStyle.lg="font-size:20px"
-                    ngStyle.sm="font-style:20px;margin-top:1px;" ngStyle.xl="font-size:30px">
             </div>
-        </div>
-
-        <!-- 3rd div refresh, logout, grid -->
-        <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFlex="25" fxLayoutGap="20px">
-
-            <div fxShow fxHide.sm fxShow fxHide.xs>
-                <abbr title="Refresh">
-                    <button mat-icon-button class="materialicons" (click)="refresh()">
-                        <i class="material-icons">refresh</i>
-                    </button>
-                </abbr>
-            </div>
-
-            <abbr title="List view">
-                <button mat-icon-button class="materialicons" *ngIf=gridView (click)=view()>
-                    <i class="material-icons">
-                        view_stream</i>
-                </button>
-                <button mat-icon-button class="materialicons" *ngIf=!gridView (click)=view()>
-                    <i class="material-icons">view_module</i>
-                </button>
-                <!-- <button mat-icon-button (click)="changeView(show)">
-                    <mat-icon *ngIf=show>view_stream</mat-icon>
-                    <mat-icon *ngIf=!show>view_module</mat-icon>
-                </button> -->
-            </abbr>
-
-            <abbr title="Logout">
-                <button mat-icon-button class="materialicons" (click)="account()">
-                    <i class="material-icons"> account_circle</i>
-                </button>
-            </abbr>
 
         </div>
-
     </div>
 </mat-toolbar-row>
 <mat-divider></mat-divider>
@@ -121,7 +125,7 @@
             <div class="label" fxLayout="row">
                 <p class="labels" style="margin-left: 20px;margin-top: 15px;">LABELS</p>
             </div>
-           
+
             <a *ngFor="let data of labelList | sortPipe">
                 <div fxLayout="row" fxLayoutGap="10px" style="height:5vh ; margin-left: 20px;">
                     <img src="../../../assets/outline-label-24px.svg">
@@ -130,7 +134,7 @@
             </a>
             <button type="button" (click)="createLabel()" class="button" mat-button>
                 <div class="edit" fxLayout="row" fxLayoutGap="25px">
-                        <img src="../../../assets/outline-create-24px.svg">
+                    <img src="../../../assets/outline-create-24px.svg">
                     <h5>Edit Note</h5>
                 </div>
             </button>
@@ -141,7 +145,7 @@
         <div fxLayout="column">
             <button type="button" class="button" mat-button>
                 <div class="archive" fxLayout="row" fxLayoutGap="25px">
-                        <img class="archive" src="../../../assets/outline-archive-24px.svg">
+                    <img class="archive" src="../../../assets/outline-archive-24px.svg">
                     <h5 class="name">Archive</h5>
                 </div>
             </button>
