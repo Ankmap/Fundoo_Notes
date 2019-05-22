@@ -12,10 +12,6 @@
     height: 750px;
     overflow: hidden;
 }
-button{
-    outline: none;
-    border-radius: 200px;
-}
 .fundoo{
     margin-top: 7px;
 }
@@ -24,19 +20,17 @@ button{
     .fundoo{ margin-left: 40px; }
     .example-sidenav{ width: 180px; }
 }
-
 .button{
-    border-radius: 0 25px 25px 0;
-    color: #202124;
-    letter-spacing: .01785714em;
-    font-family: 'Google Sans',Roboto,Arial,sans-serif;
-    font-size: .875rem;
-    font-weight: 500;
-    line-height: 1.25rem;
-    height: 70px;
+    display: flex;
     outline: none;
+    border-color: transparent;
+    border-radius: 0 25px 25px 0;
+    box-shadow: none;
+    height: 8vh;
 }
-
+.button:focus {
+    background-color: #fcefc3;
+}
 .search {
     padding:2% 4% 2% 9%;
     width:120%;
