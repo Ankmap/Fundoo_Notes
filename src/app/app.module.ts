@@ -51,6 +51,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 
 /** Form Validation **/
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DialogComponent } from './component/dialog/dialog.component';
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     /** Pipes **/
     SearchNotePipe,
     SortPipePipe,
-    CollaboratorComponent
+    CollaboratorComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,

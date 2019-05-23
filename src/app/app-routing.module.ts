@@ -15,6 +15,8 @@ import { LabelComponent } from './component/label/label.component';
 import { ArchiveComponent } from './component/archive/archive.component';
 import { SearchNoteComponent } from './component/search-note/search-note.component';
 import { CollaboratorComponent } from './component/collaborator/collaborator.component';
+import { DialogComponent } from './component/dialog/dialog.component';
+import { IconComponent } from './component/icon/icon.component';
 
 /*AuthGuard service*/
 import { AuthGuard } from './core/service/auth/auth.guard'
@@ -22,7 +24,7 @@ import { AuthGuard } from './core/service/auth/auth.guard'
 /*Component lifecycle hook*/
 import { ComponentLifecycleComponent } from './component/component-lifecycle/component-lifecycle.component';
 
-/*Routing path set*/ 
+/*Routing path set*/
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -30,27 +32,29 @@ const appRoutes: Routes = [
   { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'resetpassword/:token', component: ResetPasswordComponent },
   {
-    /*Apply AuthGuard*/ 
-    path: '', component: NavbarComponent,canActivate: [AuthGuard],
-    /*Routing path set for child component*/ 
+    /*Apply AuthGuard*/
+    path: '', component: NavbarComponent, canActivate: [AuthGuard],
+    /*Routing path set for child component*/
     children: [
-      {path: 'home', component: NotesAddComponent },
+      { path: 'home', component: NotesAddComponent },
       { path: 'reminder', component: ReminderComponent },
       { path: 'label', component: LabelComponent },
       { path: 'archive', component: ArchiveComponent },
       { path: 'search', component: SearchNoteComponent },
-      { path: 'collaborator', component:CollaboratorComponent}
+      { path: 'collaborator', component: CollaboratorComponent },
+      { path: 'dialogComponent', component: DialogComponent },
+      { path: 'IconComponent', component:IconComponent}
     ]
   },
-  /*Componnet Lifecycle Demo path set*/ 
+  /*Componnet Lifecycle Demo path set*/
   { path: 'lifecycle', component: ComponentLifecycleComponent }
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(appRoutes,
-    /*Tracing*/
-    { enableTracing: true }
+      /*Tracing*/
+      { enableTracing: true }
     )
   ],
   exports: [RouterModule]

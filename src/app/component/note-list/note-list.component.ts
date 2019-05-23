@@ -11,7 +11,8 @@ import { DataService } from '../../core/service/data/data.service'
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { NotesService } from 'src/app/core/service/notes/notes.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-note-list',
@@ -20,6 +21,7 @@ import { MatSnackBar } from '@angular/material';
 })
 export class NoteListComponent implements OnInit {
 
+  // notes: Note = new Note();
   notes: Note[] = [];
   message: string;
 
@@ -43,7 +45,7 @@ export class NoteListComponent implements OnInit {
   /**
    * @Purpose : inject the DataService in the constructor
    **/
-  constructor(private data: DataService, private noteService: NotesService, private snackbar: MatSnackBar) { }
+  constructor(private data: DataService, public dialog: MatDialog, private noteService: NotesService, private snackbar: MatSnackBar) { }
 
   ngOnInit() {
     this.data.allNote.pipe(takeUntil(this.destory$))
@@ -102,6 +104,22 @@ export class NoteListComponent implements OnInit {
     }
     setTimeout(() => this.data.getAllNote(), 100);
   }
+  //Open dialog nad edit it
+  openDialog(data:any): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '250px',
+      data: {
+        'title': data.title,
+        'decsription': data.decsription,
+        'id': data.id,
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog closed: ${result}`);   
+    });
+  }
+
 }
 
 

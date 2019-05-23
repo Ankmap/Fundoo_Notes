@@ -9,14 +9,15 @@
 <div class="cardMain" fxLayout="row wrap" fxLayoutAlign="center center">
     <div class="cardSub" *ngFor="let data of notes | sortPipe | searchNote : searchItem">
         <mat-card [ngStyle]="{'background-color':data.color}">
-            <div class="title">{{data.title}}</div>
-            <div class="description"> {{data.description }}</div>
+            <div (click)="openDialog(data)">
+                <div class="title">{{data.title}}</div>
+                <div class="description"> {{data.description }}</div>
+            </div>
             <div class="icon">
                 <!-- Use ICON Selector to display icon in the display card-->
 
-  <app-icon class="iconButton" (onChangeColor)="updateColor(data,$event)"
-  
-  (onChangeDelete)="deleteNote(data,$event)" (onChangeCollaborator)="addCol(card)" ></app-icon>
+                <app-icon class="iconButton" (onChangeColor)="updateColor(data,$event)"
+                    (onChangeDelete)="deleteNote(data,$event)"></app-icon>
             </div>
         </mat-card>
     </div>

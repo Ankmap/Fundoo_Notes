@@ -50,7 +50,6 @@ export class ResetPasswordComponent implements OnInit {
   
 
   login() {
-
     try {
       this.model = {
         "newPassword":this.password.value,

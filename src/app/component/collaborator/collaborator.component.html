@@ -15,18 +15,22 @@
         <mat-icon class=icon>person_add</mat-icon>
       </div>
       <input placeholder="person or email to share with" [matMenuTriggerFor]="menu" [(ngModel)]="searchValue"
-        (keyup)="searchUser()">
+        (keyup)="searchUser()" matInput [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-menu #menu="matMenu">
+          <div *ngFor="let data of userList">
+            <button mat-button class=name (click)="addCol(data)">
+              {{data.firstName}} {{data.lastName}} [{{data.email}}]
+            </button>
+          </div>
+        </mat-menu>
+      </mat-autocomplete>
     </mat-card-header>
-  </div>
-  <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap='15px' class="btns">
-    <button mat-button (click)=cancel()>Cancel</button>
-    <button mat-button (click)="save()">Save</button>
+
   </div>
 </div>
-<mat-menu #menu="matMenu">
-  <div *ngFor="let data of userList">
-    <button class=name (click)="addCol(data)">
-      {{data.firstName}} {{data.lastName}} [{{data.email}}]
-    </button>
-  </div>
-</mat-menu>
+
+<div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap='15px' class="btns">
+  <button mat-button (click)=cancel()>Cancel</button>
+  <button mat-button (click)="save()">Save</button>
+</div>

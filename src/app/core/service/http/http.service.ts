@@ -159,5 +159,19 @@ export class HttpService {
     return this.http.post(environment.baseUrl + path, body, httpOptions);
   }
 
+  /**
+   * @Purpose : UpdateNote
+   **/ 
+  postDataForUpdateNote(path, body) {
+    console.log(body);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': localStorage.getItem('token')
+      })
+    };
+    console.log('token ==================>', localStorage.getItem('token'));
+    return this.http.post(environment.baseUrl + path, body, httpOptions);
+  }
 
 }
