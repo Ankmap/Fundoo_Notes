@@ -17,6 +17,7 @@ button{
 }
 .mainCard{
     width: 1000px;
+    margin-left: 180px;
 }
 .color{
     margin: 2px;
@@ -27,6 +28,18 @@ span{
     border: none;
     border-radius: 50%;
     margin: 3px;
+    height: auto
+}
+
+.title{
+    border-style: hidden; 
+    outline: none;  
+}
+
+.description{
+    border-style: hidden; 
+    outline: none;
+    margin-bottom: 20px;
 }
 .blue{
     @include back-ground-color($test-color-blue)  

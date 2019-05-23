@@ -101,7 +101,8 @@
 <!-- ***************************** side menu start ************************************* -->
 
 <mat-drawer-container class="example-container">
-    <mat-drawer #drawer class="example-sidenav" mode="side">
+    <!-- <mat-drawer #drawer class="example-sidenav" mode="side"> -->
+        <mat-drawer #drawer class="example-sidenav"  [mode]="width > 0?'side':'side'" closed>
 
         <!-- 1st div Notes, Reminder -->
         <div fxLayout="column">

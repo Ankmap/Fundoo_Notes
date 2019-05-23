@@ -1,5 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-// import { CollaboratorComponent } from '../../component/'
+// import { CollaboratorComponent } from '../'
+import { CollaboratorComponent } from '../collaborator/collaborator.component'
+import { MatDialog, MatDialogRef } from '@angular/material';
+// Interface defines a set of common behaviors.
+// export interface DialogData {
+//   noteData:object
+// }
 @Component({
   selector: 'app-icon',
   templateUrl: './icon.component.html',
@@ -10,7 +16,8 @@ export class IconComponent implements OnInit {
   @Input() card;
   @Output() onChangeColor = new EventEmitter()
   @Output() onChangeDelete = new EventEmitter()
-  constructor() { }
+  @Output() onChangeCollaborator = new EventEmitter()
+  constructor(private dialog: MatDialog,) { }
 
   arrayOfColors = [
     [
@@ -47,10 +54,11 @@ export class IconComponent implements OnInit {
     this.onChangeDelete.emit(note);
   }
   //addCollaborator
-  // addCollaborator(){
-  //   const dialogRef = this.dialog.open(CollaboratorComponent, {
-  //     width: '300px',
-  //     height: '250px'
-  //   });
-  // }
+  addCollaborator(cardDetails){
+    this.dialog.open(CollaboratorComponent, {
+      width: '600px',
+      // height: '300px'
+      data : { noteData :cardDetails}
+    });
+  }
 }

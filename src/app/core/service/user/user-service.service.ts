@@ -50,4 +50,10 @@ export class UserserviceService {
   userLogout(){
     return this.service.postDataForJSON("/user/logout",{})
   }
+  /**
+   * @Purpose : Logout
+   **/
+  searchUserList(body){
+    return this.service.postDataForSearchUser("/user/searchUserList",body)
+  }
 }

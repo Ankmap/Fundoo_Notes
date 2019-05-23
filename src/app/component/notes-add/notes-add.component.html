@@ -36,16 +36,15 @@
     <mat-card [style.backgroundColor]="setColor" class="card" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px'
       fxFlex.sm='400px' fxFlex.xs='150px'>
       <div>
-        <div>
-          <input fxFlex="calc(50% - 25px)" style="height:10vh; border-style: hidden; outline: none"
-            [style.backgroundColor]="setColor" [formControl]="title" [(ngModel)]="addNotes.title" placeholder="Title">
-          <!-- <i class="material-icons">
-            mood
-          </i> -->
+        <div fxLayout='column' fxLayoutGap='20px'>
+          <input class="title" placeholder="Title" [style.backgroundColor]="setColor" [formControl]="title"
+            [(ngModel)]="addNotes.title">
+
+          <input class="description" placeholder="Take a note..." [style.backgroundColor]="setColor"
+            [formControl]="description" [(ngModel)]="addNotes.description">
         </div>
         <div>
-          <input style="border-style: hidden; outline: none" [formControl]="description"
-            [style.backgroundColor]="setColor" [(ngModel)]="addNotes.description" placeholder="Take a note...">
+
           <div fxLayout='row'>
             <app-icon (onChangeColor)="receivecolor($event)"></app-icon>
             <div class="row" fxLayoutGap='5px'>

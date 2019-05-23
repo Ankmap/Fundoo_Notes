@@ -96,7 +96,7 @@ export class NavbarComponent implements OnInit {
         }
       })
   }
-  
+
   /**
    * @Purpose : Search
    **/
@@ -111,6 +111,12 @@ export class NavbarComponent implements OnInit {
     **/
   refresh() {
     this.router.navigateByUrl('/home')
+  }
+  // AllNote
+  displayNote() {
+    this.data.allNote.subscribe((response) => {
+      console.log("response ====>", response);
+    });
   }
 }
 
