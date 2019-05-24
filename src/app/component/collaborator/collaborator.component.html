@@ -17,13 +17,16 @@
       <input placeholder="person or email to share with" [matMenuTriggerFor]="menu" [(ngModel)]="searchValue"
         (keyup)="searchUser()" matInput [matAutocomplete]="auto">
       <mat-autocomplete #auto="matAutocomplete">
-        <mat-menu #menu="matMenu">
-          <div *ngFor="let data of userList">
+        <!-- <mat-menu #menu="matMenu"> -->
+          <!-- <div *ngFor="let data of userList">
             <button mat-button class=name (click)="addCol(data)">
               {{data.firstName}} {{data.lastName}} [{{data.email}}]
             </button>
           </div>
-        </mat-menu>
+        </mat-menu> -->
+        <mat-option *ngFor="let data of userList" [value]='data.email'>
+          {{data.firstName}} {{data.lastName}} [{{data.email}}] 
+        </mat-option>        
       </mat-autocomplete>
     </mat-card-header>
 

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NotesService } from 'src/app/core/service/notes/notes.service';
 import { DataService } from 'src/app/core/service/data/data.service';
-import { MatDialogRef, MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { UserserviceService } from 'src/app/core/service/user/user-service.service';
+import { Collaborator } from 'src/app/core/model/collaborator/collaborator';
 
 @Component({
   selector: 'app-collaborator',
@@ -13,6 +14,8 @@ export class CollaboratorComponent implements OnInit {
   searchValue: any;
   userList: any[];
 
+  // notes: Note[] = [];
+  collab = new Collaborator();
   constructor( private noteService : NotesService, private dataService : DataService, private dialog : MatDialog, private userService :UserserviceService, ) { }
 
   firstName = localStorage.getItem("firstname");

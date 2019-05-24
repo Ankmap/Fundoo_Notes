@@ -107,10 +107,10 @@ export class NoteListComponent implements OnInit {
   //Open dialog nad edit it
   openDialog(data:any): void {
     const dialogRef = this.dialog.open(DialogComponent, {
-      width: '250px',
+      width: '700px',
       data: {
         'title': data.title,
-        'decsription': data.decsription,
+        'description': data.description,
         'id': data.id,
       }
     });

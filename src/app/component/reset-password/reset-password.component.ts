@@ -59,12 +59,11 @@ export class ResetPasswordComponent implements OnInit {
       this.userService.userResetpassword(this.model).subscribe(
         data => {
           console.log("Data =========>", data);
-          this.snackbar.open('Password Set successfully.......!', 'Done...!', { duration: 3000 });
-          this.router.navigateByUrl('login');
+          this.snackbar.open('Note updated successfully.......!', 'Done...!', { duration: 3000 });
         },
         error => {
           console.log("Error =========>", error);
-          this.snackbar.open('Error while set the password.......!', 'Error...!', { duration: 3000 });
+          this.snackbar.open('Error while update the note.......!', 'Error...!', { duration: 3000 });
         })
     } catch (err) {
       console.log('Try-Catch:', err);

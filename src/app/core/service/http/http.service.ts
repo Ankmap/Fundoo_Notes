@@ -171,7 +171,7 @@ export class HttpService {
       })
     };
     console.log('token ==================>', localStorage.getItem('token'));
-    return this.http.post(environment.baseUrl + path, body, httpOptions);
+    return this.http.post(environment.baseUrl + path, this.getEncodData(body), httpOptions);
   }
 
 }

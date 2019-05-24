@@ -1,12 +1,31 @@
-<div>
-
-<div>
-    <div>
-        <input type="text" [formControl]="title">
+<div fxLayoutAlign="center center">
+    <div class="card" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
+        <div fxLayout='column' fxLayoutGap='20px'>
+            <input class="title" placeholder="Title" [formControl]="title">
+            <input class="description" placeholder="Take a note..." [formControl]="description">
+        </div>
+        <div>
+            <div fxLayout='row'>
+                <app-icon></app-icon>
+                <div class="row" fxLayoutGap='5px'>
+                    <abbr title="Undo">
+                        <button mat-button>
+                            <i class="material-icons">
+                                undo
+                            </i>
+                        </button>
+                    </abbr>
+                    <abbr title="Redo">
+                        <button mat-button>
+                            <i class="material-icons">
+                                redo
+                            </i>
+                        </button>
+                    </abbr>
+                </div>
+                <button style="margin-left: 130px;" mat-button (click)="addNote(data)"
+                    (click)="onNoClick()">Close</button>
+            </div>
+        </div>
     </div>
-    <div>
-        <input type="text" [formControl]="description">
-    </div>
-</div>
-
 </div>
