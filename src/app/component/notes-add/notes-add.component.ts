@@ -27,9 +27,11 @@ export class NotesAddComponent implements OnInit {
     private updateNote: DataService) { }
 
   /**
-  * @Purpose : addNote
+  * @Purpose : Note Model
   **/
   addNotes: Note = new Note();
+
+  /* Binding the title and description*/ 
   title = new FormControl('')
   description = new FormControl('')
 
@@ -41,6 +43,9 @@ export class NotesAddComponent implements OnInit {
    **/
   private notecard: boolean = true;
 
+  /**
+   * @Purpose : For new Notecard open
+   **/
   notecardOpen() {
     this.notecard = !(this.notecard);
   }
@@ -49,14 +54,13 @@ export class NotesAddComponent implements OnInit {
    * @Purpose :CardColor
    **/
   setColor: any;
-
   receivecolor($event) {
     this.setColor = $event
     console.log("color", this.setColor);
   }
 
   /**
-   * @Purpose : addNote
+   * @Purpose : Add Note
    **/
   addNote() {
     this.notecard = !(this.notecard);
@@ -66,7 +70,7 @@ export class NotesAddComponent implements OnInit {
       "description": this.addNotes.description,
       "color": this.addNotes.color
     }
-    console.log('console for this.register @@@@@@@@@@@@@@@@@=======================>', body);
+    console.log('console for addNote ================>', body);
     try {
       this.NoteAddService.addNote(body).subscribe(
         data => {
@@ -81,6 +85,7 @@ export class NotesAddComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
+    /* For GetAll Note without refresh*/ 
     setTimeout(() => this.updateNote.getAllNote(), 100);
   }
 }

@@ -37,14 +37,14 @@
       fxFlex.sm='400px' fxFlex.xs='150px'>
       <div>
         <div fxLayout='column' fxLayoutGap='20px'>
+           <!-- For title binding -->
           <input class="title" placeholder="Title" [style.backgroundColor]="setColor" [formControl]="title"
             [(ngModel)]="addNotes.title">
-
+            <!-- For description binding -->
           <input class="description" placeholder="Take a note..." [style.backgroundColor]="setColor"
             [formControl]="description" [(ngModel)]="addNotes.description">
         </div>
         <div>
-
           <div fxLayout='row'>
             <app-icon (onChangeColor)="receivecolor($event)"></app-icon>
             <div class="row" fxLayoutGap='5px'>
@@ -65,11 +65,11 @@
             </div>
             <button style="margin-left: 130px;" mat-button (click)="addNote()">Close</button>
           </div>
-          <!-- </div> -->
         </div>
       </div>
     </mat-card>
   </div>
+  <!-- Note-list Selector -->
   <app-note-list></app-note-list>
   <!-- add notecard end -->
 </div>

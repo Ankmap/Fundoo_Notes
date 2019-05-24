@@ -23,7 +23,7 @@ export class NotesService {
   }
 
   /**
-   * @Purpose : Get Note without refresh
+   * @Purpose : Get Note and access without refresh
    **/
   getNotes(): any {
     return this.service.getdDta("notes/getNotesList")
@@ -42,15 +42,16 @@ export class NotesService {
   deleteNote(body) {
     return this.service.deleteNote("notes/deleteForeverNotes", body)
   }
+
   /**
    * @Purpose : Add label
    **/
   addLabel(body) {
-    return this.service.postDataForEdit("noteLabels", body)
+    return this.service.postDataForAddLabel("noteLabels", body)
   }
 
   /**
-    * @Purpose : Show Label
+   * @Purpose : Show Label
   **/
   showNoteLabel() {
     return this.service.postDataForShowLabel("noteLabels/getNoteLabelList")
@@ -65,8 +66,8 @@ export class NotesService {
 
   /**
    * @Purpose: Update Note
-   **/ 
-  updateNote(body){
-    return this.service.postDataForUpdateNote("/notes/updateNotes",body)
+   **/
+  updateNote(body) {
+    return this.service.postDataForUpdateNote("/notes/updateNotes", body)
   }
 }

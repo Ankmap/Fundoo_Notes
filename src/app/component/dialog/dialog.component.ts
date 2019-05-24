@@ -13,42 +13,55 @@ import { DataService } from 'src/app/core/service/data/data.service';
 })
 export class DialogComponent implements OnInit {
 
+  /**
+    * @Purpose : Bind title and description
+    **/
   title = new FormControl(this.data.title);
   description = new FormControl(this.data.description);
+
   /**
-    * @Purpose : addNote
+    * @Purpose : Note model
     **/
   addNotes: Note = new Note();
-  setColor: string;
 
-  constructor(public dialogRef: MatDialogRef<DialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private noteService: NotesService, private dataService: DataService, private snackbar: MatSnackBar) { }
+  constructor(
+    public dialogRef: MatDialogRef<DialogComponent>, @Inject(MAT_DIALOG_DATA) 
+    public data: any, 
+    private noteService: NotesService, 
+    private dataService: DataService, 
+    private snackbar: MatSnackBar
+    ) { }
 
   ngOnInit() {
   }
 
+  /**
+    * @Purpose :For close dialog box
+    **/
   onNoClick(): void {
     this.dialogRef.close();
   }
+
+  /**
+    * @Purpose : Update Note
+    **/
   updateNote(data) {
-    
     var body = {
       "title": this.title.value,
       "description": this.description.value,
-      "noteId": [data.id]//backend id
+      "noteId": [data.id] /* Access noteId for particular note*/
     }
-    
-    console.log('console for updateNote @@@@@@@@@@@@@@@@@=======================>', body);
+    console.log('console for updateNote ============', body);
     try {
       this.noteService.updateNote(body).subscribe(
         data => {
-          this.snackbar.open('Note added successfully......!', 'Done...!', { duration: 3000 });
-          console.log('Register infor ==========>', data);
+          this.snackbar.open('Note update successfully......!', 'Done...!', { duration: 3000 });
+          console.log('Note update successfully ==========>', data);
         },
         error => {
-          this.snackbar.open('Error while adding note......!', 'Error', { duration: 3000 });
-          console.log("Error something wrong: ", error)
+          this.snackbar.open('Error while update note......!', 'Error', { duration: 3000 });
+          console.log("Error while update note ===========>", error)
         });
-
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }

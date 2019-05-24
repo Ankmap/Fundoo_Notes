@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-// import { CollaboratorComponent } from '../'
 import { CollaboratorComponent } from '../collaborator/collaborator.component'
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog } from '@angular/material';
 
 export interface DialogData {
   noteData: object
@@ -13,12 +12,16 @@ export interface DialogData {
 })
 export class IconComponent implements OnInit {
 
+  /* Decorators */
   @Input() card;
   @Output() onChangeColor = new EventEmitter()
   @Output() onChangeDelete = new EventEmitter()
 
-  constructor(private dialog: MatDialog, ) { }
+  constructor(
+    private dialog: MatDialog
+  ) { }
 
+  /* Color Code with name*/
   arrayOfColors = [
     [
       { name: "white", hexcode: "#FFFFFF" },
@@ -26,34 +29,34 @@ export class IconComponent implements OnInit {
       { name: "orange", hexcode: "#FFA500" },
       { name: "yellow", hexcode: "#FFFF00" },
     ],
-
     [
       { name: "green", hexcode: "#008000" },
       { name: "teal", hexcode: "#008080" },
       { name: "blue", hexcode: "#0000FF" },
       { name: "aqua", hexcode: "#00FFFF" },
     ],
-
     [
       { name: "purple", hexcode: "#800080" },
       { name: "pink", hexcode: "#FFC0CB" },
       { name: "red", hexcode: "#FF0000" },
       { name: "gray", hexcode: "#808080" },
-
     ]
   ]
 
   ngOnInit() {
   }
-  // Set color
+
+  /* Set color */ 
   setColor(color) {
     this.onChangeColor.emit(color);
   }
-  //Delete Note
+
+  /* Delete Note */
   deleteNote(note) {
     this.onChangeDelete.emit(note);
   }
-  //addCollaborator
+
+  /* addCollaborator */
   addCollaborator(cardDetails) {
     const dialogRef = this.dialog.open(CollaboratorComponent, {
       width: '600px',

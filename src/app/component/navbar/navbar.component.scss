@@ -13,7 +13,7 @@
     background-color: white;
 }
 .example-sidenav{
-    width: 300px;
+    width: 350px;
 }
 .example-container{
     height: 750px;
@@ -23,6 +23,16 @@
 .fundoo{
     margin-top: 7px;
 }
+.labels{
+    margin-left: 20px;
+    margin-top: 15px;
+    opacity: 0.7;
+}
+.labeldata{
+    height:5vh; 
+    margin-left: 20px;
+}
+
 @media screen and (device-width: 360px) and (device-height: 640px) and (orientation: portrait) {
     .img{ display: none; }
     .fundoo{ margin-left: 40px; }
@@ -30,11 +40,12 @@
 }
 .button{
     display: flex;
-    outline: none;
     border-color: transparent;
     border-radius: 0 25px 25px 0;
     box-shadow: none;
     height: 8vh;
+    border-style: hidden; 
+    outline: none;
 }
 .button:focus {
     background-color: #fcefc3;

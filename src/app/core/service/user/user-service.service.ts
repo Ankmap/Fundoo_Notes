@@ -17,14 +17,14 @@ export class UserserviceService {
   constructor(private service: HttpService) { }
 
   /**
-   * @Purpose : Login
+   * @Purpose : Login the user
    **/
   userLogin(body){
     return this.service.postData("/user/login",body)
   }
 
   /**
-   * @Purpose : Register
+   * @Purpose : Register new user
    **/
   userSignup(body){
     return this.service.postData("/user/userSignUp",body)
@@ -38,20 +38,20 @@ export class UserserviceService {
   }
 
   /**
-   * @Purpose : Reset
+   * @Purpose : Reset password
    **/
   userResetpassword(body){
     return this.service.postDataForEncodedReset("/user/reset-password",body)
   }
 
   /**
-   * @Purpose : Logout
+   * @Purpose : Logout the user
    **/
   userLogout(){
     return this.service.postDataForJSON("/user/logout",{})
   }
   /**
-   * @Purpose : Logout
+   * @Purpose : Search userList for collaborator
    **/
   searchUserList(body){
     return this.service.postDataForSearchUser("/user/searchUserList",body)

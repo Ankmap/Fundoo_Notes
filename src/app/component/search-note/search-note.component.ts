@@ -21,14 +21,20 @@ export class SearchNoteComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
   
-  constructor(private data: DataService, private searchService: NotesService) { }
+  constructor(
+    private data: DataService, 
+    private searchService: NotesService
+    ) { }
 
   private notes: Note[] = [];
   private message: string
   private notesArray = [];
 
   ngOnInit() {
+    /* For get all Note */ 
     this.getNotes()
+
+    /* For current message Search */ 
     this.data.currentMessageSearch.pipe(takeUntil(this.destroy$))
       .subscribe(message => {
         this.message = message

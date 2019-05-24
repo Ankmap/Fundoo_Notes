@@ -25,18 +25,28 @@ export class LabelComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
+  /* Label Model*/ 
   labels: Label = new Label();
   private labelList =[]
+
+  /* Get Id from localstorage*/ 
   id = localStorage.getItem('userId');
-  constructor(private note: NotesService, private snackbar: MatSnackBar, private router: Router, private dialogRef : MatDialogRef<NavbarComponent>) { }
+
+  constructor(
+    private note: NotesService, 
+    private snackbar: MatSnackBar, 
+    private router: Router, 
+    private dialogRef : MatDialogRef<NavbarComponent>
+    ) { }
 
   ngOnInit() {
+    /* Show label*/ 
     this.showLabel();
   }
+
   /**
    * @purpose : Add Label
-   **/ 
-  
+   **/
   done() {
     var body = {
       "label": this.labels.label,
@@ -49,20 +59,15 @@ export class LabelComponent implements OnInit {
       return false;
     }
     console.log('Data after edit label', body);
-
     try {
       this.note.addLabel(body).pipe(takeUntil(this.destroy$))
       .subscribe(
         (response) => {
           console.log("Response ====>", response);
           this.showLabel();
-          // this.snackbar.open('Label created successfully..', '', { duration: 3000 });
-          // console.log('Label created successfully..');
         },
         error => {
           console.log("Data ====>", error);
-          // this.snackbar.open('Error while creating lable..', '', { duration: 3000 });
-          // console.log('Error while creating lable..');
         }
       )
     } catch (err) {
@@ -79,9 +84,9 @@ export class LabelComponent implements OnInit {
       .subscribe((response: any) => {
         this.labels = response.data.details
         this.labelList=[];
-        // this.labelList = this.labels;
         console.log("check showLabel=====>", response);
       }, (error) => {
+        console.log("Data ====>", error);
       });
   }
 

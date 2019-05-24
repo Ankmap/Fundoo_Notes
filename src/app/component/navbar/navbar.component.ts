@@ -25,37 +25,44 @@ export class NavbarComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  //from localStorage
+  /* from localStorage */
   firstName = localStorage.getItem("firstname");
   lastName = localStorage.getItem("lastname");
   email = localStorage.getItem("email");
 
+  /* label */
   private label: Label[] = [];
   private labelList = [];
-  private signoutCard: boolean = false;
-  private searchValue: any;
+  private signoutCard: boolean = false; /* signOut */
+  private searchValue: any; /* search the not */
 
+  /*Grid*/
   list: boolean = true;
   grid: boolean = false;
   view: any;
   direction: string;
 
-
   /**
    * @Purpose : Inject the UserserviceService, Router, NotesService, 
    *            MatDialog, DataService in the constructor
    **/
-  constructor(private NavbarServiceUser: UserserviceService, private router: Router, private notes: NotesService, private dialog: MatDialog, private data: DataService) { }
+  constructor(
+    private NavbarServiceUser: UserserviceService,
+    private router: Router,
+    private notes: NotesService,
+    private dialog: MatDialog,
+    private data: DataService
+  ) { }
 
   ngOnInit() {
+    /* For Show Label*/
     this.showLabel();
 
-    this.data.getView().subscribe(
-      (response) => {
-        this.view = response;
-        this.direction = this.view.data;
-      }
-    )
+    /*For gridView and ListView*/
+    this.data.getView().subscribe((response) => {
+      this.view = response;
+      this.direction = this.view.data;
+    });
   }
 
   /**
@@ -74,7 +81,7 @@ export class NavbarComponent implements OnInit {
   }
 
   /**
-   * @Purpose : account,addAccount method for Logout
+   * @Purpose : account and addAccount method for Logout
    **/
   account() {
     this.signoutCard = !(this.signoutCard);
@@ -98,6 +105,9 @@ export class NavbarComponent implements OnInit {
       })
   }
 
+  /**
+   * @Purpose : For ShowLabel
+   **/
   showLabel() {
     this.notes.showNoteLabel()
       .pipe(takeUntil(this.destroy$))
@@ -107,7 +117,7 @@ export class NavbarComponent implements OnInit {
         for (let i = 0; i < this.label.length; i++) {
           this.labelList.push(this.label[i].label);
         }
-      })
+      });
   }
 
   /**
@@ -125,16 +135,20 @@ export class NavbarComponent implements OnInit {
   refresh() {
     this.router.navigateByUrl('/home')
   }
-  // AllNote
+  /**
+   * @Purpose : Note Click
+   **/
   displayNote() {
     this.data.allNote.subscribe((response) => {
       console.log("response ====>", response);
     });
   }
 
-  // Grid
+  /**
+   * @Purpose : Grid
+   **/
   changeView() {
-    //toggle the btn
+    /* Toggle the btn */
     if (this.list) {
       this.grid = true;
       this.list = false;

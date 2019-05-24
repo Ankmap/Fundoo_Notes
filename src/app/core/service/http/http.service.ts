@@ -78,7 +78,7 @@ export class HttpService {
   }
 
   /**
-   * @Purpose : get data without refresh
+   * @Purpose : get data and access without refresh
    **/
   getdDta(path) {
     const httpOptions = {
@@ -119,9 +119,9 @@ export class HttpService {
     return this.http.post(environment.baseUrl + path,body, httpOptions);
   }
   /**
-   * @Purpose : Edit label
+   * @Purpose :  Add label
    **/
-  postDataForEdit(path, body) {
+  postDataForAddLabel(path, body) {
     let httpAuthOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

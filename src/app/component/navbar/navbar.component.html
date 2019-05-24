@@ -9,9 +9,9 @@
 <mat-toolbar-row>
     <div class="navbarMain">
         <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-evenly center" fxLayoutGap="10px" style="height:10vh">
-
             <!-- 1st div menu, img, fundoo -->
             <div fxLayout="row" fxLayoutAlign="space-evenly start" fxFlex="15" fxLayoutGap="50px">
+                <!-- Menu start -->
                 <div fxFlex="5" fxFlex.sm="100">
                     <abbr title="Main menu">
                         <button style="outline: none;" type="button" mat-button (click)="drawer.toggle()">
@@ -21,6 +21,8 @@
                         </button>
                     </abbr>
                 </div>
+                <!-- Menu End -->
+
                 <div>
                     <img class="img" alt="" aria-hidden="true"
                         src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png"
@@ -49,7 +51,7 @@
                 <!-- refresh start -->
                 <div fxShow fxHide.sm fxShow fxHide.xs>
                     <abbr title="Refresh">
-                        <button mat-icon-button class="button" (click)="refresh()">
+                        <button style="outline: none;" mat-icon-button (click)="refresh()">
                             <i class="material-icons">refresh</i>
                         </button>
                     </abbr>
@@ -58,10 +60,10 @@
 
                 <!-- Grid start -->
                 <abbr title="Grid">
-                    <button mat-icon-button class="button" *ngIf=list (click)=changeView() fxShow="true">
+                    <button style="outline: none;" mat-icon-button *ngIf=list (click)=changeView() fxShow="true">
                         <i class="material-icons">view_agenda</i>
                     </button>
-                    <button mat-icon-button class="button" *ngIf=grid (click)=changeView() fxShow="true">
+                    <button style="outline: none" mat-icon-button *ngIf=grid (click)=changeView() fxShow="true">
                         <i class="material-icons">view_module</i>
                     </button>
                 </abbr>
@@ -69,19 +71,17 @@
 
                 <!-- logout start-->
                 <abbr title="Logout">
-                    <button mat-icon-button class="button" (click)="account()">
+                    <button style="outline: none;" mat-icon-button (click)="account()">
                         <i class="material-icons"> account_circle</i>
                     </button>
                 </abbr>
                 <!-- logout end -->
-
             </div>
         </div>
     </div>
 </mat-toolbar-row>
 <mat-divider></mat-divider>
-<!-- **************************** Signout card start ********************************************* -->
-
+<!-- Signout card start  -->
 <mat-card class="account" *ngIf="signoutCard">
     <div>
         <mat-card-header>
@@ -93,41 +93,42 @@
         </div>
     </div>
 </mat-card>
-<!-- **************************** Signout card end ********************************************* -->
-
+<!-- Signout card end -->
 <!-- **************************** Main Menu end ********************************************* -->
 
 <!-- ***************************** side menu start ************************************* -->
 
 <mat-drawer-container class="example-container">
-    <!-- <mat-drawer #drawer class="example-sidenav" mode="side"> -->
     <mat-drawer #drawer class="example-sidenav" [mode]="width > 0?'side':'side'" closed>
-
         <!-- 1st div Notes, Reminder -->
         <div fxLayout="column">
+            <!-- Notes start -->
             <button type="button" class="button" mat-button (click)="displayNote=null">
                 <div class="notes" fxLayout="row" fxLayoutGap="25px">
                     <mat-icon class=name>lightbulb_outline</mat-icon>
                     <h5 class="name">Notes</h5>
                 </div>
             </button>
+            <!-- Notes End -->
+            <!-- Reminder start -->
             <button type="button" class="button" mat-button>
                 <div class="notifications" fxLayout="row" fxLayoutGap="25px">
                     <mat-icon class=notifications>notifications_none</mat-icon>
                     <h5 class="name">Reminder</h5>
                 </div>
             </button>
+            <!-- Reminder end -->
         </div>
         <mat-divider></mat-divider>
 
-        <!-- 2nd div LABELS, Edit Note -->
+        <!-- 2nd div LABELS, Edit labels -->
         <div fxLayout="column">
             <div class="label" fxLayout="row">
-                <p class="labels" style="margin-left: 20px;margin-top: 15px;">LABELS</p>
+                <p class="labels">LABELS</p>
             </div>
 
             <a *ngFor="let data of labelList | sortPipe">
-                <div fxLayout="row" fxLayoutGap="10px" style="height:5vh ; margin-left: 20px;">
+                <div fxLayout="row" fxLayoutGap="10px" class="labeldata">
                     <img src="../../../assets/outline-label-24px.svg">
                     <div style="font-size: 15px;">{{data}}</div>
                 </div>
@@ -135,7 +136,7 @@
             <button type="button" (click)="createLabel()" class="button" mat-button>
                 <div class="edit" fxLayout="row" fxLayoutGap="25px">
                     <img src="../../../assets/outline-create-24px.svg">
-                    <h5>Edit Note</h5>
+                    <h5>Edit labels</h5>
                 </div>
             </button>
         </div>

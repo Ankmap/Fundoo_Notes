@@ -21,16 +21,17 @@ import { DialogComponent } from '../dialog/dialog.component';
 })
 export class NoteListComponent implements OnInit {
 
-  // notes: Note = new Note();
+  /* Note Model*/ 
   notes: Note[] = [];
   message: string;
-  direction: String = "row";  // grid view
-  wrap : string = "wrap"; // grid view
+
+  /* Grid View*/ 
+  direction: String = "row";
+  wrap : string = "wrap";
+  view: any;
   
   destory$: Subject<boolean> = new Subject<boolean>();
 
-  // private view: boolean;
-  
   /**
    * @Purpose : Pass data from the parent component class to the child component class
    *  use the @Input decorator. 
@@ -42,38 +43,51 @@ export class NoteListComponent implements OnInit {
     *   use EventEmitter with the @Output() decorator. 
     **/
   @Output() anyChanges = new EventEmitter();
+
+  /* SetColor*/ 
   setColor: any;
+
+  /* Delete Note*/ 
   deleteNote1: any;
-  view: any;
  
   /**
-   * @Purpose : inject the DataService in the constructor
+   * @Purpose : inject the DataService, MatDialog, NotesService, MatSnackBar in the constructor
    **/
-  constructor(private data: DataService, public dialog: MatDialog, private noteService: NotesService, private snackbar: MatSnackBar) { }
+  constructor(
+    private data: DataService, 
+    public dialog: MatDialog, 
+    private noteService: NotesService, 
+    private snackbar: MatSnackBar
+    ) { }
 
   ngOnInit() {
+    /* Get all Note */ 
     this.data.allNote.pipe(takeUntil(this.destory$))
       .subscribe(data => this.notes = data);
-    console.log('all note -->', this.notes);
 
+      /* Current message view */ 
     this.data.currentMessageView.pipe(takeUntil(this.destory$))
       .subscribe(message => {
         this.view = message
       })
 
+    /* Grid View*/ 
     this.data.getView().subscribe((response) => {
       this.view = response;
       this.direction = this.view.data
     });
   }
-  // Update color
+
+  /**
+   * @Purpose : Update color
+   **/ 
   updateColor(data, $event) {
     this.setColor = $event;
     var colorUpdate = {
       "color": this.setColor,
-      "noteIdList": [data.id]//backend id
+      "noteIdList": [data.id] /* Access noteIdList for particular note*/
     }
-    console.log("colorUpdate", colorUpdate);
+    console.log("colorUpdate =====>", colorUpdate);
     try {
       this.noteService.cardColorChange(colorUpdate).subscribe(
         data => {
@@ -88,15 +102,20 @@ export class NoteListComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
+    /* For GetAll Note without refresh*/ 
     setTimeout(() => this.data.getAllNote(), 100);
   }
-  // deleteNote
+  
+
+  /**
+   * @Purpose : Delete Note
+   **/
   deleteNote(data, $event) {
     this.deleteNote1 = $event;
     var deleteNote = {
-      "noteIdList": [data.id]//backend id
+      "noteIdList": [data.id] /* Access noteIdList for particular note*/
     }
-    console.log("DeleteNote", deleteNote);
+    console.log("DeleteNote =======>", deleteNote);
     try {
       this.noteService.deleteNote(deleteNote).subscribe(
         data => {
@@ -111,9 +130,13 @@ export class NoteListComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
+    /* For GetAll Note without refresh*/ 
     setTimeout(() => this.data.getAllNote(), 100);
   }
-  //Open dialog nad edit it
+
+  /**
+   * @Purpose : Open dialog nad edit it
+   **/
   openDialog(data: any): void {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '700px',
@@ -124,7 +147,7 @@ export class NoteListComponent implements OnInit {
         'id': data.id,
       }
     });
-
+    /* Close the dialog*/
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog closed: ${result}`);
     });

@@ -9,15 +9,19 @@
     <h4><b>Edit label</b></h4>
 </div>
 <div fxLayout="row" fxLayoutGap="15">
+    <!-- Input Filed -->
     <mat-form-field class="example-form-field">
         <input matInput type="text" placeholder="Edit label" [(ngModel)]="labels.label">
     </mat-form-field>
+    <!-- Add Button icon -->
     <abbr title="Create Label">
         <button mat-button class="done">
             <mat-icon style="font-size: 35px;" (click)="done()">done</mat-icon>
         </button>
     </abbr>
 </div>
+
+<!-- Show Label -->
 <div>
     <div *ngFor="let label of labels | sortPipe">
         <div fxLayout=row class="label">
@@ -29,6 +33,7 @@
     </div>
 </div>
 <mat-divider></mat-divider>
+<!-- Done Button -->
 <div xLayout="row" fxLayoutAlign="end end">
     <abbr title="Save Label">
         <button mat-button class="done" (click)="add()">Done</button>
