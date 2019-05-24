@@ -6,18 +6,20 @@
  *@since   - 22/04/2019
 **************************************************************************************************/
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { NotesService } from '../notes/notes.service';
 
 /**
  * @Purpose : The BehaviorSubject has the characteristic that it stores the “current” value. 
  * This means that you can always directly get the last emitted value from the BehaviorSubject.
- **/ 
+ **/
 @Injectable({
   providedIn: 'root'
-})  
+})
 export class DataService {
-
+  result: boolean = true;
+  subject = new Subject
+  
   constructor(private noteService: NotesService) {
     this.getAllNote();
   }
@@ -26,18 +28,18 @@ export class DataService {
    * @Description : private BehaviorSubject hold the current value of the message
    **/
   private assignData = new BehaviorSubject<any[]>([]);
-  allNote = this.assignData.asObservable();
+  allNote = this.assignData.asObservable(); // allNote is store
 
   /**
    * @Purpose : get note without refresh
-   **/ 
+   **/
   getAllNote() {
     this.noteService.getNotes().subscribe(data => {
       this.assignData.next(data.data.data)
-      console.log("Get all note ==>",data.data.data);
+      console.log("Get all note ==>", data.data.data);
     })
   }
-  /********************************** get note without refresh End**************************************/ 
+  /********************************** get note without refresh End**************************************/
 
   /**
    * @Purpose : search
@@ -51,14 +53,30 @@ export class DataService {
 
   private viewSource = new BehaviorSubject(false)
   currentMessageView = this.viewSource.asObservable();
-  changeMessageSearch(message : string){
+  changeMessageSearch(message: string) {
     this.messageSourceSearch.next(message)
   }
-  /********************************** Search End**************************************/ 
+  /********************************** Search End**************************************/
+
+  /********************************** grid start**************************************/
   
- /********************************** grid start**************************************/ 
-  changeView(message:boolean){
-    this.viewSource.next(message)
+  // result: boolean = true;
+  // subject = new Subject
+  
+  gridView() {
+    if (this.result) {
+      this.subject.next({ data: "column" });
+      this.result = false;
+    }
+    else {
+      this.subject.next({ data: "row" });
+      this.result = true;
+    }
   }
- /********************************** grid End**************************************/ 
+
+  getView() {
+    this.gridView();
+    return this.subject.asObservable();
+  }
+  /********************************** grid End**************************************/
 }

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 import { UserserviceService } from '../../core/service/user/user-service.service';
 import { NotesService } from '../../core/service/notes/notes.service';
 import { DataService } from '../../core/service/data/data.service'
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { LabelComponent } from '../../component/label/label.component';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
+  //from localStorage
   firstName = localStorage.getItem("firstname");
   lastName = localStorage.getItem("lastname");
   email = localStorage.getItem("email");
@@ -33,7 +34,12 @@ export class NavbarComponent implements OnInit {
   private labelList = [];
   private signoutCard: boolean = false;
   private searchValue: any;
-  private gridView: boolean = true;
+
+  list: boolean = true;
+  grid: boolean = false;
+  view: any;
+  direction: string;
+
 
   /**
    * @Purpose : Inject the UserserviceService, Router, NotesService, 
@@ -43,6 +49,13 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.showLabel();
+
+    this.data.getView().subscribe(
+      (response) => {
+        this.view = response;
+        this.direction = this.view.data;
+      }
+    )
   }
 
   /**
@@ -118,10 +131,18 @@ export class NavbarComponent implements OnInit {
       console.log("response ====>", response);
     });
   }
+
   // Grid
-  view() {
-    this.data.changeView(this.gridView)
-    this.gridView = !this.gridView
+  changeView() {
+    //toggle the btn
+    if (this.list) {
+      this.grid = true;
+      this.list = false;
+    } else {
+      this.list = true;
+      this.grid = false;
+    }
+    this.data.gridView();
   }
 }
 

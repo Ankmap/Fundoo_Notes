@@ -46,6 +46,7 @@
             <!-- 3rd div refresh, logout, grid -->
             <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFlex="25" fxLayoutGap="20px">
 
+                <!-- refresh start -->
                 <div fxShow fxHide.sm fxShow fxHide.xs>
                     <abbr title="Refresh">
                         <button mat-icon-button class="button" (click)="refresh()">
@@ -53,24 +54,28 @@
                         </button>
                     </abbr>
                 </div>
+                <!-- refresh end -->
 
+                <!-- Grid start -->
                 <abbr title="Grid">
-                    <button mat-icon-button class="button" *ngIf=gridView (click)=view()>
-                        <i class="material-icons">view_stream</i>
+                    <button mat-icon-button class="button" *ngIf=list (click)=changeView() fxShow="true">
+                        <i class="material-icons">view_agenda</i>
                     </button>
-                    <button mat-icon-button class="button" *ngIf=!gridView (click)=view()>
+                    <button mat-icon-button class="button" *ngIf=grid (click)=changeView() fxShow="true">
                         <i class="material-icons">view_module</i>
                     </button>
                 </abbr>
+                <!-- Grid end -->
 
+                <!-- logout start-->
                 <abbr title="Logout">
                     <button mat-icon-button class="button" (click)="account()">
                         <i class="material-icons"> account_circle</i>
                     </button>
                 </abbr>
+                <!-- logout end -->
 
             </div>
-
         </div>
     </div>
 </mat-toolbar-row>

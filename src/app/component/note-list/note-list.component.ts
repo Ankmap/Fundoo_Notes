@@ -24,10 +24,13 @@ export class NoteListComponent implements OnInit {
   // notes: Note = new Note();
   notes: Note[] = [];
   message: string;
-
+  direction: String = "row";  // grid view
+  wrap : string = "wrap"; // grid view
+  
   destory$: Subject<boolean> = new Subject<boolean>();
 
-  private view: boolean;
+  // private view: boolean;
+  
   /**
    * @Purpose : Pass data from the parent component class to the child component class
    *  use the @Input decorator. 
@@ -41,7 +44,8 @@ export class NoteListComponent implements OnInit {
   @Output() anyChanges = new EventEmitter();
   setColor: any;
   deleteNote1: any;
-
+  view: any;
+ 
   /**
    * @Purpose : inject the DataService in the constructor
    **/
@@ -56,6 +60,11 @@ export class NoteListComponent implements OnInit {
       .subscribe(message => {
         this.view = message
       })
+
+    this.data.getView().subscribe((response) => {
+      this.view = response;
+      this.direction = this.view.data
+    });
   }
   // Update color
   updateColor(data, $event) {
@@ -105,10 +114,10 @@ export class NoteListComponent implements OnInit {
     setTimeout(() => this.data.getAllNote(), 100);
   }
   //Open dialog nad edit it
-  openDialog(data:any): void {
+  openDialog(data: any): void {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '700px',
-      height:'200px',
+      height: '200px',
       data: {
         'title': data.title,
         'description': data.description,
@@ -117,7 +126,7 @@ export class NoteListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog closed: ${result}`);   
+      console.log(`Dialog closed: ${result}`);
     });
   }
 
