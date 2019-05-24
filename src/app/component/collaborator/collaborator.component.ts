@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NotesService } from 'src/app/core/service/notes/notes.service';
 import { DataService } from 'src/app/core/service/data/data.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { UserserviceService } from 'src/app/core/service/user/user-service.service';
 import { Collaborator } from 'src/app/core/model/collaborator/collaborator';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-collaborator',
@@ -16,8 +17,10 @@ export class CollaboratorComponent implements OnInit {
 
   // notes: Note[] = [];
   collab = new Collaborator();
-  constructor( private noteService : NotesService, private dataService : DataService, private dialog : MatDialog, private userService :UserserviceService, ) { }
+  data: any;
+  constructor( private snackbar : MatSnackBar,private noteService : NotesService, private dataService : DataService, private dialog : MatDialog, private userService :UserserviceService, ) { }
 
+   
   firstName = localStorage.getItem("firstname");
   lastName = localStorage.getItem("lastname");
   email = localStorage.getItem("email");
@@ -46,7 +49,29 @@ export class CollaboratorComponent implements OnInit {
 
   // addColll
   addCol(data){
-    console.log("AddcollaboratorsNotes data === >",data)
-    
+    console.log("AddcollaboratorsNotes data === >",data);
+    const body ={
+      'firstName': this.collab.firstName,
+      'lastName': this.collab.lastName,
+      'email':this.collab.email,
+      "noteId": [data.id],//backend id
+      "userId":this.collab.id
+    }
+    console.log('console for updateNote @@@@@@@@@@@@@@@@@=======================>', body);
+    try {
+      this.noteService.addColNote(body).subscribe(
+        data => {
+          this.snackbar.open('Note added successfully......!', 'Done...!', { duration: 3000 });
+          console.log('Register infor ==========>', data);
+        },
+        error => {
+          this.snackbar.open('Error while adding note......!', 'Error', { duration: 3000 });
+          console.log("Error something wrong: ", error)
+        });
+
+    } catch (error) {
+      this.snackbar.open('error', "", { duration: 3000 });
+    }
+    setTimeout(() => this.dataService.getAllNote(), 100);
   }
 }

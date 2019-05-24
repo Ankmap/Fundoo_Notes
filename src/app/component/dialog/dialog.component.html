@@ -1,5 +1,5 @@
 <div fxLayoutAlign="center center">
-    <div class="card" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
+    <div class="card" fxLayoutGap='30px' fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
         <div fxLayout='column' fxLayoutGap='20px'>
             <input class="title" placeholder="Title" [formControl]="title">
             <input class="description" placeholder="Take a note..." [formControl]="description">
@@ -23,7 +23,7 @@
                         </button>
                     </abbr>
                 </div>
-                <button style="margin-left: 130px;" mat-button (click)="updateNote(data)"
+                <button style="margin-left: 100px;" mat-button (click)="updateNote(data)"
                     (click)="onNoClick()">Close</button>
             </div>
         </div>
