@@ -29,20 +29,15 @@ export class DialogComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
-  addNote(data) {
+  updateNote(data) {
     
     var body = {
       "title": this.title.value,
-      "description": this.description,
+      "description": this.description.value,
       "noteId": [data.id]//backend id
     }
-  
-    // var formData = new FormData();
-    // formData.append('title', this.title.value);
-    // formData.append('description', this.description.value);
-
     
-    console.log('console for this.register @@@@@@@@@@@@@@@@@=======================>', body);
+    console.log('console for updateNote @@@@@@@@@@@@@@@@@=======================>', body);
     try {
       this.noteService.updateNote(body).subscribe(
         data => {
