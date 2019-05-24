@@ -8,8 +8,7 @@
 <!-- **************************** Main Menu start ********************************************* -->
 <mat-toolbar-row>
     <div class="navbarMain">
-        <div  fxLayout="row" fxFlex="100" fxLayoutAlign="space-evenly center" fxLayoutGap="10px"
-            style="height:10vh">
+        <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-evenly center" fxLayoutGap="10px" style="height:10vh">
 
             <!-- 1st div menu, img, fundoo -->
             <div fxLayout="row" fxLayoutAlign="space-evenly start" fxFlex="15" fxLayoutGap="50px">
@@ -49,28 +48,23 @@
 
                 <div fxShow fxHide.sm fxShow fxHide.xs>
                     <abbr title="Refresh">
-                        <button mat-icon-button class="materialicons" (click)="refresh()">
+                        <button mat-icon-button class="button" (click)="refresh()">
                             <i class="material-icons">refresh</i>
                         </button>
                     </abbr>
                 </div>
 
-                <abbr title="List view">
-                    <button mat-icon-button class="materialicons" *ngIf=gridView (click)=view()>
-                        <i class="material-icons">
-                            view_stream</i>
+                <abbr title="Grid">
+                    <button mat-icon-button class="button" *ngIf=gridView (click)=view()>
+                        <i class="material-icons">view_stream</i>
                     </button>
-                    <button mat-icon-button class="materialicons" *ngIf=!gridView (click)=view()>
+                    <button mat-icon-button class="button" *ngIf=!gridView (click)=view()>
                         <i class="material-icons">view_module</i>
                     </button>
-                    <!-- <button mat-icon-button (click)="changeView(show)">
-                        <mat-icon *ngIf=show>view_stream</mat-icon>
-                        <mat-icon *ngIf=!show>view_module</mat-icon>
-                    </button> -->
                 </abbr>
 
                 <abbr title="Logout">
-                    <button mat-icon-button class="materialicons" (click)="account()">
+                    <button mat-icon-button class="button" (click)="account()">
                         <i class="material-icons"> account_circle</i>
                     </button>
                 </abbr>
@@ -102,7 +96,7 @@
 
 <mat-drawer-container class="example-container">
     <!-- <mat-drawer #drawer class="example-sidenav" mode="side"> -->
-        <mat-drawer #drawer class="example-sidenav"  [mode]="width > 0?'side':'side'" closed>
+    <mat-drawer #drawer class="example-sidenav" [mode]="width > 0?'side':'side'" closed>
 
         <!-- 1st div Notes, Reminder -->
         <div fxLayout="column">

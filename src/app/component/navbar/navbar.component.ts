@@ -33,8 +33,8 @@ export class NavbarComponent implements OnInit {
   private labelList = [];
   private signoutCard: boolean = false;
   private searchValue: any;
-  // private labelShow:boolean=false;
-  // private labelValue = ''
+  private gridView: boolean = true;
+
   /**
    * @Purpose : Inject the UserserviceService, Router, NotesService, 
    *            MatDialog, DataService in the constructor
@@ -117,6 +117,11 @@ export class NavbarComponent implements OnInit {
     this.data.allNote.subscribe((response) => {
       console.log("response ====>", response);
     });
+  }
+  // Grid
+  view() {
+    this.data.changeView(this.gridView)
+    this.gridView = !this.gridView
   }
 }
 
