@@ -48,6 +48,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule,MatNativeDateModule} from '@angular/material';
 
 /** Form Validation **/
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -105,7 +108,11 @@ import { DialogComponent } from './component/dialog/dialog.component';
     MatSnackBarModule,
     MatAutocompleteModule,
     MatDialogModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDatepickerModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatNativeDateModule
   ],
 
   providers: [],

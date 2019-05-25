@@ -42,7 +42,7 @@ export class NavbarComponent implements OnInit {
   view: any;
   direction: string;
 
-  appName:String;
+  appName: String;
   /**
    * @Purpose : Inject the UserserviceService, Router, NotesService, 
    *            MatDialog, DataService in the constructor
@@ -56,7 +56,7 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.appName="Fundoo";
+    this.appName = "Fundoo";
     /* For Show Label*/
     this.showLabel();
 
@@ -96,6 +96,7 @@ export class NavbarComponent implements OnInit {
    * @Purpose : createLabel method for popup and go to the LabelComponnent
    **/
   createLabel() {
+    this.appName = "Label";
     const dialogRef = this.dialog.open(LabelComponent, {
       width: '350px',
       height: ''
@@ -141,7 +142,7 @@ export class NavbarComponent implements OnInit {
    * @Purpose : Note Click show all label
    **/
   displayNote() {
-    this.appName="Notes";
+    this.appName = "Notes";
     this.data.allNote.subscribe((response) => {
       console.log("response ====>", response);
     });
@@ -160,6 +161,27 @@ export class NavbarComponent implements OnInit {
       this.grid = false;
     }
     this.data.gridView();
+  }
+  /**
+   * @Purpose : Reminder 
+   * 
+   **/
+  reminders() {
+    this.appName = "Reminders";
+  }
+
+  /**
+   * @Purpose : Archive 
+   **/
+  archive() {
+    this.appName = "Archive";
+  }
+
+  /**
+   * @Purpose : Trash 
+   **/
+  Trash() {
+    this.appName = "Trash";
   }
 }
 

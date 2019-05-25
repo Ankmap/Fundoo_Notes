@@ -66,5 +66,5 @@ export class IconComponent implements OnInit {
       console.log('Dialog closed');
     });
   }
-
+  
 }
