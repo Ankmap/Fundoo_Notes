@@ -70,4 +70,11 @@ export class NotesService {
   updateNote(body) {
     return this.service.postDataForUpdateNote("/notes/updateNotes", body)
   }
+
+  /**
+   * @Purpose: Delete Note
+   **/
+  deleteNoteLabel(labelId) {
+    return this.service.postDataForDeleteLabel("/noteLabels/" + labelId + "/deleteNoteLabel")
+  }
 }

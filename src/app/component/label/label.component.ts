@@ -10,7 +10,7 @@ import { NotesService } from '../../core/service/notes/notes.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Label } from '../../core/model/label/label'
-import {MatDialogRef} from "@angular/material";
+import { MatDialogRef } from "@angular/material";
 import { NavbarComponent } from '../navbar/navbar.component'
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -25,26 +25,26 @@ export class LabelComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  /* Label Model*/ 
+  /* Label Model*/
   labels: Label = new Label();
-  private labelList =[]
+  private labelList = []
 
-  /* Get Id from localstorage*/ 
+  /* Get Id from localstorage*/
   id = localStorage.getItem('userId');
 
   changeText: boolean;
- 
+
   constructor(
-    private note: NotesService, 
-    private snackbar: MatSnackBar, 
-    private router: Router, 
-    private dialogRef : MatDialogRef<NavbarComponent>
-    ) { 
-      this.changeText = false;
-    }
+    private note: NotesService,
+    private snackbar: MatSnackBar,
+    private router: Router,
+    private dialogRef: MatDialogRef<NavbarComponent>
+  ) {
+    this.changeText = false;
+  }
 
   ngOnInit() {
-    /* Show label*/ 
+    /* Show label*/
     this.showLabel();
   }
 
@@ -58,22 +58,22 @@ export class LabelComponent implements OnInit {
       "userId": this.id
     }
     const label = this.labels.label
-    if(label== " "){
+    if (label == " ") {
       this.dialogRef.close();
       return false;
     }
     console.log('Data after edit label', body);
     try {
       this.note.addLabel(body).pipe(takeUntil(this.destroy$))
-      .subscribe(
-        (response) => {
-          console.log("Response ====>", response);
-          this.showLabel();
-        },
-        error => {
-          console.log("Data ====>", error);
-        }
-      )
+        .subscribe(
+          (response) => {
+            console.log("Response ====>", response);
+            this.showLabel();
+          },
+          error => {
+            console.log("Data ====>", error);
+          }
+        )
     } catch (err) {
       console.log("Error", err);
     }
@@ -84,10 +84,10 @@ export class LabelComponent implements OnInit {
    */
   showLabel() {
     this.note.showNoteLabel()
-    .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntil(this.destroy$))
       .subscribe((response: any) => {
         this.labels = response.data.details
-        this.labelList=[];
+        this.labelList = [];
         console.log("check showLabel=====>", response);
       }, (error) => {
         console.log("Data ====>", error);
@@ -96,9 +96,21 @@ export class LabelComponent implements OnInit {
 
   /**
    * @Purpose : ShowLabel in sideNavbar
-   **/ 
-  add(){
+   **/
+  add() {
     this.done();
     this.dialogRef.close();
+  }
+
+  // deleteLabel
+  deleteLabel(labelId) {
+    this.note.deleteNoteLabel(labelId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        console.log("deleteLabel response ===>", response);
+        this.showLabel();
+      }, (error) => {
+        console.log("deleteLabel error ===>", error);
+      });
   }
 }

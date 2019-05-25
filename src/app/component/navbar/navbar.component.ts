@@ -136,7 +136,7 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl('/home')
   }
   /**
-   * @Purpose : Note Click
+   * @Purpose : Note Click show all label
    **/
   displayNote() {
     this.data.allNote.subscribe((response) => {

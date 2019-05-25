@@ -103,7 +103,7 @@
         <!-- 1st div Notes, Reminder -->
         <div fxLayout="column">
             <!-- Notes start -->
-            <button type="button" class="button" mat-button (click)="displayNote=null">
+            <button type="button" class="button" mat-button (click)="displayNote()">
                 <div class="notes" fxLayout="row" fxLayoutGap="25px">
                     <mat-icon class=name>lightbulb_outline</mat-icon>
                     <h5 class="name">Notes</h5>
@@ -122,17 +122,22 @@
         <mat-divider></mat-divider>
 
         <!-- 2nd div LABELS, Edit labels -->
-        <div fxLayout="column">
+        <div fxLayout="column"  fxLayoutGap="20px">
             <div class="label" fxLayout="row">
                 <p class="labels">LABELS</p>
             </div>
 
-            <a *ngFor="let data of labelList | sortPipe">
-                <div fxLayout="row" fxLayoutGap="10px" class="labeldata">
-                    <img src="../../../assets/outline-label-24px.svg">
-                    <div style="font-size: 15px;">{{data}}</div>
+            <div fxLayout="column" fxFlex="50"  fxLayoutGap="20px">
+                <div *ngFor="let data of labelList | sortPipe">
+                    <div fxFlex="20">
+                        <img style="margin-left: 20px;" src="../../../assets/outline-label-24px.svg">
+                    </div>
+                    <div fxFlex="20">
+                        <div>{{data}}</div>
+                    </div>
                 </div>
-            </a>
+            </div>
+
             <button type="button" (click)="createLabel()" class="button" mat-button>
                 <div class="edit" fxLayout="row" fxLayoutGap="25px">
                     <img src="../../../assets/outline-create-24px.svg">
@@ -140,6 +145,7 @@
                 </div>
             </button>
         </div>
+
         <mat-divider></mat-divider>
 
         <!-- 3rd div Archive, Delete -->
@@ -157,8 +163,6 @@
                 </div>
             </button>
         </div>
-        <mat-divider></mat-divider>
-
     </mat-drawer>
     <!-- @Purpose : Go to the child component -->
     <router-outlet></router-outlet>

@@ -5,40 +5,46 @@
  *@version - 1.0
  *@since   - 22/04/2019
 **************************************************************************************************/ -->
-<div style="height:10vh;">
-    <h4><b>Edit label</b></h4>
-</div>
-<div fxLayout="row">
-    <div fxLayoutAlign="start start">
-        <mat-icon class="clear" (click)="clear()">clear</mat-icon>
+<div fxLayout="column">
+    <div style="height:10vh;">
+        <h4><b>Edit label</b></h4>
     </div>
-    <input matInput type="text" maxlength="50" placeholder="Create New Label" [(ngModel)]="labels.label">
-    <div fxLayoutAlign="end end">
-        <mat-icon class="done" (click)="done()">done</mat-icon>
-    </div>
-</div>
-
-<!-- Show Label start-->
-<div *ngFor="let label of labels | sortPipe">
-    <div fxLayout=row>
-        <div fxLayoutAlign="start start" (mouseover)="changeText=true" (mouseout)="changeText=false">
-            <mat-icon *ngIf="!changeText">label</mat-icon>
-            <mat-icon *ngIf="changeText">delete</mat-icon>
-        </div>
-        <p class="label">{{label.label}}</p>
-        <div fxLayoutAlign="end end">
-            <mat-icon class="edit">edit</mat-icon>
+    <div fxLayout=row style="height:8vh;">
+        <div fxFlex="100" fxLayoutAlign="start start">
+            <div fxFlex="20">
+                <mat-icon (click)="clear()">clear</mat-icon>
+            </div>
+            <div fxFlex="60">
+                <input matInput type="text" maxlength="50" placeholder="Create New Label" [(ngModel)]="labels.label">
+            </div>
+            <div fxFlex="20" fxLayoutAlign="end end">
+                <mat-icon (click)="done()">done</mat-icon>
+            </div>
         </div>
     </div>
-</div>
-<!-- Show Label end-->
 
-<hr>
+    <div *ngFor="let label of labels | sortPipe" style="height:6vh">
+        <div fxLayout=row>
+            <div fxFlex="100" fxLayoutAlign="start start" (mouseover)="changeText=true" (mouseout)="changeText=false">
+                <div fxFlex="20">
+                    <mat-icon *ngIf="!changeText">label</mat-icon>
+                    <mat-icon *ngIf="changeText" (click)="deleteLabel(label.id)">delete</mat-icon>
+                </div>
+                <div fxFlex="60">
+                    <p>{{label.label}}</p>
+                </div>
+                <div fxFlex="20" fxLayoutAlign="end end">
+                    <img src="../../../assets/outline-create-24px.svg">
+                </div>
+            </div>
+        </div>
+    </div>
 
-<!-- Done Button start -->
-<div fxLayout="row" fxLayoutAlign="end end">
-    <abbr title="Save Label">
-        <button mat-button class="add" (click)="add()">Done</button>
-    </abbr>
+    <mat-divider></mat-divider>
+
+    <div fxLayout="row" fxLayoutAlign="end end">
+        <abbr title="Save Label">
+            <button mat-button class="add" (click)="add()">Done</button>
+        </abbr>
+    </div>
 </div>
-<!-- Done Button end -->

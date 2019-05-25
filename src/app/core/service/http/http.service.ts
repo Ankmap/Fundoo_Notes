@@ -174,4 +174,17 @@ export class HttpService {
     return this.http.post(environment.baseUrl + path, this.getEncodData(body), httpOptions);
   }
 
+  /**
+   * @Purpose : Delete Label
+   **/ 
+  postDataForDeleteLabel(path) {
+    let httpAuthOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      })
+    }
+    return this.http.delete(environment.baseUrl + path, httpAuthOptions);
+  }
+
 }
