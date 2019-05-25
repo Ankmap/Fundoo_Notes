@@ -8,34 +8,37 @@
 <div style="height:10vh;">
     <h4><b>Edit label</b></h4>
 </div>
-<div fxLayout="row" fxLayoutGap="15">
-    <!-- Input Filed -->
-    <mat-form-field class="example-form-field">
-        <input matInput type="text" placeholder="Edit label" [(ngModel)]="labels.label">
-    </mat-form-field>
-    <!-- Add Button icon -->
-    <abbr title="Create Label">
-        <button mat-button class="done">
-            <mat-icon style="font-size: 35px;" (click)="done()">done</mat-icon>
-        </button>
-    </abbr>
+<div fxLayout="row">
+    <div fxLayoutAlign="start start">
+        <mat-icon class="clear" (click)="clear()">clear</mat-icon>
+    </div>
+    <input matInput type="text" maxlength="50" placeholder="Create New Label" [(ngModel)]="labels.label">
+    <div fxLayoutAlign="end end">
+        <mat-icon class="done" (click)="done()">done</mat-icon>
+    </div>
 </div>
 
-<!-- Show Label -->
-<div>
-    <div *ngFor="let label of labels | sortPipe">
-        <div fxLayout=row class="label">
-            <div fxFlex="20%">
-                <mat-icon class="label">label</mat-icon>
-            </div>
-            <div fxFlex="60%" class=label>{{label.label}}</div>
+<!-- Show Label start-->
+<div *ngFor="let label of labels | sortPipe">
+    <div fxLayout=row>
+        <div fxLayoutAlign="start start" (mouseover)="changeText=true" (mouseout)="changeText=false">
+            <mat-icon *ngIf="!changeText">label</mat-icon>
+            <mat-icon *ngIf="changeText">delete</mat-icon>
+        </div>
+        <p class="label">{{label.label}}</p>
+        <div fxLayoutAlign="end end">
+            <mat-icon class="edit">edit</mat-icon>
         </div>
     </div>
 </div>
-<mat-divider></mat-divider>
-<!-- Done Button -->
-<div xLayout="row" fxLayoutAlign="end end">
+<!-- Show Label end-->
+
+<hr>
+
+<!-- Done Button start -->
+<div fxLayout="row" fxLayoutAlign="end end">
     <abbr title="Save Label">
-        <button mat-button class="done" (click)="add()">Done</button>
+        <button mat-button class="add" (click)="add()">Done</button>
     </abbr>
 </div>
+<!-- Done Button end -->

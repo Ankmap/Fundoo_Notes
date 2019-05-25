@@ -1,3 +1,34 @@
-.done{
+input{
+    border-left-style: hidden;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-bottom-style: solid;
+    opacity: 0.7;
     outline: none;
+    flex: 1 1 auto;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0 15px;
+}
+.label{
+    margin-left: 25px;
+}
+.edit{
+    margin-left: 100px;
+}
+.clear{
+    margin-left: -4px;
+    margin-top: 25px;
+    margin-bottom: -8px;
+}
+.done{
+    margin-bottom: -4px;
+    border-style: hidden;
+    outline: none;
+    font-size: 25px;
+}
+.add{
+    border-style: hidden;
+    outline: none;
+    font-size: 16px;
 }

@@ -32,12 +32,16 @@ export class LabelComponent implements OnInit {
   /* Get Id from localstorage*/ 
   id = localStorage.getItem('userId');
 
+  changeText: boolean;
+ 
   constructor(
     private note: NotesService, 
     private snackbar: MatSnackBar, 
     private router: Router, 
     private dialogRef : MatDialogRef<NavbarComponent>
-    ) { }
+    ) { 
+      this.changeText = false;
+    }
 
   ngOnInit() {
     /* Show label*/ 

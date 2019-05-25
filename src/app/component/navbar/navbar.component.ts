@@ -95,8 +95,8 @@ export class NavbarComponent implements OnInit {
    **/
   createLabel() {
     const dialogRef = this.dialog.open(LabelComponent, {
-      width: '300px',
-      height: '250px'
+      width: '350px',
+      height: ''
     });
     dialogRef.afterClosed()
       .pipe(takeUntil(this.destroy$))
