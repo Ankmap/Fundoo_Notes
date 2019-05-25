@@ -22,7 +22,6 @@
             </div>
         </div>
     </div>
-
     <div *ngFor="let label of labels | sortPipe" style="height:6vh">
         <div fxLayout=row>
             <div fxFlex="100" fxLayoutAlign="start start" (mouseover)="changeText=true" (mouseout)="changeText=false">
@@ -34,12 +33,11 @@
                     <p>{{label.label}}</p>
                 </div>
                 <div fxFlex="20">
-                    <div fxFlex="20" fxLayoutAlign="end end" *ngIf="labelId != label.id"
-                        (click)="editIcon(label.id,label.label)">
+                    <div fxLayoutAlign="end end" *ngIf="labelId != label.id" (click)="editIcon(label.id,label.label)">
                         <mat-icon class="doneIcon" (click)="editIcon(label.id,label.label)">edit</mat-icon>
                     </div>
-                    <div fxFlex="20" fxLayoutAlign="end end" *ngIf="labelId == label.id">
-                        <input class="textarea" [(ngModel)]="model.newName" maxlength=40>
+                    <div fxLayoutAlign="end end" *ngIf="labelId == label.id">
+                        <input style="margin-right: 19px;" class="textarea" [(ngModel)]="model.newName" maxlength=40>
                         <mat-icon class="doneIcon" (click)=editLabel(label.id)>done</mat-icon>
                     </div>
                 </div>

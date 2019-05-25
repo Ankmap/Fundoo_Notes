@@ -106,7 +106,16 @@ export class LabelComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  // deleteLabel
+  /**
+   * @Purpose  : Clear Label 
+   */
+  clear() {
+    this.labels.label = null;
+  }
+
+  /**
+   * @Purpose  : Delete Label 
+   */
   deleteLabel(labelId) {
     this.note.deleteNoteLabel(labelId)
       .pipe(takeUntil(this.destroy$))
@@ -118,7 +127,9 @@ export class LabelComponent implements OnInit {
       });
   }
 
-  // editLabel
+  /**
+   * @Purpose  : Edit Label 
+   */
   editLabel(labelId) {
     let label = this.model.newName;
     let body = {
@@ -128,20 +139,18 @@ export class LabelComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         console.log("deleteLabel response ===>", response);
-        this.showLabel();
+        this.dialogRef.close();
       }, (error) => {
         console.log("deleteLabel error ===>", error);
       });
   }
 
-  //editicon
+  /* Open and Close editIcon*/ 
   private labelId
   editIcon(id, labelName) {
     this.labelId = [];
     this.labelId = id;
     this.model.newName = labelName
   }
-  clear(){
-    this.model.labelName = null;
-  }
+
 }
