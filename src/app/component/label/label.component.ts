@@ -29,6 +29,10 @@ export class LabelComponent implements OnInit {
   labels: Label = new Label();
   private labelList = []
 
+  public model: any = {
+    "labelName": "",
+    "newName": ""
+  }
   /* Get Id from localstorage*/
   id = localStorage.getItem('userId');
 
@@ -112,5 +116,32 @@ export class LabelComponent implements OnInit {
       }, (error) => {
         console.log("deleteLabel error ===>", error);
       });
+  }
+
+  // editLabel
+  editLabel(labelId) {
+    let label = this.model.newName;
+    let body = {
+      "label": label
+    }
+    this.note.updateNoteLabel(labelId, body)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        console.log("deleteLabel response ===>", response);
+        this.showLabel();
+      }, (error) => {
+        console.log("deleteLabel error ===>", error);
+      });
+  }
+
+  //editicon
+  private labelId
+  editIcon(id, labelName) {
+    this.labelId = [];
+    this.labelId = id;
+    this.model.newName = labelName
+  }
+  clear(){
+    this.model.labelName = null;
   }
 }
