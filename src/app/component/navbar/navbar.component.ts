@@ -42,6 +42,7 @@ export class NavbarComponent implements OnInit {
   view: any;
   direction: string;
 
+  appName:String;
   /**
    * @Purpose : Inject the UserserviceService, Router, NotesService, 
    *            MatDialog, DataService in the constructor
@@ -55,6 +56,7 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.appName="Fundoo";
     /* For Show Label*/
     this.showLabel();
 
@@ -139,6 +141,7 @@ export class NavbarComponent implements OnInit {
    * @Purpose : Note Click show all label
    **/
   displayNote() {
+    this.appName="Notes";
     this.data.allNote.subscribe((response) => {
       console.log("response ====>", response);
     });
