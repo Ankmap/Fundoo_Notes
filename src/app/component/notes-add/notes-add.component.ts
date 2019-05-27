@@ -85,11 +85,15 @@ export class NotesAddComponent implements OnInit {
         data => {
           this.snackbar.open('Note added successfully......!', 'Done...!', { duration: 3000 });
           console.log('Register infor ==========>', data);
+          
         },
         error => {
           this.snackbar.open('Error while adding note......!', 'Error', { duration: 3000 });
           console.log("Error something wrong: ", error)
         });
+
+        this.addNotes.title = null;
+        this.addNotes.description =null;
 
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });

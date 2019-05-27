@@ -1,9 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CollaboratorComponent } from '../collaborator/collaborator.component'
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { Subject } from 'rxjs';
-import { NotesService } from 'src/app/core/service/notes/notes.service';
-import { takeUntil } from 'rxjs/operators';
+
 
 export interface DialogData {
   noteData: object
@@ -23,13 +22,15 @@ export class IconComponent implements OnInit {
   @Output() onChangeDateReminder = new EventEmitter()
 
   destroy$: Subject<boolean> = new Subject<boolean>();
-  isArchive: boolean = false;
   currentDate = new Date;
+
+  /* archive */
+  isArchive: boolean = false;
+
 
   constructor(
     private dialog: MatDialog,
-    private noteService: NotesService,
-    private snackbar: MatSnackBar
+
   ) { }
 
   /* Color Code with name*/
@@ -55,6 +56,7 @@ export class IconComponent implements OnInit {
   ]
 
   ngOnInit() {
+
   }
 
   /* Set color */
@@ -84,7 +86,7 @@ export class IconComponent implements OnInit {
   }
 
   /*  <!-- ************************************ Reminder End ************************************************* -->
-*/ 
+*/
   /* Reminder */
   today() {
     let date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate() + 0, 8, 0, 0)

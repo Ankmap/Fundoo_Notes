@@ -54,41 +54,40 @@
 
             <!-- 3rd div refresh, logout, grid -->
             <div fxFlex="20" fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
-                
-                    <!-- refresh start -->
-                    <div fxFlex="25" fxShow fxHide.sm fxShow fxHide.xs>
-                        <abbr title="Refresh">
-                            <button style="outline: none;" mat-icon-button (click)="refresh()">
-                                <i class="material-icons">refresh</i>
-                            </button>
-                        </abbr>
-                    </div>
-                    <!-- refresh end -->
 
-                    <!-- Grid start -->
-                    <div fxFlex="25">
-                        <abbr title="Grid">
-                            <button style="outline: none;" mat-icon-button *ngIf=list (click)=changeView()
-                                fxShow="true">
-                                <i class="material-icons">view_agenda</i>
-                            </button>
-                            <button style="outline: none" mat-icon-button *ngIf=grid (click)=changeView() fxShow="true">
-                                <i class="material-icons">view_module</i>
-                            </button>
-                        </abbr>
-                    </div>
-                    <!-- Grid end -->
+                <!-- refresh start -->
+                <div fxFlex="25" fxShow fxHide.sm fxShow fxHide.xs>
+                    <abbr title="Refresh">
+                        <button style="outline: none;" mat-icon-button (click)="refresh()">
+                            <i class="material-icons">refresh</i>
+                        </button>
+                    </abbr>
+                </div>
+                <!-- refresh end -->
 
-                    <!-- logout start-->
-                    <div fxFlex="25">
-                        <abbr title="Logout">
-                            <button style="outline: none;" mat-icon-button (click)="account()">
-                                <i class="material-icons"> account_circle</i>
-                            </button>
-                        </abbr>
-                    </div>
-                    <!-- logout end -->
-                
+                <!-- Grid start -->
+                <div fxFlex="25">
+                    <abbr title="Grid">
+                        <button style="outline: none;" mat-icon-button *ngIf=list (click)=changeView() fxShow="true">
+                            <i class="material-icons">view_agenda</i>
+                        </button>
+                        <button style="outline: none" mat-icon-button *ngIf=grid (click)=changeView() fxShow="true">
+                            <i class="material-icons">view_module</i>
+                        </button>
+                    </abbr>
+                </div>
+                <!-- Grid end -->
+
+                <!-- logout start-->
+                <div fxFlex="25">
+                    <abbr title="Logout">
+                        <button style="outline: none;" mat-icon-button (click)="account()">
+                            <i class="material-icons"> account_circle</i>
+                        </button>
+                    </abbr>
+                </div>
+                <!-- logout end -->
+
             </div>
         </div>
     </div>
