@@ -17,19 +17,19 @@ import { DialogComponent } from '../dialog/dialog.component';
 @Component({
   selector: 'app-note-list',
   templateUrl: './note-list.component.html',
-  styleUrls: ['./note-list.component.scss']
+  styleUrls: ['./note-list.component.scss'],
 })
 export class NoteListComponent implements OnInit {
 
-  /* Note Model*/ 
+  /* Note Model*/
   notes: Note[] = [];
   message: string;
 
-  /* Grid View*/ 
+  /* Grid View*/
   direction: String = "row";
-  wrap : string = "wrap";
+  wrap: string = "wrap";
   view: any;
-  
+
   destory$: Subject<boolean> = new Subject<boolean>();
 
   /**
@@ -44,34 +44,41 @@ export class NoteListComponent implements OnInit {
     **/
   @Output() anyChanges = new EventEmitter();
 
-  /* SetColor*/ 
+  /* SetColor*/
   setColor: any;
 
-  /* Delete Note*/ 
+  /* Delete Note*/
   deleteNote1: any;
- 
+
+  /* Archive Note */
+  isArchived = true;
+  archiveNote1: any
+
+  /* Reminder Update*/
+  setReminder: any;
+
   /**
    * @Purpose : inject the DataService, MatDialog, NotesService, MatSnackBar in the constructor
    **/
   constructor(
-    private data: DataService, 
-    public dialog: MatDialog, 
-    private noteService: NotesService, 
+    private data: DataService,
+    public dialog: MatDialog,
+    private noteService: NotesService,
     private snackbar: MatSnackBar
-    ) { }
+  ) { }
 
   ngOnInit() {
-    /* Get all Note */ 
+    /* Get all Note */
     this.data.allNote.pipe(takeUntil(this.destory$))
       .subscribe(data => this.notes = data);
 
-      /* Current message view */ 
+    /* Current message view */
     this.data.currentMessageView.pipe(takeUntil(this.destory$))
       .subscribe(message => {
         this.view = message
       })
 
-    /* Grid View*/ 
+    /* Grid View*/
     this.data.getView().subscribe((response) => {
       this.view = response;
       this.direction = this.view.data
@@ -80,7 +87,7 @@ export class NoteListComponent implements OnInit {
 
   /**
    * @Purpose : Update color
-   **/ 
+   **/
   updateColor(data, $event) {
     this.setColor = $event;
     var colorUpdate = {
@@ -102,10 +109,10 @@ export class NoteListComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
-    /* For GetAll Note without refresh*/ 
+    /* For GetAll Note without refresh*/
     setTimeout(() => this.data.getAllNote(), 100);
   }
-  
+
 
   /**
    * @Purpose : Delete Note
@@ -130,12 +137,12 @@ export class NoteListComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
-    /* For GetAll Note without refresh*/ 
+    /* For GetAll Note without refresh*/
     setTimeout(() => this.data.getAllNote(), 100);
   }
 
   /**
-   * @Purpose : Open dialog nad edit it
+   * @Purpose : Open dialog and edit it
    **/
   openDialog(data: any): void {
     const dialogRef = this.dialog.open(DialogComponent, {
@@ -152,6 +159,62 @@ export class NoteListComponent implements OnInit {
       console.log(`Dialog closed: ${result}`);
     });
   }
+
+  /**
+   * @Purpose : Archive Note
+   **/
+  archiveNote(data, $event) {
+    this.archiveNote1 = $event;
+    var archiveNote = {
+      "isArchived": this.isArchived,
+      "noteIdList": [data.id] /* Access noteIdList for particular note*/
+    }
+    console.log('Archive Note =====>', archiveNote);
+
+    try {
+      this.noteService.archiveNote(archiveNote).subscribe(
+        data => {
+          this.snackbar.open('Archive Note Successfully....!', ' Done ', { duration: 1000 });
+          console.log('Archive Note Successfully....!', data);
+        },
+        error => {
+          this.snackbar.open('Error while archive note......!', 'Error', { duration: 3000 });
+          console.log("Error something wrong: ", error)
+        });
+    }
+    catch (error) {
+      this.snackbar.open('Error while archive note', "error", { duration: 3000 });
+    }
+  }
+
+  /**
+   * @Purpose : Update Reminder
+   **/
+  updateReminder(data, $event) {
+    this.setReminder = $event;
+    var reminderUpdate = {
+      "reminder": this.setReminder,
+      "noteIdList": [data.id] /* Access noteIdList for particular note*/
+    }
+    console.log("colorUpdate =====>", reminderUpdate);
+    try {
+      this.noteService.addUpdateReminderNotes(reminderUpdate).subscribe(
+        data => {
+          this.snackbar.open('Reminder update successfully......!', 'Done...!', { duration: 3000 });
+          console.log('Register infor ==========>', data);
+        },
+        error => {
+          this.snackbar.open('Error while update note reminder ......!', 'Error', { duration: 3000 });
+          console.log("Error something wrong: ", error)
+        });
+
+    } catch (error) {
+      this.snackbar.open('error', "", { duration: 3000 });
+    }
+    /* For GetAll Note without refresh*/
+    setTimeout(() => this.data.getAllNote(), 100);
+  }
+
 
 }
 

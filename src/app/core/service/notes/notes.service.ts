@@ -60,28 +60,46 @@ export class NotesService {
   /**
    * @Purpose : Show Label
   **/
-  addColNote(body) {
-    return this.service.postDataForSearchUser("/notes/{id}/AddcollaboratorsNotes", body)
+  addColNote(body,id) {
+    return this.service.postDataForSearchUser("/notes/" + id + "/AddcollaboratorsNotes",body)
   }
 
   /**
-   * @Purpose: Update Note
+   * @Purpose : Update Note
    **/
   updateNote(body) {
     return this.service.postDataForUpdateNote("/notes/updateNotes", body)
   }
 
   /**
-   * @Purpose: Delete Note
+   * @Purpose : Delete Note
    **/
   deleteNoteLabel(labelId) {
     return this.service.postDataForDeleteLabel("/noteLabels/" + labelId + "/deleteNoteLabel")
   }
 
   /**
-   * @Purpose: Update Note
+   * @Purpose : Update Note
    **/
   updateNoteLabel(labelId,body) {
     return this.service.postDataForUpdateLabel("/noteLabels/" + labelId + "/updateNoteLabel",body)
+  }
+
+  /**
+   * @Purpose : Update Note
+   **/
+  archiveNote(body){
+    return this.service.postDataForArchiveNote("/notes/archiveNotes",body)
+  }
+
+  getArchivedList(){
+    return this.service.postDataForArchiveNoteGetList("/notes/getArchiveNotesList")
+  }
+
+   /**
+   * @Purpose : Update Reminder
+   **/
+  addUpdateReminderNotes(body) {
+    return this.service.chnageReminder("/notes/addUpdateReminderNotes", body)
   }
 }

@@ -10,4 +10,9 @@ export class Note {
     "description" : string;
     "color" :string;
     "id":string;
+    "isArchived" :boolean;
+    "userId":string
+    "isDeleted":boolean;
+    "reminder":string
+
 }

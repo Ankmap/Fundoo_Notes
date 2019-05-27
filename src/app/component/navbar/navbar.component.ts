@@ -88,9 +88,6 @@ export class NavbarComponent implements OnInit {
   account() {
     this.signoutCard = !(this.signoutCard);
   }
-  addAccount() {
-    this.router.navigateByUrl('/registration');
-  }
 
   /**
    * @Purpose : createLabel method for popup and go to the LabelComponnent
@@ -143,6 +140,7 @@ export class NavbarComponent implements OnInit {
    **/
   displayNote() {
     this.appName = "Notes";
+    this.router.navigateByUrl('/home')
     this.data.allNote.subscribe((response) => {
       console.log("response ====>", response);
     });
@@ -175,6 +173,7 @@ export class NavbarComponent implements OnInit {
    **/
   archive() {
     this.appName = "Archive";
+    this.router.navigateByUrl('/archive');
   }
 
   /**

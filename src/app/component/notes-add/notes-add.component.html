@@ -46,7 +46,7 @@
         </div>
         <div>
           <div fxLayout='row'>
-            <app-icon (onChangeColor)="receivecolor($event)"></app-icon>
+            <app-icon (onChangeColor)="receivecolor($event)" (onChangeDateReminder)="receiveReminder($event)"></app-icon>
             <div class="row" fxLayoutGap='5px'>
               <abbr title="Undo">
                 <button mat-button>

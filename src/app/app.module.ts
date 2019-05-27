@@ -51,6 +51,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule,MatNativeDateModule} from '@angular/material';
+import {MatChipsModule} from '@angular/material/chips';
 
 /** Form Validation **/
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -112,7 +113,8 @@ import { DialogComponent } from './component/dialog/dialog.component';
     MatDatepickerModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatChipsModule
   ],
 
   providers: [],

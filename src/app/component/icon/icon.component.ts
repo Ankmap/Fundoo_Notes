@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CollaboratorComponent } from '../collaborator/collaborator.component'
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
+import { Subject } from 'rxjs';
+import { NotesService } from 'src/app/core/service/notes/notes.service';
+import { takeUntil } from 'rxjs/operators';
 
 export interface DialogData {
   noteData: object
@@ -16,9 +19,17 @@ export class IconComponent implements OnInit {
   @Input() card;
   @Output() onChangeColor = new EventEmitter()
   @Output() onChangeDelete = new EventEmitter()
+  @Output() onChangeArchive = new EventEmitter()
+  @Output() onChangeDateReminder = new EventEmitter()
+
+  destroy$: Subject<boolean> = new Subject<boolean>();
+  isArchive: boolean = false;
+  currentDate = new Date;
 
   constructor(
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private noteService: NotesService,
+    private snackbar: MatSnackBar
   ) { }
 
   /* Color Code with name*/
@@ -46,7 +57,7 @@ export class IconComponent implements OnInit {
   ngOnInit() {
   }
 
-  /* Set color */ 
+  /* Set color */
   setColor(color) {
     this.onChangeColor.emit(color);
   }
@@ -66,5 +77,30 @@ export class IconComponent implements OnInit {
       console.log('Dialog closed');
     });
   }
-  
+
+  /* Archive */
+  archiveNote(note) {
+    this.onChangeArchive.emit(note);
+  }
+
+  /*  <!-- ************************************ Reminder End ************************************************* -->
+*/ 
+  /* Reminder */
+  today() {
+    let date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate() + 0, 8, 0, 0)
+    console.log(" Current Date Today ====>", date);
+    this.onChangeDateReminder.emit(date)
+  }
+
+  tomorrow() {
+    let date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate() + 1, 8, 0, 0)
+    console.log(" Current Date Tommorrow ====>", date);
+    this.onChangeDateReminder.emit(date)
+  }
+
+  nextWeek() {
+    let date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate() + 7, 8, 0, 0)
+    console.log(" Current Date Next Week ====>", date);
+    this.onChangeDateReminder.emit(date)
+  }
 }

@@ -6,6 +6,8 @@
  *@since   - 22/04/2019
 **************************************************************************************************/ -->
 <div>
+  <!-- ************************************ Reminder start ************************************************* -->
+
   <abbr title="Remind me">
     <button mat-icon-button [matMenuTriggerFor]=menuReminder>
       <i class="material-icons">
@@ -13,6 +15,33 @@
       </i>
     </button>
   </abbr>
+
+  <!-- menuReminder start -->
+  <mat-menu #menuReminder="matMenu">
+    <mat-card *ngIf=!timePick>
+      <div>Reminder:</div>
+      <div mat-menu-item class="menu" fxLayout="row" (click)=today()>
+        <div fxFlex=20 class="main">Later today</div>
+        <div fxFlex="20">8:00 PM</div>
+      </div>
+      <div mat-menu-item class="menu" fxLayout="row" (click)=tomorrow()>
+        <div fxFlex=20 class="main">Tomorrow</div>
+        <div fxFlex="20">8:00 AM</div>
+      </div>
+      <div mat-menu-item class="menu" fxLayout="row" (click)=nextWeek()>
+        <div fxFlex=20 class="main">Next week</div>
+        <div fxFlex="20">Mon, 8:00 AM</div>
+      </div>
+      <div mat-menu-item class="menu" (click)="timePick=true">
+        <mat-icon class="main">access_time</mat-icon>Pick date & time
+      </div>
+      <div mat-menu-item class="menu">
+        <img class="main" src="../../../assets/baseline-place-24px.svg">Pick Place
+      </div>
+    </mat-card>
+  </mat-menu>
+  <!-- menuReminder end -->
+  <!-- ************************************ Reminder End ************************************************* -->
 
   <abbr title="Collaborator">
     <button mat-icon-button (click)="addCollaborator()">
@@ -51,13 +80,30 @@
     </button>
   </abbr>
 
-  <abbr title="Archive">
-    <button mat-icon-button>
+  <!-- Archive start -->
+  <!-- <abbr title="Archive" *ngIf="!isArchive">
+    <button mat-icon-button (click)="archive()">
       <i class="material-icons">
         archive
       </i>
     </button>
   </abbr>
+  <abbr title="Unarchive" *ngIf="isArchive">
+    <button mat-icon-button (click)="archive()">
+      <i class="material-icons">
+        unarchive
+      </i>
+    </button>
+  </abbr> -->
+  <abbr title="Archive">
+    <button mat-icon-button (click)="archiveNote(note)">
+      <i class="material-icons">
+        archive
+      </i>
+    </button>
+  </abbr>
+
+  <!-- Archive end -->
 
   <abbr title="more">
     <button mat-icon-button [matMenuTriggerFor]="menu">
@@ -78,42 +124,3 @@
     </mat-menu>
   </abbr>
 </div>
-
-<!-- ************************************ Reminder ************************************************* -->
-
-<!-- menuReminder start -->
-<mat-menu #menuReminder="matMenu">
-  <mat-card *ngIf=!timePick>
-    <div>Reminder:</div>
-    <div mat-menu-item class="menu" fxLayout="row" (click)=today()>
-      <div fxFlex=50 class="main">Later today</div>
-      <div fxFlex="50">8:00 PM</div>
-    </div>
-    <div mat-menu-item class="menu" fxLayout="row" (click)=tomorrow()>
-      <div fxFlex=50 class="main">Tomorrow</div>
-      <div fxFlex="50">8:00 AM</div>
-    </div>
-    <div mat-menu-item class="menu" fxLayout="row" (click)=nextWeek()>
-      <div fxFlex=50 class="main">Next week</div>
-      <div fxFlex="50">Mon, 8:00 AM</div>
-    </div>
-    <div mat-menu-item class="menu" (click)="timePick=true" (click)=$event.stopPropagation()>
-      <mat-icon class="main">access_time</mat-icon>Pick date & time
-    </div>
-    <div mat-menu-item class="menu">
-        <img class="main" src="../../../assets/baseline-place-24px.svg">Pick Place
-    </div>
-  </mat-card>
-<!-- Pick date and time -->
-  <mat-card *ngIf=timePick>
-    <div mat-menu-item fxLayout=row>
-      <img class="main" src="../../../assets/baseline-keyboard_backspace-24px.svg">
-    </div>
-    <mat-divider></mat-divider>
-    
-    <mat-divider></mat-divider>
-
-    <mat-divider></mat-divider>
-    <button fxLayoutAlign="end end" mat-button>save</button>
-  </mat-card>
-</mat-menu>

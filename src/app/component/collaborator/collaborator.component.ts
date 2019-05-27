@@ -49,17 +49,17 @@ export class CollaboratorComponent implements OnInit {
 
   // addColll
   addCol(data){
-    console.log("AddcollaboratorsNotes data === >",data);
-    const body ={
-      'firstName': this.collab.firstName,
-      'lastName': this.collab.lastName,
-      'email':this.collab.email,
-      "noteId": [data.id],//backend id
-      "userId":this.collab.id
-    }
-    console.log('console for updateNote @@@@@@@@@@@@@@@@@=======================>', body);
+    // console.log("AddcollaboratorsNotes data === >",userId);
+    // const body ={
+    //   'firstName': this.collab.firstName,
+    //   'lastName': this.collab.lastName,
+    //   'email':this.collab.email,
+    //   "noteId": [data.id],//backend id
+    //   "userId":this.collab.id
+    // }
+    // console.log('console for updateNote @@@@@@@@@@@@@@@@@=======================>', body);
     try {
-      this.noteService.addColNote(body).subscribe(
+      this.noteService.addColNote(data,this.data['id']).subscribe(
         data => {
           this.snackbar.open('Note added successfully......!', 'Done...!', { duration: 3000 });
           console.log('Register infor ==========>', data);
@@ -70,7 +70,7 @@ export class CollaboratorComponent implements OnInit {
         });
 
     } catch (error) {
-      this.snackbar.open('error', "", { duration: 3000 });
+      this.snackbar.open('Error something wrong', "error", { duration: 3000 });
     }
     setTimeout(() => this.dataService.getAllNote(), 100);
   }

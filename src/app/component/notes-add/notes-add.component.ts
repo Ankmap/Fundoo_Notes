@@ -31,7 +31,7 @@ export class NotesAddComponent implements OnInit {
   **/
   addNotes: Note = new Note();
 
-  /* Binding the title and description*/ 
+  /* Binding the title and description*/
   title = new FormControl('')
   description = new FormControl('')
 
@@ -59,16 +59,25 @@ export class NotesAddComponent implements OnInit {
     console.log("color", this.setColor);
   }
 
+  //
+  reminder: any;
+  receiveReminder($event) {
+    this.reminder = $event
+    console.log("reminder", this.reminder);
+
+  }
   /**
    * @Purpose : Add Note
    **/
   addNote() {
     this.notecard = !(this.notecard);
     this.addNotes.color = this.setColor;
+    this.addNotes.reminder = this.reminder;
     var body = {
       "title": this.addNotes.title,
       "description": this.addNotes.description,
-      "color": this.addNotes.color
+      "color": this.addNotes.color,
+      "reminder":this.addNotes.reminder
     }
     console.log('console for addNote ================>', body);
     try {
@@ -85,7 +94,7 @@ export class NotesAddComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
-    /* For GetAll Note without refresh*/ 
+    /* For GetAll Note without refresh*/
     setTimeout(() => this.updateNote.getAllNote(), 100);
   }
 }
