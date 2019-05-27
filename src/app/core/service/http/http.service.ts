@@ -258,4 +258,18 @@ export class HttpService {
     console.log('token ==================>', localStorage.getItem('token'));
     return this.http.post(environment.baseUrl + path,body, httpOptions);
   }
+
+  /**
+   * @Purpose : Archive Note
+   **/ 
+  postDataForgetReminderNotesList(path) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      })
+    };
+    console.log('token ==================>', localStorage.getItem('token'));
+    return this.http.get(environment.baseUrl + path, httpOptions);
+  }
 }

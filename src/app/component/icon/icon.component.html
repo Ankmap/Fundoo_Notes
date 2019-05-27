@@ -74,7 +74,7 @@
   </mat-menu>
   <!-- Change Color end -->
 
-    <!-- ************************************ Change Color end ************************************************* -->
+  <!-- ************************************ Change Color end ************************************************* -->
 
   <abbr title="Add image">
     <button mat-icon-button>
@@ -85,30 +85,23 @@
   </abbr>
 
   <!-- Archive start -->
-  <!-- <abbr title="Archive" *ngIf="!isArchive">
-    <button mat-icon-button (click)="archive()">
-      <i class="material-icons">
-        archive
-      </i>
-    </button>
-  </abbr>
-  <abbr title="Unarchive" *ngIf="isArchive">
-    <button mat-icon-button (click)="archive()">
-      <i class="material-icons">
-        unarchive
-      </i>
-    </button>
-  </abbr> -->
-  <abbr title="Archive">
+  <abbr title="Archive" *ngIf="!isArchive">
     <button mat-icon-button (click)="archiveNote(note)">
       <i class="material-icons">
         archive
       </i>
     </button>
   </abbr>
+  <abbr title="Unarchive" *ngIf="isArchive">
+    <button mat-icon-button (click)="archiveNote(note)">
+      <i class="material-icons">
+        unarchive
+      </i>
+    </button>
+  </abbr>
 
   <!-- Archive end -->
-    <!-- ************************************ Archive end  ************************************************* -->
+  <!-- ************************************ Archive end  ************************************************* -->
 
   <abbr title="more">
     <button mat-icon-button [matMenuTriggerFor]="menu">

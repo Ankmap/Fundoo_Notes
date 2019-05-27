@@ -18,7 +18,7 @@ export class ArchiveComponent implements OnInit {
   ) { }
 
   private notes: Note[] = []
-  private archiveList: any [];
+  private archiveList: any[];
 
 
   ngOnInit() {
@@ -34,12 +34,10 @@ export class ArchiveComponent implements OnInit {
       .pipe(takeUntil(this.destory$))
       .subscribe((response) => {
         this.notes = response["data"].data;
-        this.archiveList = [];
-        for (let i = this.notes.length; i > 0; i--) {
-          if (this.notes[i - 1]["isDeleted"] == false)
-            this.archiveList.push(this.notes[i - 1])
-        }
+        console.log(" getArchivedList ======> ", this.notes);
       }, (error) => {
+        console.log("getArchivedList ======>", error);
+
       });
   }
 }

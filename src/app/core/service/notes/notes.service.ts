@@ -110,4 +110,11 @@ export class NotesService {
     return this.service.removeReminderNotes("/notes/removeReminderNotes", body)
   }
 
+  /**
+   * @Purpose : Update Reminder
+   **/
+  getReminderNotesList() {
+    return this.service.postDataForgetReminderNotesList("/notes/getReminderNotesList")
+  }
+
 }

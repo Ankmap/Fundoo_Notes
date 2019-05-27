@@ -15,6 +15,7 @@ import { LabelComponent } from '../../component/label/label.component';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Label } from 'src/app/core/model/label/label';
+import { Note } from 'src/app/core/model/note/note';
 
 @Component({
   selector: 'app-navbar',
@@ -43,14 +44,15 @@ export class NavbarComponent implements OnInit {
   direction: string;
 
   appName: String;
+
   /**
-   * @Purpose : Inject the UserserviceService, Router, NotesService, 
-   *            MatDialog, DataService in the constructor
-   **/
+ * @Purpose : Inject the UserserviceService, Router, NotesService, 
+ *            MatDialog, DataService in the constructor
+ **/
   constructor(
     private NavbarServiceUser: UserserviceService,
     private router: Router,
-    private notes: NotesService,
+    private noteService: NotesService,
     private dialog: MatDialog,
     private data: DataService
   ) { }
@@ -65,6 +67,7 @@ export class NavbarComponent implements OnInit {
       this.view = response;
       this.direction = this.view.data;
     });
+
   }
 
   /**
@@ -109,7 +112,7 @@ export class NavbarComponent implements OnInit {
    * @Purpose : For ShowLabel
    **/
   showLabel() {
-    this.notes.showNoteLabel()
+    this.noteService.showNoteLabel()
       .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         this.label = response["data"].details;
@@ -166,6 +169,7 @@ export class NavbarComponent implements OnInit {
    **/
   reminders() {
     this.appName = "Reminders";
+    this.router.navigateByUrl('/reminder');
   }
 
   /**
