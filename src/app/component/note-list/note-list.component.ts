@@ -215,6 +215,34 @@ export class NoteListComponent implements OnInit {
     setTimeout(() => this.data.getAllNote(), 100);
   }
 
+  /**
+   * @Purpose : Update Reminder
+   **/
+  removeReminderNotes(data, $event) {
+    this.setReminder = $event;
+    var reminderUpdate = {
+      "reminder": this.setReminder,
+      "noteIdList": [data.id] /* Access noteIdList for particular note*/
+    }
+    console.log("colorUpdate =====>", reminderUpdate);
+    try {
+      this.noteService.removeReminderNotes(reminderUpdate).subscribe(
+        data => {
+          this.snackbar.open('Reminder removed successfully......!', 'Done...!', { duration: 3000 });
+          console.log('Register infor ==========>', data);
+        },
+        error => {
+          this.snackbar.open('Error while removed note reminder ......!', 'Error', { duration: 3000 });
+          console.log("Error something wrong: ", error)
+        });
+
+    } catch (error) {
+      this.snackbar.open('error', "", { duration: 3000 });
+    }
+    /* For GetAll Note without refresh*/
+    setTimeout(() => this.data.getAllNote(), 100);
+  }
+
 
 }
 

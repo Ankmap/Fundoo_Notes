@@ -102,4 +102,12 @@ export class NotesService {
   addUpdateReminderNotes(body) {
     return this.service.chnageReminder("/notes/addUpdateReminderNotes", body)
   }
+
+  /**
+   * @Purpose : Update Reminder
+   **/
+  removeReminderNotes(body) {
+    return this.service.removeReminderNotes("/notes/removeReminderNotes", body)
+  }
+
 }

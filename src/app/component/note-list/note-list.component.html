@@ -17,14 +17,25 @@
                 <div class="description"> {{data.description }}</div>
             </div>
             <br>
-            
-            <!--  -->
-            <div *ngIf="data.reminder.length>0">
-                <mat-chip-list>
-                    <mat-chip>{{data.reminder | date:'MMM d, y, h:mm:ss a'}}</mat-chip>
-                </mat-chip-list>
+
+            <!-- Reminder Show  start -->
+            <div fxLayout="row" class="reminderMain" fxLayoutGap="5px">
+                <div *ngIf="data.reminder.length>0">
+                    <mat-chip-list>
+
+                        <mat-chip>
+                            <img class="clock" src="../../../assets/outline-query_builder-24px.svg">
+                            {{data.reminder | date:'MMM d, y, h:mm:ss a'}}
+                        </mat-chip>
+                    </mat-chip-list>
+                </div>
+                <div fxLayoutAlign="end end" class="iconClear">
+                    <mat-icon (click)="removeReminderNotes(data,$event)" class="clear">clear</mat-icon>
+                </div>
             </div>
-            <!--  -->
+
+            <!-- Reminder Show End -->
+
             <div class="icon">
                 <!-- Use ICON Selector to display icon in the display card
                 'cardSub': direction=='row', 'cardSub2':direction=='column'

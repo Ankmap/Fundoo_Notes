@@ -69,11 +69,10 @@ export class LabelComponent implements OnInit {
     console.log('Data after edit label', body);
     try {
       this.note.addLabel(body).pipe(takeUntil(this.destroy$))
-        .subscribe(
-          (response) => {
-            console.log("Response ====>", response);
-            this.showLabel();
-          },
+        .subscribe((response) => {
+          console.log("Response ====>", response);
+          this.showLabel();
+        },
           error => {
             console.log("Data ====>", error);
           }
@@ -145,7 +144,7 @@ export class LabelComponent implements OnInit {
       });
   }
 
-  /* Open and Close editIcon*/ 
+  /* Open and Close editIcon*/
   private labelId
   editIcon(id, labelName) {
     this.labelId = [];
