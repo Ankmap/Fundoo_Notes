@@ -23,18 +23,14 @@
                 <div fxLayout="row" class="reminderMain" fxLayoutGap="5px">
                     <div *ngIf="data.reminder.length>0">
                         <mat-chip-list>
-
-                            <mat-chip>
+                            <mat-chip [ngStyle]="{'background-color':data.color}">
                                 <img class="clock" src="../../../assets/outline-query_builder-24px.svg">
-                                {{data.reminder | date:'MMM d, y, h:mm:ss a'}}
+                                {{data.reminder | date:'MMM d, y, h:mm a'}}
+                                <mat-icon class="iconClear" matChipRemove (click)="removeReminderNotes(data,$event)">cancel</mat-icon>
                             </mat-chip>
                         </mat-chip-list>
                     </div>
-                    <div fxLayoutAlign="end end" class="iconClear">
-                        <mat-icon (click)="removeReminderNotes(data,$event)" class="clear">clear</mat-icon>
-                    </div>
                 </div>
-
                 <!-- Reminder Show End -->
 
                 <div class="icon">

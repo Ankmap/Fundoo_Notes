@@ -31,7 +31,7 @@ export class DataService {
    * @Description : private BehaviorSubject hold the current value of the message
    **/
   private assignData = new BehaviorSubject<any[]>([]);
-  allNote = this.assignData.asObservable(); /* allNote() method is store all note*/
+  allNote = this.assignData.asObservable( ); /* allNote() method is store all note*/
 
   /**
    * @Purpose : get note and access without refresh
