@@ -17,8 +17,8 @@ export class ArchiveComponent implements OnInit {
 
   constructor(
     private noteService: NotesService,
-    private snackbar : MatSnackBar,
-    private dataService : DataService
+    private snackbar: MatSnackBar,
+    private dataService: DataService
   ) { }
 
   private notes: Note[] = []
@@ -26,8 +26,19 @@ export class ArchiveComponent implements OnInit {
   /* Archive Note */
   isArchived = false;
 
+  /* Grid View*/
+  direction: String = "row";
+  wrap: string = "wrap";
+  view: any;
+
   ngOnInit() {
     this.getArchivedList();
+
+    /* Grid View*/
+    this.dataService.getView().subscribe((response) => {
+      this.view = response;
+      this.direction = this.view.data
+    });
   }
 
   /**
@@ -59,11 +70,11 @@ export class ArchiveComponent implements OnInit {
     try {
       this.noteService.archiveNote(archiveNote).subscribe(
         data => {
-          this.snackbar.open('Archive Note Successfully....!', ' Done ', { duration: 1000 });
+          this.snackbar.open(' Note unarchive ', ' Undo ', { duration: 1000 });
           console.log('Archive Note Successfully....!', data);
         },
         error => {
-          this.snackbar.open('Error while archive note......!', 'Error', { duration: 3000 });
+          this.snackbar.open(' Note archive ', ' Undo ', { duration: 3000 });
           console.log("Error something wrong: ", error)
         });
     }

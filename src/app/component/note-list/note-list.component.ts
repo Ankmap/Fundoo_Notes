@@ -206,11 +206,11 @@ export class NoteListComponent implements OnInit {
     try {
       this.noteService.archiveNote(archiveNote).subscribe(
         data => {
-          this.snackbar.open('Archive Note Successfully....!', ' Done ', { duration: 1000 });
+          this.snackbar.open(' Note archive ', ' Undo ', { duration: 1000 });
           console.log('Archive Note Successfully....!', data);
         },
         error => {
-          this.snackbar.open('Error while archive note......!', 'Error', { duration: 3000 });
+          this.snackbar.open(' Note unarchive ', ' Undo ', { duration: 3000 });
           console.log("Error something wrong: ", error)
         });
     }

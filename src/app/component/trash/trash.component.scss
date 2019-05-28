@@ -39,9 +39,7 @@ mat-card{
 .iconClear{
     visibility:hidden;
 }
-.reminderMain:hover .iconClear {
-    visibility: visible;
-}
-.clock{
-    opacity: 0.5;
+button{
+    border-style: hidden; 
+    outline: none; 
 }   

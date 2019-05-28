@@ -20,15 +20,26 @@ export class TrashComponent implements OnInit {
   constructor(
     private noteService: NotesService,
     private dataService: DataService,
-    private router:Router,
-    private snackbar:MatSnackBar
+    private router: Router,
+    private snackbar: MatSnackBar
   ) { }
 
   private notes: Note[] = []
 
+  /* Grid View*/
+  direction: String = "row";
+  wrap: string = "wrap";
+  view: any;
+
 
   ngOnInit() {
     this.getTrashNotesList();
+
+    /* Grid View*/
+    this.dataService.getView().subscribe((response) => {
+      this.view = response;
+      this.direction = this.view.data
+    });
   }
 
   /**
@@ -44,7 +55,6 @@ export class TrashComponent implements OnInit {
         this.snackbar.open('Note Restores', 'Undo !', { duration: 2000 });
       }, (error) => {
         console.log("getArchivedList ======>", error);
-
       });
   }
 
