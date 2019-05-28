@@ -6,7 +6,7 @@
  *@since   - 22/04/2019
 **************************************************************************************************/ -->
 <!-- Dispaly data into the card after add -->
-<div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign="center center">
+<div class="cardMain" fxLayout="{{direction}} wrap"  fxLayoutAlign=" center center">
     <!-- ngClass for grid and list view -->
     <div class="cardSub" *ngFor="let data of notes | sortPipe | searchNote : searchItem"
         [ngClass]=" direction =='row' ? 'cardSub':'cardSub2' ">
