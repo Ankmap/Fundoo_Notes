@@ -183,8 +183,9 @@ export class NavbarComponent implements OnInit {
   /**
    * @Purpose : Trash 
    **/
-  Trash() {
+  trash() {
     this.appName = "Trash";
+    this.router.navigateByUrl('/trash');
   }
 }
 

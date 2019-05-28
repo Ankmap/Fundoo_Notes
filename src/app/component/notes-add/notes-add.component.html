@@ -7,7 +7,7 @@
 **************************************************************************************************/ -->
 <div class="mainCard" fxLayout='column' fxLayoutGap='50px'>
   <!-- Notecard start -->
-  <div fxLayoutAlign="center center" *ngIf="notecard">
+  <div fxLayoutAlign="space-around center" *ngIf="notecard">
     <mat-card class="card" (click)="notecardOpen()" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px'
       fxFlex.sm='400px' fxFlex.xs='150px'>
       <div fxLayoutGap="35px">
@@ -32,7 +32,7 @@
   <!-- Notecard end -->
 
   <!-- add notecard start -->
-  <div fxLayoutAlign="center center" *ngIf="!notecard">
+  <div fxLayoutAlign="space-around center" *ngIf="!notecard">
     <mat-card [style.backgroundColor]="setColor" class="card" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px'
       fxFlex.sm='400px' fxFlex.xs='150px'>
       <div>

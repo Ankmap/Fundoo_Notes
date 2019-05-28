@@ -37,7 +37,7 @@ export class NotesService {
   }
 
   /**
-   * @Purpose : DeleteNote
+   * @Purpose : DeleteNote Forever
    **/
   deleteNote(body) {
     return this.service.deleteNote("notes/deleteForeverNotes", body)
@@ -86,12 +86,15 @@ export class NotesService {
   }
 
   /**
-   * @Purpose : Update Note
+   * @Purpose : Archive Note
    **/
   archiveNote(body){
     return this.service.postDataForArchiveNote("/notes/archiveNotes",body)
   }
 
+  /**
+   * @Purpose : Get Archived List
+   **/
   getArchivedList(){
     return this.service.postDataForArchiveNoteGetList("/notes/getArchiveNotesList")
   }
@@ -116,5 +119,20 @@ export class NotesService {
   getReminderNotesList() {
     return this.service.postDataForgetReminderNotesList("/notes/getReminderNotesList")
   }
+
+  /**
+   * @Purpose : Delete Note
+   **/
+  trashNotes(body) {
+    return this.service.deleteNote("/notes/trashNotes", body)
+  }
+
+  /**
+   * @Purpose : Delete Note
+   **/
+  getTrashNotesList() {
+    return this.service.postDataForgetTrashNotesList("/notes/getTrashNotesList")
+  }
+  
 
 }

@@ -77,7 +77,7 @@ export class NotesAddComponent implements OnInit {
       "title": this.addNotes.title,
       "description": this.addNotes.description,
       "color": this.addNotes.color,
-      "reminder":this.addNotes.reminder
+      "reminder": this.addNotes.reminder
     }
     console.log('console for addNote ================>', body);
     try {
@@ -85,15 +85,16 @@ export class NotesAddComponent implements OnInit {
         data => {
           this.snackbar.open('Note added successfully......!', 'Done...!', { duration: 3000 });
           console.log('Register infor ==========>', data);
-          
+
         },
         error => {
           this.snackbar.open('Error while adding note......!', 'Error', { duration: 3000 });
           console.log("Error something wrong: ", error)
         });
 
-        this.addNotes.title = null;
-        this.addNotes.description =null;
+      this.addNotes.title = null;
+      this.addNotes.description = null;
+      this.addNotes.color = null;
 
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });

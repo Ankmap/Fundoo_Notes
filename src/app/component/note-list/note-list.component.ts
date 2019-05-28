@@ -57,6 +57,9 @@ export class NoteListComponent implements OnInit {
   /* Reminder Update*/
   setReminder: any;
 
+  /* Trash Note*/
+  trashNote1: any;
+
   /**
    * @Purpose : inject the DataService, MatDialog, NotesService, MatSnackBar in the constructor
    **/
@@ -142,6 +145,35 @@ export class NoteListComponent implements OnInit {
   }
 
   /**
+   * @Purpose : Trash Note
+   **/
+  private isDeleted: false;
+  trashNote(data, $event) {
+    this.trashNote1 = $event;
+    var trashNote = {
+      "isDeleted": !this.isDeleted,
+      "noteIdList": [data.id] /* Access noteIdList for particular note*/
+    }
+    console.log("DeleteNote =======>", trashNote);
+    try {
+      this.noteService.trashNotes(trashNote).subscribe(
+        data => {
+          this.snackbar.open('Note saved in trash successfully......!', 'Done...!', { duration: 3000 });
+          console.log('Note saved in trash successfully......!', data);
+        },
+        error => {
+          this.snackbar.open('Error while trash note  ......!', 'Error', { duration: 3000 });
+          console.log("Error while trash note ====> ", error)
+        });
+
+    } catch (error) {
+      this.snackbar.open('error', "", { duration: 3000 });
+    }
+    /* For GetAll Note without refresh*/
+    setTimeout(() => this.data.getAllNote(), 100);
+  }
+
+  /**
    * @Purpose : Open dialog and edit it
    **/
   openDialog(data: any): void {
@@ -185,6 +217,8 @@ export class NoteListComponent implements OnInit {
     catch (error) {
       this.snackbar.open('Error while archive note', "error", { duration: 3000 });
     }
+    /* For GetAll Note without refresh*/
+    setTimeout(() => this.data.getAllNote(), 100);
   }
 
   /**

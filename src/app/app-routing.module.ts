@@ -17,7 +17,7 @@ import { SearchNoteComponent } from './component/search-note/search-note.compone
 import { CollaboratorComponent } from './component/collaborator/collaborator.component';
 import { DialogComponent } from './component/dialog/dialog.component';
 import { IconComponent } from './component/icon/icon.component';
-
+import { TrashComponent } from './component/trash/trash.component';
 /*AuthGuard service*/
 import { AuthGuard } from './core/service/auth/auth.guard'
 
@@ -42,8 +42,9 @@ const appRoutes: Routes = [
       { path: 'archive', component: ArchiveComponent },
       { path: 'search', component: SearchNoteComponent },
       { path: 'collaborator', component: CollaboratorComponent },
-      { path: 'dialogComponent', component: DialogComponent },
-      { path: 'IconComponent', component:IconComponent}
+      { path: 'dialog', component: DialogComponent },
+      { path: 'icon', component:IconComponent},
+      { path: 'trash', component:TrashComponent}
     ]
   },
   /*Componnet Lifecycle Demo path set*/

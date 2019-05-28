@@ -29,7 +29,8 @@ import { ComponentLifecycleComponent } from './component/component-lifecycle/com
 import { NoteListComponent } from './component/note-list/note-list.component';
 import { IconComponent } from './component/icon/icon.component';
 import { CollaboratorComponent } from './component/collaborator/collaborator.component';
-
+import { DialogComponent } from './component/dialog/dialog.component';
+import { TrashComponent } from './component/trash/trash.component';
 /**
  * @Purpose : Pipe
  **/
@@ -55,7 +56,7 @@ import {MatChipsModule} from '@angular/material/chips';
 
 /** Form Validation **/
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DialogComponent } from './component/dialog/dialog.component';
+
 
 
 @NgModule({
@@ -83,7 +84,8 @@ import { DialogComponent } from './component/dialog/dialog.component';
     SearchNotePipe,
     SortPipePipe,
     CollaboratorComponent,
-    DialogComponent
+    DialogComponent,
+    TrashComponent
   ],
   imports: [
     BrowserModule,

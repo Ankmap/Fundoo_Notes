@@ -18,6 +18,7 @@ export class IconComponent implements OnInit {
   @Input() card;
   @Output() onChangeColor = new EventEmitter()
   @Output() onChangeDelete = new EventEmitter()
+  @Output() onChangeTrash = new EventEmitter()
   @Output() onChangeArchive = new EventEmitter()
   @Output() onChangeDateReminder = new EventEmitter()
 
@@ -26,7 +27,6 @@ export class IconComponent implements OnInit {
 
   /* archive */
   isArchive: boolean = false;
-
 
   constructor(
     private dialog: MatDialog,
@@ -83,6 +83,11 @@ export class IconComponent implements OnInit {
   /* Archive */
   archiveNote(note) {
     this.onChangeArchive.emit(note);
+  }
+
+  /* Trash Note */
+  trashNote(note) {
+    this.onChangeTrash.emit(note);
   }
 
   /*  <!-- ************************************ Reminder End ************************************************* -->

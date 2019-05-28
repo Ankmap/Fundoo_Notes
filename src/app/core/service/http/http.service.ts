@@ -190,7 +190,7 @@ export class HttpService {
   /**
    * @Purpose : Delete Label
    **/ 
-  postDataForUpdateLabel(path, body) {
+   postDataForUpdateLabel(path, body) {
     console.log(body);
     const httpOptions = {
       headers: new HttpHeaders({
@@ -246,7 +246,7 @@ export class HttpService {
   }
 
   /**
-   * @Purpose : Chnage Reminder
+   * @Purpose : Remove Reminder
    **/
   removeReminderNotes(path,body) {
     const httpOptions = {
@@ -263,6 +263,33 @@ export class HttpService {
    * @Purpose : Archive Note
    **/ 
   postDataForgetReminderNotesList(path) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      })
+    };
+    console.log('token ==================>', localStorage.getItem('token'));
+    return this.http.get(environment.baseUrl + path, httpOptions);
+  }
+
+  /**
+   * @Purpose : Delete Label
+   **/ 
+  postDataFortrashNote(path) {
+    let httpAuthOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      })
+    }
+    return this.http.post(environment.baseUrl + path, httpAuthOptions);
+  }
+
+  /**
+   * @Purpose : Archive Note
+   **/ 
+  postDataForgetTrashNotesList(path) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
