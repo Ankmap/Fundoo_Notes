@@ -3,6 +3,7 @@ import { NotesService } from 'src/app/core/service/notes/notes.service';
 import { Note } from 'src/app/core/model/note/note';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { DataService } from 'src/app/core/service/data/data.service';
 
 @Component({
   selector: 'app-reminder',
@@ -20,12 +21,25 @@ export class ReminderComponent implements OnInit {
   /* Note */
   private notes: Note[] = [];
   
+  /* Grid View*/
+  direction: String = "row";
+  wrap: string = "wrap";
+  view: any;
+
+  
   constructor(
-    private noteService : NotesService
+    private noteService : NotesService,
+    private dataService : DataService
   ) { }
 
   ngOnInit() {
     this.showReminder();
+
+    /* Grid View*/
+    this.dataService.getView().subscribe((response) => {
+      this.view = response;
+      this.direction = this.view.data
+    });
   }
 
 

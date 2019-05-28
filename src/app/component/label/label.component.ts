@@ -14,6 +14,7 @@ import { MatDialogRef } from "@angular/material";
 import { NavbarComponent } from '../navbar/navbar.component'
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { DataService } from 'src/app/core/service/data/data.service';
 
 
 @Component({
@@ -42,6 +43,7 @@ export class LabelComponent implements OnInit {
     private note: NotesService,
     private snackbar: MatSnackBar,
     private router: Router,
+    private dataService :DataService,
     private dialogRef: MatDialogRef<NavbarComponent>
   ) {
     this.changeText = false;
@@ -72,6 +74,8 @@ export class LabelComponent implements OnInit {
         .subscribe((response) => {
           console.log("Response ====>", response);
           this.showLabel();
+          /* Add */ 
+          this.dataService.changeMessage('')
         },
           error => {
             console.log("Data ====>", error);

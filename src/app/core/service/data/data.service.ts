@@ -62,6 +62,13 @@ export class DataService {
   }
   /********************************** Search End**************************************/
 
+  /* change message for label*/ 
+  private messageSource = new BehaviorSubject('default message');
+  currentMessage = this.messageSource.asObservable();
+
+  changeMessage(messsge:string){
+    this.messageSource.next(messsge)
+  }
   /********************************** grid start**************************************/
   /* gridView method*/
   gridView() {

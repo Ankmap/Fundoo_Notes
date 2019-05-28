@@ -105,6 +105,7 @@ export class NavbarComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe(result => {
         this.showLabel();
+        this.data.changeMessage('')
       })
   }
 
