@@ -21,9 +21,10 @@ export class ImageCropComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // this.uploadpic();
   }
-  imageCropped($event) {
-    this.croppedImage = $event
+  imageCropped(event) {
+    this.croppedImage = event
   }
 
   uploadpic() {
@@ -31,15 +32,13 @@ export class ImageCropComponent implements OnInit {
     //Upload file here send a Form data
     const uploadData = new FormData();
     uploadData.append('file', this.apiImage, this.apiImage.name);
-    this.userService.uploadProfileImage(uploadData)
-      .pipe(takeUntil(this.destroy$))
+    this.userService.uploadProfileImage(uploadData).pipe(takeUntil(this.destroy$))
       .subscribe(res => {
         console.log('Img res ===>',res);
-        
         this.dialogRef.close();
+        localStorage.setItem("userImage",res['status'].imageUrl);
       }, error => {
-        console.log("Img err ===>",error);
-        
+        console.log("Img err ===>",error); 
       })
   }
 }
