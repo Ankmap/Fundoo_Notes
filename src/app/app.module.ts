@@ -59,6 +59,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 
 /** Form Validation **/
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NotefilterPipe } from './core/pipe/noteFilter/notefilter.pipe';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CollaboratorComponent,
     DialogComponent,
     TrashComponent,
-    ImageCropComponent
+    ImageCropComponent,
+    NotefilterPipe
   ],
   imports: [
     BrowserModule,

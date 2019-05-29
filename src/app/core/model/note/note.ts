@@ -14,5 +14,6 @@ export class Note {
     "userId":string
     "isDeleted":boolean;
     "reminder":string
+  data: any;
 
 }

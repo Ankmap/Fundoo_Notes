@@ -59,6 +59,8 @@ export class NoteListComponent implements OnInit {
 
   /* Trash Note*/
   trashNote1: any;
+  notes1: { <S extends Note>(callbackfn: (value: Note, index: number, array: Note[]) => value is S, thisArg?: any): S[]; (callbackfn: (value: Note, index: number, array: Note[]) => any, thisArg?: any): Note[]; };
+  newNotes: Note[];
 
   /**
    * @Purpose : inject the DataService, MatDialog, NotesService, MatSnackBar in the constructor
@@ -72,8 +74,7 @@ export class NoteListComponent implements OnInit {
 
   ngOnInit() {
     /* Get all Note */
-    this.data.allNote.pipe(takeUntil(this.destory$))
-      .subscribe(data => this.notes = data);
+    this.getNote();
 
     /* Current message view */
     this.data.currentMessageView.pipe(takeUntil(this.destory$))
@@ -88,6 +89,20 @@ export class NoteListComponent implements OnInit {
     });
   }
 
+  /* Get all Note */
+  getNote() {
+    this.data.allNote.pipe(takeUntil(this.destory$)).subscribe(
+      data => {
+        this.notes = data
+        this.notes = this.notes.filter(function (el) {
+          return (el.isArchived === false);
+        });
+        console.log("new notes data: ", this.newNotes);
+        
+      }
+    )
+
+  }
   /**
    * @Purpose : Update color
    **/
