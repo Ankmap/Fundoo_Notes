@@ -66,7 +66,7 @@
                 <!-- refresh end -->
 
                 <!-- Grid start -->
-                <div fxFlex="25">
+                <div fxFlex="25" fxShow fxHide.sm fxShow fxHide.xs>
                     <abbr title="Grid">
                         <button style="outline: none;" mat-icon-button *ngIf=list (click)=changeView() fxShow="true">
                             <i class="material-icons">view_agenda</i>
@@ -79,10 +79,13 @@
                 <!-- Grid end -->
 
                 <!-- logout start-->
-                <div fxFlex="25">
+                <div fxFlex="25" fxShow fxHide.sm fxShow fxHide.xs>
                     <abbr title="Logout">
                         <button style="outline: none;" mat-icon-button (click)="account()">
-                            <i class="material-icons"> account_circle</i>
+                            <div mat-card-avatar
+                                [ngStyle]="{'background-image': 'url('+image+')','background-size':'cover', 'height':'60px','width':'60px'}"
+                                class="img1"></div>
+                            <!-- <i class="material-icons"> account_circle</i> -->
                         </button>
                     </abbr>
                 </div>
@@ -97,10 +100,19 @@
 <mat-card class="account" *ngIf="signoutCard">
     <div>
         <mat-card-header>
+            <div mat-card-avatar
+                [ngStyle]="{'background-image': 'url('+image+')','background-size':'cover', 'height':'60px','width':'60px'}"
+                class="img12" (click)=image.click()>
+            </div>
+           
+
             <mat-card-title>{{firstName}} {{lastName}}</mat-card-title>
             <mat-card-subtitle>{{email}}</mat-card-subtitle>
         </mat-card-header>
-        <div fxLayoutAlign="start start">
+        <br>
+        <mat-divider></mat-divider>
+        <div fxLayoutAlign="end end">
+            <input type="file" class="fileSelect" (change)=profileImage($event) #image>
             <button class="signout" (click)="logout()">Sign out</button>
         </div>
     </div>

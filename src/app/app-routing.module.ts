@@ -18,6 +18,8 @@ import { CollaboratorComponent } from './component/collaborator/collaborator.com
 import { DialogComponent } from './component/dialog/dialog.component';
 import { IconComponent } from './component/icon/icon.component';
 import { TrashComponent } from './component/trash/trash.component';
+import { ImageCropComponent } from './component/image-crop/image-crop.component';
+
 /*AuthGuard service*/
 import { AuthGuard } from './core/service/auth/auth.guard'
 
@@ -44,7 +46,8 @@ const appRoutes: Routes = [
       { path: 'collaborator', component: CollaboratorComponent },
       { path: 'dialog', component: DialogComponent },
       { path: 'icon', component:IconComponent},
-      { path: 'trash', component:TrashComponent}
+      { path: 'trash', component:TrashComponent},
+      { path: 'image', component:ImageCropComponent}
     ]
   },
   /*Componnet Lifecycle Demo path set*/

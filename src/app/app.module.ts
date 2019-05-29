@@ -31,6 +31,8 @@ import { IconComponent } from './component/icon/icon.component';
 import { CollaboratorComponent } from './component/collaborator/collaborator.component';
 import { DialogComponent } from './component/dialog/dialog.component';
 import { TrashComponent } from './component/trash/trash.component';
+import { ImageCropComponent } from './component/image-crop/image-crop.component';
+
 /**
  * @Purpose : Pipe
  **/
@@ -53,11 +55,10 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule,MatNativeDateModule} from '@angular/material';
 import {MatChipsModule} from '@angular/material/chips';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 /** Form Validation **/
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SortPipePipe,
     CollaboratorComponent,
     DialogComponent,
-    TrashComponent
+    TrashComponent,
+    ImageCropComponent
   ],
   imports: [
     BrowserModule,
@@ -116,7 +118,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatSelectModule,
     MatCheckboxModule,
     MatNativeDateModule,
-    MatChipsModule
+    MatChipsModule,
+    ImageCropperModule
   ],
 
   providers: [],

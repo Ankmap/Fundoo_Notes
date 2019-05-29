@@ -18,11 +18,11 @@ export class HttpService {
 
   /**
    * @Purpose : Login, registration, forgotPassword
-   **/ 
+   **/
   postData(path, body) {
     return this.http.post(environment.baseUrl + path, body);
   }
-
+  
   /**
    * @Purpose : Reset Passwoprd
    **/
@@ -36,7 +36,7 @@ export class HttpService {
     return formBody.join('&');
   }
 
-   postDataForEncodedReset(path, body) {
+  postDataForEncodedReset(path, body) {
     console.log(body);
     const httpOptions = {
       headers: new HttpHeaders({
@@ -48,10 +48,10 @@ export class HttpService {
     return this.http.post(environment.baseUrl + path, this.getEncodData(body), httpOptions);
   }
 
-  
+
   /**
    * @Purpose : Add Note
-   **/ 
+   **/
   postDataForEncoded(path, body) {
     console.log(body);
     const httpOptions = {
@@ -63,7 +63,7 @@ export class HttpService {
     console.log('token ==================>', localStorage.getItem('token'));
     return this.http.post(environment.baseUrl + path, body, httpOptions);
   }
-  
+
   /** 
    * @Purpose : Logout
    **/
@@ -88,13 +88,13 @@ export class HttpService {
       })
     };
     console.log('token ==================>', localStorage.getItem('token'));
-    return this.http.get(environment.baseUrl + path,httpOptions);
+    return this.http.get(environment.baseUrl + path, httpOptions);
   }
 
   /**
    * @Purpose : change color
    **/
-  chnageColor(path,body) {
+  chnageColor(path, body) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -102,13 +102,13 @@ export class HttpService {
       })
     };
     console.log('token ==================>', localStorage.getItem('token'));
-    return this.http.post(environment.baseUrl + path,body, httpOptions);
+    return this.http.post(environment.baseUrl + path, body, httpOptions);
   }
 
   /**
    * @Purpose : Delete Note
    **/
-  deleteNote(path,body) {
+  deleteNote(path, body) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -116,7 +116,7 @@ export class HttpService {
       })
     };
     console.log('token ==================>', localStorage.getItem('token'));
-    return this.http.post(environment.baseUrl + path,body, httpOptions);
+    return this.http.post(environment.baseUrl + path, body, httpOptions);
   }
   /**
    * @Purpose :  Add label
@@ -133,7 +133,7 @@ export class HttpService {
 
   /**
    * @Purpose : ShowLabel
-   **/ 
+   **/
   postDataForShowLabel(path) {
     let httpAuthOptions = {
       headers: new HttpHeaders({
@@ -146,7 +146,7 @@ export class HttpService {
 
   /**
    * @Purpose : Collabarator
-   **/ 
+   **/
   postDataForSearchUser(path, body) {
     console.log(body);
     const httpOptions = {
@@ -161,7 +161,7 @@ export class HttpService {
 
   /**
    * @Purpose : UpdateNote
-   **/ 
+   **/
   postDataForUpdateNote(path, body) {
     console.log(body);
     const httpOptions = {
@@ -176,7 +176,7 @@ export class HttpService {
 
   /**
    * @Purpose : Delete Label
-   **/ 
+   **/
   postDataForDeleteLabel(path) {
     let httpAuthOptions = {
       headers: new HttpHeaders({
@@ -189,8 +189,8 @@ export class HttpService {
 
   /**
    * @Purpose : Delete Label
-   **/ 
-   postDataForUpdateLabel(path, body) {
+   **/
+  postDataForUpdateLabel(path, body) {
     console.log(body);
     const httpOptions = {
       headers: new HttpHeaders({
@@ -204,7 +204,7 @@ export class HttpService {
 
   /**
    * @Purpose : Archive Note
-   **/ 
+   **/
   postDataForArchiveNote(path, body) {
     console.log(body);
     const httpOptions = {
@@ -219,7 +219,7 @@ export class HttpService {
 
   /**
    * @Purpose : Archive Note
-   **/ 
+   **/
   postDataForArchiveNoteGetList(path) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -234,7 +234,7 @@ export class HttpService {
   /**
    * @Purpose : Chnage Reminder
    **/
-  chnageReminder(path,body) {
+  chnageReminder(path, body) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -242,13 +242,13 @@ export class HttpService {
       })
     };
     console.log('token ==================>', localStorage.getItem('token'));
-    return this.http.post(environment.baseUrl + path,body, httpOptions);
+    return this.http.post(environment.baseUrl + path, body, httpOptions);
   }
 
   /**
    * @Purpose : Remove Reminder
    **/
-  removeReminderNotes(path,body) {
+  removeReminderNotes(path, body) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -256,12 +256,12 @@ export class HttpService {
       })
     };
     console.log('token ==================>', localStorage.getItem('token'));
-    return this.http.post(environment.baseUrl + path,body, httpOptions);
+    return this.http.post(environment.baseUrl + path, body, httpOptions);
   }
 
   /**
    * @Purpose : Archive Note
-   **/ 
+   **/
   postDataForgetReminderNotesList(path) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -275,7 +275,7 @@ export class HttpService {
 
   /**
    * @Purpose : Delete Label
-   **/ 
+   **/
   postDataFortrashNote(path) {
     let httpAuthOptions = {
       headers: new HttpHeaders({
@@ -288,7 +288,7 @@ export class HttpService {
 
   /**
    * @Purpose : Archive Note
-   **/ 
+   **/
   postDataForgetTrashNotesList(path) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -298,5 +298,18 @@ export class HttpService {
     };
     console.log('token ==================>', localStorage.getItem('token'));
     return this.http.get(environment.baseUrl + path, httpOptions);
+  }
+
+  // uploadProfileImage
+  postDataForuploadProfileImage(path, body) {
+    console.log(body);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        // 'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      })
+    };
+    console.log('token ==================>', localStorage.getItem('token'));
+    return this.http.post(environment.baseUrl + path, body, httpOptions);
   }
 }

@@ -15,7 +15,7 @@ import { LabelComponent } from '../../component/label/label.component';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Label } from 'src/app/core/model/label/label';
-import { Note } from 'src/app/core/model/note/note';
+import { ImageCropComponent } from '../image-crop/image-crop.component';
 
 @Component({
   selector: 'app-navbar',
@@ -30,7 +30,9 @@ export class NavbarComponent implements OnInit {
   firstName = localStorage.getItem("firstname");
   lastName = localStorage.getItem("lastname");
   email = localStorage.getItem("email");
-
+  imageUrl = localStorage.getItem("userImage");
+  // image = 'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
+  image = 'http://34.213.106.173/'+this.imageUrl;
   /* label */
   private label: Label[] = [];
   private labelList = [];
@@ -45,6 +47,11 @@ export class NavbarComponent implements OnInit {
 
   appName: String;
 
+  //img
+  img :string;
+  
+  // private img;
+  private width;
   /**
  * @Purpose : Inject the UserserviceService, Router, NotesService, 
  *            MatDialog, DataService in the constructor
@@ -68,6 +75,14 @@ export class NavbarComponent implements OnInit {
       this.direction = this.view.data;
     });
 
+    /* imageUrl upload */
+    this.img = this.image
+    this.isLargeScreen();
+  }
+
+  // Image
+  isLargeScreen() {
+    this.width = window.innerWidth
   }
 
   /**
@@ -81,6 +96,9 @@ export class NavbarComponent implements OnInit {
       localStorage.removeItem("firstname");
       localStorage.removeItem("lastname");
       localStorage.removeItem("email");
+      localStorage.removeItem("imageUrl");
+      localStorage.removeItem("userImage");
+
       this.router.navigateByUrl('/login');
     });
   }
@@ -187,6 +205,20 @@ export class NavbarComponent implements OnInit {
   trash() {
     this.appName = "Trash";
     this.router.navigateByUrl('/trash');
+  }
+  /**
+   * @Purpose : Profile Image Upload 
+   **/
+  profileImage(event) {
+    const dialogRef = this.dialog.open(ImageCropComponent, {
+      width: '400px',
+      data: event
+    });
+    dialogRef.afterClosed()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(result => { 
+        console.log('result ===>', result);
+      })
   }
 }
 
