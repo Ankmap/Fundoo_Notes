@@ -34,11 +34,12 @@ export class NavbarComponent implements OnInit {
   imageUrl = localStorage.getItem("userImage");
   // image = 'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
   // image = 'http://34.213.106.173/'+this.imageUrl;
+
   /* label */
   private label: Label[] = [];
   private labelList = [];
   private signoutCard: boolean = false; /* signOut */
-  private searchValue: any; /* search the not */
+  private searchValue: any; /* search the note */
 
   /*Grid*/
   list: boolean = true;
@@ -50,9 +51,9 @@ export class NavbarComponent implements OnInit {
 
   //img
   image: string
-
-
   private width;
+
+
   /**
  * @Purpose : Inject the UserserviceService, Router, NotesService, 
  *            MatDialog, DataService in the constructor
@@ -221,7 +222,6 @@ export class NavbarComponent implements OnInit {
       .subscribe(result => {
         // this.image = environment.url + localStorage.getItem('userImage')
         this.image ='http://34.213.106.173/' + localStorage.getItem('userImage')
-        console.log('userImage result ===>', result);
       })
   }
 }

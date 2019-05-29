@@ -21,7 +21,6 @@ export class ImageCropComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.uploadpic();
   }
   imageCropped(event) {
     this.croppedImage = event
