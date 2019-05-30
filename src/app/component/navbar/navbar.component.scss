@@ -86,7 +86,7 @@
     padding:3%;
     border:1px solid rgb(192, 190, 190);
     background-color: transparent;
-    float:right;
+    // float:right;
     border-radius: 5px;
     margin-top:10px;
 }
@@ -99,10 +99,15 @@
     float:left;
     margin-top:5px;
 }
-.img1{
-    border-radius: 50%;
-    background-color: silver;
-}
+
 .fileSelect{
     display: none;
+}
+
+.img1{
+    background-color: gray;
+}
+.img2{
+    background-size: cover;
+    padding: 55px
 }

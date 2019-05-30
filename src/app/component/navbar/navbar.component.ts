@@ -31,7 +31,7 @@ export class NavbarComponent implements OnInit {
   firstName = localStorage.getItem("firstname");
   lastName = localStorage.getItem("lastname");
   email = localStorage.getItem("email");
-  imageUrl = localStorage.getItem("userImage");
+  image = localStorage.getItem("userImage");
   // image = 'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
   // image = 'http://34.213.106.173/'+this.imageUrl;
   
@@ -50,7 +50,7 @@ export class NavbarComponent implements OnInit {
   appName: String;
 
   //img
-  private image;
+  private img;
   private width;
 
 
@@ -78,14 +78,14 @@ export class NavbarComponent implements OnInit {
     });
 
     /* imageUrl upload */
-    // this.image = 'http://34.213.106.173/' + this.imageUrl;
-    this.image = environment.url + this.imageUrl;
-    this.isLargeScreen();
+    // this.img = 'http://34.213.106.173/' + this.image;
+    this.img = environment.url + this.image;
+    this.isLargeScreen();;
   }
 
   // Image
   isLargeScreen() {
-    this.width = window.innerWidth
+    this.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
   }
 
   /**
@@ -220,7 +220,7 @@ export class NavbarComponent implements OnInit {
     dialogRef.afterClosed()
       .pipe(takeUntil(this.destroy$))
       .subscribe(result => {
-        this.image = environment.url + localStorage.getItem("userImage")
+        this.img = environment.url + localStorage.getItem("userImage")
       });
 
   }

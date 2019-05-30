@@ -99,8 +99,7 @@ export class NoteListComponent implements OnInit {
         });
         console.log("new notes data: ", this.newNotes);
         
-      }
-    )
+      });
 
   }
   /**

@@ -83,9 +83,8 @@
                     <abbr title="Google Account">
                         <button style="outline: none;" mat-icon-button (click)="account()">
                             <div mat-card-avatar
-                                [ngStyle]="{'background-image': 'url('+image+')','background-size':'cover', 'height':'60px','width':'60px'}"
+                                [ngStyle]="{'background-image': 'url('+img+')','background-size':'cover', 'height':'60px','width':'60px'}"
                                 class="img1"></div>
-                            <!-- <i class="material-icons"> account_circle</i> -->
                         </button>
                     </abbr>
                 </div>
@@ -101,15 +100,12 @@
     <div>
         <mat-card-header>
             <div mat-card-avatar
-                [ngStyle]="{'background-image': 'url('+image+')','background-size':'cover', 'height':'60px','width':'60px'}"
-                class="img1" (click)=image.click()>
+                [ngStyle]="{'background-image': 'url('+img+')','background-size':'cover', 'height':'60px','width':'60px'}"
+                class="img2" (click)=image.click()>
             </div>
-           
-
             <mat-card-title>{{firstName}} {{lastName}}</mat-card-title>
             <mat-card-subtitle>{{email}}</mat-card-subtitle>
-        </mat-card-header>
-        <br>
+        </mat-card-header><br>
         <mat-divider></mat-divider>
         <div fxLayoutAlign="end end">
             <input type="file" class="fileSelect" (change)=profileImage($event) #image>
