@@ -52,7 +52,7 @@ export class TrashComponent implements OnInit {
       .subscribe((response) => {
         this.notes = response["data"].data;
         console.log(" getArchivedList ======> ", this.notes);
-        this.snackbar.open('Note Restores', 'Undo !', { duration: 2000 });
+        // this.snackbar.open('Note Restores', 'Undo !', { duration: 2000 });
       }, (error) => {
         console.log("getArchivedList ======>", error);
       });

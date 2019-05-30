@@ -34,7 +34,7 @@ export class NavbarComponent implements OnInit {
   imageUrl = localStorage.getItem("userImage");
   // image = 'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
   // image = 'http://34.213.106.173/'+this.imageUrl;
-
+  
   /* label */
   private label: Label[] = [];
   private labelList = [];
@@ -50,7 +50,7 @@ export class NavbarComponent implements OnInit {
   appName: String;
 
   //img
-  image: string
+  private image;
   private width;
 
 
@@ -78,8 +78,8 @@ export class NavbarComponent implements OnInit {
     });
 
     /* imageUrl upload */
-    // this.image = environment.url + this.imageUrl;
-    this.image = 'http://34.213.106.173/' + this.imageUrl;
+    // this.image = 'http://34.213.106.173/' + this.imageUrl;
+    this.image = environment.url + this.imageUrl;
     this.isLargeScreen();
   }
 
@@ -212,7 +212,7 @@ export class NavbarComponent implements OnInit {
   /**
    * @Purpose : Profile Image Upload 
    **/
-  profileImage(event) : void{
+  profileImage(event): void {
     const dialogRef = this.dialog.open(ImageCropComponent, {
       width: '400px',
       data: event
@@ -220,9 +220,8 @@ export class NavbarComponent implements OnInit {
     dialogRef.afterClosed()
       .pipe(takeUntil(this.destroy$))
       .subscribe(result => {
-        // this.image = environment.url + localStorage.getItem('userImage')
-        this.image ='http://34.213.106.173/' + localStorage.getItem('userImage')
-      })
+        this.image = environment.url + localStorage.getItem("userImage")
+      });
+
   }
 }
-

@@ -47,7 +47,7 @@ const appRoutes: Routes = [
       { path: 'dialog', component: DialogComponent },
       { path: 'icon', component:IconComponent},
       { path: 'trash', component:TrashComponent},
-      { path: 'image', component:ImageCropComponent}
+      { path: 'image', component: ImageCropComponent}
     ]
   },
   /*Componnet Lifecycle Demo path set*/

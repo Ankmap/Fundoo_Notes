@@ -95,7 +95,7 @@ export class NoteListComponent implements OnInit {
       data => {
         this.notes = data
         this.notes = this.notes.filter(function (el) {
-          return (el.isArchived === false);
+          return (el.isArchived === false && el.isDeleted === false);
         });
         console.log("new notes data: ", this.newNotes);
         
