@@ -119,6 +119,25 @@
       <button mat-menu-item (click)="trashNote(note)">
         <span>Delete Note </span>
       </button>
+      <button mat-menu-item [matMenuTriggerFor]="nestedMenu" (click)="showLabel()">
+        <span>Add Note </span>
+      </button>
     </mat-menu>
   </abbr>
+
+  <mat-menu #nestedMenu="matMenu">
+    <div *ngFor="let data of labelList">
+      <div fxLayout="row">
+        <div>
+          <input *ngIf="data.isChecked==true" type="checkbox" (click)=removeLabel(data) (click)=$event.stopPropagation()
+            checked>
+          <input *ngIf="data.isChecked==false" type="checkbox" (click)=addLabel(data) (click)=$event.stopPropagation()
+            unchecked>
+        </div>
+        <div>
+          <p>{{data.label}}</p>
+        </div>
+      </div>
+    </div>
+  </mat-menu>
 </div>

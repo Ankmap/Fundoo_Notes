@@ -11,6 +11,9 @@ import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataService } from 'src/app/core/service/data/data.service';
 import { Note } from '../../core/model/note/note';
+import { Label } from 'src/app/core/model/label/label';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-notes-add',
@@ -43,6 +46,7 @@ export class NotesAddComponent implements OnInit {
    **/
   private notecard: boolean = true;
 
+  private listNote:boolean =false
   /**
    * @Purpose : For new Notecard open
    **/
@@ -50,6 +54,13 @@ export class NotesAddComponent implements OnInit {
     this.notecard = !(this.notecard);
   }
 
+  /**
+   * @Purpose : for new newList open
+   **/
+  newListOpen(){
+    this.listNote = true;
+  }
+  
   /**
    * @Purpose :CardColor
    **/
@@ -102,6 +113,8 @@ export class NotesAddComponent implements OnInit {
     /* For GetAll Note without refresh*/
     setTimeout(() => this.updateNote.getAllNote(), 100);
   }
+
+
 }
 
 

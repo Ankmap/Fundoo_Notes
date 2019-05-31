@@ -2,6 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CollaboratorComponent } from '../collaborator/collaborator.component'
 import { MatDialog } from '@angular/material';
 import { Subject } from 'rxjs';
+import { Label } from 'src/app/core/model/label/label';
+import { takeUntil } from 'rxjs/operators';
+import { NotesService } from 'src/app/core/service/notes/notes.service';
 
 
 export interface DialogData {
@@ -21,7 +24,8 @@ export class IconComponent implements OnInit {
   @Output() onChangeTrash = new EventEmitter()
   @Output() onChangeArchive = new EventEmitter()
   @Output() onChangeDateReminder = new EventEmitter()
-
+  @Output() onChangeAddNote = new EventEmitter()
+  @Output() popupChange = new EventEmitter()
   destroy$: Subject<boolean> = new Subject<boolean>();
   currentDate = new Date;
 
@@ -30,7 +34,7 @@ export class IconComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-
+    private noteService: NotesService
   ) { }
 
   /* Color Code with name*/
@@ -90,6 +94,10 @@ export class IconComponent implements OnInit {
     this.onChangeTrash.emit(note);
   }
 
+  /* Add Note */
+  // addNoteLabel(note){
+  //   this.onChangeAddNote.emit(note)
+  // }
   /*  <!-- ************************************ Reminder End ************************************************* -->
 */
   /* Reminder */
@@ -109,5 +117,49 @@ export class IconComponent implements OnInit {
     let date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate() + 7, 8, 0, 0)
     console.log(" Current Date Next Week ====>", date);
     this.onChangeDateReminder.emit(date)
+  }
+
+  /**
+ * @Purpose  : Getting label data 
+ */
+  /* Label Model*/
+  private labelList;
+  private labelArray = [];
+  private Array = [];
+  private label: Label[] = [];
+
+  showLabel() {
+    this.labelArray = [];
+    this.Array = [];
+    this.noteService.showNoteLabel().subscribe((response) => {
+      this.label = response["data"].details;
+      this.labelList = [];
+      this.labelList = this.label;
+      for (let i = 0; i < this.labelList.length; i++) {
+        this.labelList[i].isChecked = false;
+        if (this.card) {
+          for (let j = 0; j < this.card.noteLabels.length; j++) {
+            if (this.labelList[i].label == this.card.noteLabels[j].label) {
+              this.Array.push(this.labelList[i])
+              this.labelList[i].isChecked = true;
+            }
+          }
+        }
+      }
+    }, (error) => {
+      console.log("ERR====>", error);
+    });
+  }
+
+  addLabel(label) {
+    if (this.card) {
+      this.noteService.addLabelToNotes(this.card.id, label.id)
+        .subscribe((response) => {
+          this.onChangeAddNote.emit({})
+          console.log("response====>", response);
+        }, (error) => {
+          console.log("ERR====>", error);
+        });
+    }
   }
 }

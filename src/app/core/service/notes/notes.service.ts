@@ -133,6 +133,13 @@ export class NotesService {
   getTrashNotesList() {
     return this.service.postDataForgetTrashNotesList("/notes/getTrashNotesList")
   }
+
+  /**
+   * @Purpose : Delete Note
+   **/
+  addLabelToNotes(cardId,labelId) {
+    return this.service.postDataForaddLabelToNotes("/notes/"+cardId+"/addLabelToNotes/"+labelId+"/add",{})
+  }
   
 
 }

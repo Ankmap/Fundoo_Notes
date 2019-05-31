@@ -44,16 +44,17 @@ export class ArchiveComponent implements OnInit {
   /**
    * @Purpose : Archive Note
    **/
-
+  newNotes: Note[];
   getArchivedList() {
     this.noteService.getArchivedList()
       .pipe(takeUntil(this.destory$))
       .subscribe((response) => {
-        this.notes = response["data"].data;
+        this.notes = response["data"].data.filter(function(el){
+          return (el.isArchived === true)
+        });
         console.log(" getArchivedList ======> ", this.notes);
       }, (error) => {
         console.log("getArchivedList ======>", error);
-
       });
   }
   /**

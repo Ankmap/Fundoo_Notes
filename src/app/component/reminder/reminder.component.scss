@@ -31,11 +31,14 @@ mat-card{
 .description{
     word-break: break-all;
 }
-.clear{
+.clear{ 
     position: absolute;
     margin-top: -4px;
     opacity: 0.5;
 }
 .iconClear{
     visibility:hidden;
+}
+.reminderMain:hover .iconClear {
+    visibility: visible;
 }

@@ -51,8 +51,7 @@ export class TrashComponent implements OnInit {
       .pipe(takeUntil(this.destory$))
       .subscribe((response) => {
         this.notes = response["data"].data;
-        console.log(" getArchivedList ======> ", this.notes);
-        // this.snackbar.open('Note Restores', 'Undo !', { duration: 2000 });
+        console.log(" getTrashNotesList ======> ", this.notes);
       }, (error) => {
         console.log("getArchivedList ======>", error);
       });

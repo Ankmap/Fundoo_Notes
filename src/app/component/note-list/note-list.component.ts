@@ -59,9 +59,10 @@ export class NoteListComponent implements OnInit {
 
   /* Trash Note*/
   trashNote1: any;
-  notes1: { <S extends Note>(callbackfn: (value: Note, index: number, array: Note[]) => value is S, thisArg?: any): S[]; (callbackfn: (value: Note, index: number, array: Note[]) => any, thisArg?: any): Note[]; };
   newNotes: Note[];
 
+   /* Add Note to Label*/
+   labelId: any;
   /**
    * @Purpose : inject the DataService, MatDialog, NotesService, MatSnackBar in the constructor
    **/
@@ -96,9 +97,7 @@ export class NoteListComponent implements OnInit {
         this.notes = data
         this.notes = this.notes.filter(function (el) {
           return (el.isArchived === false && el.isDeleted === false);
-        });
-        console.log("new notes data: ", this.newNotes);
-        
+        });        
       });
 
   }
@@ -291,7 +290,13 @@ export class NoteListComponent implements OnInit {
     setTimeout(() => this.data.getAllNote(), 100);
   }
 
-
+  entry(event){
+    if(event){
+      this.anyChanges.emit({});
+    }
+  }
+ 
+  
 }
 
 

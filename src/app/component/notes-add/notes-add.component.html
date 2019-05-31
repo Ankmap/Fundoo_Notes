@@ -12,18 +12,21 @@
       fxFlex.sm='400px' fxFlex.xs='150px'>
       <div fxLayoutGap="35px">
         <span fxFlex="calc(50% - 25px)">Take a note...</span>
-        <abbr title="Gallary">
-          <button mat-button>
-            <i class="material-icons">
-              panorama
-            </i>
+        <abbr title="New list">
+          <button mat-button (click)="newListOpen()">
+            <img src="../../../assets/outline-check_box-24px.svg">
           </button>
         </abbr>
-        <abbr title="Gallary">
-          <button mat-button>
-            <i class="material-icons">
-              view_list
-            </i>
+        <abbr title="New note with drawing">
+          <button mat-button (click)="addNoteDrawing()">
+            <img src="../../../assets/outline-brush-24px.svg">
+          </button>
+        </abbr>
+
+        <abbr title="New note with image">
+          <button mat-button (click)="addNoteImage()">
+            <img (click)="file.click()" src="../../../assets/outline-photo_size_select_actual-24px.svg">
+            <input style="display:none;" type="file" #file (change)="onSelectIamge()"> 
           </button>
         </abbr>
       </div>
@@ -31,22 +34,31 @@
   </div>
   <!-- Notecard end -->
 
+  <!-- New List Note start -->
+  <div *ngIf="!listNote" data-text=" Take a Note.....">
+    <div *ngIf="listNote">
+      <mat-card></mat-card>
+    </div>
+  </div>
+  <!-- New List Note End -->
+
   <!-- add notecard start -->
   <div fxLayoutAlign="space-around center" *ngIf="!notecard">
     <mat-card [style.backgroundColor]="setColor" class="card" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px'
       fxFlex.sm='400px' fxFlex.xs='150px'>
       <div>
         <div fxLayout='column' fxLayoutGap='20px'>
-           <!-- For title binding -->
+          <!-- For title binding -->
           <input class="title" placeholder="Title" [style.backgroundColor]="setColor" [formControl]="title"
             [(ngModel)]="addNotes.title">
-            <!-- For description binding -->
+          <!-- For description binding -->
           <input class="description" placeholder="Take a note..." [style.backgroundColor]="setColor"
             [formControl]="description" [(ngModel)]="addNotes.description">
         </div>
         <div>
           <div fxLayout='row'>
-            <app-icon (onChangeColor)="receivecolor($event)" (onChangeDateReminder)="receiveReminder($event)"></app-icon>
+            <app-icon (onChangeColor)="receivecolor($event)" (onChangeDateReminder)="receiveReminder($event)">
+            </app-icon>
             <div class="row" fxLayoutGap='5px'>
               <abbr title="Undo">
                 <button mat-button>

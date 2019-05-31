@@ -13,7 +13,8 @@ export class Note {
     "isArchived" :boolean;
     "userId":string
     "isDeleted":boolean;
-    "reminder":string
+    "reminder":string;
+    "label":string;
   data: any;
 
 }
