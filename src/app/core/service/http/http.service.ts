@@ -325,4 +325,17 @@ export class HttpService {
     console.log('token ==================>', localStorage.getItem('token'));
     return this.http.post(environment.baseUrl + path, body, httpOptions);
   }
+
+  // removeLabelToNotes
+  postDataForremoveLabelToNotes(path, body) {
+    console.log(body);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        // 'Content-Type': 'application/json
+        'Authorization': localStorage.getItem('token')
+      })
+    };
+    console.log('token ==================>', localStorage.getItem('token'));
+    return this.http.post(environment.baseUrl + path, body, httpOptions);
+  }
 }

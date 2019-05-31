@@ -61,8 +61,8 @@ export class NoteListComponent implements OnInit {
   trashNote1: any;
   newNotes: Note[];
 
-   /* Add Note to Label*/
-   labelId: any;
+  /* Add Note to Label*/
+  labelId: any;
   /**
    * @Purpose : inject the DataService, MatDialog, NotesService, MatSnackBar in the constructor
    **/
@@ -97,7 +97,7 @@ export class NoteListComponent implements OnInit {
         this.notes = data
         this.notes = this.notes.filter(function (el) {
           return (el.isArchived === false && el.isDeleted === false);
-        });        
+        });
       });
 
   }
@@ -290,13 +290,25 @@ export class NoteListComponent implements OnInit {
     setTimeout(() => this.data.getAllNote(), 100);
   }
 
-  entry(event){
-    if(event){
+  entry(event) {
+    if (event) {
       this.anyChanges.emit({});
     }
   }
- 
-  
+
+  removeLabel(cardId,labelId){
+    this.noteService.removeLabelToNotes(cardId,labelId)
+    .pipe(takeUntil(this.destory$)).subscribe((response)=>{
+      this.anyChanges.emit({})
+    },(error)=>{
+      console.log('Error ====>',error);      
+    })
+  }
+
+  showLabel(data){
+    this.data.changeMessage(data)
+  }
+
 }
 
 

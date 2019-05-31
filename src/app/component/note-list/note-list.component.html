@@ -20,6 +20,7 @@
             <br>
 
             <!-- Reminder Show  start -->
+
             <div fxLayout="row" class="reminderMain" fxLayoutGap="5px">
                 <div *ngIf="data.reminder.length>0">
                     <mat-chip-list>
@@ -32,9 +33,11 @@
                     </mat-chip-list>
                 </div>
             </div>
-            <!-- Reminder Show End -->
 
+            <!-- Reminder Show End -->
+            <br>
             <!-- AddNoteLabel Show  start -->
+
             <mat-chip-list>
                 <div *ngFor="let cardData of data.noteLabels">
                     <mat-chip class="label" *ngIf="cardData.isDeleted==false" (click)=showLabel(cardData.label)>
@@ -44,6 +47,7 @@
                     </mat-chip>
                 </div>
             </mat-chip-list>
+
             <!-- AddNoteLabel Show End -->
 
             <div class="icon">

@@ -135,11 +135,17 @@ export class NotesService {
   }
 
   /**
-   * @Purpose : Delete Note
+   * @Purpose : addLabelToNotes Note
    **/
   addLabelToNotes(cardId,labelId) {
     return this.service.postDataForaddLabelToNotes("/notes/"+cardId+"/addLabelToNotes/"+labelId+"/add",{})
   }
   
+  /**
+   * @Purpose : Delete Note
+   **/
+  removeLabelToNotes(cardId,labelId) {
+    return this.service.postDataForremoveLabelToNotes("/notes/"+cardId+"/addLabelToNotes/"+labelId+"/remove",{})
+  }
 
 }

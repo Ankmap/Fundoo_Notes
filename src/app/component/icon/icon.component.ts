@@ -135,17 +135,19 @@ export class IconComponent implements OnInit {
       this.label = response["data"].details;
       this.labelList = [];
       this.labelList = this.label;
+
       for (let i = 0; i < this.labelList.length; i++) {
-        this.labelList[i].isChecked = false;
+        this.labelList[i].isChecked = false; //false
         if (this.card) {
           for (let j = 0; j < this.card.noteLabels.length; j++) {
             if (this.labelList[i].label == this.card.noteLabels[j].label) {
               this.Array.push(this.labelList[i])
-              this.labelList[i].isChecked = true;
+              this.labelList[i].isChecked = true; //true
             }
           }
         }
       }
+
     }, (error) => {
       console.log("ERR====>", error);
     });
@@ -161,5 +163,15 @@ export class IconComponent implements OnInit {
           console.log("ERR====>", error);
         });
     }
+  }
+
+  removeLabel(label){
+      this.noteService.removeLabelToNotes('5cf0d34b7a1cfd004043bc53',label.id)
+      .subscribe((response)=>{
+        this.onChangeAddNote.emit({})
+        console.log("response====>", response);
+        }, (error) => {
+          console.log("ERR====>", error);
+      });
   }
 }
