@@ -60,8 +60,8 @@ export class NotesService {
   /**
    * @Purpose : Show Label
   **/
-  addColNote(body,id) {
-    return this.service.postDataForSearchUser("/notes/" + id + "/AddcollaboratorsNotes",body)
+  addColNote(body, id) {
+    return this.service.postDataForSearchUser("/notes/" + id + "/AddcollaboratorsNotes", body)
   }
 
   /**
@@ -81,27 +81,27 @@ export class NotesService {
   /**
    * @Purpose : Update Note
    **/
-  updateNoteLabel(labelId,body) {
-    return this.service.postDataForUpdateLabel("/noteLabels/" + labelId + "/updateNoteLabel",body)
+  updateNoteLabel(labelId, body) {
+    return this.service.postDataForUpdateLabel("/noteLabels/" + labelId + "/updateNoteLabel", body)
   }
 
   /**
    * @Purpose : Archive Note
    **/
-  archiveNote(body){
-    return this.service.postDataForArchiveNote("/notes/archiveNotes",body)
+  archiveNote(body) {
+    return this.service.postDataForArchiveNote("/notes/archiveNotes", body)
   }
 
   /**
    * @Purpose : Get Archived List
    **/
-  getArchivedList(){
+  getArchivedList() {
     return this.service.postDataForArchiveNoteGetList("/notes/getArchiveNotesList")
   }
 
-   /**
-   * @Purpose : Update Reminder
-   **/
+  /**
+  * @Purpose : Update Reminder
+  **/
   addUpdateReminderNotes(body) {
     return this.service.chnageReminder("/notes/addUpdateReminderNotes", body)
   }
@@ -137,15 +137,21 @@ export class NotesService {
   /**
    * @Purpose : addLabelToNotes Note
    **/
-  addLabelToNotes(cardId,labelId) {
-    return this.service.postDataForaddLabelToNotes("/notes/"+cardId+"/addLabelToNotes/"+labelId+"/add",{})
+  addLabelToNotes(cardId, labelId) {
+    return this.service.postDataForaddLabelToNotes("/notes/" + cardId + "/addLabelToNotes/" + labelId + "/add", {})
   }
-  
+
   /**
    * @Purpose : Delete Note
    **/
-  removeLabelToNotes(cardId,labelId) {
-    return this.service.postDataForremoveLabelToNotes("/notes/"+cardId+"/addLabelToNotes/"+labelId+"/remove",{})
+  removeLabelToNotes(cardId, labelId) {
+    return this.service.postDataForremoveLabelToNotes("/notes/" + cardId + "/addLabelToNotes/" + labelId + "/remove", {})
   }
 
+  /**
+   * @Purpose : Delete Note
+   **/
+  getNotesListByLabel(label) {
+    return this.service.postDataForremoveLabelToNotes("/notes/getNotesListByLabel/" + label, {})
+  }
 }

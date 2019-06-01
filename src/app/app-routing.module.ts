@@ -19,6 +19,7 @@ import { DialogComponent } from './component/dialog/dialog.component';
 import { IconComponent } from './component/icon/icon.component';
 import { TrashComponent } from './component/trash/trash.component';
 import { ImageCropComponent } from './component/image-crop/image-crop.component';
+import { GetlabelComponent } from './component/getlabel/getlabel.component';
 
 /*AuthGuard service*/
 import { AuthGuard } from './core/service/auth/auth.guard'
@@ -47,7 +48,8 @@ const appRoutes: Routes = [
       { path: 'dialog', component: DialogComponent },
       { path: 'icon', component:IconComponent},
       { path: 'trash', component:TrashComponent},
-      { path: 'image', component: ImageCropComponent}
+      { path: 'image', component: ImageCropComponent},
+      { path: 'getlabel', component:GetlabelComponent}
     ]
   },
   /*Componnet Lifecycle Demo path set*/

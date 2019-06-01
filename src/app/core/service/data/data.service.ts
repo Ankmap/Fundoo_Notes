@@ -69,6 +69,14 @@ export class DataService {
   changeMessage(messsge:string){
     this.messageSource.next(messsge)
   }
+
+  /* Current message for label*/ 
+  private messageSourceLabel = new BehaviorSubject('default');
+  currentMessageLabel = this.messageSourceLabel.asObservable();
+
+  changeMessageLabel(messsge:string){
+    this.messageSourceLabel.next(messsge)
+  }
   /********************************** grid start**************************************/
   /* gridView method*/
   gridView() {

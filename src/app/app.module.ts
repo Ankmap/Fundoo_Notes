@@ -32,6 +32,7 @@ import { CollaboratorComponent } from './component/collaborator/collaborator.com
 import { DialogComponent } from './component/dialog/dialog.component';
 import { TrashComponent } from './component/trash/trash.component';
 import { ImageCropComponent } from './component/image-crop/image-crop.component';
+import { GetlabelComponent } from './component/getlabel/getlabel.component';
 
 /**
  * @Purpose : Pipe
@@ -89,7 +90,8 @@ import { NotefilterPipe } from './core/pipe/noteFilter/notefilter.pipe';
     DialogComponent,
     TrashComponent,
     ImageCropComponent,
-    NotefilterPipe
+    NotefilterPipe,
+    GetlabelComponent
   ],
   imports: [
     BrowserModule,

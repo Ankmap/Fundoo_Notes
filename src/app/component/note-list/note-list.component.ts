@@ -21,6 +21,7 @@ import { DialogComponent } from '../dialog/dialog.component';
 })
 export class NoteListComponent implements OnInit {
 
+  
   /* Note Model*/
   notes: Note[] = [];
   message: string;

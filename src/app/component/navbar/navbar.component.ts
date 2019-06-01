@@ -34,7 +34,7 @@ export class NavbarComponent implements OnInit {
   image = localStorage.getItem("userImage");
   // image = 'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
   // image = 'http://34.213.106.173/'+this.imageUrl;
-  
+
   /* label */
   private label: Label[] = [];
   private labelList = [];
@@ -52,6 +52,9 @@ export class NavbarComponent implements OnInit {
   //img
   private img;
   private width;
+  private labelShow: boolean = false;
+  private labelValue = '';
+  private message: string
 
 
   /**
@@ -76,11 +79,16 @@ export class NavbarComponent implements OnInit {
       this.view = response;
       this.direction = this.view.data;
     });
-
     /* imageUrl upload */
     // this.img = 'http://34.213.106.173/' + this.image;
     this.img = environment.url + this.image;
-    this.isLargeScreen();;
+    this.isLargeScreen();
+
+    this.data.currentMessageLabel.subscribe(message => {this.message = message;
+    if (this.message != "default") {
+      this.router.navigateByUrl('/getlabel/' + this.message);
+      this.navbarName(this.message)}
+    });
   }
 
   // Image
@@ -158,7 +166,8 @@ export class NavbarComponent implements OnInit {
     * @Purpose : refresh
     **/
   refresh() {
-    this.router.navigateByUrl('/home')
+    this.router.navigateByUrl('/home');
+    this.labelShow = false
   }
   /**
    * @Purpose : Note Click show all label
@@ -222,6 +231,9 @@ export class NavbarComponent implements OnInit {
       .subscribe(result => {
         this.img = environment.url + localStorage.getItem("userImage")
       });
-
+  }
+  navbarName(aa) {
+    this.labelShow = true
+    this.labelValue = aa
   }
 }

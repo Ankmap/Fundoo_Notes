@@ -32,9 +32,10 @@
                     </div>
                     <!-- Img End -->
                     <!-- Name binding -->
-                    <div fxFlex="30" class="fundoo">
-                        <h5>{{appName}}</h5>
-                    </div>
+
+                    <div *ngIf=!labelShow ngStyle.lg="font-size:23px">Fundoo</div>
+                    <div *ngIf=labelShow ngStyle.lg="font-size:25px">{{labelValue}}</div>
+
                     <!-- Name Binding End -->
                 </div>
             </div>
@@ -44,10 +45,10 @@
                     <mat-icon ngStyle.xl="font-size:50px" class="searchbutton">search</mat-icon>
                     <input type="text" [(ngModel)]="searchValue" (keyup)=newMessage() class="search"
                         placeholder="Search.." (click)="search()" ngStyle.md="font-size:13px"
-                        ngStyle.lg="font-size:20px" ngStyle.sm="font-style:20px;margin-top:1px;"
-                        ngStyle.xl="font-size:30px">
+                        ngStyle.lg="font-size:20px">
                 </div>
             </div>
+
             <!-- 3rd div refresh, logout, grid -->
             <div fxFlex="20" fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
                 <!-- refresh start -->
@@ -115,7 +116,7 @@
         <!-- 1st div Notes, Reminder -->
         <div fxLayout="column">
             <!-- Notes start -->
-            <button type="button" class="button" mat-button (click)="displayNote()">
+            <button type="button" class="button" mat-button (click)="navbarName('Notes')" routerLink="/home">
                 <div class="notes" fxLayout="row" fxLayoutGap="25px">
                     <mat-icon class=name>lightbulb_outline</mat-icon>
                     <h5 class="name">Notes</h5>
@@ -123,7 +124,7 @@
             </button>
             <!-- Notes End -->
             <!-- Reminder start -->
-            <button type="button" class="button" mat-button (click)="reminders()">
+            <button type="button" class="button" mat-button (click)="navbarName('Reminder')" routerLink="/reminder">
                 <div class="notifications" fxLayout="row" fxLayoutGap="25px">
                     <mat-icon class=notifications>notifications_none</mat-icon>
                     <h5 class="name">Reminder</h5>
@@ -140,7 +141,8 @@
             </div>
 
             <div fxLayout="column" fxFlex="50" fxLayoutGap="20px">
-                <div *ngFor="let data of labelList | sortPipe">
+                <div *ngFor="let data of labelList | sortPipe" routerLink="/getlabel/{{data}}" (click)="navbarName(data)"
+                    routerLinkActive=active class="labelData">
                     <div fxFlex="20">
                         <img style="margin-left: 20px;" src="../../../assets/outline-label-24px.svg">
                     </div>
@@ -162,13 +164,13 @@
 
         <!-- 3rd div Archive, Delete -->
         <div fxLayout="column">
-            <button type="button" class="button" mat-button (click)="archive()">
+            <button type="button" class="button" mat-button (click)="navbarName('Archive')" routerLink="/archive">
                 <div class="archive" fxLayout="row" fxLayoutGap="25px">
                     <img class="archive" src="../../../assets/outline-archive-24px.svg">
                     <h5 class="name">Archive</h5>
                 </div>
             </button>
-            <button type="button" class="button" mat-button (click)="trash()">
+            <button type="button" class="button" mat-button (click)="navbarName('Trash')" routerLink="/trash">
                 <div class="Trash" fxLayout="row" fxLayoutGap="25px">
                     <img class="Trash" src="../../../assets/outline-delete-24px.svg">
                     <h5 class="name">Trash</h5>
