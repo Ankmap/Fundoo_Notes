@@ -49,7 +49,7 @@ const appRoutes: Routes = [
       { path: 'icon', component:IconComponent},
       { path: 'trash', component:TrashComponent},
       { path: 'image', component: ImageCropComponent},
-      { path: 'getlabel', component:GetlabelComponent}
+      { path: 'getlabel/:label', component:GetlabelComponent}
     ]
   },
   /*Componnet Lifecycle Demo path set*/

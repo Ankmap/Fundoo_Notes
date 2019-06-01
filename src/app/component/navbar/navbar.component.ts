@@ -53,7 +53,7 @@ export class NavbarComponent implements OnInit {
   private img;
   private width;
   private labelShow: boolean = false;
-  private labelValue = '';
+  private labelValue ='';
   private message: string
 
 
@@ -86,7 +86,7 @@ export class NavbarComponent implements OnInit {
 
     this.data.currentMessageLabel.subscribe(message => {this.message = message;
     if (this.message != "default") {
-      this.router.navigateByUrl('/getlabel/' + this.message);
+      this.router.navigateByUrl('/getlabel/'+this.message);
       this.navbarName(this.message)}
     });
   }
