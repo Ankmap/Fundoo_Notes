@@ -6,8 +6,8 @@
  *@since   - 22/04/2019
 **************************************************************************************************/ -->
 <!-- **************************** Main Menu start ********************************************* -->
-<mat-toolbar-row>
-    <div class="navbarMain">
+<div class="navbarMain">
+    <mat-toolbar-row>
         <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-evenly center" fxLayoutGap="10px" style="height:10vh">
             <!-- 1st div menu, img, fundoo -->
             <div fxFlex="15" fxLayout="row" fxLayoutAlign="space-evenly start" fxLayoutGap="50px">
@@ -23,7 +23,6 @@
                         </abbr>
                     </div>
                     <!-- Menu End -->
-
                     <!-- Img start -->
                     <div fxFlex="30">
                         <img class="img" alt="" aria-hidden="true"
@@ -32,7 +31,6 @@
                             style="width:40px;height:40px">
                     </div>
                     <!-- Img End -->
-
                     <!-- Name binding -->
                     <div fxFlex="30" class="fundoo">
                         <h5>{{appName}}</h5>
@@ -40,7 +38,6 @@
                     <!-- Name Binding End -->
                 </div>
             </div>
-
             <!-- 2nd div search -->
             <div fxFlex="60" fxLayoutAlign="center center" fxShow fxHide.sm fxShow fxHide.xs>
                 <div fxFlex.xs=40 fxFlex.sm="50" fxFlex.md="70" fxFlex.lg="80" fxFlex.xl="80">
@@ -51,10 +48,8 @@
                         ngStyle.xl="font-size:30px">
                 </div>
             </div>
-
             <!-- 3rd div refresh, logout, grid -->
             <div fxFlex="20" fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
-
                 <!-- refresh start -->
                 <div fxFlex="25" fxShow fxHide.sm fxShow fxHide.xs>
                     <abbr title="Refresh">
@@ -64,7 +59,6 @@
                     </abbr>
                 </div>
                 <!-- refresh end -->
-
                 <!-- Grid start -->
                 <div fxFlex="25" fxShow fxHide.sm fxShow fxHide.xs>
                     <abbr title="Grid">
@@ -77,7 +71,6 @@
                     </abbr>
                 </div>
                 <!-- Grid end -->
-
                 <!-- logout start-->
                 <div fxFlex="25" fxShow fxHide.sm fxShow fxHide.xs>
                     <abbr title="Google Account">
@@ -89,11 +82,10 @@
                     </abbr>
                 </div>
                 <!-- logout end -->
-
             </div>
         </div>
-    </div>
-</mat-toolbar-row>
+    </mat-toolbar-row>
+</div>
 <mat-divider></mat-divider>
 <!-- Signout card start  -->
 <mat-card class="account" *ngIf="signoutCard">

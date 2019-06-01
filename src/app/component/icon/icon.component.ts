@@ -5,11 +5,13 @@ import { Subject } from 'rxjs';
 import { Label } from 'src/app/core/model/label/label';
 import { takeUntil } from 'rxjs/operators';
 import { NotesService } from 'src/app/core/service/notes/notes.service';
+import { DataService } from 'src/app/core/service/data/data.service';
 
 
 export interface DialogData {
   noteData: object
 }
+
 @Component({
   selector: 'app-icon',
   templateUrl: './icon.component.html',
@@ -26,18 +28,19 @@ export class IconComponent implements OnInit {
   @Output() onChangeDateReminder = new EventEmitter()
   @Output() onChangeAddNote = new EventEmitter()
   @Output() popupChange = new EventEmitter()
-  destroy$: Subject<boolean> = new Subject<boolean>();
-  currentDate = new Date;
 
-  /* archive */
-  isArchive: boolean = false;
+  destroy$: Subject<boolean> = new Subject<boolean>();
+
+
 
   constructor(
     private dialog: MatDialog,
-    private noteService: NotesService
+    private noteService: NotesService,
+    private dataService: DataService
   ) { }
 
   /* Color Code with name*/
+
   arrayOfColors = [
     [
       { name: "white", hexcode: "#FFFFFF" },
@@ -85,6 +88,8 @@ export class IconComponent implements OnInit {
   }
 
   /* Archive */
+  isArchive: boolean = false;
+
   archiveNote(note) {
     this.onChangeArchive.emit(note);
   }
@@ -94,39 +99,41 @@ export class IconComponent implements OnInit {
     this.onChangeTrash.emit(note);
   }
 
-  /* Add Note */
-  // addNoteLabel(note){
-  //   this.onChangeAddNote.emit(note)
-  // }
-  /*  <!-- ************************************ Reminder End ************************************************* -->
-*/
   /* Reminder */
+  currentDate = new Date;
+
+   /* Label Model*/
+   private labelList;
+   private labelArray = [];
+   private Array = [];
+   private label: Label[] = [];
+ 
+  
+  /* Today */
   today() {
     let date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate() + 0, 8, 0, 0)
     console.log(" Current Date Today ====>", date);
     this.onChangeDateReminder.emit(date)
   }
 
+  /* Tomorrow */
   tomorrow() {
     let date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate() + 1, 8, 0, 0)
     console.log(" Current Date Tommorrow ====>", date);
     this.onChangeDateReminder.emit(date)
   }
 
+  /* NextWeek */
   nextWeek() {
     let date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate() + 7, 8, 0, 0)
     console.log(" Current Date Next Week ====>", date);
     this.onChangeDateReminder.emit(date)
   }
 
+  
   /**
- * @Purpose  : Getting label data 
- */
-  /* Label Model*/
-  private labelList;
-  private labelArray = [];
-  private Array = [];
-  private label: Label[] = [];
+   * @Purpose : Show Label
+   **/
 
   showLabel() {
     this.labelArray = [];
@@ -137,22 +144,26 @@ export class IconComponent implements OnInit {
       this.labelList = this.label;
 
       for (let i = 0; i < this.labelList.length; i++) {
-        this.labelList[i].isChecked = false; //false
+        this.labelList[i].isChecked = false; /* False checkList*/
         if (this.card) {
           for (let j = 0; j < this.card.noteLabels.length; j++) {
             if (this.labelList[i].label == this.card.noteLabels[j].label) {
               this.Array.push(this.labelList[i])
-              this.labelList[i].isChecked = true; //true
+              this.labelList[i].isChecked = true; /* true checkList*/
             }
           }
         }
       }
-
     }, (error) => {
       console.log("ERR====>", error);
     });
+     /* For GetAll Note without refresh*/
+     setTimeout(() => this.dataService.getAllNote(), 5000);
   }
 
+  /**
+   * @Purpose : Add Label to Note
+   **/
   addLabel(label) {
     if (this.card) {
       this.noteService.addLabelToNotes(this.card.id, label.id)
@@ -163,15 +174,22 @@ export class IconComponent implements OnInit {
           console.log("ERR====>", error);
         });
     }
+    /* For GetAll Note without refresh*/
+    setTimeout(() => this.dataService.getAllNote(), 100);
   }
 
-  removeLabel(label){
-      this.noteService.removeLabelToNotes('5cf0d34b7a1cfd004043bc53',label.id)
-      .subscribe((response)=>{
+  /**
+   * @Purpose : Remove Label from Note
+   **/
+  removeLabel(label) {
+    this.noteService.removeLabelToNotes(this.card.id, label.id)
+      .subscribe((response) => {
         this.onChangeAddNote.emit({})
         console.log("response====>", response);
-        }, (error) => {
-          console.log("ERR====>", error);
+      }, (error) => {
+        console.log("ERR====>", error);
       });
+    /* For GetAll Note without refresh*/
+    setTimeout(() => this.dataService.getAllNote(), 100);
   }
 }

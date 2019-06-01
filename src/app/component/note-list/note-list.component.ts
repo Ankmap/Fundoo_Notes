@@ -49,6 +49,7 @@ export class NoteListComponent implements OnInit {
 
   /* Delete Note*/
   deleteNote1: any;
+  private isDeleted: false;
 
   /* Archive Note */
   isArchived = true;
@@ -160,7 +161,6 @@ export class NoteListComponent implements OnInit {
   /**
    * @Purpose : Trash Note
    **/
-  private isDeleted: false;
   trashNote(data, $event) {
     this.trashNote1 = $event;
     var trashNote = {
@@ -187,7 +187,7 @@ export class NoteListComponent implements OnInit {
   }
 
   /**
-   * @Purpose : Open dialog and edit it
+   * @Purpose : Open dialog box and edit it 
    **/
   openDialog(data: any): void {
     const dialogRef = this.dialog.open(DialogComponent, {
@@ -263,7 +263,7 @@ export class NoteListComponent implements OnInit {
   }
 
   /**
-   * @Purpose : Update Reminder
+   * @Purpose : Remove Reminder
    **/
   removeReminderNotes(data, $event) {
     this.setReminder = $event;
@@ -296,17 +296,29 @@ export class NoteListComponent implements OnInit {
     }
   }
 
-  removeLabel(cardId,labelId){
-    this.noteService.removeLabelToNotes(cardId,labelId)
-    .pipe(takeUntil(this.destory$)).subscribe((response)=>{
-      this.anyChanges.emit({})
-    },(error)=>{
-      console.log('Error ====>',error);      
-    })
+  /**
+   * @Purpose : Remove Label from Note
+   **/
+
+  removeLabel(labelId, cardId) {
+    this.noteService.removeLabelToNotes(cardId, labelId)
+      .pipe(takeUntil(this.destory$))
+      .subscribe((response) => {
+        this.anyChanges.emit({})
+      }, (error) => {
+        console.log('Error ====>', error);
+      });
+      /* For GetAll Note without refresh*/
+    setTimeout(() => this.data.getAllNote(), 100);
   }
 
-  showLabel(data){
+  /**
+   * @Purpose : Show all Label
+   **/
+  showLabel(data) {
     this.data.changeMessage(data)
+    /* For GetAll Note without refresh*/
+    setTimeout(() => this.data.getAllNote(), 100);
   }
 
 }
