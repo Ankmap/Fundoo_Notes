@@ -58,10 +58,10 @@ export class NotesService {
   }
 
   /**
-   * @Purpose : Show Label
+   * @Purpose : addLabelToNotes
   **/
   addColNote(body, id) {
-    return this.service.postDataForSearchUser("/notes/" + id + "/AddcollaboratorsNotes", body)
+    return this.service.postDataForaddLabelToNotes("/notes/" + id + "/AddcollaboratorsNotes", body)
   }
 
   /**

@@ -28,7 +28,7 @@ export class IconComponent implements OnInit {
   @Output() onChangeDateReminder = new EventEmitter()
   @Output() onChangeAddNote = new EventEmitter()
   @Output() popupChange = new EventEmitter()
-
+  @Output() onChangeCollaborator = new EventEmitter()
   destroy$: Subject<boolean> = new Subject<boolean>();
 
 
@@ -77,13 +77,16 @@ export class IconComponent implements OnInit {
   }
 
   /* addCollaborator */
-  addCollaborator(cardDetails) {
+  addCollaborator(cardDetails) :void {
     const dialogRef = this.dialog.open(CollaboratorComponent, {
       width: '600px',
       data: { noteData: cardDetails }
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(result => {
       console.log('Dialog closed');
+      this.onChangeCollaborator.emit({})
     });
   }
 

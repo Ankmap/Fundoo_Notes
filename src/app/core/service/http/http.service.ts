@@ -188,7 +188,7 @@ export class HttpService {
   }
 
   /**
-   * @Purpose : Delete Label
+   * @Purpose :  Label
    **/
   postDataForUpdateLabel(path, body) {
     console.log(body);
@@ -218,7 +218,7 @@ export class HttpService {
   }
 
   /**
-   * @Purpose : Archive Note
+   * @Purpose : Archive Note get list
    **/
   postDataForArchiveNoteGetList(path) {
     const httpOptions = {
@@ -260,7 +260,7 @@ export class HttpService {
   }
 
   /**
-   * @Purpose : Archive Note
+   * @Purpose : reminder Note
    **/
   postDataForgetReminderNotesList(path) {
     const httpOptions = {
@@ -287,7 +287,7 @@ export class HttpService {
   }
 
   /**
-   * @Purpose : Archive Note
+   * @Purpose : Archive Note list
    **/
   postDataForgetTrashNotesList(path) {
     const httpOptions = {
@@ -318,7 +318,7 @@ export class HttpService {
     console.log(body);
     const httpOptions = {
       headers: new HttpHeaders({
-        // 'Content-Type': 'application/json
+        'Content-Type': 'application/json',
         'Authorization': localStorage.getItem('token')
       })
     };

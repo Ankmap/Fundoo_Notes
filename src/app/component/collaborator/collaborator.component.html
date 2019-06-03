@@ -4,8 +4,11 @@
 <div fxLayout="column" fxLayoutGap='35px'>
   <div class="margin">
     <mat-card-header>
-      <div mat-card-avatar class="addPerson">
+      <!-- <div mat-card-avatar class="addPerson">
         <mat-icon class=icon>person_add</mat-icon>
+      </div> -->
+      <div mat-card-avatar [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover',
+          'height':'40px','width':'40px','border-radius':'50%'}">
       </div>
       <mat-card-title>{{firstName}} {{lastName}} (Owner)</mat-card-title>
       <mat-card-subtitle>{{email}}</mat-card-subtitle>
@@ -14,24 +17,24 @@
       <div mat-card-avatar class="addPerson">
         <mat-icon class=icon>person_add</mat-icon>
       </div>
-      <input placeholder="person or email to share with" [(ngModel)]="searchValue"
-        (keyup)="searchUser()" matInput [matAutocomplete]="auto">
-        <div>
-          <mat-icon (click)="addCol()">done</mat-icon>
-        </div>
+      <input placeholder="person or email to share with" [(ngModel)]="searchValue" (keyup)="searchUser()" matInput
+        [matAutocomplete]="auto">
+      <div>
+        <mat-icon (click)="addCol()">done</mat-icon>
+      </div>
       <mat-autocomplete #auto="matAutocomplete">
         <!-- <mat-menu #menu="matMenu"> -->
-          <!-- <div *ngFor="let data of userList">
+        <!-- <div *ngFor="let data of userList">
             <button mat-button class=name (click)="addCol(data)">
               {{data.firstName}} {{data.lastName}} [{{data.email}}]
             </button>
           </div>
         </mat-menu> -->
         <mat-option *ngFor="let data of userList" [value]='data.email'>
-          <button mat-button class=button (click)="addCol(data)">
+          <!-- <button mat-button class=button (click)="addCol(data)"> -->
             {{data.firstName}} {{data.lastName}} [{{data.email}}]
-          </button>
-        </mat-option>        
+          <!-- </button> -->
+        </mat-option>
       </mat-autocomplete>
     </mat-card-header>
 
@@ -40,5 +43,5 @@
 
 <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap='15px' class="btns">
   <button mat-button (click)=cancel()>Cancel</button>
-  <button mat-button >Save</button>
+  <button mat-button>Save</button>
 </div>

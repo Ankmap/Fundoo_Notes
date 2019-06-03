@@ -38,7 +38,7 @@ export class NoteListComponent implements OnInit {
    *  use the @Input decorator. 
    **/
   @Input() note;
-  @Input() label;
+  @Input() labels;
   @Input() searchItem;
   /**
     * @Purpose : To emit an event from the child component class to the parent component class,
@@ -101,6 +101,7 @@ export class NoteListComponent implements OnInit {
         this.notes = this.notes.filter(function (el) {
           return (el.isArchived === false && el.isDeleted === false);
         });
+        console.log('Get all Notes =====>',this.notes)
       });
 
   }
