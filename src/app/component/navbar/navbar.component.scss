@@ -18,9 +18,10 @@
 }
 .example-container{
     overflow: hidden;
-    display: flex;
-    max-height: 100vh;
+    // display: flex;
+    // max-height: 100vh;
     margin-top: 100px;
+    height: 750px;
 }
 .fundoo{
     margin-top: 7px;
