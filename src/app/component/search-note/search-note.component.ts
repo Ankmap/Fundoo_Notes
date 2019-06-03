@@ -28,7 +28,6 @@ export class SearchNoteComponent implements OnInit {
 
   private notes: Note[] = [];
   private message: string
-  private notesArray = [];
 
   ngOnInit() {
     /* For get all Note */ 
@@ -47,8 +46,7 @@ export class SearchNoteComponent implements OnInit {
   getNotes() {
     this.data.allNote.pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
-        this.notes = response['data'].data
-        this.notesArray = [];
+        this.notes = response["data"].data;
       }, (error) => {
         console.log("Error:", error);
       });

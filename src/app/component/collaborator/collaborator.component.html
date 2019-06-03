@@ -31,9 +31,9 @@
           </div>
         </mat-menu> -->
         <mat-option *ngFor="let data of userList" [value]='data.email'>
-          <!-- <button mat-button class=button (click)="addCol(data)"> -->
+          <button mat-button class=button (click)="addCol(data)">
             {{data.firstName}} {{data.lastName}} [{{data.email}}]
-          <!-- </button> -->
+          </button>
         </mat-option>
       </mat-autocomplete>
     </mat-card-header>

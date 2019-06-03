@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { NotesService } from 'src/app/core/service/notes/notes.service';
 import { DataService } from 'src/app/core/service/data/data.service';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { UserserviceService } from 'src/app/core/service/user/user-service.service';
 import { Collaborator } from 'src/app/core/model/collaborator/collaborator';
 import { FormControl } from '@angular/forms';
@@ -18,8 +18,16 @@ export class CollaboratorComponent implements OnInit {
 
   // notes: Note[] = [];
   collab = new Collaborator();
-  data: any;
-  constructor( private snackbar : MatSnackBar,private noteService : NotesService, private dataService : DataService, private dialog : MatDialog, private userService :UserserviceService, ) { }
+  
+  collaba: any[];
+  constructor( 
+    private snackbar : MatSnackBar,
+    private noteService : NotesService, 
+    private dataService : DataService, 
+    private dialog : MatDialog, 
+    private userService :UserserviceService,
+    public dialogRef: MatDialogRef<CollaboratorComponent>, @Inject(MAT_DIALOG_DATA) 
+    public data: any, ) { }
 
    
   firstName = localStorage.getItem("firstname");
@@ -49,30 +57,32 @@ export class CollaboratorComponent implements OnInit {
     });
   }
 
-  // addColll
-  // addCol(data){
-  //   console.log("AddcollaboratorsNotes data === >",data.id);
-  //   const body ={
-  //     'firstName': this.collab.firstName,
-  //     'lastName': this.collab.lastName,
-  //     'email':this.collab.email,
-  //     "noteId": [data.id],//backend id
-  //     "userId":this.collab.id
-  //   }
-  //   console.log('console for updateNote @@@@@@@@@@@@@@@@@=======================>', body);
-  //   try {
-  //     this.noteService.addColNote(data,this.data['id']).subscribe(
-  //       data => {
-  //         this.snackbar.open('Note added successfully......!', 'Done...!', { duration: 3000 });
-  //         console.log('Register infor ==========>', data);
-  //       },
-  //       error => {
-  //         this.snackbar.open('Error while adding note......!', 'Error', { duration: 3000 });
-  //         console.log("Error something wrong: ", error)
-  //       });
+ // addColll
+  addCol(data){
+    console.log("AddcollaboratorsNotes data note id === >",this.data.id);
+    // const body ={
+    //   'firstName': this.collab.firstName,
+    //   'lastName': this.collab.lastName,
+    //   'email':this.collab.email,
+    //   "noteId": [data.id],//backend id
+    //   "userId":this.collab.id
+    // }
+    this.collaba=this.userList[0];
+    
+    console.log('console for updateNote @@@@@@@@@@@@@@@@@=======================>', this.collaba);
+    try {
+      this.noteService.addColNote(data,this.data['id']).subscribe(
+        data => {
+          this.snackbar.open('Note added successfully......!', 'Done...!', { duration: 3000 });
+          console.log('Register infor ==========>', data);
+        },
+        error => {
+          this.snackbar.open('Error while adding note......!', 'Error', { duration: 3000 });
+          console.log("Error something wrong: ", error)
+        });
 
-  //   } catch (error) {
-  //     this.snackbar.open('Error something wrong', "error", { duration: 3000 });
-  //   }
-  // }
+    } catch (error) {
+      this.snackbar.open('Error something wrong', "error", { duration: 3000 });
+    }
+  }
 }
