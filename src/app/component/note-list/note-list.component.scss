@@ -50,4 +50,10 @@ mat-chip {
     height: 18px;
     padding: 3px 5px;
 }
+.cardMain{
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    max-width: 1000px;
+}
 

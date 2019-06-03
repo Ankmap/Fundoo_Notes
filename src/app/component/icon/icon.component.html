@@ -127,7 +127,7 @@
 
   <mat-menu #nestedMenu="matMenu">
     <div *ngFor="let data of labelList">
-      <div fxLayout="row" fxFlex=100px>
+      <div fxLayout="row" fxFlex=100px fxLayoutGap="20px">
         <div fxFlex=50px>
           <input *ngIf="data.isChecked==true" type="checkbox" (click)=removeLabel(data) (click)=$event.stopPropagation()
             checked>

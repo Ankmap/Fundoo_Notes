@@ -38,7 +38,7 @@ export class NoteListComponent implements OnInit {
    *  use the @Input decorator. 
    **/
   @Input() note;
-  @Input() noteLabel;
+  @Input() label;
   @Input() searchItem;
   /**
     * @Purpose : To emit an event from the child component class to the parent component class,

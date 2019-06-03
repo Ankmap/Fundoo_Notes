@@ -8,82 +8,87 @@
 <!-- **************************** Main Menu start ********************************************* -->
 <div class="navbarMain">
     <mat-toolbar-row>
-        <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-evenly center" fxLayoutGap="10px" style="height:10vh">
-            <!-- 1st div menu, img, fundoo -->
-            <div fxFlex="15" fxLayout="row" fxLayoutAlign="space-evenly start" fxLayoutGap="50px">
-                <div fxFlex="100">
-                    <!-- Menu start -->
-                    <div fxFlex="30" fxFlex.sm="100">
-                        <abbr title="Main menu">
-                            <button style="outline: none;" type="button" mat-button (click)="drawer.toggle()">
-                                <i class="material-icons">
-                                    menu
-                                </i>
+        <div fxLayout="column" fxFlex="100%" fxLayoutGap="0.8%">
+            <div fxFlex="5%"></div>
+            <div fxLayout="row" fxFlex="100%" fxLayoutAlign="space-evenly center">
+                <!-- 1st div menu, img, fundoo -->
+                <div fxFlex="15" fxLayout="row" fxLayoutAlign="space-evenly start" fxLayoutGap="50px">
+                    <div fxFlex="100">
+                        <!-- Menu start -->
+                        <div fxFlex="30" fxFlex.sm="100">
+                            <abbr title="Main menu">
+                                <button style="outline: none;" type="button" mat-button (click)="drawer.toggle()">
+                                    <i class="material-icons">
+                                        menu
+                                    </i>
+                                </button>
+                            </abbr>
+                        </div>
+                        <!-- Menu End -->
+                        <!-- Img start -->
+                        <div fxFlex="30">
+                            <img class="img" alt="" aria-hidden="true"
+                                src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png"
+                                srcset="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_48dp.png 2x "
+                                style="width:40px;height:40px">
+                        </div>
+                        <!-- Img End -->
+                        <!-- Name binding -->
+
+                        <div *ngIf=!labelShow ngStyle.lg="font-size:23px">Fundoo</div>
+                        <div *ngIf=labelShow ngStyle.lg="font-size:25px">{{labelValue}}</div>
+
+                        <!-- Name Binding End -->
+                    </div>
+                </div>
+                <!-- 2nd div search -->
+                <div fxFlex="60" fxLayoutAlign="center center" fxShow fxHide.sm fxShow fxHide.xs>
+                    <div fxFlex.xs=40 fxFlex.sm="50" fxFlex.md="70" fxFlex.lg="80" fxFlex.xl="80">
+                        <mat-icon ngStyle.xl="font-size:50px" class="searchbutton">search</mat-icon>
+                        <input type="text" [(ngModel)]="searchValue" (keyup)=newMessage() class="search"
+                            placeholder="Search.." (click)="search()" ngStyle.md="font-size:13px"
+                            ngStyle.lg="font-size:20px">
+                    </div>
+                </div>
+
+                <!-- 3rd div refresh, logout, grid -->
+                <div fxFlex="20" fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+                    <!-- refresh start -->
+                    <div fxFlex="25" fxShow fxHide.sm fxShow fxHide.xs>
+                        <abbr title="Refresh">
+                            <button style="outline: none;" mat-icon-button (click)="refresh()">
+                                <i class="material-icons">refresh</i>
                             </button>
                         </abbr>
                     </div>
-                    <!-- Menu End -->
-                    <!-- Img start -->
-                    <div fxFlex="30">
-                        <img class="img" alt="" aria-hidden="true"
-                            src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png"
-                            srcset="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_48dp.png 2x "
-                            style="width:40px;height:40px">
+                    <!-- refresh end -->
+                    <!-- Grid start -->
+                    <div fxFlex="25" fxShow fxHide.sm fxShow fxHide.xs>
+                        <abbr title="Grid">
+                            <button style="outline: none;" mat-icon-button *ngIf=list (click)=changeView()
+                                fxShow="true">
+                                <img src="../../../assets/grid.svg">
+                            </button>
+                            <button style="outline: none" mat-icon-button *ngIf=grid (click)=changeView() fxShow="true">
+                                <img src="../../../assets/list.svg" height="42" width="42">
+                            </button>
+                        </abbr>
                     </div>
-                    <!-- Img End -->
-                    <!-- Name binding -->
-
-                    <div *ngIf=!labelShow ngStyle.lg="font-size:23px">Fundoo</div>
-                    <div *ngIf=labelShow ngStyle.lg="font-size:25px">{{labelValue}}</div>
-
-                    <!-- Name Binding End -->
+                    <!-- Grid end -->
+                    <!-- logout start-->
+                    <div fxFlex="25" fxShow fxHide.sm fxShow fxHide.xs>
+                        <abbr title="Google Account">
+                            <button style="outline: none;" mat-icon-button (click)="account()">
+                                <div mat-card-avatar
+                                    [ngStyle]="{'background-image': 'url('+img+')','background-size':'cover', 'height':'60px','width':'60px'}"
+                                    class="img1"></div>
+                            </button>
+                        </abbr>
+                    </div>
+                    <!-- logout end -->
                 </div>
             </div>
-            <!-- 2nd div search -->
-            <div fxFlex="60" fxLayoutAlign="center center" fxShow fxHide.sm fxShow fxHide.xs>
-                <div fxFlex.xs=40 fxFlex.sm="50" fxFlex.md="70" fxFlex.lg="80" fxFlex.xl="80">
-                    <mat-icon ngStyle.xl="font-size:50px" class="searchbutton">search</mat-icon>
-                    <input type="text" [(ngModel)]="searchValue" (keyup)=newMessage() class="search"
-                        placeholder="Search.." (click)="search()" ngStyle.md="font-size:13px"
-                        ngStyle.lg="font-size:20px">
-                </div>
-            </div>
-
-            <!-- 3rd div refresh, logout, grid -->
-            <div fxFlex="20" fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
-                <!-- refresh start -->
-                <div fxFlex="25" fxShow fxHide.sm fxShow fxHide.xs>
-                    <abbr title="Refresh">
-                        <button style="outline: none;" mat-icon-button (click)="refresh()">
-                            <i class="material-icons">refresh</i>
-                        </button>
-                    </abbr>
-                </div>
-                <!-- refresh end -->
-                <!-- Grid start -->
-                <div fxFlex="25" fxShow fxHide.sm fxShow fxHide.xs>
-                    <abbr title="Grid">
-                        <button style="outline: none;" mat-icon-button *ngIf=list (click)=changeView() fxShow="true">
-                            <img src="../../../assets/grid.svg">
-                        </button>
-                        <button style="outline: none" mat-icon-button *ngIf=grid (click)=changeView() fxShow="true">
-                            <img src="../../../assets/list.svg" height="42" width="42">
-                        </button>
-                    </abbr>
-                </div>
-                <!-- Grid end -->
-                <!-- logout start-->
-                <div fxFlex="25" fxShow fxHide.sm fxShow fxHide.xs>
-                    <abbr title="Google Account">
-                        <button style="outline: none;" mat-icon-button (click)="account()">
-                            <div mat-card-avatar
-                                [ngStyle]="{'background-image': 'url('+img+')','background-size':'cover', 'height':'60px','width':'60px'}"
-                                class="img1"></div>
-                        </button>
-                    </abbr>
-                </div>
-                <!-- logout end -->
-            </div>
+            <div fxFlex="5%"></div>
         </div>
     </mat-toolbar-row>
 </div>
@@ -110,7 +115,6 @@
 <!-- **************************** Main Menu end ********************************************* -->
 
 <!-- ***************************** side menu start ************************************* -->
-
 <mat-drawer-container class="example-container">
     <mat-drawer #drawer class="example-sidenav" [mode]="width > 0?'side':'side'" closed>
         <!-- 1st div Notes, Reminder -->
@@ -141,8 +145,8 @@
             </div>
 
             <div fxLayout="column" fxFlex="50" fxLayoutGap="20px">
-                <div *ngFor="let data of labelList | sortPipe" routerLink="/getlabel/{{data}}" (click)="navbarName(data)"
-                    routerLinkActive=active class="labelData">
+                <div *ngFor="let data of labelList | sortPipe" routerLink="/getlabel/{{data}}"
+                    (click)="navbarName(data)" routerLinkActive=active class="labelData">
                     <div fxFlex="20">
                         <img style="margin-left: 20px;" src="../../../assets/outline-label-24px.svg">
                     </div>
@@ -181,4 +185,5 @@
     <!-- @Purpose : Go to the child component -->
     <router-outlet></router-outlet>
 </mat-drawer-container>
+
 <!-- ******************************** side menu end ************************************* -->

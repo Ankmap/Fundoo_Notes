@@ -14,10 +14,12 @@
 }
 .example-sidenav{
     width: 300px;
+    overflow: hidden;
 }
 .example-container{
     overflow: hidden;
-    height: 100vh;
+    display: flex;
+    max-height: 100vh;
     margin-top: 100px;
 }
 .fundoo{
