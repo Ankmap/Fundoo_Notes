@@ -21,6 +21,7 @@ export class IconComponent implements OnInit {
 
   /* Decorators */
   @Input() card;
+  @Input() noteData;
   @Output() onChangeColor = new EventEmitter()
   @Output() onChangeDelete = new EventEmitter()
   @Output() onChangeTrash = new EventEmitter()
@@ -30,7 +31,7 @@ export class IconComponent implements OnInit {
   @Output() popupChange = new EventEmitter()
   @Output() onChangeCollaborator = new EventEmitter()
   destroy$: Subject<boolean> = new Subject<boolean>();
-
+  data:any
 
 
   constructor(

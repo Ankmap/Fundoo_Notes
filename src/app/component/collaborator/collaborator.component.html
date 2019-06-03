@@ -19,17 +19,7 @@
       </div>
       <input placeholder="person or email to share with" [(ngModel)]="searchValue" (keyup)="searchUser()" matInput
         [matAutocomplete]="auto">
-      <div>
-        <mat-icon (click)="addCol()">done</mat-icon>
-      </div>
       <mat-autocomplete #auto="matAutocomplete">
-        <!-- <mat-menu #menu="matMenu"> -->
-        <!-- <div *ngFor="let data of userList">
-            <button mat-button class=name (click)="addCol(data)">
-              {{data.firstName}} {{data.lastName}} [{{data.email}}]
-            </button>
-          </div>
-        </mat-menu> -->
         <mat-option *ngFor="let data of userList" [value]='data.email'>
           <button mat-button class=button (click)="addCol(data)">
             {{data.firstName}} {{data.lastName}} [{{data.email}}]
@@ -38,6 +28,21 @@
       </mat-autocomplete>
     </mat-card-header>
 
+    <mat-card-header *ngFor="let ccc of collaborators">
+
+      <div mat-card-avatar [ngStyle]="{'background-color':'rgba(0, 0, 255,0.3)','background-size':'cover',
+      'height':'40px','width':'40px','border':'1px solid blue','border-radius':'50%'}">
+      </div>
+      <div fxFlex=70>
+        <mat-card-title>{{ccc.firstName}} {{ccc.lastName}}</mat-card-title>
+        <mat-card-subtitle>{{ccc.email}}</mat-card-subtitle>
+      </div>
+      <div fxFlex=10>
+        <button mat-icon-button>
+          <mat-icon (click)=removeCol(ccc)>clear</mat-icon>
+        </button>
+      </div>
+    </mat-card-header>
   </div>
 </div>
 

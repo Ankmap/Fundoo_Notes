@@ -57,7 +57,8 @@
                 <app-icon class="iconButton" (onChangeColor)="updateColor(data,$event)"
                     (onChangeDelete)="deleteNote(data,$event)" (onChangeArchive)="archiveNote(data,$event)"
                     (onChangeDateReminder)="updateReminder(data,$event)" (onChangeTrash)="trashNote(data, $event)"
-                    [card]=data (onChangeAddNote)="entry($event)">
+                    [card]=data (onChangeAddNote)="entry($event)"
+                    [noteData]=data>
                 </app-icon>
             </div>
         </mat-card>
