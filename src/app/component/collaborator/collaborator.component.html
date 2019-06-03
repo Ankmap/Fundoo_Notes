@@ -13,6 +13,25 @@
       <mat-card-title>{{firstName}} {{lastName}} (Owner)</mat-card-title>
       <mat-card-subtitle>{{email}}</mat-card-subtitle>
     </mat-card-header>
+
+    <mat-card-header *ngFor="let ccc of collaborators">
+
+      <div mat-card-avatar [ngStyle]="{'background-color':'gray','background-size':'cover',
+      'height':'40px','width':'40px','border':'1px solid black','border-radius':'40%'}">
+        <div class=nameIcon>{{ccc.firstName[0].toUpperCase()}}</div>
+      </div>
+
+      <div fxFlex=70>
+        <mat-card-title>{{ccc.firstName}} {{ccc.lastName}}</mat-card-title>
+        <mat-card-subtitle>{{ccc.email}}</mat-card-subtitle>
+      </div>
+      <div fxFlex=10>
+        <button mat-icon-button>
+          <mat-icon (click)=removeCol(ccc)>clear</mat-icon>
+        </button>
+      </div>
+    </mat-card-header>
+
     <mat-card-header>
       <div mat-card-avatar class="addPerson">
         <mat-icon class=icon>person_add</mat-icon>
@@ -28,21 +47,6 @@
       </mat-autocomplete>
     </mat-card-header>
 
-    <mat-card-header *ngFor="let ccc of collaborators">
-
-      <div mat-card-avatar [ngStyle]="{'background-color':'rgba(0, 0, 255,0.3)','background-size':'cover',
-      'height':'40px','width':'40px','border':'1px solid blue','border-radius':'50%'}">
-      </div>
-      <div fxFlex=70>
-        <mat-card-title>{{ccc.firstName}} {{ccc.lastName}}</mat-card-title>
-        <mat-card-subtitle>{{ccc.email}}</mat-card-subtitle>
-      </div>
-      <div fxFlex=10>
-        <button mat-icon-button>
-          <mat-icon (click)=removeCol(ccc)>clear</mat-icon>
-        </button>
-      </div>
-    </mat-card-header>
   </div>
 </div>
 

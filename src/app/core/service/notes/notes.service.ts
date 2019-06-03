@@ -58,10 +58,17 @@ export class NotesService {
   }
 
   /**
-   * @Purpose : addLabelToNotes
+   * @Purpose : Add Label To Notes
   **/
   addColNote(body, id) {
     return this.service.postDataForaddLabelToNotes("/notes/" + id + "/AddcollaboratorsNotes", body)
+  }
+
+  /**
+     * @Purpose : Remove Collaborators
+    **/
+  removeCollaborators(noteId, userId) {
+    return this.service.postDataForRemoveCollaboratorsToNotes("/notes/" + noteId + "/removeCollaboratorsNotes/" + userId)
   }
 
   /**

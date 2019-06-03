@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
+import { Component, OnInit, Inject, Input, Output } from '@angular/core';
 import { NotesService } from 'src/app/core/service/notes/notes.service';
 import { DataService } from 'src/app/core/service/data/data.service';
 import { MatDialog, MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -17,6 +17,7 @@ export class CollaboratorComponent implements OnInit {
   userList: any[];
 
   @Input() noteData;
+  @Output() anyChanges;
   // notes: Note[] = [];
   collab = new Collaborator();
   collabData: any[];
@@ -82,6 +83,27 @@ export class CollaboratorComponent implements OnInit {
 
     } catch (error) {
       this.snackbar.open('Error something wrong', "error", { duration: 3000 });
+    }
+    /* For GetAll Note without refresh*/
+    setTimeout(() => this.dataService.getAllNote(), 10);
+  }
+  //removeCol(ccc)
+  removeCol(data) {
+    this.noteService.removeCollaborators(this.data.noteData['id'], data.userId)
+      .subscribe((response) => {
+        this.snackbar.open('Collaborators remove successfully......!', 'Done...!', { duration: 3000 });
+        console.log("Remove Collaborators To Notes response ===>", response);
+      }, (error) => {
+        this.snackbar.open('Error while Collaborators remove......!', 'Error...!', { duration: 3000 });
+        console.log("Remove Collaborators To Notes error ===>", error);
+      });
+    /* For GetAll Note without refresh*/
+    setTimeout(() => this.dataService.getAllNote(), 10);
+  }
+
+  refresh(event) {
+    if (event) {
+      this.dataService.getAllNote();
     }
   }
 }

@@ -187,6 +187,20 @@ export class HttpService {
     return this.http.delete(environment.baseUrl + path, httpAuthOptions);
   }
 
+
+  /**
+   * @Purpose : Delete collaborator
+   **/
+  postDataForRemoveCollaboratorsToNotes(path) {
+    let httpAuthOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      })
+    }
+    return this.http.delete(environment.baseUrl + path, httpAuthOptions);
+  }
+
   /**
    * @Purpose :  Label
    **/
@@ -338,6 +352,7 @@ export class HttpService {
     console.log('token ==================>', localStorage.getItem('token'));
     return this.http.post(environment.baseUrl + path, body, httpOptions);
   }
+
   // removeLabelToNotes
   postDataForGetNotesListByLabel(path, body) {
     console.log(body);
