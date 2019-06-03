@@ -14,20 +14,20 @@
       <mat-card-subtitle>{{email}}</mat-card-subtitle>
     </mat-card-header>
 
-    <mat-card-header *ngFor="let ccc of collaborators">
+    <mat-card-header *ngFor="let data of collaborators">
 
       <div mat-card-avatar [ngStyle]="{'background-color':'gray','background-size':'cover',
       'height':'40px','width':'40px','border':'1px solid black','border-radius':'40%'}">
-        <div class=nameIcon>{{ccc.firstName[0].toUpperCase()}}</div>
+        <div class=nameIcon>{{data.firstName[0].toUpperCase()}}</div>
       </div>
 
       <div fxFlex=70>
-        <mat-card-title>{{ccc.firstName}} {{ccc.lastName}}</mat-card-title>
-        <mat-card-subtitle>{{ccc.email}}</mat-card-subtitle>
+        <mat-card-title>{{data.firstName}} {{data.lastName}}</mat-card-title>
+        <mat-card-subtitle>{{data.email}}</mat-card-subtitle>
       </div>
       <div fxFlex=10>
         <button mat-icon-button>
-          <mat-icon (click)=removeCol(ccc)>clear</mat-icon>
+          <mat-icon (click)=removeCol(data)>clear</mat-icon>
         </button>
       </div>
     </mat-card-header>
