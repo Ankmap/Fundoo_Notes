@@ -33,6 +33,8 @@ import { DialogComponent } from './component/dialog/dialog.component';
 import { TrashComponent } from './component/trash/trash.component';
 import { ImageCropComponent } from './component/image-crop/image-crop.component';
 import { GetlabelComponent } from './component/getlabel/getlabel.component';
+import { PinComponent } from './component/pin/pin.component';
+
 
 /**
  * @Purpose : Pipe
@@ -91,7 +93,8 @@ import { NotefilterPipe } from './core/pipe/noteFilter/notefilter.pipe';
     TrashComponent,
     ImageCropComponent,
     NotefilterPipe,
-    GetlabelComponent
+    GetlabelComponent,
+    PinComponent,
   ],
   imports: [
     BrowserModule,

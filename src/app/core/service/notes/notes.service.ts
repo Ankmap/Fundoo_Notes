@@ -161,4 +161,11 @@ export class NotesService {
   getNotesListByLabel(label) {
     return this.service.postDataForremoveLabelToNotes("/notes/getNotesListByLabel/" + label, {})
   }
+
+  /**
+   * @Purpose : pin & Unpin Notes 
+   **/
+  pinUnpinNotes(body) {
+    return this.service.postDataForpinUnpinNotes("/notes/pinUnpinNotes",body)
+  }
 }

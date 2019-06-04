@@ -20,6 +20,7 @@ import { IconComponent } from './component/icon/icon.component';
 import { TrashComponent } from './component/trash/trash.component';
 import { ImageCropComponent } from './component/image-crop/image-crop.component';
 import { GetlabelComponent } from './component/getlabel/getlabel.component';
+import { PinComponent } from './component/pin/pin.component';
 
 /*AuthGuard service*/
 import { AuthGuard } from './core/service/auth/auth.guard'
@@ -49,7 +50,8 @@ const appRoutes: Routes = [
       { path: 'icon', component:IconComponent},
       { path: 'trash', component:TrashComponent},
       { path: 'image', component: ImageCropComponent},
-      { path: 'getlabel/:label', component:GetlabelComponent}
+      { path: 'getlabel/:label', component:GetlabelComponent},
+      { path: 'pin', component:PinComponent}
     ]
   },
   /*Componnet Lifecycle Demo path set*/

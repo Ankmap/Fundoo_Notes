@@ -324,6 +324,13 @@ export class NoteListComponent implements OnInit {
     setTimeout(() => this.data.getAllNote(), 100);
   }
 
+  //pin()
+  private isPin: boolean = false;
+  onPinChange($event){
+    this.isPin = $event
+    console.log("this.pin============>",this.isPin);
+    
+  }
 }
 
 

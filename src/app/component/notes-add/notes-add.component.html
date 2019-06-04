@@ -26,7 +26,7 @@
         <abbr title="New note with image">
           <button mat-button (click)="addNoteImage()">
             <img (click)="file.click()" src="../../../assets/outline-photo_size_select_actual-24px.svg">
-            <input style="display:none;" type="file" #file (change)="onSelectIamge()"> 
+            <input style="display:none;" type="file" #file (change)="onSelectIamge()">
           </button>
         </abbr>
       </div>
@@ -44,44 +44,61 @@
 
   <!-- add notecard start -->
   <div fxLayoutAlign="space-around center" *ngIf="!notecard">
-    <mat-card [style.backgroundColor]="setColor" class="card" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px'
+    <mat-card [style.backgroundColor]="setColor" class="card" fxFlex.xl='700px' fxFlex.lg='750px' fxFlex.md='500px'
       fxFlex.sm='400px' fxFlex.xs='150px'>
       <div>
         <div fxLayout='column' fxLayoutGap='20px'>
           <!-- For title binding -->
-          <input class="title" placeholder="Title" [style.backgroundColor]="setColor" [formControl]="title"
-            [(ngModel)]="addNotes.title">
+          <div fxLayout='row' fxFlex=100>
+            <div fxFlex=95>
+              <input class="title" placeholder="Title" [style.backgroundColor]="setColor" [formControl]="title"
+                [(ngModel)]="addNotes.title">
+            </div>
+            <div fxFlex=5>
+              <app-pin (onChange)=onPinChange($event)></app-pin>
+            </div>
+          </div>
           <!-- For description binding -->
           <input class="description" placeholder="Take a note..." [style.backgroundColor]="setColor"
             [formControl]="description" [(ngModel)]="addNotes.description">
         </div>
         <div>
-          <div fxLayout='row'>
-            <app-icon (onChangeColor)="receivecolor($event)" (onChangeDateReminder)="receiveReminder($event)">
-            </app-icon>
-            <div class="row" fxLayoutGap='5px'>
-              <abbr title="Undo">
-                <button mat-button>
-                  <i class="material-icons">
-                    undo
-                  </i>
-                </button>
-              </abbr>
-              <abbr title="Redo">
-                <button mat-button>
-                  <i class="material-icons">
-                    redo
-                  </i>
-                </button>
-              </abbr>
+          <div fxLayout='row' fxFlex='100'>
+            <div fxFlex='50'>
+              <app-icon (onChangeColor)="receivecolor($event)" (onChangeDateReminder)="receiveReminder($event)">
+              </app-icon>
             </div>
-            <button style="margin-left: 130px;" mat-button (click)="addNote()">Close</button>
+            <div fxFlex='40'>
+              <div fxFlex=100>
+                <div fxFlex=50>
+                  <abbr title="Undo">
+                    <button mat-button>
+                      <i class="material-icons">
+                        undo
+                      </i>
+                    </button>
+                  </abbr>
+                </div>
+                <div fxFlex=50>
+                  <abbr title="Redo">
+                    <button mat-button>
+                      <i class="material-icons">
+                        redo
+                      </i>
+                    </button>
+                  </abbr>
+                </div>
+              </div>
+            </div>
+            <div fxFlex='10'>
+              <button mat-button (click)="addNote()">Close</button>
+            </div>
           </div>
         </div>
       </div>
     </mat-card>
   </div>
-  <!-- Note-list Selector -->
+  <!-- Note-list Selector style="margin-left: 130px;"-->
   <app-note-list></app-note-list>
   <!-- add notecard end -->
 </div>

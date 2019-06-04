@@ -5,7 +5,7 @@
  *@version - 1.0
  *@since   - 22/04/2019
 **************************************************************************************************/
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NotesService } from '../../core/service/notes/notes.service';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -21,7 +21,8 @@ import { Subject } from 'rxjs';
   styleUrls: ['./notes-add.component.scss']
 })
 export class NotesAddComponent implements OnInit {
-
+  pinUnpin: any;
+  private isPin: boolean = false;
   /**
    * @Purpose : Inject the MatSnackBar, NotesService, 
    *            MatDialog, DataService in the constructor
@@ -46,7 +47,7 @@ export class NotesAddComponent implements OnInit {
    **/
   private notecard: boolean = true;
 
-  private listNote:boolean =false
+  private listNote: boolean = false
   /**
    * @Purpose : For new Notecard open
    **/
@@ -57,10 +58,10 @@ export class NotesAddComponent implements OnInit {
   /**
    * @Purpose : for new newList open
    **/
-  newListOpen(){
+  newListOpen() {
     this.listNote = true;
   }
-  
+
   /**
    * @Purpose :CardColor
    **/
@@ -88,7 +89,8 @@ export class NotesAddComponent implements OnInit {
       "title": this.addNotes.title,
       "description": this.addNotes.description,
       "color": this.addNotes.color,
-      "reminder": this.addNotes.reminder
+      "reminder": this.addNotes.reminder,
+      "isPined" : this.isPin
     }
     console.log('console for addNote ================>', body);
     try {
@@ -114,7 +116,12 @@ export class NotesAddComponent implements OnInit {
     setTimeout(() => this.updateNote.getAllNote(), 100);
   }
 
+  //pin()
+ 
+  onPinChange($event){
 
+    this.isPin = $event
+  }
 }
 
 

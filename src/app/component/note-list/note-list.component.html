@@ -17,6 +17,7 @@
                 <div class="title">{{data.title}}</div>
                 <div class="description"> {{data.description }}</div>
             </div>
+            <app-pin (onChange)=onPinChange(data,$event)></app-pin>
             <br>
 
             <!-- Reminder Show  start -->

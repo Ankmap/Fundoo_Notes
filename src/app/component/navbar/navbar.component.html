@@ -67,10 +67,10 @@
                         <abbr title="Grid">
                             <button style="outline: none;" mat-icon-button *ngIf=list (click)=changeView()
                                 fxShow="true">
-                                <img src="../../../assets/grid.svg">
+                                <img src="../../../assets/grid.svg" height="35" width="35">
                             </button>
                             <button style="outline: none" mat-icon-button *ngIf=grid (click)=changeView() fxShow="true">
-                                <img src="../../../assets/list.svg" height="42" width="42">
+                                <img src="../../../assets/list.svg" height="35" width="35">
                             </button>
                         </abbr>
                     </div>
@@ -101,8 +101,6 @@
                 [ngStyle]="{'background-image': 'url('+img+')','background-size':'cover', 'height':'60px','width':'60px'}"
                 class="img2" (click)=image.click()>
             </div>
-            <!-- <div class=nameIcon>{{ccc.firstName[0].toUpperCase()}}</div> -->
-
             <mat-card-title>{{firstName}} {{lastName}}</mat-card-title>
             <mat-card-subtitle>{{email}}</mat-card-subtitle>
         </mat-card-header><br>

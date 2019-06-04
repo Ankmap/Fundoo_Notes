@@ -67,13 +67,23 @@ export class CollaboratorComponent implements OnInit {
     console.log("Add collaborators data 2====>", this.collaborators);
     console.log("Add collaborators data note id ===>", this.data.noteData['id']);
     this.collabData = this.userList[0];
+    // for (let i = 0; this.collaborators.length; i++) {
+    //   if (data == this.collaborators[i]) {
+    //     return console.log("Add collaborators")
+    //   }
+    // }
     console.log("Check data ===>", this.collabData);
+    // console.log("Check data ===>", data);
+
     console.log('console for Add collaborators data note id and collaborators details =======================>', this.collabData, this.data.noteData['id']);
     try {
-      this.noteService.addColNote(this.collabData, this.data.noteData['id']).subscribe(
+      // this.noteService.addColNote(data, this.data.noteData['id']).subscribe(
+        this.noteService.addColNote(this.collabData, this.data.noteData['id']).subscribe(
+
         data => {
           this.snackbar.open('Collaborators added successfully......!', 'Done...!', { duration: 3000 });
           console.log('Collaborators added successfully information ==========>', data);
+          this.collaborators.push(data)
         },
         error => {
           this.snackbar.open('Error while collaboratoring note......!', 'Error', { duration: 3000 });

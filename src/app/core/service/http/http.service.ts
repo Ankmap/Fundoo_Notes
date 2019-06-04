@@ -274,7 +274,7 @@ export class HttpService {
   }
 
   /**
-   * @Purpose : reminder Note
+   * @Purpose : Get reminder Notes List
    **/
   postDataForgetReminderNotesList(path) {
     const httpOptions = {
@@ -288,7 +288,7 @@ export class HttpService {
   }
 
   /**
-   * @Purpose : Delete Label
+   * @Purpose : Trash Label
    **/
   postDataFortrashNote(path) {
     let httpAuthOptions = {
@@ -301,7 +301,7 @@ export class HttpService {
   }
 
   /**
-   * @Purpose : Archive Note list
+   * @Purpose : Get Archive Note list
    **/
   postDataForgetTrashNotesList(path) {
     const httpOptions = {
@@ -314,7 +314,7 @@ export class HttpService {
     return this.http.get(environment.baseUrl + path, httpOptions);
   }
 
-  // uploadProfileImage
+  // Upload Profile Image
   postDataForuploadProfileImage(path, body) {
     console.log(body);
     const httpOptions = {
@@ -327,7 +327,7 @@ export class HttpService {
     return this.http.post(environment.baseUrl + path, body, httpOptions);
   }
 
-  // addLabelToNotes
+  // Add Label To Notes
   postDataForaddLabelToNotes(path, body) {
     console.log(body);
     const httpOptions = {
@@ -340,7 +340,7 @@ export class HttpService {
     return this.http.post(environment.baseUrl + path, body, httpOptions);
   }
 
-  // removeLabelToNotes
+  // Remove Label To Notes
   postDataForremoveLabelToNotes(path, body) {
     console.log(body);
     const httpOptions = {
@@ -353,12 +353,25 @@ export class HttpService {
     return this.http.post(environment.baseUrl + path, body, httpOptions);
   }
 
-  // removeLabelToNotes
+  // Get Notes List By Label
   postDataForGetNotesListByLabel(path, body) {
     console.log(body);
     const httpOptions = {
       headers: new HttpHeaders({
         // 'Content-Type': 'application/json
+        'Authorization': localStorage.getItem('token')
+      })
+    };
+    console.log('token ==================>', localStorage.getItem('token'));
+    return this.http.post(environment.baseUrl + path, body, httpOptions);
+  }
+
+  // pin Unpin Notes
+  postDataForpinUnpinNotes(path, body) {
+    console.log(body);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
         'Authorization': localStorage.getItem('token')
       })
     };
