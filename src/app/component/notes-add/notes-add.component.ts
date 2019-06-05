@@ -21,8 +21,7 @@ import { Note } from '../../core/model/note/note';
 export class NotesAddComponent implements OnInit {
 
   /* Pin Unpin Note */
-  pinUnpin: any;
-  private isPin: boolean = false;
+  private isPined: boolean = false;
 
   /**
   * @Purpose : Note Model
@@ -36,7 +35,7 @@ export class NotesAddComponent implements OnInit {
   constructor(
     private NoteAddService: NotesService,
     private snackbar: MatSnackBar,
-    private updateNote: DataService
+    private dataService: DataService
   ) { }
 
   /* Binding the title and description */
@@ -89,7 +88,7 @@ export class NotesAddComponent implements OnInit {
       "description": this.addNotes.description,
       "color": this.addNotes.color,
       "reminder": this.addNotes.reminder,
-      "isPined": this.isPin
+      "isPined": this.isPined,
     }
     console.log('console for Add Note ================>', body);
     try {
@@ -106,20 +105,22 @@ export class NotesAddComponent implements OnInit {
       /* Null title, description, and color null after add note */ 
       this.addNotes.title = null;
       this.addNotes.description = null;
-      this.setColor = null;
+      // this.setColor = null;
+      // this.addNotes.color = null;
 
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
     /* For GetAll Note without refresh*/
-    setTimeout(() => this.updateNote.getAllNote(), 100);
+    setTimeout(() => this.dataService.getAllNote(), 100);
   }
 
   /**
    * @Purpose : Pin Unpin Note
    **/
   onPinChange($event) {
-    this.isPin = $event
+    this.isPined =!this.isPined;
+    this.isPined = $event
   }
 }
 

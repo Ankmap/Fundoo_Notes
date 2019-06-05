@@ -10,40 +10,42 @@ import { Subject } from 'rxjs';
 })
 export class PinComponent implements OnInit {
 
+  destroy$: Subject<boolean> = new Subject<boolean>();
+  @Input() card
+  @Output() onChangePin = new EventEmitter;
+  private isPined: boolean = false;
+
   constructor(
     private noteService: NotesService
   ) { }
 
   ngOnInit() {
     if (this.card) {
-      this.isPin = this.card.isPin;
+      this.isPined = this.card.isPined;
     }
   }
 
   //pin()
-  destroy$: Subject<boolean> = new Subject<boolean>();
-  @Input() card
-  @Output() onChange = new EventEmitter;
-  private isPin: boolean = false;
+  
   pin() {
-    this.isPin = !this.isPin;
+    this.isPined = !this.isPined;
     if (this.card) {
       let id = [];
       id.push(this.card.id);
       var body = {
-        "isPin": this.isPin,
+        "isPined": this.isPined,
         "noteIdList": [id] /* Access noteIdList for particular note*/
       }
       console.log('pin Unpin ====>',body)    
       this.noteService.pinUnpinNotes(body)
         .pipe(takeUntil(this.destroy$))
         .subscribe((response) => {
-          this.onChange.emit({})
+          this.onChangePin.emit({})
           console.log('pinUnpin ==>', response);
         });
     }
     else {
-      this.onChange.emit(this.isPin);
+      this.onChangePin.emit(this.isPined);
     }
   }
 

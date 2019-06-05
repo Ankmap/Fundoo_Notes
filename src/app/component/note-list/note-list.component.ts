@@ -93,15 +93,30 @@ export class NoteListComponent implements OnInit {
       this.direction = this.view.data
     });
   }
-
+  pinedArray = [];
+  unpinedArray = [];
   /* Get all Note using filter */
   getNote() {
     this.data.allNote.pipe(takeUntil(this.destory$)).subscribe(
       data => {
         this.notes = data
-        this.notes = this.notes.filter(function (el) {
-          return (el.isArchived === false && el.isDeleted === false);
-        });
+        // this.notes = this.notes.filter(function (el) {
+        //   return (el.isArchived === false && el.isDeleted === false);
+        // });
+        this.pinedArray = [];
+        this.unpinedArray = []
+        for (let i = this.notes.length; i > 0; i--) {
+          if ((this.notes[i - 1]["isDeleted"] == false) && (this.notes[i - 1]["isArchived"] == false)) {
+            if (this.notes[i - 1]["isPined"] == true) {
+              this.pinedArray.push(this.notes[i - 1]);
+              // console.log("pinned array =====>", this.pinedArray);
+            }
+            else {
+              this.unpinedArray.push(this.notes[i - 1]);
+              // console.log("unpinned array =====>", this.unpinedArray);
+            }
+          }
+        }
         console.log('Get all Notes =====>', this.notes)
       });
 
@@ -327,11 +342,34 @@ export class NoteListComponent implements OnInit {
   /**
    * @Purpose : Pin nad Unpin
    **/
-  private isPin: boolean = false;
-  onPinChange($event) {
-    this.isPin = $event
-    console.log("this.pin============>", this.isPin);
+  private isPined: boolean = false;
+  
+  /**
+   * @Purpose : Update Pin
+   **/
+  updatePin(data, $event) {
+    this.isPined = $event
+    var body = {
+      "iPined": this.isPined,
+      "noteIdList": [data.id] /* Access noteIdList for particular note*/
+    }
+    console.log("Set Pin =====>", body);
+    try {
+      this.noteService.pinUnpinNotes(body).subscribe(
+        data => {
+          this.snackbar.open('pin update successfully......!', 'Done...!', { duration: 3000 });
+          console.log('pin update successfully ==========>', data);
+        },
+        error => {
+          this.snackbar.open('Error while pin update  ......!', 'Error', { duration: 3000 });
+          console.log("Error something wrong: ", error)
+        });
 
+    } catch (error) {
+      this.snackbar.open('error', "", { duration: 3000 });
+    }
+    /* For GetAll Note without refresh*/
+    setTimeout(() => this.data.getAllNote(), 100);
   }
 }
 
