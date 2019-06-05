@@ -13,158 +13,160 @@ import { HttpService } from '../http/http.service';
 })
 export class NotesService {
 
-  constructor(private service: HttpService) { }
+  constructor(
+    private service: HttpService
+    ) { }
 
   /**
-   * @Purpose : Add Note
+   *1. @Purpose : Add Notes
    **/
   addNote(body) {
     return this.service.postDataForEncoded("/notes/addNotes", body)
   }
 
   /**
-   * @Purpose : Get Note and access without refresh
+   *2. @Purpose : Get Notes List and access without refresh
    **/
   getNotes(): any {
     return this.service.getdDta("notes/getNotesList")
   }
 
   /**
-   * @Purpose : Color Change
+   *3. @Purpose : Changes Color Notes
    **/
   cardColorChange(body) {
     return this.service.chnageColor("notes/changesColorNotes", body)
   }
 
   /**
-   * @Purpose : DeleteNote Forever
+   *4. @Purpose : Delete Note Forever
    **/
   deleteNote(body) {
     return this.service.deleteNote("notes/deleteForeverNotes", body)
   }
 
   /**
-   * @Purpose : Add label
+   *5. @Purpose : Add note Labels
    **/
   addLabel(body) {
     return this.service.postDataForAddLabel("noteLabels", body)
   }
 
   /**
-   * @Purpose : Show Label
+   *6. @Purpose : Get Note Label List
   **/
   showNoteLabel() {
     return this.service.postDataForShowLabel("noteLabels/getNoteLabelList")
   }
 
   /**
-   * @Purpose : Add Label To Notes
+   *7. @Purpose : Add collaborators Notes
   **/
   addColNote(body, id) {
     return this.service.postDataForaddLabelToNotes("/notes/" + id + "/AddcollaboratorsNotes", body)
   }
 
   /**
-     * @Purpose : Remove Collaborators
-    **/
+    *8. @Purpose : Remove Collaborators
+  **/
   removeCollaborators(noteId, userId) {
     return this.service.postDataForRemoveCollaboratorsToNotes("/notes/" + noteId + "/removeCollaboratorsNotes/" + userId)
   }
 
   /**
-   * @Purpose : Update Note
-   **/
+   *9. @Purpose : Update Note
+  **/
   updateNote(body) {
     return this.service.postDataForUpdateNote("/notes/updateNotes", body)
   }
 
   /**
-   * @Purpose : Delete Note
-   **/
+   *10. @Purpose : Delete Note Label
+  **/
   deleteNoteLabel(labelId) {
     return this.service.postDataForDeleteLabel("/noteLabels/" + labelId + "/deleteNoteLabel")
   }
 
   /**
-   * @Purpose : Update Note
-   **/
+   *11. @Purpose : Update Note Label
+  **/
   updateNoteLabel(labelId, body) {
     return this.service.postDataForUpdateLabel("/noteLabels/" + labelId + "/updateNoteLabel", body)
   }
 
   /**
-   * @Purpose : Archive Note
-   **/
+   *12. @Purpose : Archive Note
+  **/
   archiveNote(body) {
     return this.service.postDataForArchiveNote("/notes/archiveNotes", body)
   }
 
   /**
-   * @Purpose : Get Archived List
-   **/
+   *13. @Purpose : Get Archived List
+  **/
   getArchivedList() {
     return this.service.postDataForArchiveNoteGetList("/notes/getArchiveNotesList")
   }
 
   /**
-  * @Purpose : Update Reminder
+  *14. @Purpose : Add Update Reminder Notes
   **/
   addUpdateReminderNotes(body) {
     return this.service.chnageReminder("/notes/addUpdateReminderNotes", body)
   }
 
   /**
-   * @Purpose : Update Reminder
-   **/
+   *15. @Purpose : Remove Reminder Notes
+  **/
   removeReminderNotes(body) {
     return this.service.removeReminderNotes("/notes/removeReminderNotes", body)
   }
 
   /**
-   * @Purpose : Update Reminder
-   **/
+   *16. @Purpose : Get Reminder Notes List
+  **/
   getReminderNotesList() {
     return this.service.postDataForgetReminderNotesList("/notes/getReminderNotesList")
   }
 
   /**
-   * @Purpose : Delete Note
-   **/
+   *17. @Purpose : Trash Notes
+  **/
   trashNotes(body) {
     return this.service.deleteNote("/notes/trashNotes", body)
   }
 
   /**
-   * @Purpose : Delete Note
-   **/
+   *18. @Purpose : Get Trash Notes List
+  **/
   getTrashNotesList() {
     return this.service.postDataForgetTrashNotesList("/notes/getTrashNotesList")
   }
 
   /**
-   * @Purpose : addLabelToNotes Note
-   **/
+   *19. @Purpose : Add Label To Notes 
+  **/
   addLabelToNotes(cardId, labelId) {
     return this.service.postDataForaddLabelToNotes("/notes/" + cardId + "/addLabelToNotes/" + labelId + "/add", {})
   }
 
   /**
-   * @Purpose : Delete Note
-   **/
+   *20. @Purpose :  Remove Label To Notes
+  **/
   removeLabelToNotes(cardId, labelId) {
     return this.service.postDataForremoveLabelToNotes("/notes/" + cardId + "/addLabelToNotes/" + labelId + "/remove", {})
   }
 
   /**
-   * @Purpose : Delete Note
-   **/
+   *21. @Purpose : Get Notes List By Label
+  **/
   getNotesListByLabel(label) {
     return this.service.postDataForremoveLabelToNotes("/notes/getNotesListByLabel/" + label, {})
   }
 
   /**
-   * @Purpose : pin & Unpin Notes 
-   **/
+   *22. @Purpose : pin & Unpin Notes 
+  **/
   pinUnpinNotes(body) {
     return this.service.postDataForpinUnpinNotes("/notes/pinUnpinNotes",body)
   }

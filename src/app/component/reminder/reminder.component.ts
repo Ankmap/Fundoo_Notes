@@ -1,3 +1,10 @@
+/*****************************************************************************************************
+ *@Purpose - FundoNotes.
+ *@file    - reminder.component.scss
+ *@author  - Ankita Mapari <mapariit@gmail.com>
+ *@version - 1.0
+ *@since   - 22/04/2019
+**************************************************************************************************/
 import { Component, OnInit } from '@angular/core';
 import { NotesService } from 'src/app/core/service/notes/notes.service';
 import { Note } from 'src/app/core/model/note/note';
@@ -11,6 +18,7 @@ import { MatSnackBar } from '@angular/material';
   templateUrl: './reminder.component.html',
   styleUrls: ['./reminder.component.scss']
 })
+
 export class ReminderComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
@@ -19,18 +27,18 @@ export class ReminderComponent implements OnInit {
   private reminderArray = [];
   private array = [];
 
-  /* Note */
+  /* Note model */
   private notes: Note[] = [];
   
-  /* Grid View*/
+  /* Grid View and list view */
   direction: String = "row";
   wrap: string = "wrap";
   view: any;
 
-  /* SetColor*/
+  /* SetColor */
   setColor: any;
   
-  /* Reminder Update*/
+  /* Reminder Update */
   setReminder: any;
 
   /* Archive Note */
@@ -44,9 +52,11 @@ export class ReminderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    /* Show Reminder */ 
     this.showReminder();
 
-    /* Grid View*/
+    /* Grid View and list view */
     this.dataService.getView().subscribe((response) => {
       this.view = response;
       this.direction = this.view.data
@@ -55,7 +65,7 @@ export class ReminderComponent implements OnInit {
 
 
   /**
-   * @Purpose : For ShowLabel
+   * @Purpose : For Show Reminder
    **/
   showReminder() {
     this.noteService.getReminderNotesList()
@@ -96,18 +106,19 @@ export class ReminderComponent implements OnInit {
     /* For GetAll Note without refresh*/
     setTimeout(() => this.dataService.getAllNote(), 0);
   }
+
   /**
-   * @Purpose : Update Reminder
+   * @Purpose : Remove Reminder
    **/
   removeReminderNotes(data, $event) {
     this.setReminder = $event;
-    var reminderUpdate = {
+    var body = {
       "reminder": this.setReminder,
       "noteIdList": [data.id] /* Access noteIdList for particular note*/
     }
-    console.log("colorUpdate =====>", reminderUpdate);
+    console.log("Remove Reminder =====>", body);
     try {
-      this.noteService.removeReminderNotes(reminderUpdate).subscribe(
+      this.noteService.removeReminderNotes(body).subscribe(
         data => {
           this.snackbar.open('Reminder removed successfully......!', 'Done...!', { duration: 3000 });
           console.log('Register infor ==========>', data);
@@ -129,14 +140,14 @@ export class ReminderComponent implements OnInit {
    **/
   archiveNote(data, $event) {
     this.archiveNote1 = $event;
-    var archiveNote = {
+    var body = {
       "isArchived": this.isArchived,
       "noteIdList": [data.id] /* Access noteIdList for particular note*/
     }
-    console.log('Archive Note =====>', archiveNote);
+    console.log('Archive Note =====>', body);
 
     try {
-      this.noteService.archiveNote(archiveNote).subscribe(
+      this.noteService.archiveNote(body).subscribe(
         data => {
           this.snackbar.open(' Note archive ', ' Undo ', { duration: 1000 });
           console.log('Archive Note Successfully....!', data);

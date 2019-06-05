@@ -21,12 +21,11 @@ import { DialogComponent } from '../dialog/dialog.component';
 })
 export class NoteListComponent implements OnInit {
 
-  
   /* Note Model*/
   notes: Note[] = [];
   message: string;
 
-  /* Grid View*/
+  /* Grid View */
   direction: String = "row";
   wrap: string = "wrap";
   view: any;
@@ -46,10 +45,10 @@ export class NoteListComponent implements OnInit {
     **/
   @Output() anyChanges = new EventEmitter();
 
-  /* SetColor*/
+  /* SetColor */
   setColor: any;
 
-  /* Delete Note*/
+  /* Delete Note */
   deleteNote1: any;
   private isDeleted: false;
 
@@ -57,15 +56,16 @@ export class NoteListComponent implements OnInit {
   isArchived = true;
   archiveNote1: any
 
-  /* Reminder Update*/
+  /* Reminder Update */
   setReminder: any;
 
-  /* Trash Note*/
+  /* Trash Note */
   trashNote1: any;
   newNotes: Note[];
 
-  /* Add Note to Label*/
+  /* Add Note to Label */
   labelId: any;
+
   /**
    * @Purpose : inject the DataService, MatDialog, NotesService, MatSnackBar in the constructor
    **/
@@ -77,6 +77,7 @@ export class NoteListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     /* Get all Note */
     this.getNote();
 
@@ -86,14 +87,14 @@ export class NoteListComponent implements OnInit {
         this.view = message
       })
 
-    /* Grid View*/
+    /* Grid View and list view */
     this.data.getView().subscribe((response) => {
       this.view = response;
       this.direction = this.view.data
     });
   }
 
-  /* Get all Note */
+  /* Get all Note using filter */
   getNote() {
     this.data.allNote.pipe(takeUntil(this.destory$)).subscribe(
       data => {
@@ -101,7 +102,7 @@ export class NoteListComponent implements OnInit {
         this.notes = this.notes.filter(function (el) {
           return (el.isArchived === false && el.isDeleted === false);
         });
-        console.log('Get all Notes =====>',this.notes)
+        console.log('Get all Notes =====>', this.notes)
       });
 
   }
@@ -190,7 +191,7 @@ export class NoteListComponent implements OnInit {
   }
 
   /**
-   * @Purpose : Open dialog box and edit it 
+   * @Purpose : Open dialog box and edit Note 
    **/
   openDialog(data: any): void {
     const dialogRef = this.dialog.open(DialogComponent, {
@@ -202,7 +203,7 @@ export class NoteListComponent implements OnInit {
         'id': data.id,
       }
     });
-    /* Close the dialog*/
+    /* Close the dialog box */
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog closed: ${result}`);
     });
@@ -218,7 +219,6 @@ export class NoteListComponent implements OnInit {
       "noteIdList": [data.id] /* Access noteIdList for particular note*/
     }
     console.log('Archive Note =====>', archiveNote);
-
     try {
       this.noteService.archiveNote(archiveNote).subscribe(
         data => {
@@ -311,7 +311,7 @@ export class NoteListComponent implements OnInit {
       }, (error) => {
         console.log('Error ====>', error);
       });
-      /* For GetAll Note without refresh*/
+    /* For GetAll Note without refresh*/
     setTimeout(() => this.data.getAllNote(), 100);
   }
 
@@ -324,12 +324,14 @@ export class NoteListComponent implements OnInit {
     setTimeout(() => this.data.getAllNote(), 100);
   }
 
-  //pin()
+  /**
+   * @Purpose : Pin nad Unpin
+   **/
   private isPin: boolean = false;
-  onPinChange($event){
+  onPinChange($event) {
     this.isPin = $event
-    console.log("this.pin============>",this.isPin);
-    
+    console.log("this.pin============>", this.isPin);
+
   }
 }
 

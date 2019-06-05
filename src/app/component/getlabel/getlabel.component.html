@@ -1,15 +1,18 @@
+<!-- /*****************************************************************************************************
+ *@Purpose - FundoNotes.
+ *@file    - getlabel.componet.html
+ *@author  - Ankita Mapari <mapariit@gmail.com>
+ *@version - 1.0
+ *@since   - 22/04/2019
+**************************************************************************************************/ -->
 <div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign=" center center">
     <div class="cardSub" *ngFor="let data of label | sortPipe | searchNote : searchItem"
         [ngClass]=" direction =='row' ? 'cardSub':'cardSub2' ">
         <mat-card [ngStyle]="{'background-color':data.color}">
-            <div (click)="openDialog(data)">
-                <div class="title">{{data.title}}</div>
-                <div class="description"> {{data.description }}</div>
-            </div>
+            <div class="title">{{data.title}}</div>
+            <div class="description"> {{data.description }}</div>
             <br>
-
             <!-- Reminder Show  start -->
-
             <div fxLayout="row" class="reminderMain" fxLayoutGap="5px">
                 <div *ngIf="data.reminder.length>0">
                     <mat-chip-list>
@@ -22,11 +25,9 @@
                     </mat-chip-list>
                 </div>
             </div>
-
             <!-- Reminder Show End -->
             <br>
             <!-- AddNoteLabel Show  start -->
-
             <mat-chip-list>
                 <div *ngFor="let cardData of data.noteLabels">
                     <mat-chip class="label" *ngIf="cardData.isDeleted==false" (click)=showLabel(cardData.label)>
@@ -36,17 +37,12 @@
                     </mat-chip>
                 </div>
             </mat-chip-list>
-
             <!-- AddNoteLabel Show End -->
 
             <div class="icon">
                 <!-- Use ICON Selector to display icon in the display card
-                'cardSub': direction=='row', 'cardSub2':direction=='column'
-                -->
-                <app-icon class="iconButton" (onChangeColor)="updateColor(data,$event)"
-                    (onChangeDelete)="deleteNote(data,$event)" (onChangeArchive)="archiveNote(data,$event)"
-                    (onChangeDateReminder)="updateReminder(data,$event)" (onChangeTrash)="trashNote(data, $event)"
-                    [card]=data (onChangeAddNote)="entry($event)">
+                'cardSub': direction=='row', 'cardSub2':direction=='column'-->
+                <app-icon class="iconButton" [card]=data (onChangeAddNote)="entry($event)">
                 </app-icon>
             </div>
         </mat-card>

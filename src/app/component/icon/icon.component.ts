@@ -1,3 +1,10 @@
+/*****************************************************************************************************
+ *@Purpose - FundoNotes.
+ *@file    - icon.componet.ts
+ *@author  - Ankita Mapari <mapariit@gmail.com>
+ *@version - 1.0
+ *@since   - 22/04/2019
+**************************************************************************************************/
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CollaboratorComponent } from '../collaborator/collaborator.component'
 import { MatDialog } from '@angular/material';
@@ -6,11 +13,6 @@ import { Label } from 'src/app/core/model/label/label';
 import { takeUntil } from 'rxjs/operators';
 import { NotesService } from 'src/app/core/service/notes/notes.service';
 import { DataService } from 'src/app/core/service/data/data.service';
-
-
-export interface DialogData {
-  noteData: object
-}
 
 @Component({
   selector: 'app-icon',
@@ -30,9 +32,8 @@ export class IconComponent implements OnInit {
   @Output() onChangeAddNote = new EventEmitter()
   @Output() popupChange = new EventEmitter()
   @Output() onChangeCollaborator = new EventEmitter()
-  destroy$: Subject<boolean> = new Subject<boolean>();
-  data:any
 
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
     private dialog: MatDialog,
@@ -40,8 +41,20 @@ export class IconComponent implements OnInit {
     private dataService: DataService
   ) { }
 
-  /* Color Code with name*/
+  /* Archive */
+  isArchive: boolean = false;
 
+
+  /* Reminder */
+  currentDate = new Date;
+
+  /* Label Model*/
+  private labelList;
+  private labelArray = [];
+  private Array = [];
+  private label: Label[] = [];
+
+  /* Color Code with name*/
   arrayOfColors = [
     [
       { name: "white", hexcode: "#FFFFFF" },
@@ -78,22 +91,20 @@ export class IconComponent implements OnInit {
   }
 
   /* addCollaborator */
-  addCollaborator(cardDetails) :void {
+  addCollaborator(cardDetails): void {
     const dialogRef = this.dialog.open(CollaboratorComponent, {
       width: '600px',
       data: { noteData: cardDetails }
     });
     dialogRef.afterClosed()
-    .pipe(takeUntil(this.destroy$))
-    .subscribe(result => {
-      console.log('Dialog closed');
-      this.onChangeCollaborator.emit({})
-    });
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(result => {
+        console.log('Dialog closed');
+        this.onChangeCollaborator.emit({})
+      });
   }
 
   /* Archive */
-  isArchive: boolean = false;
-
   archiveNote(note) {
     this.onChangeArchive.emit(note);
   }
@@ -103,16 +114,7 @@ export class IconComponent implements OnInit {
     this.onChangeTrash.emit(note);
   }
 
-  /* Reminder */
-  currentDate = new Date;
-
-   /* Label Model*/
-   private labelList;
-   private labelArray = [];
-   private Array = [];
-   private label: Label[] = [];
- 
-  
+  /************************************* Reminder start **************************************************/
   /* Today */
   today() {
     let date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate() + 0, 8, 0, 0)
@@ -134,7 +136,9 @@ export class IconComponent implements OnInit {
     this.onChangeDateReminder.emit(date)
   }
 
-  
+  /************************************* Reminder end **************************************************/
+
+
   /**
    * @Purpose : Show Label
    **/
@@ -148,21 +152,21 @@ export class IconComponent implements OnInit {
       this.labelList = this.label;
 
       for (let i = 0; i < this.labelList.length; i++) {
-        this.labelList[i].isChecked = false; /* False checkList*/
+        this.labelList[i].isChecked = false; /* False check */
         if (this.card) {
           for (let j = 0; j < this.card.noteLabels.length; j++) {
             if (this.labelList[i].label == this.card.noteLabels[j].label) {
               this.Array.push(this.labelList[i])
-              this.labelList[i].isChecked = true; /* true checkList*/
+              this.labelList[i].isChecked = true; /* true check */
             }
           }
         }
       }
     }, (error) => {
-      console.log("ERR====>", error);
+      console.log("ERR ====>", error);
     });
-     /* For GetAll Note without refresh*/
-     setTimeout(() => this.dataService.getAllNote(), 5000);
+    /* For GetAll Note without refresh*/
+    setTimeout(() => this.dataService.getAllNote(), 5000);
   }
 
   /**
@@ -173,9 +177,9 @@ export class IconComponent implements OnInit {
       this.noteService.addLabelToNotes(this.card.id, label.id)
         .subscribe((response) => {
           this.onChangeAddNote.emit({})
-          console.log("response====>", response);
+          console.log("  Add Label to Note response ====>", response);
         }, (error) => {
-          console.log("ERR====>", error);
+          console.log(" Add Label to Note error ====>", error);
         });
     }
     /* For GetAll Note without refresh*/
@@ -189,9 +193,9 @@ export class IconComponent implements OnInit {
     this.noteService.removeLabelToNotes(this.card.id, label.id)
       .subscribe((response) => {
         this.onChangeAddNote.emit({})
-        console.log("response====>", response);
+        console.log(" Remove Label from Note response ====>", response);
       }, (error) => {
-        console.log("ERR====>", error);
+        console.log("Remove Label from Note error ====>", error);
       });
     /* For GetAll Note without refresh*/
     setTimeout(() => this.dataService.getAllNote(), 100);

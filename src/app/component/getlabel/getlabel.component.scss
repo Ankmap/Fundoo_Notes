@@ -1,3 +1,10 @@
+/*****************************************************************************************************
+ *@Purpose - FundoNotes.
+ *@file    - getlabel.componet.scss
+ *@author  - Ankita Mapari <mapariit@gmail.com>
+ *@version - 1.0
+ *@since   - 22/04/2019
+**************************************************************************************************/
 .cardSub{
     border-radius: 5%;
     width: 285px;
@@ -52,8 +59,6 @@ mat-chip {
 }
 .cardMain{
     display: flex;
-    justify-content: space-around;
-    align-items: stretch;
     max-width: 1000px;
 }
 

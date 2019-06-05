@@ -1,3 +1,10 @@
+/*****************************************************************************************************
+ *@Purpose - FundoNotes.
+ *@file    - dialog.componet.ts
+ *@author  - Ankita Mapari <mapariit@gmail.com>
+ *@version - 1.0
+ *@since   - 22/04/2019
+**************************************************************************************************/
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormControl } from '@angular/forms';
@@ -5,32 +12,32 @@ import { Note } from 'src/app/core/model/note/note';
 import { NotesService } from 'src/app/core/service/notes/notes.service';
 import { DataService } from 'src/app/core/service/data/data.service';
 
-
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss']
 })
+
 export class DialogComponent implements OnInit {
 
   /**
-    * @Purpose : Bind title and description
-    **/
+  * @Purpose : Bind title and description
+  **/
   title = new FormControl(this.data.title);
   description = new FormControl(this.data.description);
 
   /**
-    * @Purpose : Note model
-    **/
+  * @Purpose : Note model
+  **/
   addNotes: Note = new Note();
 
   constructor(
-    public dialogRef: MatDialogRef<DialogComponent>, @Inject(MAT_DIALOG_DATA) 
-    public data: any, 
-    private noteService: NotesService, 
-    private dataService: DataService, 
+    public dialogRef: MatDialogRef<DialogComponent>, @Inject(MAT_DIALOG_DATA)
+    public data: any,
+    private noteService: NotesService,
+    private dataService: DataService,
     private snackbar: MatSnackBar
-    ) { }
+  ) { }
 
   ngOnInit() {
   }

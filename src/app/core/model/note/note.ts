@@ -15,6 +15,5 @@ export class Note {
     "isDeleted":boolean;
     "reminder":string;
     "label":string;
-  data: any;
-
+    data: any;
 }

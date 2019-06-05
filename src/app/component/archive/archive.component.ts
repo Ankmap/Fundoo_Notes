@@ -1,3 +1,10 @@
+/*****************************************************************************************************
+ *@Purpose - FundoNotes.
+ *@file    - archive.componet.ts
+ *@author  - Ankita Mapari <mapariit@gmail.com>
+ *@version - 1.0
+ *@since   - 22/04/2019
+**************************************************************************************************/
 import { Component, OnInit } from '@angular/core';
 import { NotesService } from 'src/app/core/service/notes/notes.service';
 import { takeUntil } from 'rxjs/operators';
@@ -11,6 +18,7 @@ import { DataService } from 'src/app/core/service/data/data.service';
   templateUrl: './archive.component.html',
   styleUrls: ['./archive.component.scss']
 })
+
 export class ArchiveComponent implements OnInit {
 
   destory$: Subject<boolean> = new Subject<boolean>();
@@ -21,20 +29,22 @@ export class ArchiveComponent implements OnInit {
     private dataService: DataService
   ) { }
 
+  /* Note Model */
   private notes: Note[] = []
 
   /* Archive Note */
   isArchived = false;
 
-  /* Grid View*/
+  /* Grid View */
   direction: String = "row";
   wrap: string = "wrap";
   view: any;
 
   ngOnInit() {
+    /* Get all archive note list */
     this.getArchivedList();
 
-    /* Grid View*/
+    /* Grid View */
     this.dataService.getView().subscribe((response) => {
       this.view = response;
       this.direction = this.view.data
@@ -44,32 +54,30 @@ export class ArchiveComponent implements OnInit {
   /**
    * @Purpose : Archive Note
    **/
-  newNotes: Note[];
   getArchivedList() {
     this.noteService.getArchivedList()
       .pipe(takeUntil(this.destory$))
       .subscribe((response) => {
-        this.notes = response["data"].data.filter(function(el){
+        this.notes = response["data"].data.filter(function (el) {
           return (el.isArchived === true)
         });
-        console.log(" getArchivedList ======> ", this.notes);
+        console.log(" Get Archived List response ======> ", this.notes);
       }, (error) => {
-        console.log("getArchivedList ======>", error);
+        console.log("Get Archived List error ======>", error);
       });
   }
+  
   /**
    * @Purpose : Unarchive Note
    **/
-
   unarchiveNote(data) {
-    var archiveNote = {
+    var body = {
       "isArchived": this.isArchived,
       "noteIdList": [data.id] /* Access noteIdList for particular note*/
     }
-    console.log('Archive Note =====>', archiveNote);
-
+    console.log('Archive Note =====>', body);
     try {
-      this.noteService.archiveNote(archiveNote).subscribe(
+      this.noteService.archiveNote(body).subscribe(
         data => {
           this.snackbar.open(' Note unarchive ', ' Undo ', { duration: 1000 });
           console.log('Archive Note Successfully....!', data);

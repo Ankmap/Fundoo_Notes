@@ -34,14 +34,6 @@
   </div>
   <!-- Notecard end -->
 
-  <!-- New List Note start -->
-  <div *ngIf="!listNote" data-text=" Take a Note.....">
-    <div *ngIf="listNote">
-      <mat-card></mat-card>
-    </div>
-  </div>
-  <!-- New List Note End -->
-
   <!-- add notecard start -->
   <div fxLayoutAlign="space-around center" *ngIf="!notecard">
     <mat-card [style.backgroundColor]="setColor" class="card" fxFlex.xl='700px' fxFlex.lg='750px' fxFlex.md='500px'
@@ -54,6 +46,7 @@
               <input class="title" placeholder="Title" [style.backgroundColor]="setColor" [formControl]="title"
                 [(ngModel)]="addNotes.title">
             </div>
+            <!-- App pin selector -->
             <div fxFlex=5>
               <app-pin (onChange)=onPinChange($event)></app-pin>
             </div>
@@ -65,6 +58,7 @@
         <div>
           <div fxLayout='row' fxFlex='100'>
             <div fxFlex='50'>
+              <!-- App Icon selector -->
               <app-icon (onChangeColor)="receivecolor($event)" (onChangeDateReminder)="receiveReminder($event)">
               </app-icon>
             </div>

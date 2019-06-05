@@ -25,13 +25,16 @@
     <div *ngFor="let label of labels | sortPipe" style="height:6vh">
         <div fxLayout=row>
             <div fxFlex="100" fxLayoutAlign="start start" (mouseover)="changeText=true" (mouseout)="changeText=false">
+                <!-- MouseOver for delete label -->
                 <div fxFlex="20">
                     <mat-icon *ngIf="!changeText">label</mat-icon>
                     <mat-icon *ngIf="changeText" (click)="deleteLabel(label.id)">delete</mat-icon>
                 </div>
+                <!-- Show all label -->
                 <div fxFlex="80">
                     <p>{{label.label}}</p>
                 </div>
+                <!-- Edit label -->
                 <div fxFlex="20">
                     <div fxLayoutAlign="end end" *ngIf="labelId != label.id" (click)="editIcon(label.id,label.label)">
                         <mat-icon class="doneIcon" (click)="editIcon(label.id,label.label)">edit</mat-icon>

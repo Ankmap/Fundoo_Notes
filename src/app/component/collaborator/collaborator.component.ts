@@ -1,3 +1,10 @@
+/*****************************************************************************************************
+ *@Purpose - FundoNotes.
+ *@file    - collaborator.componet.ts
+ *@author  - Ankita Mapari <mapariit@gmail.com>
+ *@version - 1.0
+ *@since   - 22/04/2019
+**************************************************************************************************/
 import { Component, OnInit, Inject, Input, Output } from '@angular/core';
 import { NotesService } from 'src/app/core/service/notes/notes.service';
 import { DataService } from 'src/app/core/service/data/data.service';
@@ -10,13 +17,18 @@ import { environment } from 'src/environments/environment';
   templateUrl: './collaborator.component.html',
   styleUrls: ['./collaborator.component.scss']
 })
-export class CollaboratorComponent implements OnInit {
-  searchValue: any;
-  userList: any[];
 
+export class CollaboratorComponent implements OnInit {
+
+  /* Decorators */
   @Input() noteData;
   @Output() anyChanges;
 
+  /* Search USer */
+  searchValue: any;
+  userList: any[];
+
+  /* Add Collaborators */
   collabData: any[];
   private collaborators = [];
 
@@ -27,27 +39,28 @@ export class CollaboratorComponent implements OnInit {
     private dialog: MatDialog,
     private userService: UserserviceService,
     public dialogRef: MatDialogRef<CollaboratorComponent>, @Inject(MAT_DIALOG_DATA)
-    public data: any, ) { }
+    public data: any
+  ) { }
 
-
+  /* Get from localstorage */
   firstName = localStorage.getItem("firstname");
   lastName = localStorage.getItem("lastname");
   email = localStorage.getItem("email");
   img = environment.url + localStorage.getItem("userImage")
 
   ngOnInit() {
-    //collaborators
+    /* collaborators */
     for (let i = 0; i < this.data.noteData["collaborators"].length; i++) {
       this.collaborators.push(this.data.noteData["collaborators"][i])
     }
   }
 
-  // close dialog
+  /* Close dialog  box */
   cancel() {
     this.dialog.closeAll();
   }
 
-  // SearchUser
+  /* Search User */
   searchUser() {
     let body = {
       'searchWord': this.searchValue
@@ -55,17 +68,20 @@ export class CollaboratorComponent implements OnInit {
     this.userService.searchUserList(body).subscribe((response) => {
       this.userList = [];
       this.userList = response['data'].details;
-      console.log("SearchWord userList ===>", this.userList);
+      console.log("Search Word userList response ===>", this.userList);
     }, (error) => {
-      console.log(" SearchWord ===>", error);
+      console.log(" Search Word userList error ===>", error);
     });
   }
 
-  // Add collaborators
+  /**
+   *@Purpose : Add collaborators
+  **/
   addCol(data) {
     console.log("Add collaborators data 1====>", data);
     console.log("Add collaborators data 2====>", this.collaborators);
     console.log("Add collaborators data note id ===>", this.data.noteData['id']);
+    /* Get collaborators details */
     this.collabData = this.userList[0];
     // for (let i = 0; this.collaborators.length; i++) {
     //   if (data == this.collaborators[i]) {
@@ -74,15 +90,14 @@ export class CollaboratorComponent implements OnInit {
     // }
     console.log("Check data ===>", this.collabData);
     // console.log("Check data ===>", data);
-
     console.log('console for Add collaborators data note id and collaborators details =======================>', this.collabData, this.data.noteData['id']);
     try {
       // this.noteService.addColNote(data, this.data.noteData['id']).subscribe(
-        this.noteService.addColNote(this.collabData, this.data.noteData['id']).subscribe(
-
+      this.noteService.addColNote(this.collabData, this.data.noteData['id']).subscribe(
         data => {
           this.snackbar.open('Collaborators added successfully......!', 'Done...!', { duration: 3000 });
           console.log('Collaborators added successfully information ==========>', data);
+          /* Push data into collaborators */ 
           this.collaborators.push(data)
         },
         error => {
@@ -95,7 +110,11 @@ export class CollaboratorComponent implements OnInit {
     /* For GetAll Note without refresh*/
     setTimeout(() => this.dataService.getAllNote(), 10);
   }
-  //removeCol(ccc)
+  
+  
+  /**
+   *@Purpose : Remove collaborators
+  **/
   removeCol(data) {
     this.noteService.removeCollaborators(this.data.noteData['id'], data.userId)
       .subscribe((response) => {
@@ -109,9 +128,13 @@ export class CollaboratorComponent implements OnInit {
     setTimeout(() => this.dataService.getAllNote(), 10);
   }
 
+  /**
+   *@Purpose : Refresh
+  **/
   refresh(event) {
     if (event) {
       this.dataService.getAllNote();
     }
   }
+  
 }

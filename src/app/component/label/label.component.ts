@@ -16,7 +16,6 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { DataService } from 'src/app/core/service/data/data.service';
 
-
 @Component({
   selector: 'app-label',
   templateUrl: './label.component.html',
@@ -34,18 +33,24 @@ export class LabelComponent implements OnInit {
     "labelName": "",
     "newName": ""
   }
+
   /* Get Id from localstorage*/
   id = localStorage.getItem('userId');
 
+  /* Open and Close editIcon*/
+  private labelId
+
+  /* Mouse Over for delete and label icon */
   changeText: boolean;
 
   constructor(
     private note: NotesService,
     private snackbar: MatSnackBar,
     private router: Router,
-    private dataService :DataService,
+    private dataService: DataService,
     private dialogRef: MatDialogRef<NavbarComponent>
   ) {
+    /* Mouse Over for delete and label icon */
     this.changeText = false;
   }
 
@@ -68,21 +73,21 @@ export class LabelComponent implements OnInit {
       this.dialogRef.close();
       return false;
     }
-    console.log('Data after edit label', body);
+    console.log('Data for edit label', body);
     try {
       this.note.addLabel(body).pipe(takeUntil(this.destroy$))
         .subscribe((response) => {
           console.log("Response ====>", response);
           this.showLabel();
-          /* Add */ 
+          /* Add */
           this.dataService.changeMessage('')
         },
           error => {
-            console.log("Data ====>", error);
+            console.log("Data add label ====>", error);
           }
         )
     } catch (err) {
-      console.log("Error", err);
+      console.log("Data add label Error ====>", err);
     }
   }
 
@@ -95,9 +100,9 @@ export class LabelComponent implements OnInit {
       .subscribe((response: any) => {
         this.labels = response.data.details
         this.labelList = [];
-        console.log("check showLabel=====>", response);
+        console.log("check show Label=====>", response);
       }, (error) => {
-        console.log("Data ====>", error);
+        console.log("Data show Label ====>", error);
       });
   }
 
@@ -123,10 +128,10 @@ export class LabelComponent implements OnInit {
     this.note.deleteNoteLabel(labelId)
       .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
-        console.log("deleteLabel response ===>", response);
+        console.log("Delete Label response ===>", response);
         this.showLabel();
       }, (error) => {
-        console.log("deleteLabel error ===>", error);
+        console.log("Delete Label error ===>", error);
       });
   }
 
@@ -141,15 +146,16 @@ export class LabelComponent implements OnInit {
     this.note.updateNoteLabel(labelId, body)
       .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
-        console.log("deleteLabel response ===>", response);
+        console.log(" Edit Label response ===>", response);
         this.dialogRef.close();
       }, (error) => {
-        console.log("deleteLabel error ===>", error);
+        console.log("Edit Label error ===>", error);
       });
   }
 
-  /* Open and Close editIcon*/
-  private labelId
+  /**
+  @Purpose : Open and Close editIcon
+  **/
   editIcon(id, labelName) {
     this.labelId = [];
     this.labelId = id;

@@ -27,40 +27,46 @@ export class NavbarComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  /* from localStorage */
+  /* Get from localStorage */
   firstName = localStorage.getItem("firstname");
   lastName = localStorage.getItem("lastname");
   email = localStorage.getItem("email");
   image = localStorage.getItem("userImage");
+
   // image = 'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
   // image = 'http://34.213.106.173/'+this.imageUrl;
 
   /* label */
   private label: Label[] = [];
   private labelList = [];
-  private signoutCard: boolean = false; /* signOut */
-  private searchValue: any; /* search the note */
 
-  /*Grid*/
+  /* signOut */
+  private signoutCard: boolean = false; 
+
+  /* search the note */
+  private searchValue: any; 
+
+  /* Grid */
   list: boolean = true;
   grid: boolean = false;
   view: any;
   direction: string;
 
+  /* Show Name */ 
   appName: String;
-
-  //img
-  private img;
-  private width;
   private labelShow: boolean = false;
   private labelValue ='';
+  
+  /* Profile img uploader */
+  private img;
+  private width;
   private message: string
 
-
   /**
- * @Purpose : Inject the UserserviceService, Router, NotesService, 
- *            MatDialog, DataService in the constructor
- **/
+  * @Purpose : Inject the UserserviceService, Router, NotesService, 
+  *            MatDialog, DataService in the constructor
+  **/
+
   constructor(
     private NavbarServiceUser: UserserviceService,
     private router: Router,
@@ -70,20 +76,24 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    /* Show Name */
     this.appName = "Fundoo";
+
     /* For Show Label*/
     this.showLabel();
 
-    /*For gridView and ListView*/
+    /* For gridView and ListView */
     this.data.getView().subscribe((response) => {
       this.view = response;
       this.direction = this.view.data;
     });
-    /* imageUrl upload */
+
+    /* Image upload */
     // this.img = 'http://34.213.106.173/' + this.image;
     this.img = environment.url + this.image;
     this.isLargeScreen();
 
+    /* On Click Label show all note with that label */ 
     this.data.currentMessageLabel.subscribe(message => {this.message = message;
     if (this.message != "default") {
       this.router.navigateByUrl('/getlabel/'+this.message);
@@ -91,7 +101,7 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  // Image
+  /* Image upload */
   isLargeScreen() {
     this.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
   }
@@ -107,15 +117,13 @@ export class NavbarComponent implements OnInit {
       localStorage.removeItem("firstname");
       localStorage.removeItem("lastname");
       localStorage.removeItem("email");
-      // localStorage.removeItem("imageUrl");
       // localStorage.removeItem("userImage");
-
       this.router.navigateByUrl('/login');
     });
   }
 
   /**
-   * @Purpose : account and addAccount method for Logout
+   * @Purpose : Account for Logout
    **/
   account() {
     this.signoutCard = !(this.signoutCard);
@@ -162,13 +170,15 @@ export class NavbarComponent implements OnInit {
   newMessage() {
     this.data.changeMessageSearch(this.searchValue)
   }
+
   /**
     * @Purpose : refresh
-    **/
+  **/
   refresh() {
     this.router.navigateByUrl('/home');
     this.labelShow = false
   }
+
   /**
    * @Purpose : Note Click show all label
    **/
@@ -181,10 +191,10 @@ export class NavbarComponent implements OnInit {
   }
 
   /**
-   * @Purpose : Grid
+   * @Purpose : Grid view List View
    **/
   changeView() {
-    /* Toggle the btn */
+    /* Toggle the grid and list button */
     if (this.list) {
       this.grid = true;
       this.list = false;
@@ -194,6 +204,7 @@ export class NavbarComponent implements OnInit {
     }
     this.data.gridView();
   }
+
   /**
    * @Purpose : Reminder 
    * 
@@ -218,6 +229,7 @@ export class NavbarComponent implements OnInit {
     this.appName = "Trash";
     this.router.navigateByUrl('/trash');
   }
+
   /**
    * @Purpose : Profile Image Upload 
    **/
@@ -232,6 +244,8 @@ export class NavbarComponent implements OnInit {
         this.img = environment.url + localStorage.getItem("userImage")
       });
   }
+
+  /* Show label Name */ 
   navbarName(aa) {
     this.labelShow = true
     this.labelValue = aa

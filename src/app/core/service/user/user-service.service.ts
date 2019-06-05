@@ -17,48 +17,48 @@ export class UserserviceService {
   constructor(private service: HttpService) { }
 
   /**
-   * @Purpose : Login the user
+   *1. @Purpose : Login the user
    **/
   userLogin(body){
     return this.service.postData("/user/login",body)
   }
 
   /**
-   * @Purpose : Register new user
+   *2. @Purpose : Register new user
    **/
   userSignup(body){
     return this.service.postData("/user/userSignUp",body)
   }
 
   /**
-   * @Purpose : ForgotPassword
+   *3. @Purpose : ForgotPassword
    **/
   userReset(body){
     return this.service.postData("/user/reset",body)
   }
 
   /**
-   * @Purpose : Reset password
+   *4. @Purpose : Reset password
    **/
   userResetpassword(body){
     return this.service.postDataForEncodedReset("/user/reset-password",body)
   }
 
   /**
-   * @Purpose : Logout the user
+   *5. @Purpose : Logout the user
    **/
   userLogout(){
     return this.service.postDataForJSON("/user/logout",{})
   }
   /**
-   * @Purpose : Search userList for collaborator
+   *6. @Purpose : Search userList for collaborator
    **/
   searchUserList(body){
     return this.service.postDataForSearchUser("/user/searchUserList",body)
   }
 
   /**
-   * @Purpose : Search userList for collaborator
+   *7. @Purpose : Upload Profile Image
    **/
   uploadProfileImage(body){
     return this.service.postDataForuploadProfileImage("/user/uploadProfileImage",body)

@@ -1,3 +1,10 @@
+/*****************************************************************************************************
+ *@Purpose - FundoNotes.
+ *@file    - archive.componet.scss
+ *@author  - Ankita Mapari <mapariit@gmail.com>
+ *@version - 1.0
+ *@since   - 22/04/2019
+**************************************************************************************************/
 .cardSub{
     border-radius: 5%;
     width: 285px;
@@ -14,13 +21,6 @@ mat-card{
 .icon{
     visibility:hidden;
 }
-.iconButton{
-    opacity:0.7;
-    cursor: pointer;
-}
-.iconButton:hover{
-    opacity:1;
-} 
 .cardSub:hover .icon {
     visibility: visible;
 }
@@ -31,11 +31,4 @@ mat-card{
 .description{
     word-break: break-all;
 }
-.clear{
-    position: absolute;
-    margin-top: -4px;
-    opacity: 0.5;
-}
-.iconClear{
-    visibility:hidden;
-}
+

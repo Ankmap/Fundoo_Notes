@@ -118,6 +118,7 @@ export class HttpService {
     console.log('token ==================>', localStorage.getItem('token'));
     return this.http.post(environment.baseUrl + path, body, httpOptions);
   }
+
   /**
    * @Purpose :  Add label
    **/
@@ -132,7 +133,7 @@ export class HttpService {
   }
 
   /**
-   * @Purpose : ShowLabel
+   * @Purpose : Show Label
    **/
   postDataForShowLabel(path) {
     let httpAuthOptions = {
@@ -145,7 +146,7 @@ export class HttpService {
   }
 
   /**
-   * @Purpose : Collabarator
+   * @Purpose : Collabarator Search User
    **/
   postDataForSearchUser(path, body) {
     console.log(body);
@@ -160,7 +161,7 @@ export class HttpService {
   }
 
   /**
-   * @Purpose : UpdateNote
+   * @Purpose : Update Note
    **/
   postDataForUpdateNote(path, body) {
     console.log(body);
@@ -189,7 +190,7 @@ export class HttpService {
 
 
   /**
-   * @Purpose : Delete collaborator
+   * @Purpose : Remove Collaborators To Notes
    **/
   postDataForRemoveCollaboratorsToNotes(path) {
     let httpAuthOptions = {
@@ -202,7 +203,7 @@ export class HttpService {
   }
 
   /**
-   * @Purpose :  Label
+   * @Purpose :  Update Label
    **/
   postDataForUpdateLabel(path, body) {
     console.log(body);
@@ -232,7 +233,7 @@ export class HttpService {
   }
 
   /**
-   * @Purpose : Archive Note get list
+   * @Purpose : Archive Note Get List
    **/
   postDataForArchiveNoteGetList(path) {
     const httpOptions = {
@@ -260,7 +261,7 @@ export class HttpService {
   }
 
   /**
-   * @Purpose : Remove Reminder
+   * @Purpose : Remove Reminder Notes
    **/
   removeReminderNotes(path, body) {
     const httpOptions = {
@@ -288,7 +289,7 @@ export class HttpService {
   }
 
   /**
-   * @Purpose : Trash Label
+   * @Purpose : Trash Note
    **/
   postDataFortrashNote(path) {
     let httpAuthOptions = {
@@ -301,7 +302,7 @@ export class HttpService {
   }
 
   /**
-   * @Purpose : Get Archive Note list
+   * @Purpose : Get Trash Notes List
    **/
   postDataForgetTrashNotesList(path) {
     const httpOptions = {
@@ -314,7 +315,9 @@ export class HttpService {
     return this.http.get(environment.baseUrl + path, httpOptions);
   }
 
-  // Upload Profile Image
+  /**
+   * @Purpose : Upload Profile Image
+   **/
   postDataForuploadProfileImage(path, body) {
     console.log(body);
     const httpOptions = {
@@ -327,7 +330,9 @@ export class HttpService {
     return this.http.post(environment.baseUrl + path, body, httpOptions);
   }
 
-  // Add Label To Notes
+   /**
+   * @Purpose : Add Label To Notes
+   **/
   postDataForaddLabelToNotes(path, body) {
     console.log(body);
     const httpOptions = {
@@ -340,7 +345,9 @@ export class HttpService {
     return this.http.post(environment.baseUrl + path, body, httpOptions);
   }
 
-  // Remove Label To Notes
+  /**
+   * @Purpose : Remove Label To Notes
+   **/
   postDataForremoveLabelToNotes(path, body) {
     console.log(body);
     const httpOptions = {
@@ -353,7 +360,9 @@ export class HttpService {
     return this.http.post(environment.baseUrl + path, body, httpOptions);
   }
 
-  // Get Notes List By Label
+  /**
+   * @Purpose : Get Notes List By Label
+   **/
   postDataForGetNotesListByLabel(path, body) {
     console.log(body);
     const httpOptions = {
@@ -366,7 +375,9 @@ export class HttpService {
     return this.http.post(environment.baseUrl + path, body, httpOptions);
   }
 
-  // pin Unpin Notes
+  /**
+   * @Purpose : pin Unpin Notes
+   **/
   postDataForpinUnpinNotes(path, body) {
     console.log(body);
     const httpOptions = {
