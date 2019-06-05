@@ -5,7 +5,7 @@
  *@version - 1.0
  *@since   - 22/04/2019
 **************************************************************************************************/
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NotesService } from '../../core/service/notes/notes.service';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -19,9 +19,10 @@ import { Note } from '../../core/model/note/note';
 })
 
 export class NotesAddComponent implements OnInit {
-
+  @Output() onChangePin = new EventEmitter;
   /* Pin Unpin Note */
-  private isPined: boolean = false;
+  isPined: boolean = false;
+  // isPined: any
 
   /**
   * @Purpose : Note Model
@@ -102,7 +103,7 @@ export class NotesAddComponent implements OnInit {
           console.log("Error something wrong: ", error)
         });
 
-      /* Null title, description, and color null after add note */ 
+      /* Null title, description, and color null after add note */
       this.addNotes.title = null;
       this.addNotes.description = null;
       // this.setColor = null;
@@ -118,9 +119,12 @@ export class NotesAddComponent implements OnInit {
   /**
    * @Purpose : Pin Unpin Note
    **/
-  onPinChange($event) {
-    this.isPined =!this.isPined;
+  pinUpdate($event) {
+    console.log('this.isPinedthis.isPinedthis.isPined');
     this.isPined = $event
+    this.onChangePin.emit(this.isPined);
+    console.log('onPinChange ====>',this.isPined);
+    
   }
 }
 

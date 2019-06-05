@@ -11,6 +11,7 @@ import { Subject } from 'rxjs';
 export class PinComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
+
   @Input() card
   @Output() onChangePin = new EventEmitter;
   private isPined: boolean = false;
@@ -29,6 +30,7 @@ export class PinComponent implements OnInit {
   
   pin() {
     this.isPined = !this.isPined;
+    // this.onChangePin.emit(this.isPined);
     if (this.card) {
       let id = [];
       id.push(this.card.id);
