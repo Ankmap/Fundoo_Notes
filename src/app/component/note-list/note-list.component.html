@@ -13,11 +13,19 @@
         [ngClass]=" direction =='row' ? 'cardSub':'cardSub2' ">
         <mat-card [ngStyle]="{'background-color':data.color}">
             <!-- openDialog for dialog -->
-            <div (click)="openDialog(data)">
-                <div class="title">{{data.title}}</div>
-                <div class="description"> {{data.description }}</div>
+            <div fxFlexLayout=row >
+                <div fxFlex="90">
+                    <div (click)="openDialog(data)">
+                        <div class="title">{{data.title}}</div>
+                        <div class="description"> {{data.description }}</div>
+                    </div>
+                </div>
+                <div fxFlex="10">
+                    <div class="icon">
+                        <app-pin class="iconButton" (onChange)=onPinChange(data,$event)></app-pin>
+                    </div>
+                </div>
             </div>
-            <app-pin (onChange)=onPinChange(data,$event)></app-pin>
             <br>
 
             <!-- Reminder Show  start -->

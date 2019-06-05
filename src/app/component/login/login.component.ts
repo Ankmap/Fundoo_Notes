@@ -50,14 +50,12 @@ export class LoginComponent implements OnInit {
     var body = {
       "email": this.register.email,
       "password": this.register.password,
-      "UserId": this.register.id,
     }
-
-    console.log('console for this.register @@@@@@@@@@@@@@@@@=======================>', body);
+    console.log('Console for Login Account ======>', body);
     try {
       this.userService.userLogin(body).subscribe(
         data => {
-          console.log("Data while login account: ", data)
+          console.log("Data while login account ====>", data)
           localStorage.setItem('token', data['id']);
           localStorage.setItem('firstname', data['firstName']);
           localStorage.setItem('lastname', data['lastName']);
@@ -69,7 +67,7 @@ export class LoginComponent implements OnInit {
         },
         error => {
           this.snackbar.open('Error while login account......!', 'Error', { duration: 3000 });
-          console.log("Error while login account: ", error)
+          console.log("Error while login account ====>", error)
         });
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
