@@ -51,6 +51,8 @@ export class NotesAddComponent implements OnInit {
    **/
   private notecard: boolean = true;
 
+  private listNote:boolean = true;
+
   /**
    * @Purpose : For new Notecard open
    **/
@@ -126,6 +128,17 @@ export class NotesAddComponent implements OnInit {
     console.log('onPinChange ====>',this.isPined);
     
   }
+
+  /**
+   * @description :  opening the New list card
+   */
+  listCardOpen() {
+    this.listNote = false;
+  }
+  showCheckBox(event) {
+    this.listCardOpen();
+  }
+
 }
 
 

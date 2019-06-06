@@ -7,16 +7,20 @@
 **************************************************************************************************/ -->
 <div class="mainCard" fxLayout='column' fxLayoutGap='30px'>
   <!-- Notecard start -->
-  <div *ngIf="notecard">
+  <div *ngIf="notecard && listNote">
     <mat-card class="card" (click)="notecardOpen()" fxFlex.xl='700px' fxFlex.lg='750px' fxFlex.md='500px'
       fxFlex.sm='400px' fxFlex.xs='150px'>
       <div fxLayoutGap="35px">
         <span fxFlex="calc(50% - 25px)">Take a note...</span>
-        <abbr title="New list">
-          <button mat-button (click)="newListOpen()">
-            <img src="../../../assets/outline-check_box-24px.svg">
-          </button>
-        </abbr>
+        <div fxLayoutAlign="center" *ngIf="listNote">
+          <div fxFlex="35">
+            <abbr title="New List">
+              <button type="button" mat-button (click)="listCardOpen()">
+                <img src="../../../assets/outline-check_box-24px.svg">
+              </button>
+            </abbr>
+          </div>
+        </div>
         <abbr title="New note with drawing">
           <button mat-button (click)="addNoteDrawing()">
             <img src="../../../assets/outline-brush-24px.svg">
@@ -35,8 +39,73 @@
   <!-- Notecard end -->
 
   <!-- CheckList -->
-
   <!-- CheckList -->
+  <div fxLayoutAlign="center center" *ngIf="!listNote">
+    <mat-card class="card" fxFlex.xl='700px' fxFlex.lg='750px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
+      <div>
+        <div>
+          <div fxFlex='90'>
+            <input style="height:8vh; border-style: hidden; font-size: 20px;" [formControl]="title" placeholder="Title">
+          </div>
+          <div fxFlex='10'>
+            <button type="button" class="icon" mat-button>
+              <img src="../../../assets/pin.svg">
+            </button>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div>
+          <div>
+            <button type="button" mat-button>
+              <i class="material-icons">
+                add
+              </i>
+            </button>
+            <input style="height:4vh; border-style: hidden" placeholder="List Item">
+          </div>
+          <mat-divider></mat-divider>
+          <div style="height:3vh;"></div>
+          <!--  @Purpose: Icon List-->
+          <div>
+            <div fxLayout='row' fxFlex='100'>
+              <div fxFlex='50'>
+                <!-- App Icon selector -->
+                <app-icon></app-icon>
+              </div>
+              <div fxFlex='40'>
+                <div fxFlex=100>
+                  <div fxFlex=50>
+                    <abbr title="Undo">
+                      <button mat-button>
+                        <i class="material-icons">
+                          undo
+                        </i>
+                      </button>
+                    </abbr>
+                  </div>
+                  <div fxFlex=50>
+                    <abbr title="Redo">
+                      <button mat-button>
+                        <i class="material-icons">
+                          redo
+                        </i>
+                      </button>
+                    </abbr>
+                  </div>
+                </div>
+              </div>
+              <div fxFlex='10'>
+                <button mat-button>Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  <!-- CheckList end-->
+  <!-- CheckList -->
+
   <!-- add notecard start -->
   <div fxLayoutAlign="space-around center" *ngIf="!notecard">
     <mat-card [style.backgroundColor]="setColor" class="card" fxFlex.xl='700px' fxFlex.lg='750px' fxFlex.md='500px'
@@ -94,7 +163,7 @@
         </div>
       </div>
     </mat-card>
-  </div>
+  </div>z
   <!-- Note-list Selector style="margin-left: 130px;"-->
   <app-note-list></app-note-list>
   <!-- add notecard end -->
