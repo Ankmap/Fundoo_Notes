@@ -1,25 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+/** Material File **/ 
+import { MaterialDesignModule } from './material-design/material-design.module';
 
 /**
  * @Purpose : Configure animations and FlexLayoutModule, AuthGuard, HttpClientModule
  **/
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from '../app/core/service/auth/auth.guard';
 
-/** Components **/
+/** Parent Components **/
 import { LoginComponent } from './component/login/login.component';
 import { RegistrationComponent } from './component/registration/registration.component';
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 
-/*Child Components*/
+/** Child Components **/
 import { NotesAddComponent } from './component/notes-add/notes-add.component';
 import { ReminderComponent } from './component/reminder/reminder.component';
 import { LabelComponent } from './component/label/label.component';
@@ -35,34 +37,13 @@ import { ImageCropComponent } from './component/image-crop/image-crop.component'
 import { GetlabelComponent } from './component/getlabel/getlabel.component';
 import { PinComponent } from './component/pin/pin.component';
 
-
-/**
- * @Purpose : Pipe
- **/
+/** Pipe **/
 import { SortPipePipe } from '../app/core/pipe/sort/sort-pipe.pipe';
 import { SearchNotePipe } from './core/pipe/filter/search-note.pipe';
-
-/**
- * @Purpose : Material Required file
- **/
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCardModule } from '@angular/material';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatSelectModule} from '@angular/material/select';
-import {MatCheckboxModule,MatNativeDateModule} from '@angular/material';
-import {MatChipsModule} from '@angular/material/chips';
-import { ImageCropperModule } from 'ngx-image-cropper';
+import { NotefilterPipe } from './core/pipe/noteFilter/notefilter.pipe';
 
 /** Form Validation **/
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NotefilterPipe } from './core/pipe/noteFilter/notefilter.pipe';
 
 @NgModule({
   declarations: [
@@ -72,8 +53,8 @@ import { NotefilterPipe } from './core/pipe/noteFilter/notefilter.pipe';
     LoginComponent,
     RegistrationComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent,
-    
+    ResetPasswordComponent,  
+
     /** Child Components **/
     NavbarComponent,
     NotesAddComponent,
@@ -84,17 +65,17 @@ import { NotefilterPipe } from './core/pipe/noteFilter/notefilter.pipe';
     ComponentLifecycleComponent,
     NoteListComponent,
     IconComponent,
-
-    /** Pipes **/
-    SearchNotePipe,
-    SortPipePipe,
     CollaboratorComponent,
     DialogComponent,
     TrashComponent,
     ImageCropComponent,
-    NotefilterPipe,
     GetlabelComponent,
     PinComponent,
+
+    /** Pipes **/
+    SearchNotePipe,
+    SortPipePipe,
+    NotefilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -103,32 +84,13 @@ import { NotefilterPipe } from './core/pipe/noteFilter/notefilter.pipe';
     FlexLayoutModule,
     HttpClientModule,
 
-    /** Angular material **/
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatCardModule,
-    MatMenuModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatRadioModule,
-    MatButtonToggleModule,
+    /** Form Validation **/ 
     FormsModule,
     ReactiveFormsModule,
-    MatSnackBarModule,
-    MatAutocompleteModule,
-    MatDialogModule,
-    MatTooltipModule,
-    MatDatepickerModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatNativeDateModule,
-    MatChipsModule,
-    ImageCropperModule
+    
+    /** Material File **/ 
+    MaterialDesignModule
   ],
-
   providers: [],
   bootstrap: [AppComponent]
 })
