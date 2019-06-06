@@ -9,7 +9,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { UserserviceService } from 'src/app/core/service/user/user-service.service';
+import { UserService } from 'src/app/core/service/user/user.service';
 
 @Component({
   selector: 'app-image-crop',
@@ -22,7 +22,7 @@ export class ImageCropComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
-    private NavbarServiceUser: UserserviceService, 
+    private UserService: UserService, 
     private dialogRef: MatDialogRef<ImageCropComponent>,
     @Inject(MAT_DIALOG_DATA) 
     private data: any
@@ -49,7 +49,7 @@ export class ImageCropComponent implements OnInit {
     this.apiImage = this.croppedImage.file
     const uploadData = new FormData();
     uploadData.append('file', this.apiImage, this.apiImage.name);
-    this.NavbarServiceUser.uploadProfileImage(uploadData)
+    this.UserService.uploadProfileImage(uploadData)
       .pipe(takeUntil(this.destroy$))
       .subscribe(res => {
         this.dialogRef.close();

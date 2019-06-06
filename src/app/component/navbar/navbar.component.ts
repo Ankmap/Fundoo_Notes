@@ -7,7 +7,6 @@
 **************************************************************************************************/
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserserviceService } from '../../core/service/user/user-service.service';
 import { NotesService } from '../../core/service/notes/notes.service';
 import { DataService } from '../../core/service/data/data.service'
 import { MatDialog } from '@angular/material';
@@ -17,6 +16,7 @@ import { Subject } from 'rxjs';
 import { Label } from 'src/app/core/model/label/label';
 import { ImageCropComponent } from '../image-crop/image-crop.component';
 import { environment } from 'src/environments/environment';
+import { UserService } from '../../core/service/user/user.service'
 
 @Component({
   selector: 'app-navbar',
@@ -68,7 +68,7 @@ export class NavbarComponent implements OnInit {
   **/
 
   constructor(
-    private NavbarServiceUser: UserserviceService,
+    private UserService: UserService,
     private router: Router,
     private noteService: NotesService,
     private dialog: MatDialog,
@@ -110,7 +110,7 @@ export class NavbarComponent implements OnInit {
    * @Purpose : Logout
    **/
   logout() {
-    this.NavbarServiceUser.userLogout().subscribe((response) => {
+    this.UserService.userLogout().subscribe((response) => {
       console.log("response ====>", response);
       localStorage.removeItem("token");
       localStorage.removeItem("userId");

@@ -11,7 +11,7 @@ import { HttpService } from '../http/http.service';
 @Injectable({
   providedIn: 'root'
 })
-export class UserserviceService {
+export class UserService {
 
 
   constructor(private service: HttpService) { }

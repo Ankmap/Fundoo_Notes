@@ -9,8 +9,8 @@ import { Component, OnInit, Inject, Input, Output } from '@angular/core';
 import { NotesService } from 'src/app/core/service/notes/notes.service';
 import { DataService } from 'src/app/core/service/data/data.service';
 import { MatDialog, MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { UserserviceService } from 'src/app/core/service/user/user-service.service';
 import { environment } from 'src/environments/environment';
+import { UserService } from 'src/app/core/service/user/user.service';
 
 @Component({
   selector: 'app-collaborator',
@@ -37,7 +37,7 @@ export class CollaboratorComponent implements OnInit {
     private noteService: NotesService,
     private dataService: DataService,
     private dialog: MatDialog,
-    private userService: UserserviceService,
+    private userService: UserService,
     public dialogRef: MatDialogRef<CollaboratorComponent>, @Inject(MAT_DIALOG_DATA)
     public data: any
   ) { }

@@ -8,9 +8,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { User } from '../../core/model/user/user';
-import { UserserviceService } from '../../core/service/user/user-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/core/service/user/user.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -21,7 +21,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ResetPasswordComponent implements OnInit {
   register: User = new User();
   model: any;
-  constructor(private userService: UserserviceService, private snackbar: MatSnackBar, private router: Router, private activeRoute: ActivatedRoute) { }
+  constructor(private userService: UserService, private snackbar: MatSnackBar, private router: Router, private activeRoute: ActivatedRoute) { }
   /**
    * @Purpose : To get a token 
    **/

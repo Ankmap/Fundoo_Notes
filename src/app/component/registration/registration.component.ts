@@ -8,9 +8,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { User } from '../../core/model/user/user';
-import { UserserviceService } from '../../core/service/user/user-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/core/service/user/user.service';
 
 @Component({
   selector: 'app-registration',
@@ -19,7 +19,7 @@ import { Router } from '@angular/router';
 })
 export class RegistrationComponent implements OnInit {
   register: User = new User();
-  constructor(private userService: UserserviceService, private snackbar: MatSnackBar, private router: Router) {
+  constructor(private userService: UserService, private snackbar: MatSnackBar, private router: Router) {
     /*Enable and disabel Button Button*/
     this.currentLesson = this.classes[0].currentLesson
   }
