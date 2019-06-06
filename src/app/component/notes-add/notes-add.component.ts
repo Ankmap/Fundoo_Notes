@@ -135,9 +135,9 @@ export class NotesAddComponent implements OnInit {
   listCardOpen() {
     this.listNote = false;
   }
-  showCheckBox(event) {
-    this.listCardOpen();
-  }
+  // showCheckBox(event) {
+  //   this.listCardOpen();
+  // }
 
 }
 

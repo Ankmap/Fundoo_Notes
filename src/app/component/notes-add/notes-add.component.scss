@@ -35,16 +35,18 @@ span{
 .title{
     border-style: hidden; 
     outline: none;  
-    resize: none;
-
+    width: 675px;   
 }
-// title:after {
-//     width: 30px; height: 30px; position: absolute;
-// }
+
 .description{
     border-style: hidden; 
     outline: none;
     margin-bottom: 20px;
+    width: 675px;
+}
+.checkList{
+    border-style: hidden; 
+    outline: none;
 }
 .blue{
     @include back-ground-color($test-color-blue)  
