@@ -80,6 +80,13 @@ export class NotesAddComponent implements OnInit {
   }
 
   /**
+   * @Purpose : Add List
+   **/ 
+  addList(){
+    this.listNote = !(this.listNote);
+  }
+
+  /**
    * @Purpose : Add Note
    **/
   addNote() {
