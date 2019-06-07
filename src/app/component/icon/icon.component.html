@@ -121,6 +121,9 @@
       <button mat-menu-item [matMenuTriggerFor]="nestedMenu" (click)="showLabel()">
         <span>Add Note </span>
       </button>
+      <button mat-menu-item (click)="askQuestion(note)">
+          <span>Ask a Question</span>
+        </button>
     </mat-menu>
   </abbr>
 

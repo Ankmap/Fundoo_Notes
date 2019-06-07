@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+/* Editor */
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 /**
  * @Purpose : Material Required file 
  **/
@@ -40,7 +42,11 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     MatCheckboxModule,
     MatNativeDateModule,
     MatChipsModule,
-    ImageCropperModule
+    ImageCropperModule,
+
+    /* Editor */
+    FroalaEditorModule.forRoot(), 
+    FroalaViewModule.forRoot()
   ],
   exports:[
     /** Angular material **/
@@ -64,7 +70,10 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     MatCheckboxModule,
     MatNativeDateModule,
     MatChipsModule,
-    ImageCropperModule
+    ImageCropperModule,
+    /* Editor */
+    FroalaEditorModule,
+    FroalaViewModule
   ]
 })
  

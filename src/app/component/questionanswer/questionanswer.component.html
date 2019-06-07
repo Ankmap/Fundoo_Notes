@@ -1,0 +1,37 @@
+<div class="mainCard">
+    <div style="height:5vh"></div>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-card fxFlex.xl='700px' fxFlex.lg='750px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
+            <div>
+                <div fxFlex=90>
+                    <h3> First React</h3>
+                </div>
+                <div fxFlex=10>
+                    <button mat-button>Close</button>
+                </div>
+            </div>
+            <div style="height:3vh"></div>
+            <mat-divider></mat-divider>
+            <div style="height:3vh"></div>
+            <h2><strong>Ask a Question </strong></h2>
+            <p>Make sure what you are asking is unique, concise, and pharased like a question</p>
+            <div style="height:3vh"></div>
+            <div>
+                <div [froalaEditor]>
+
+                </div>
+            </div>
+            <div style="height:5vh"></div>
+            <div fxLayout="row" fxLayoutAlign="end end">
+                <button mat-raised-button color="primary">Submit-Question</button>
+            </div>
+            <div>
+                <mat-form-field>
+                    <mat-select placeholder="View reply">
+                        <mat-option>View reply</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </mat-card>
+    </div>
+</div>

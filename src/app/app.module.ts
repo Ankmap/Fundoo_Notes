@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-/** Material File **/ 
+/** Material File **/
 import { MaterialDesignModule } from './material-design/material-design.module';
 
 /**
@@ -36,6 +36,7 @@ import { TrashComponent } from './component/trash/trash.component';
 import { ImageCropComponent } from './component/image-crop/image-crop.component';
 import { GetlabelComponent } from './component/getlabel/getlabel.component';
 import { PinComponent } from './component/pin/pin.component';
+import { QuestionanswerComponent } from './component/questionanswer/questionanswer.component';
 
 /** Pipe **/
 import { SortPipePipe } from '../app/core/pipe/sort/sort-pipe.pipe';
@@ -45,6 +46,9 @@ import { NotefilterPipe } from './core/pipe/noteFilter/notefilter.pipe';
 /** Form Validation **/
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+
+// import 'froala-editor/js/plugins.pkgd.min.js';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +57,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     RegistrationComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent,  
+    ResetPasswordComponent,
 
     /** Child Components **/
     NavbarComponent,
@@ -76,6 +80,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SearchNotePipe,
     SortPipePipe,
     NotefilterPipe,
+    QuestionanswerComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,12 +89,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FlexLayoutModule,
     HttpClientModule,
 
-    /** Form Validation **/ 
+    /** Form Validation **/
     FormsModule,
     ReactiveFormsModule,
-    
-    /** Material File **/ 
-    MaterialDesignModule
+
+    /** Material File **/
+    MaterialDesignModule,
+
+  
   ],
   providers: [],
   bootstrap: [AppComponent]

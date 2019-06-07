@@ -13,6 +13,7 @@ import { Label } from 'src/app/core/model/label/label';
 import { takeUntil } from 'rxjs/operators';
 import { NotesService } from 'src/app/core/service/notes/notes.service';
 import { DataService } from 'src/app/core/service/data/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-icon',
@@ -38,7 +39,8 @@ export class IconComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private noteService: NotesService,
-    private dataService: DataService
+    private dataService: DataService,
+    private router: Router
   ) { }
 
   /* Archive */
@@ -199,5 +201,12 @@ export class IconComponent implements OnInit {
       });
     /* For GetAll Note without refresh*/
     setTimeout(() => this.dataService.getAllNote(), 100);
+  }
+
+  /**
+   * @Purpose : askQuestion
+   **/ 
+  askQuestion(note){
+    this.router.navigateByUrl('/answers');
   }
 }

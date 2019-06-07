@@ -63,11 +63,13 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('email', data['email']);
           localStorage.setItem('userId', data['userId']);
           localStorage.setItem('userImage', data['imageUrl'])
-          this.snackbar.open('Login done successfully......!', 'Done...!', { duration: 3000 });
+          this.snackbar.open('Login done successfully......!', 'Done...!', { duration: 3000, panelClass: 'center',
+           });
           this.router.navigateByUrl('/home');
         },
         error => {
-          this.snackbar.open('Error while login account......!', 'Error', { duration: 3000 });
+          this.snackbar.open('Error while login account......!', 'Error', { duration: 3000, panelClass: 'center',
+          verticalPosition: 'top' });
           console.log("Error while login account ====>", error)
         });
     } catch (error) {

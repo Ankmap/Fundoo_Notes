@@ -38,8 +38,9 @@ export class CollaboratorComponent implements OnInit {
     private dataService: DataService,
     private dialog: MatDialog,
     private userService: UserService,
-    public dialogRef: MatDialogRef<CollaboratorComponent>, @Inject(MAT_DIALOG_DATA)
-    public data: any
+    public dialogRef: MatDialogRef<CollaboratorComponent>, // dialogRef is now a reference to the diaolog popup
+    @Inject(MAT_DIALOG_DATA) public data: any // allows the sharing of data through dialogConfig.data
+
   ) { }
 
   /* Get from localstorage */
