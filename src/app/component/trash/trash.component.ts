@@ -60,26 +60,27 @@ export class TrashComponent implements OnInit {
   /**
    * @Purpose : Delete Note Forever 
    **/
-  private isDeleted: false;
+  private isDeleted: boolean=false;
 
   deleteNoteForever(data) {
-
-    var deleteNote = {
-      "isDeleted": !this.isDeleted,
+    var body = {
+      "isDeleted": this.isDeleted,
       "noteIdList": [data.id] /* Access noteIdList for particular note*/
     }
-    console.log("Delete Note  Forever=======>", deleteNote);
+    console.log("Delete Note  Forever=======>", body);
     try {
-      this.noteService.deleteNote(deleteNote).subscribe(
+      this.noteService.deleteNote(body).subscribe(
         data => {
-          console.log('Register infor ==========>', data);
+          this.snackbar.open('Note deleted Forever successfully......!', 'Done...!', { duration: 3000 });
+          console.log('Note deleted successfully ==========>', data);
         },
         error => {
+          this.snackbar.open('Error while deleted note  ......!', 'Error', { duration: 3000 });
           console.log("Error something wrong: ", error)
         });
 
     } catch (error) {
-      console.log("Error something wrong: ", error)
+      this.snackbar.open('error', "", { duration: 3000 });
     }
     /* For GetAll Note without refresh*/
     setTimeout(() => this.dataService.getAllNote(), 100);
@@ -89,9 +90,25 @@ export class TrashComponent implements OnInit {
   /**
    * @Purpose : Delete Note Forever 
    **/
-  noteRestore() {
-    this.getTrashNotesList();
+  noteRestore(data) {
+    var body = {
+      "isDeleted": this.isDeleted,
+      "noteIdList": [data.id] /* Access noteIdList for particular note*/
+    }
+    console.log("Delete Note  Forever=======>", body);
+    try {
+      this.noteService.trashNotes(body).subscribe(
+        data => {
+          this.snackbar.open('Note restore successfully......!', 'Done...!', { duration: 3000 });
+          console.log('Note restore successfully ==========>', data);
+        },
+        error => {
+          console.log("Error something wrong: ", error)
+        });
 
+    } catch (error) {
+      console.log("Error something wrong: ", error)
+    }
     /* For GetAll Note without refresh*/
     setTimeout(() => this.dataService.getAllNote(), 100);
   }

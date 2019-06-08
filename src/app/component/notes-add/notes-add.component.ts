@@ -23,7 +23,7 @@ export class NotesAddComponent implements OnInit {
   /* Pin Unpin Note */
   isPined: boolean = false;
   // isPined: any
-
+  isDel :boolean =false;
   /**
   * @Purpose : Note Model
   **/
@@ -99,6 +99,7 @@ export class NotesAddComponent implements OnInit {
       "color": this.addNotes.color,
       "reminder": this.addNotes.reminder,
       "isPined": this.isPined,
+      "isDeleted": this.isDel,
     }
     console.log('console for Add Note ================>', body);
     try {

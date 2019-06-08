@@ -65,8 +65,10 @@ export class ArchiveComponent implements OnInit {
       }, (error) => {
         console.log("Get Archived List error ======>", error);
       });
+    /* For GetAll Note without refresh*/
+    setTimeout(() => this.dataService.getAllNote(), 100);
   }
-  
+
   /**
    * @Purpose : Unarchive Note
    **/

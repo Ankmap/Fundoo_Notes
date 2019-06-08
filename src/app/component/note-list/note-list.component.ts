@@ -100,9 +100,9 @@ export class NoteListComponent implements OnInit {
     this.data.allNote.pipe(takeUntil(this.destory$)).subscribe(
       data => {
         this.notes = data
-        // this.notes = this.notes.filter(function (el) {
-        //   return (el.isArchived === false && el.isDeleted === false);
-        // });
+        this.notes = this.notes.filter(function (el) {
+          return (el.isArchived === false && el.isDeleted === false);
+        });
         this.pinedArray = [];
         this.unpinedArray = []
         for (let i = this.notes.length; i > 0; i--) {
