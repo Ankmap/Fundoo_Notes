@@ -36,6 +36,7 @@ export class IconComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
+
   constructor(
     private dialog: MatDialog,
     private noteService: NotesService,
@@ -201,12 +202,5 @@ export class IconComponent implements OnInit {
       });
     /* For GetAll Note without refresh*/
     setTimeout(() => this.dataService.getAllNote(), 100);
-  }
-
-  /**
-   * @Purpose : askQuestion
-   **/ 
-  askQuestion(note){
-    this.router.navigateByUrl('/answers');
   }
 }

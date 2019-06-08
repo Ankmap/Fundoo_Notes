@@ -118,16 +118,19 @@
       <button mat-menu-item (click)="trashNote(note)">
         <span>Delete Note </span>
       </button>
-      <button mat-menu-item [matMenuTriggerFor]="nestedMenu" (click)="showLabel()">
-        <span>Add Note </span>
+      <button mat-menu-item routerLink="/askquestion/{{card?.id}}" routerLinkActive="active-link">
+        <span>Ask a Question</span>
       </button>
-      <button mat-menu-item (click)="askQuestion(note)">
-          <span>Ask a Question</span>
-        </button>
+      <button mat-menu-item [matMenuTriggerFor]="labelmenu" (click)="showLabel(note)">
+        <span>Add Label Note </span>
+      </button>
+      <button mat-menu-item (click)="checkbox(note)">
+        <span>Show checkbox</span>
+      </button>
     </mat-menu>
   </abbr>
 
-  <mat-menu #nestedMenu="matMenu">
+  <mat-menu #labelmenu="matMenu">
     <div *ngFor="let data of labelList">
       <div fxLayout="row" fxFlex=100px fxLayoutGap="20px">
         <div fxFlex=50px>

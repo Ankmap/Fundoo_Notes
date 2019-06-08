@@ -1,29 +1,34 @@
 <div class="mainCard">
     <div style="height:5vh"></div>
     <div fxLayout="row" fxLayoutAlign="center center">
-        <mat-card fxFlex.xl='700px' fxFlex.lg='750px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
+        <div fxFlex.xl='700px' fxFlex.lg='1000px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
             <div>
                 <div fxFlex=90>
-                    <h3> First React</h3>
+                    <div *ngFor="let data of noteList">
+                        <div fxLayout="column" fxLayoutAlign="start start">
+                            <h5><strong>{{data.title}}</strong></h5>
+                            <h5>{{data.description}}</h5>
+                        </div>
+                    </div>
                 </div>
                 <div fxFlex=10>
-                    <button mat-button>Close</button>
+                    <button mat-button (click)=close()>Close</button>
                 </div>
             </div>
             <div style="height:3vh"></div>
             <mat-divider></mat-divider>
             <div style="height:3vh"></div>
-            <h2><strong>Ask a Question </strong></h2>
-            <p>Make sure what you are asking is unique, concise, and pharased like a question</p>
+            <div *ngIf="notecard">
+                <h5><strong (click)="notecardOpen()">Question Asked</strong></h5>
+            </div>
+            <h5><i>Make sure what you are asking is unique, concise, and pharased like a question</i></h5>
             <div style="height:3vh"></div>
-            <div>
-                <div [froalaEditor]>
-
-                </div>
+            <div *ngIf="!notecard">
+                <textarea [froalaEditor] [formControl]="message" [(froalaModel)]="addQue.message"></textarea>
             </div>
             <div style="height:5vh"></div>
             <div fxLayout="row" fxLayoutAlign="end end">
-                <button mat-raised-button color="primary">Submit-Question</button>
+                <button mat-raised-button color="primary" (click)=addQuestion(data)>Submit-Question</button>
             </div>
             <div>
                 <mat-form-field>
@@ -32,6 +37,6 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-        </mat-card>
+        </div>
     </div>
 </div>

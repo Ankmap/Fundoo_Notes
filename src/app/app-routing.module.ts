@@ -53,7 +53,7 @@ const appRoutes: Routes = [
       { path: 'image', component: ImageCropComponent},
       { path: 'getlabel/:label', component:GetlabelComponent},
       { path: 'pin', component:PinComponent},
-      { path: 'answers', component:QuestionanswerComponent}
+      { path: 'askquestion/:id', component:QuestionanswerComponent}
     ]
   },
   /*Componnet Lifecycle Demo path set*/

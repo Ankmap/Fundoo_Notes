@@ -15,7 +15,7 @@ export class NotesService {
 
   constructor(
     private service: HttpService
-    ) { }
+  ) { }
 
   /**
    *1. @Purpose : Add Notes
@@ -168,6 +168,13 @@ export class NotesService {
    *22. @Purpose : pin & Unpin Notes 
   **/
   pinUnpinNotes(body) {
-    return this.service.postDataForpinUnpinNotes("/notes/pinUnpinNotes",body)
+    return this.service.postDataForpinUnpinNotes("/notes/pinUnpinNotes", body)
+  }
+
+  /**
+   *22. @Purpose : pin & Unpin Notes 
+  **/
+  getNotesDetail(noteId) {
+    return this.service.postDatagetNotesDetail("/notes/getNotesDetail/" + noteId)
   }
 }
