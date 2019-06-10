@@ -4,9 +4,6 @@ import { Question } from 'src/app/core/model/question/question';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { Note } from 'src/app/core/model/note/note';
 import { NotesService } from 'src/app/core/service/notes/notes.service';
 
 @Component({
@@ -16,19 +13,21 @@ import { NotesService } from 'src/app/core/service/notes/notes.service';
 })
 export class QuestionanswerComponent implements OnInit {
 
-  destory$: Subject<boolean> = new Subject<boolean>();
-
-  /* Note Model*/
-  notes: Note[] = [];
-
-  /* question Model*/
+  /* question Model */
   addQue: Question = new Question();
+
+  /* Get Notes Detail */
+  private noteList;
+  private questionData = '';
 
   /* Binding the message and description */
   message = new FormControl('')
 
+  /* Decorator */
   @Input() id;
-  private questionData = '';
+
+  /* Notecard open */
+  private notecard: boolean = true;
 
   constructor(
     private questionService: QuestionService,
@@ -44,9 +43,13 @@ export class QuestionanswerComponent implements OnInit {
       console.log('check aquestion id ====>', this.questionData);
     });
 
-    // Get Notes Detail
+    /* Get Notes Detail */
     this.getNotesDetail()
   }
+
+  /**
+    * @Purpose : Add Question
+    **/
   addQuestion() {
     var body = {
       "message": this.addQue.message,
@@ -69,15 +72,10 @@ export class QuestionanswerComponent implements OnInit {
     }
   }
 
-  //close
+  /* close */
   close() {
     this.router.navigateByUrl('/home');
   }
-
-  /**
-  * @Purpose : Notecard open
-  **/
-  private notecard: boolean = true;
 
   /**
    * @Purpose : For new Notecard open
@@ -86,8 +84,9 @@ export class QuestionanswerComponent implements OnInit {
     this.notecard = !(this.notecard);
   }
 
-  private noteList;
-  //getnote
+  /**
+  * @Purpose : Get Notes Detail
+  **/
   getNotesDetail() {
     this.noteService.getNotesDetail(this.questionData).subscribe(
       data => {
@@ -96,11 +95,11 @@ export class QuestionanswerComponent implements OnInit {
         this.noteList = this.addQue;
         this.snackbar.open('Get Notes Detail', '', { duration: 4000 });
         console.log('Get Notes Detail ===>', data);
-        console.log('Get Notes Detail show ===>',  this.noteList);
+        console.log('Get Question Notes Detail show ===>', this.noteList);
       },
       error => {
-        this.snackbar.open('getNotesDetail', '', { duration: 3000 });
-        console.log("getNotesDetail", error)
+        this.snackbar.open('Get Notes Detail ===>', '', { duration: 3000 });
+        console.log("Get Notes Detail ===>", error)
       }
     )
   }
