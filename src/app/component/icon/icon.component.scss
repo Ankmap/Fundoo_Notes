@@ -63,3 +63,16 @@ mat-card {
 .fileSelect{
     display: none;
 }
+.labels{
+    width: 200px;
+    height: 250px
+}
+input[type="checkbox"]{
+    width: 20px; /*Desired width*/
+    height: 20px; /*Desired height*/
+    padding: 10px;
+    margin-left: 10px;
+}
+.check{
+    padding: 5px;
+}

@@ -115,8 +115,9 @@
           <!-- For title binding -->
           <div fxLayout='row' fxFlex=100>
             <div fxFlex=95>
-              <input class="title" placeholder="Title" [style.backgroundColor]="setColor" [formControl]="title"
-                [(ngModel)]="addNotes.title">
+              <!-- <input class="title" placeholder="Title" [style.backgroundColor]="setColor" [formControl]="title"
+                [(ngModel)]="addNotes.title"> -->
+                <div data-text="Title" contenteditable="true" class="text" #title></div>
             </div>
             <!-- App pin selector -->
             <div fxFlex=5>
@@ -124,8 +125,9 @@
             </div>
           </div>
           <!-- For description binding -->
-          <input class="description" placeholder="Take a note..." [style.backgroundColor]="setColor"
-            [formControl]="description" [(ngModel)]="addNotes.description">
+          <!-- <input class="description" placeholder="Take a note..." [style.backgroundColor]="setColor"
+            [formControl]="description" [(ngModel)]="addNotes.description"> -->
+            <div data-text="Take a note..." contenteditable="true" class="text" #description></div>
         </div>
         <div>
           <div fxLayout='row' fxFlex='100'>

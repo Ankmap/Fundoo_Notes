@@ -39,7 +39,7 @@ export class DataService {
   getAllNote() {
     this.noteService.getNotes().subscribe(data => {
       this.assignData.next(data.data.data)
-      console.log("Get all note ===>", data.data.data);
+      console.log("Get total notes in google keep ===>", data.data.data);
     })
   }
   /********************************** get note without refresh End**************************************/

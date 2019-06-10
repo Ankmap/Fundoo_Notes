@@ -117,7 +117,7 @@ export class NoteListComponent implements OnInit {
             }
           }
         }
-        console.log('Get all Notes =====>', this.notes)
+        console.log('Get all Notes in  home =====>', this.notes)
       });
 
   }

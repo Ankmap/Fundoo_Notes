@@ -169,7 +169,7 @@ export class IconComponent implements OnInit {
       console.log("ERR ====>", error);
     });
     /* For GetAll Note without refresh*/
-    setTimeout(() => this.dataService.getAllNote(), 5000);
+    // setTimeout(() => this.dataService.getAllNote(), 5000);
   }
 
   /**

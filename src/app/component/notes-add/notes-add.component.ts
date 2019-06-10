@@ -5,7 +5,7 @@
  *@version - 1.0
  *@since   - 22/04/2019
 **************************************************************************************************/
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { NotesService } from '../../core/service/notes/notes.service';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -19,6 +19,9 @@ import { Note } from '../../core/model/note/note';
 })
 
 export class NotesAddComponent implements OnInit {
+
+  @ViewChild('title') title : ElementRef;
+  @ViewChild('description') description : ElementRef;
   @Output() onChangePin = new EventEmitter;
   /* Pin Unpin Note */
   isPined: boolean = false;
@@ -40,8 +43,8 @@ export class NotesAddComponent implements OnInit {
   ) { }
 
   /* Binding the title and description */
-  title = new FormControl('')
-  description = new FormControl('')
+  // title = new FormControl('')
+  // description = new FormControl('')
 
   ngOnInit() {
   }
@@ -93,9 +96,13 @@ export class NotesAddComponent implements OnInit {
     this.notecard = !(this.notecard);
     this.addNotes.color = this.setColor;
     this.addNotes.reminder = this.reminder;
+    let title1 = this.title.nativeElement.innerHTML;;
+    let description1 = this.description.nativeElement.innerHTML;;
     var body = {
-      "title": this.addNotes.title,
-      "description": this.addNotes.description,
+      // "title": this.addNotes.title,
+      // "description": this.addNotes.description,
+      "title":title1,
+      "description":description1,
       "color": this.addNotes.color,
       "reminder": this.addNotes.reminder,
       "isPined": this.isPined,

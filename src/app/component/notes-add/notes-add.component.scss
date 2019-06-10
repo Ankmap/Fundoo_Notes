@@ -31,19 +31,16 @@ span{
     margin: 3px;
     height: auto
 }
-
-.title{
-    border-style: hidden; 
-    outline: none;  
-    width: 675px;   
-}
-
-.description{
-    border-style: hidden; 
+.text{
+    border-style: hidden;
     outline: none;
-    margin-bottom: 20px;
-    width: 675px;
+    width: 670px; 
 }
+
+.text:empty:before{
+    content: attr(data-text);
+}
+
 .checkList{
     border-style: hidden; 
     outline: none;
