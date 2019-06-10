@@ -7,7 +7,6 @@
 **************************************************************************************************/
 import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { NotesService } from '../../core/service/notes/notes.service';
-import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataService } from 'src/app/core/service/data/data.service';
 import { Note } from '../../core/model/note/note';
@@ -20,6 +19,9 @@ import { Note } from '../../core/model/note/note';
 
 export class NotesAddComponent implements OnInit {
 
+  /**
+   * @Purpose : using @ViewChild to inject the plain HTML element of a component
+  **/ 
   @ViewChild('title') title : ElementRef;
   @ViewChild('description') description : ElementRef;
   @Output() onChangePin = new EventEmitter;

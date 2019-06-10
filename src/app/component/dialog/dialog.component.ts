@@ -5,7 +5,7 @@
  *@version - 1.0
  *@since   - 22/04/2019
 **************************************************************************************************/
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { Note } from 'src/app/core/model/note/note';
@@ -23,8 +23,14 @@ export class DialogComponent implements OnInit {
   /**
   * @Purpose : Bind title and description
   **/
-  title = new FormControl(this.data.title);
-  description = new FormControl(this.data.description);
+  // title = new FormControl(this.data.title);
+  // description = new FormControl(this.data.description);
+
+  /**
+   * @Purpose : using @ViewChild to inject the plain HTML element of a component
+  **/
+  @ViewChild('title') title: ElementRef;
+  @ViewChild('description') description: ElementRef;
 
   /**
   * @Purpose : Note model
@@ -53,9 +59,13 @@ export class DialogComponent implements OnInit {
     * @Purpose : Update Note
     **/
   updateNote(data) {
+    let titleValue = this.title.nativeElement.innerHTML;
+    let descriptionValue = this.description.nativeElement.innerHTML;
     var body = {
-      "title": this.title.value,
-      "description": this.description.value,
+      // "title": this.title.value,
+      // "description": this.description.value,
+      "title": titleValue,
+      "description": descriptionValue,
       "noteId": [data.id] /* Access noteId for particular note*/
     }
     console.log('console for updateNote ============', body);

@@ -5,34 +5,36 @@
  *@version - 1.0
  *@since   - 22/04/2019
 **************************************************************************************************/ -->
-<div fxLayoutAlign="center center">
-    <div class="card" fxLayoutGap='30px' fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px' fxFlex.sm='400px'
-        fxFlex.xs='150px'>
+<div fxLayoutAlign="start start">
+    <div fxLayoutGap='30px' fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
         <div fxLayout='column' fxLayoutGap='20px'>
-            <input class="title" placeholder="Title" [formControl]="title">
-            <input class="description" placeholder="Take a note..." [formControl]="description">
+            <!-- <input class="title" placeholder="Title" [formControl]="title">
+            <input class="description" placeholder="Take a note..." [formControl]="description"> -->
+            <div data-text="Title" contenteditable="true" class="text" #title [innerHTML]="data.title"></div>
+            <div data-text="Take a note..." contenteditable="true" class="text" #description
+                [innerHTML]="data.description"></div>
         </div>
-        <div>
-            <div fxLayout='row'>
-                <app-icon></app-icon>
-                <div class="row" fxLayoutGap='5px'>
-                    <abbr title="Undo">
-                        <button mat-button>
-                            <i class="material-icons">
-                                undo
-                            </i>
-                        </button>
-                    </abbr>
-                    <abbr title="Redo">
-                        <button mat-button>
-                            <i class="material-icons">
-                                redo
-                            </i>
-                        </button>
-                    </abbr>
-                </div>
-                <button style="margin-left: 100px;" mat-button (click)="updateNote(data)"
-                    (click)="onNoClick()">Close</button>
+        <div style="height:5vh"></div>
+        <div fxLayout='row'>
+            <app-icon></app-icon>
+            <div class="row" fxLayoutGap='5px'>
+                <abbr title="Undo">
+                    <button mat-button>
+                        <i class="material-icons">
+                            undo
+                        </i>
+                    </button>
+                </abbr>
+                <abbr title="Redo">
+                    <button mat-button>
+                        <i class="material-icons">
+                            redo
+                        </i>
+                    </button>
+                </abbr>
+            </div>
+            <div fxLayoutAlign="end end">
+                <button mat-button (click)="updateNote(data)" (click)="onNoClick()">Close</button>
             </div>
         </div>
     </div>

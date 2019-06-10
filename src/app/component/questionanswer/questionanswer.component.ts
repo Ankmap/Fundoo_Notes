@@ -38,6 +38,7 @@ export class QuestionanswerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    /* Get  Note Id */
     this.route.params.subscribe((params: Params) => {
       this.questionData = params['id'];
       console.log('check aquestion id ====>', this.questionData);

@@ -39,6 +39,7 @@ export class NoteListComponent implements OnInit {
   @Input() note;
   @Input() labels;
   @Input() searchItem;
+  @Input() noteData;
   /**
     * @Purpose : To emit an event from the child component class to the parent component class,
     *   use EventEmitter with the @Output() decorator. 
@@ -210,8 +211,8 @@ export class NoteListComponent implements OnInit {
    **/
   openDialog(data: any): void {
     const dialogRef = this.dialog.open(DialogComponent, {
-      width: '700px',
-      height: '200px',
+      width: '800px',
+      height: '',
       data: {
         'title': data.title,
         'description': data.description,
