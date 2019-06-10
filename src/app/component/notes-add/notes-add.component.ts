@@ -123,8 +123,7 @@ export class NotesAddComponent implements OnInit {
       /* Null title, description, and color null after add note */
       this.addNotes.title = null;
       this.addNotes.description = null;
-      // this.setColor = null;
-      // this.addNotes.color = null;
+      this.setColor = "#FFFFFF";
 
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
