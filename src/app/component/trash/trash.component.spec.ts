@@ -1,10 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TrashComponent } from './trash.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { LoginComponent } from '../login/login.component';
 import { IconComponent } from '../icon/icon.component';
-
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 import { ArchiveComponent } from '../archive/archive.component';
 import { RegistrationComponent } from '../registration/registration.component';
@@ -26,7 +24,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SearchNotePipe } from 'src/app/core/pipe/filter/search-note.pipe';
 import { SortPipePipe } from 'src/app/core/pipe/sort/sort-pipe.pipe';
 import { NotefilterPipe } from 'src/app/core/pipe/noteFilter/notefilter.pipe';
-import {MatDialogModule} from '@angular/material/dialog';
+import { QuestionanswerComponent } from '../questionanswer/questionanswer.component';
 
 describe('TrashComponent', () => {
   let component: TrashComponent;
@@ -36,13 +34,10 @@ describe('TrashComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         ArchiveComponent,
-        /** Parent Components **/
         LoginComponent,
         RegistrationComponent,
         ForgotPasswordComponent,
         ResetPasswordComponent,
-
-        /** Child Components **/
         NavbarComponent,
         NotesAddComponent,
         ReminderComponent,
@@ -58,6 +53,7 @@ describe('TrashComponent', () => {
         ImageCropComponent,
         GetlabelComponent,
         PinComponent,
+        QuestionanswerComponent,
         SearchNotePipe,
         SortPipePipe,
         NotefilterPipe,
@@ -67,7 +63,6 @@ describe('TrashComponent', () => {
         /** Material File **/
         MaterialDesignModule,
         FlexLayoutModule,
-        MatDialogModule
       ],
       providers: [
         /** Pipes **/

@@ -26,22 +26,20 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SearchNotePipe } from '../../core/pipe/filter/search-note.pipe';
 import { SortPipePipe } from '../../core/pipe/sort/sort-pipe.pipe';
 import { NotefilterPipe } from '../../core/pipe/noteFilter/notefilter.pipe';
-import {MatDialogModule} from '@angular/material/dialog';
+import { QuestionanswerComponent } from '../questionanswer/questionanswer.component';
+
 describe('GetlabelComponent', () => {
   let component: GetlabelComponent;
   let fixture: ComponentFixture<GetlabelComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
+      declarations: [
         ArchiveComponent,
-        /** Parent Components **/
         LoginComponent,
         RegistrationComponent,
         ForgotPasswordComponent,
         ResetPasswordComponent,
-
-        /** Child Components **/
         NavbarComponent,
         NotesAddComponent,
         ReminderComponent,
@@ -57,6 +55,7 @@ describe('GetlabelComponent', () => {
         ImageCropComponent,
         GetlabelComponent,
         PinComponent,
+        QuestionanswerComponent,
         SearchNotePipe,
         SortPipePipe,
         NotefilterPipe,
@@ -65,16 +64,14 @@ describe('GetlabelComponent', () => {
         RouterTestingModule,
         /** Material File **/
         MaterialDesignModule,
-
-        MatDialogModule,
         FlexLayoutModule,
       ],
-      providers: [{
+      providers: [
         /** Pipes **/
         SearchNotePipe,
         SortPipePipe,
         NotefilterPipe,
-      }],
+      ],
     })
     .compileComponents();
   }));

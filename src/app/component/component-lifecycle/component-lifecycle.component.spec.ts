@@ -27,7 +27,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SearchNotePipe } from '../../core/pipe/filter/search-note.pipe';
 import { SortPipePipe } from '../../core/pipe/sort/sort-pipe.pipe';
 import { NotefilterPipe } from '../../core/pipe/noteFilter/notefilter.pipe';
-import {MatDialogModule} from '@angular/material/dialog';
+import { QuestionanswerComponent } from '../questionanswer/questionanswer.component';
 
 describe('ComponentLifecycleComponent', () => {
   let component: ComponentLifecycleComponent;
@@ -37,13 +37,10 @@ describe('ComponentLifecycleComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         ArchiveComponent,
-        /** Parent Components **/
         LoginComponent,
         RegistrationComponent,
         ForgotPasswordComponent,
         ResetPasswordComponent,
-
-        /** Child Components **/
         NavbarComponent,
         NotesAddComponent,
         ReminderComponent,
@@ -58,6 +55,7 @@ describe('ComponentLifecycleComponent', () => {
         TrashComponent,
         ImageCropComponent,
         GetlabelComponent,
+        QuestionanswerComponent,
         PinComponent,
         SearchNotePipe,
         SortPipePipe,
@@ -68,7 +66,6 @@ describe('ComponentLifecycleComponent', () => {
         /** Material File **/
         MaterialDesignModule,
         FlexLayoutModule,
-        MatDialogModule
       ],
       providers: [
         /** Pipes **/

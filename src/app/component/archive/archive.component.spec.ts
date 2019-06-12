@@ -1,15 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { ArchiveComponent } from './archive.component';
-/** Parent Components **/
 import { LoginComponent } from '../login/login.component';
 import { RegistrationComponent } from '../registration/registration.component';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from '../reset-password/reset-password.component';
 import { NavbarComponent } from '../navbar/navbar.component';
-
-/** Child Components **/
 import { NotesAddComponent } from '../notes-add/notes-add.component';
 import { ReminderComponent } from '../reminder/reminder.component';
 import { LabelComponent } from '../label/label.component';
@@ -24,8 +22,6 @@ import { ImageCropComponent } from '../image-crop/image-crop.component';
 import { GetlabelComponent } from '../getlabel/getlabel.component';
 import { PinComponent } from '../pin/pin.component';
 
-import { FlexLayoutModule } from '@angular/flex-layout';
-
 /* Material File */
 import { MaterialDesignModule } from '../../material-design/material-design.module';
 
@@ -33,8 +29,7 @@ import { MaterialDesignModule } from '../../material-design/material-design.modu
 import { SortPipePipe } from '../../core/pipe/sort/sort-pipe.pipe';
 import { SearchNotePipe } from '../../core/pipe/filter/search-note.pipe';
 import { NotefilterPipe } from '../../core/pipe/noteFilter/notefilter.pipe';
-import {MatDialogModule} from '@angular/material/dialog';
-
+import { QuestionanswerComponent } from '../questionanswer/questionanswer.component';
 
 describe('ArchiveComponent', () => {
   let component: ArchiveComponent;
@@ -42,15 +37,12 @@ describe('ArchiveComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
+      declarations: [
         ArchiveComponent,
-        /** Parent Components **/
         LoginComponent,
         RegistrationComponent,
         ForgotPasswordComponent,
         ResetPasswordComponent,
-
-        /** Child Components **/
         NavbarComponent,
         NotesAddComponent,
         ReminderComponent,
@@ -65,6 +57,7 @@ describe('ArchiveComponent', () => {
         TrashComponent,
         ImageCropComponent,
         GetlabelComponent,
+        QuestionanswerComponent,
         PinComponent,
         SearchNotePipe,
         SortPipePipe,
@@ -74,18 +67,16 @@ describe('ArchiveComponent', () => {
         RouterTestingModule,
         /** Material File **/
         MaterialDesignModule,
-
-        MatDialogModule,
         FlexLayoutModule,
       ],
-      providers: [{
+      providers: [
         /** Pipes **/
         SearchNotePipe,
         SortPipePipe,
         NotefilterPipe,
-      }],
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

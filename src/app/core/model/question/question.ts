@@ -9,3 +9,6 @@ export class Question {
     "message" :string;
     "id":string;
 }
+export class Reply{
+    "message" :string;
+}

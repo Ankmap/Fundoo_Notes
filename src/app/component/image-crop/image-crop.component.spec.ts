@@ -26,22 +26,21 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SearchNotePipe } from 'src/app/core/pipe/filter/search-note.pipe';
 import { SortPipePipe } from 'src/app/core/pipe/sort/sort-pipe.pipe';
 import { NotefilterPipe } from 'src/app/core/pipe/noteFilter/notefilter.pipe';
-import {MatDialogModule} from '@angular/material/dialog';
+import { QuestionanswerComponent } from '../questionanswer/questionanswer.component';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+
 describe('ImageCropComponent', () => {
   let component: ImageCropComponent;
   let fixture: ComponentFixture<ImageCropComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
+      declarations: [
         ArchiveComponent,
-        /** Parent Components **/
         LoginComponent,
         RegistrationComponent,
         ForgotPasswordComponent,
         ResetPasswordComponent,
-
-        /** Child Components **/
         NavbarComponent,
         NotesAddComponent,
         ReminderComponent,
@@ -56,6 +55,7 @@ describe('ImageCropComponent', () => {
         TrashComponent,
         ImageCropComponent,
         GetlabelComponent,
+        QuestionanswerComponent,
         PinComponent,
         SearchNotePipe,
         SortPipePipe,
@@ -65,18 +65,17 @@ describe('ImageCropComponent', () => {
         RouterTestingModule,
         /** Material File **/
         MaterialDesignModule,
-
-        MatDialogModule,
         FlexLayoutModule,
       ],
-      providers: [{
+      providers: [
         /** Pipes **/
         SearchNotePipe,
         SortPipePipe,
         NotefilterPipe,
-      }],
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialogRef, useValue: {} }],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

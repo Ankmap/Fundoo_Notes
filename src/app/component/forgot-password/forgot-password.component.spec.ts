@@ -25,7 +25,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SearchNotePipe } from '../../core/pipe/filter/search-note.pipe';
 import { SortPipePipe } from '../../core/pipe/sort/sort-pipe.pipe';
 import { NotefilterPipe } from '../../core/pipe/noteFilter/notefilter.pipe';
-import {MatDialogModule} from '@angular/material/dialog';
+import { QuestionanswerComponent } from '../questionanswer/questionanswer.component';
 
 describe('ForgotPasswordComponent', () => {
   let component: ForgotPasswordComponent;
@@ -33,15 +33,12 @@ describe('ForgotPasswordComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
+      declarations: [
         ArchiveComponent,
-        /** Parent Components **/
         LoginComponent,
         RegistrationComponent,
         ForgotPasswordComponent,
         ResetPasswordComponent,
-
-        /** Child Components **/
         NavbarComponent,
         NotesAddComponent,
         ReminderComponent,
@@ -57,6 +54,7 @@ describe('ForgotPasswordComponent', () => {
         ImageCropComponent,
         GetlabelComponent,
         PinComponent,
+        QuestionanswerComponent,
         SearchNotePipe,
         SortPipePipe,
         NotefilterPipe,
@@ -65,18 +63,16 @@ describe('ForgotPasswordComponent', () => {
         RouterTestingModule,
         /** Material File **/
         MaterialDesignModule,
-
-        MatDialogModule,
         FlexLayoutModule,
       ],
-      providers: [{
+      providers: [
         /** Pipes **/
         SearchNotePipe,
         SortPipePipe,
         NotefilterPipe,
-      }],
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

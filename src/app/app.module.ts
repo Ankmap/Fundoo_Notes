@@ -1,27 +1,11 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-/** Material File **/
 import { MaterialDesignModule } from './material-design/material-design.module';
-
-/**
- * @Purpose : Configure animations and FlexLayoutModule, AuthGuard, HttpClientModule
- **/
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { HttpClientModule } from '@angular/common/http';
-import { AuthGuard } from '../app/core/service/auth/auth.guard';
-
-/** Parent Components **/
 import { LoginComponent } from './component/login/login.component';
 import { RegistrationComponent } from './component/registration/registration.component';
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
-
-/** Child Components **/
 import { NotesAddComponent } from './component/notes-add/notes-add.component';
 import { ReminderComponent } from './component/reminder/reminder.component';
 import { LabelComponent } from './component/label/label.component';
@@ -37,29 +21,17 @@ import { ImageCropComponent } from './component/image-crop/image-crop.component'
 import { GetlabelComponent } from './component/getlabel/getlabel.component';
 import { PinComponent } from './component/pin/pin.component';
 import { QuestionanswerComponent } from './component/questionanswer/questionanswer.component';
-
-/** Pipe **/
 import { SortPipePipe } from '../app/core/pipe/sort/sort-pipe.pipe';
 import { SearchNotePipe } from './core/pipe/filter/search-note.pipe';
 import { NotefilterPipe } from './core/pipe/noteFilter/notefilter.pipe';
 
-/** Form Validation **/
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
-// import 'froala-editor/js/plugins.pkgd.min.js';
-
 @NgModule({
   declarations: [
     AppComponent,
-
-    /** Parent Components **/
     LoginComponent,
     RegistrationComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-
-    /** Child Components **/
     NavbarComponent,
     NotesAddComponent,
     ReminderComponent,
@@ -75,28 +47,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ImageCropComponent,
     GetlabelComponent,
     PinComponent,
-
-    /** Pipes **/
     SearchNotePipe,
     SortPipePipe,
     NotefilterPipe,
     QuestionanswerComponent,
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    FlexLayoutModule,
-    HttpClientModule,
-
-    /** Form Validation **/
-    FormsModule,
-    ReactiveFormsModule,
-
-    /** Material File **/
     MaterialDesignModule,
-
-  
   ],
   providers: [],
   bootstrap: [AppComponent]

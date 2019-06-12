@@ -5,100 +5,90 @@
  *@version - 1.0
  *@since   - 22/04/2019
 ****************************************************************************************************-->
-<!-- **************************** Main Menu start ********************************************* -->
-<div class="navbarMain">
-    <mat-toolbar-row>
-        <div fxLayout="column" fxFlex="100%" fxLayoutGap="0.8%">
-            <div fxFlex="5%"></div>
-            <div fxLayout="row" fxFlex="100%" fxLayoutAlign="space-evenly center">
-                <!-- 1st div menu, img, fundoo -->
-                <div fxFlex="15" fxLayout="row" fxLayoutAlign="space-evenly start" fxLayoutGap="50px">
-                    <div fxFlex="100">
-                        <!-- Menu start -->
-                        <div fxFlex="30" fxFlex.sm="100">
-                            <abbr title="Main menu">
-                                <button style="outline: none;" type="button" mat-button (click)="drawer.toggle()">
-                                    <i class="material-icons">
-                                        menu
-                                    </i>
-                                </button>
-                            </abbr>
-                        </div>
-                        <!-- Menu End -->
-                        <!-- Img start -->
-                        <div fxFlex="30">
-                            <img class="img" alt="" aria-hidden="true"
-                                src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png"
-                                srcset="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_48dp.png 2x "
-                                style="width:40px;height:40px">
-                        </div>
-                        <!-- Img End -->
-                        <!-- Name binding -->
-
-                        <div *ngIf=!labelShow ngStyle.lg="font-size:23px">Fundoo</div>
-                        <div *ngIf=labelShow ngStyle.lg="font-size:25px">{{labelValue}}</div>
-
-                        <!-- Name Binding End -->
-                    </div>
+<!-- **************************** Main Menu ********************************************* -->
+<!-- <div class="navbarMain"> -->
+<mat-toolbar class="navbar" style="height:10vh" fxLayoutAlign="space-evenly center">
+    <div fxLayout="column" fxFlex="100%" fxLayoutGap="0.8%">
+        <div fxFlex=5%></div>
+        <div fxLayout="row" fxFlex="100%">
+            <!-- 1 -->
+            <div fxFlex="21%" fxLayoutGap="60px">
+                <div fxFlex="7" fxFlex.sm="100">
+                    <abbr title="Main menu">
+                        <button style="outline: none;" type="button" mat-button (click)="drawer.toggle()">
+                            <i class="material-icons">
+                                menu
+                            </i>
+                        </button>
+                    </abbr>
                 </div>
-                <!-- 2nd div search -->
-                <div fxFlex="60" fxLayoutAlign="center center" fxShow fxHide.sm fxShow fxHide.xs>
-                    <div fxFlex.xs=40 fxFlex.sm="50" fxFlex.md="70" fxFlex.lg="80" fxFlex.xl="80">
-                        <mat-icon ngStyle.xl="font-size:50px" class="searchbutton">search</mat-icon>
-                        <input type="text" [(ngModel)]="searchValue" (keyup)=newMessage() class="search"
-                            placeholder="Search.." (click)="search()" ngStyle.md="font-size:13px"
-                            ngStyle.lg="font-size:20px">
-                    </div>
+                <div fxFlex="7">
+                    <img class="img" alt="" aria-hidden="true"
+                        src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png"
+                        srcset="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_48dp.png 2x "
+                        style="width:40px;height:40px">
                 </div>
-
-                <!-- 3rd div refresh, logout, grid -->
-                <div fxFlex="20" fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
-                    <!-- refresh start -->
-                    <div fxFlex="25" fxShow fxHide.sm fxShow fxHide.xs>
-                        <abbr title="Refresh">
-                            <button style="outline: none;" mat-icon-button (click)="refresh()">
-                                <i class="material-icons">refresh</i>
-                            </button>
-                        </abbr>
-                    </div>
-                    <!-- refresh end -->
-                    <!-- Grid start -->
-                    <div fxFlex="25" fxShow fxHide.sm fxShow fxHide.xs>
-                        <abbr title="Grid">
-                            <button style="outline: none;" mat-icon-button *ngIf=list (click)=changeView()
-                                fxShow="true">
-                                <img src="../../../assets/grid.svg" height="35" width="35">
-                            </button>
-                            <button style="outline: none" mat-icon-button *ngIf=grid (click)=changeView() fxShow="true">
-                                <img src="../../../assets/list.svg" height="35" width="35">
-                            </button>
-                        </abbr>
-                    </div>
-                    <!-- Grid end -->
-                    <!-- logout start-->
-                    <div fxFlex="25" fxShow fxHide.sm fxShow fxHide.xs>
-                        <abbr title="Google Account">
-                            <button style="outline: none;" mat-icon-button (click)="account()">
-                                <div mat-card-avatar
-                                    [ngStyle]="{'background-image': 'url('+img+')','background-size':'cover', 'height':'60px','width':'60px'}"
-                                    class="img1"></div>
-                            </button>
-                        </abbr>
-                    </div>
-                    <!-- logout end -->
+                <div fxFlex="7%">
+                    <div *ngIf=!labelShow ngStyle.lg="font-size:23px">Fundoo</div>
+                    <div *ngIf=labelShow ngStyle.lg="font-size:25px">{{labelValue}}</div>
                 </div>
             </div>
-            <div fxFlex="5%"></div>
+            <!-- 1 -->
+
+            <!-- 2 -->
+            <div fxFlex="58%" fxLayoutAlign="center center" fxShow fxHide.sm fxShow fxHide.xs>
+                <div fxFlex.xs=40 fxFlex.sm="50" fxFlex.md="70" fxFlex.lg="80" fxFlex.xl="80">
+                    <mat-icon ngStyle.xl="font-size:50px" class="searchbutton">search</mat-icon>
+                    <input type="text" [(ngModel)]="searchValue" (keyup)=newMessage() class="search"
+                        placeholder="Search.." (click)="search()" ngStyle.md="font-size:13px"
+                        ngStyle.lg="font-size:20px">
+                </div>
+            </div>
+            <!-- 2 -->
+
+            <!-- 3 -->
+            <div fxFlex="21%" fxLayoutAlign="space-evenly center">
+                <div fxFlex="7" fxShow fxHide.sm fxShow fxHide.xs>
+                    <abbr title="Refresh">
+                        <button style="outline: none;" mat-icon-button (click)="refresh()">
+                            <i class="material-icons">refresh</i>
+                        </button>
+                    </abbr>
+                </div>
+                <div fxFlex="7" fxShow fxHide.sm fxShow fxHide.xs>
+                    <abbr title="Grid">
+                        <button style="outline: none;" mat-icon-button *ngIf=list (click)=changeView() fxShow="true">
+                            <img src="../../../assets/grid.svg" height="35" width="35">
+                        </button>
+                        <button style="outline: none" mat-icon-button *ngIf=grid (click)=changeView() fxShow="true">
+                            <img src="../../../assets/list.svg" height="35" width="35">
+                        </button>
+                    </abbr>
+                </div>
+                <div fxFlex="7" fxShow fxHide.sm fxShow fxHide.xs>
+                    <abbr title="Google Account">
+                        <button style="outline: none;" mat-icon-button (click)="account()">
+                            <div mat-card-avatar
+                                [ngStyle]="{'background-image': 'url('+img+')','background-size':'cover', 'height':'40px','width':'40x'}"
+                                class="img1"></div>
+                        </button>
+                    </abbr>
+                </div>
+            </div>
+            <!-- 3 -->
         </div>
-    </mat-toolbar-row>
-</div>
+        <div fxFlex=5%></div>
+    </div>
+</mat-toolbar>
+<!-- </div> -->
 <mat-divider></mat-divider>
-<!-- Signout card start  -->
+
+<!-- **************************** SignOutCard ********************************************* -->
 <mat-card class="account" *ngIf="signoutCard">
     <div>
         <mat-card-header>
             <div mat-card-avatar
-                [ngStyle]="{'background-image': 'url('+img+')','background-size':'cover', 'height':'60px','width':'60px'}"
+                [ngStyle]="{'background-image': 'url('+img+')','background-size':'cover', 'height':'40px','width':'40px'}"
                 class="img2" (click)=image.click()>
             </div>
             <mat-card-title>{{firstName}} {{lastName}}</mat-card-title>
@@ -111,17 +101,15 @@
         </div>
     </div>
 </mat-card>
-<!-- Signout card end -->
-<!-- **************************** Main Menu end ********************************************* -->
+<!-- **************************** Side Main Menu ********************************************* -->
 
-<!-- ***************************** side menu start ************************************* -->
 <mat-drawer-container class="example-container">
     <mat-drawer #drawer class="example-sidenav" [mode]="width > 0?'side':'side'" closed>
         <!-- 1st div Notes, Reminder -->
         <div fxLayout="column">
             <!-- Notes start -->
             <button type="button" class="button" mat-button (click)="navbarName('Notes')" routerLink="/home">
-                <div class="notes" fxLayout="row" fxLayoutGap="25px">
+                <div class="sideicon" fxLayout="row" fxLayoutGap="25px">
                     <mat-icon class=name>lightbulb_outline</mat-icon>
                     <h5 class="name">Notes</h5>
                 </div>
@@ -129,7 +117,7 @@
             <!-- Notes End -->
             <!-- Reminder start -->
             <button type="button" class="button" mat-button (click)="navbarName('Reminders')" routerLink="/reminder">
-                <div class="notifications" fxLayout="row" fxLayoutGap="25px">
+                <div class="sideicon" fxLayout="row" fxLayoutGap="25px">
                     <mat-icon class=notifications>notifications_none</mat-icon>
                     <h5 class="name">Reminder</h5>
                 </div>
@@ -157,7 +145,7 @@
             </div>
 
             <button type="button" (click)="createLabel()" class="button" mat-button>
-                <div class="edit" fxLayout="row" fxLayoutGap="25px">
+                <div class="sideicon" fxLayout="row" fxLayoutGap="25px">
                     <img src="../../../assets/outline-create-24px.svg">
                     <h5>Edit labels</h5>
                 </div>
@@ -169,13 +157,13 @@
         <!-- 3rd div Archive, Delete -->
         <div fxLayout="column">
             <button type="button" class="button" mat-button (click)="navbarName('Archive')" routerLink="/archive">
-                <div class="archive" fxLayout="row" fxLayoutGap="25px">
+                <div class="sideicon" fxLayout="row" fxLayoutGap="25px">
                     <img class="archive" src="../../../assets/outline-archive-24px.svg">
                     <h5 class="name">Archive</h5>
                 </div>
             </button>
             <button type="button" class="button" mat-button (click)="navbarName('Trash')" routerLink="/trash">
-                <div class="Trash" fxLayout="row" fxLayoutGap="25px">
+                <div class="sideicon" fxLayout="row" fxLayoutGap="25px">
                     <img class="Trash" src="../../../assets/outline-delete-24px.svg">
                     <h5 class="name">Trash</h5>
                 </div>
@@ -185,5 +173,3 @@
     <!-- @Purpose : Router for component -->
     <router-outlet></router-outlet>
 </mat-drawer-container>
-
-<!-- ******************************** side menu end ************************************* -->

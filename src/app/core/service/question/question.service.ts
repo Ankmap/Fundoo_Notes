@@ -16,9 +16,24 @@ export class QuestionService {
   constructor(private service: HttpService) { }
 
   /**
-   *1. @Purpose : Login the user
+   *1. @Purpose : add 
    **/
   questionAndAnswerNotes(body) {
     return this.service.postDataquestionAndAnswerNotes("/questionAndAnswerNotes/addQuestionAndAnswer", body)
   }
+
+  /**
+   *2. @Purpose : delete
+   **/
+  questionAndAnswerNotesDelete(id) {
+    return this.service.postDataForDeleteQuestion("/questionAndAnswerNotes/" + id + "/notes/questionAndAnswerNotes")
+  }
+
+  /**
+   *3. @Purpose : reply
+   **/
+  questionAndAnswerNotesreply(parentId,body) {
+    return this.service.postDataquestionAndAnswerNotes("/questionAndAnswerNotes/reply/" + parentId,body)
+  }
+
 }

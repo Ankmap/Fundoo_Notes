@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { QuestionService } from 'src/app/core/service/question/question.service';
-import { Question } from 'src/app/core/model/question/question';
+import { Question, Reply } from 'src/app/core/model/question/question';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
@@ -15,9 +15,10 @@ export class QuestionanswerComponent implements OnInit {
 
   /* question Model */
   addQue: Question = new Question();
-
+  replyQue: Reply = new Reply();
   /* Get Notes Detail */
   private noteList;
+  private displayQuestion;
   private questionData = '';
 
   /* Binding the message and description */
@@ -28,6 +29,7 @@ export class QuestionanswerComponent implements OnInit {
 
   /* Notecard open */
   private notecard: boolean = true;
+  private notecardreply: boolean = true;
 
   constructor(
     private questionService: QuestionService,
@@ -67,11 +69,37 @@ export class QuestionanswerComponent implements OnInit {
           this.snackbar.open('Error while question add......!', 'Done...!', { duration: 3000 });
           console.log("Error while question add ====> ", error)
         });
-
+        this.addQue.message = null;
     } catch (error) {
       console.log("Error while question add ====> ", error)
     }
   }
+
+  /**
+    * @Purpose : Add Question
+    **/
+  addReply(parentId) {
+    console.log('parentId ===>', parentId)
+    var body = {
+      "message": this.replyQue.message,
+    }
+    console.log('Reply Question ====>', body)
+    try {
+      this.questionService.questionAndAnswerNotesreply(parentId, body).subscribe(
+        data => {
+          this.snackbar.open('Reply add successfully......!', 'Done...!', { duration: 4000, verticalPosition: 'top' });
+          console.log('Reply add successfully......!', data);
+        },
+        error => {
+          this.snackbar.open('Error while Reply add......!', 'Done...!', { duration: 3000 });
+          console.log("Error while Reply add ====> ", error)
+        });
+        this.replyQue.message = null;
+    } catch (error) {
+      console.log("Error while Reply add ====> ", error)
+    }
+  }
+
 
   /* close */
   close() {
@@ -85,12 +113,15 @@ export class QuestionanswerComponent implements OnInit {
     this.notecard = !(this.notecard);
   }
 
+  notecardOpenAnswer() {
+    this.notecardreply = !(this.notecardreply);
+  }
   /**
   * @Purpose : Get Notes Detail
   **/
   getNotesDetail() {
     this.noteService.getNotesDetail(this.questionData).subscribe(
-      data => {
+      (data: any) => {
         this.addQue = data["data"].data;
         this.noteList = [];
         this.noteList = this.addQue;
@@ -101,8 +132,28 @@ export class QuestionanswerComponent implements OnInit {
       error => {
         this.snackbar.open('Get Notes Detail ===>', '', { duration: 3000 });
         console.log("Get Notes Detail ===>", error)
-      }
-    )
+      })
+  }
+  question(parentId) {
+    console.log('parentId for delete ===>', parentId)
+    this.questionService.questionAndAnswerNotesDelete(parentId).subscribe(
+      data => {
+        this.snackbar.open('delete question successfully','',{duration:1000});
+        console.log('delete question ===>', data)
+      },
+      error => {
+        this.snackbar.open('delete question error','',{duration:1000});
+        console.log('delete question error ===>', error);
+
+      })
+  }
+  /**
+ * @Purpose: Refresh event 
+ **/
+  refresh(event) {
+    if (event) {
+      this.getNotesDetail();
+    }
   }
 
 }

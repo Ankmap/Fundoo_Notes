@@ -21,14 +21,19 @@ export class NotesAddComponent implements OnInit {
 
   /**
    * @Purpose : using @ViewChild to inject the plain HTML element of a component
-  **/ 
-  @ViewChild('title') title : ElementRef;
-  @ViewChild('description') description : ElementRef;
+  **/
+
+  @ViewChild('title') title: ElementRef;
+  @ViewChild('description') description: ElementRef;
+
   @Output() onChangePin = new EventEmitter;
+
   /* Pin Unpin Note */
   isPined: boolean = false;
-  // isPined: any
-  isDel :boolean =false;
+
+  /* Delete Note */
+  isDeleted: boolean = false;
+
   /**
   * @Purpose : Note Model
   **/
@@ -56,7 +61,7 @@ export class NotesAddComponent implements OnInit {
    **/
   private notecard: boolean = true;
 
-  private listNote:boolean = true;
+  private listNote: boolean = true;
 
   /**
    * @Purpose : For new Notecard open
@@ -86,8 +91,8 @@ export class NotesAddComponent implements OnInit {
 
   /**
    * @Purpose : Add List
-   **/ 
-  addList(){
+   **/
+  addList() {
     this.listNote = !(this.listNote);
   }
 
@@ -98,19 +103,26 @@ export class NotesAddComponent implements OnInit {
     this.notecard = !(this.notecard);
     this.addNotes.color = this.setColor;
     this.addNotes.reminder = this.reminder;
-    let title1 = this.title.nativeElement.innerHTML;;
-    let description1 = this.description.nativeElement.innerHTML;;
+    let title1 = this.title.nativeElement.innerHTML;
+    let description1 = this.description.nativeElement.innerHTML;
+
     var body = {
       // "title": this.addNotes.title,
       // "description": this.addNotes.description,
-      "title":title1,
-      "description":description1,
+      "title": title1,
+      "description": description1,
       "color": this.addNotes.color,
       "reminder": this.addNotes.reminder,
       "isPined": this.isPined,
-      "isDeleted": this.isDel,
+      "isDeleted": this.isDeleted,
     }
     console.log('console for Add Note ================>', body);
+
+    // if ((title1 == " ") && (description1 == " ")) {
+    if (title1 == " ") {
+      this.snackbar.open('Please Provide data......!', '', { duration: 3000 });
+      return false;
+    }
     try {
       this.NoteAddService.addNote(body).subscribe(
         data => {
@@ -141,8 +153,8 @@ export class NotesAddComponent implements OnInit {
     console.log('this.isPinedthis.isPinedthis.isPined');
     this.isPined = $event
     this.onChangePin.emit(this.isPined);
-    console.log('onPinChange ====>',this.isPined);
-    
+    console.log('onPinChange ====>', this.isPined);
+
   }
 
   /**

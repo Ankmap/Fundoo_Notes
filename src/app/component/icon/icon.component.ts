@@ -68,8 +68,8 @@ export class IconComponent implements OnInit {
     [
       { name: "green", hexcode: "#008000" },
       { name: "teal", hexcode: "#008080" },
-      { name: "blue", hexcode: "#0000FF" },
-      { name: "aqua", hexcode: "#00FFFF" },
+      { name: "blue", hexcode: "#00ffbf" },
+      { name: "aqua", hexcode: "#4000ff" },
     ],
     [
       { name: "purple", hexcode: "#800080" },

@@ -406,7 +406,7 @@ export class HttpService {
   }
 
   /**
-   * @Purpose : Question And Answer Notes
+   * @Purpose : Question And Answer Notes Add
    **/
   postDatagetNotesDetail(path){
     const httpOptions = {
@@ -417,5 +417,18 @@ export class HttpService {
     };
     console.log('token ==================>', localStorage.getItem('token'));
     return this.http.get(environment.baseUrl + path, httpOptions);
+  }
+
+    /**
+   * @Purpose : Question And Answer Notes Delete 
+   **/
+  postDataForDeleteQuestion(path) {
+    let httpAuthOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      })
+    }
+    return this.http.delete(environment.baseUrl + path, httpAuthOptions);
   }
 }

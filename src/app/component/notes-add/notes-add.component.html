@@ -7,39 +7,39 @@
 **************************************************************************************************/ -->
 <div class="mainCard" fxLayout='column' fxLayoutGap='30px'>
   <!-- Notecard start -->
-  <div *ngIf="notecard && listNote">
+  <div *ngIf="notecard && listNote" fxLayoutAlign="center center">
     <mat-card class="card" (click)="notecardOpen()" fxFlex.xl='700px' fxFlex.lg='750px' fxFlex.md='500px'
       fxFlex.sm='400px' fxFlex.xs='150px'>
-      <div fxLayoutGap="35px">
-        <span fxFlex="calc(50% - 25px)">Take a note...</span>
-        <div fxLayoutAlign="center" *ngIf="listNote">
-          <div fxFlex="35">
-            <abbr title="New List">
-              <button type="button" mat-button (click)="listCardOpen()">
-                <img src="../../../assets/outline-check_box-24px.svg">
-              </button>
-            </abbr>
-          </div>
+      <div fxLayout='row' fxFlex=100 fxLayoutAlign="center center">
+        <div fxFlex=70>
+          <div>Take a note...</div>
         </div>
-        <abbr title="New note with drawing">
-          <button mat-button (click)="addNoteDrawing()">
-            <img src="../../../assets/outline-brush-24px.svg">
-          </button>
-        </abbr>
+        <div fxFlex=30 fxShow fxHide.sm fxShow fxHide.xs>
+          <abbr title="New List" *ngIf="listNote">
+            <button type="button" mat-button (click)="listCardOpen()">
+              <img src="../../../assets/outline-check_box-24px.svg">
+            </button>
+          </abbr>
 
-        <abbr title="New note with image">
-          <button mat-button (click)="addNoteImage()">
-            <img (click)="file.click()" src="../../../assets/outline-photo_size_select_actual-24px.svg">
-            <input style="display:none;" type="file" #file (change)="onSelectIamge()">
-          </button>
-        </abbr>
+          <abbr title="New note with drawing">
+            <button mat-button (click)="addNoteDrawing()">
+              <img src="../../../assets/outline-brush-24px.svg">
+            </button>
+          </abbr>
+
+          <abbr title="New note with image">
+            <button mat-button (click)="addNoteImage()">
+              <img (click)="file.click()" src="../../../assets/outline-photo_size_select_actual-24px.svg">
+              <input style="display:none;" type="file" #file (change)="onSelectIamge()">
+            </button>
+          </abbr>
+        </div>
       </div>
     </mat-card>
   </div>
   <!-- Notecard end -->
 
-  <!-- CheckList -->
-  <!-- CheckList -->
+  <!-- CheckList start-->
   <div fxLayoutAlign="center center" *ngIf="!listNote">
     <mat-card class="card" fxFlex.xl='700px' fxFlex.lg='750px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
       <div>
@@ -104,7 +104,6 @@
     </mat-card>
   </div>
   <!-- CheckList end-->
-  <!-- CheckList -->
 
   <!-- add notecard start -->
   <div fxLayoutAlign="space-around center" *ngIf="!notecard">
@@ -117,7 +116,7 @@
             <div fxFlex=95>
               <!-- <input class="title" placeholder="Title" [style.backgroundColor]="setColor" [formControl]="title"
                 [(ngModel)]="addNotes.title"> -->
-                <div data-text="Title" contenteditable="true" class="text" #title></div>
+              <div data-text="Title" contenteditable="true" class="text" #title></div>
             </div>
             <!-- App pin selector -->
             <div fxFlex=5>
@@ -127,7 +126,7 @@
           <!-- For description binding -->
           <!-- <input class="description" placeholder="Take a note..." [style.backgroundColor]="setColor"
             [formControl]="description" [(ngModel)]="addNotes.description"> -->
-            <div data-text="Take a note..." contenteditable="true" class="text" #description></div>
+          <div data-text="Take a note..." contenteditable="true" class="text" #description></div>
         </div>
         <div>
           <div fxLayout='row' fxFlex='100'>

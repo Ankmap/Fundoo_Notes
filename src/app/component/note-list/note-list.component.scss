@@ -9,11 +9,13 @@
     border-radius: 5%;
     width: 285px;
     padding: 6px;
+    overflow: hidden;
 }
 .cardSub2{
     border-radius: 5%;
     width: 600px;
     padding: 6px;
+    overflow: hidden;
 }
 mat-card{
     border-radius: 10px;
@@ -58,11 +60,19 @@ mat-chip {
     padding: 3px 5px;
 }
 .cardMain{
-    display: flex;
-    justify-content: space-around;
-    align-items: stretch;
+    // margin:0 auto;
+    // position: fixed;
+    // width:100%;
+    // z-index:1000;
+    // background-color: white;
+    // display: flex;
+    // justify-content: space-around;
+    // align-items: stretch;
+    // overflow-y:hidden !important;
     max-width: 1000px;
+    overflow: hidden;
 }
 .pin{
     opacity: 0.7;
+    //margin-left: 250PX;
 }

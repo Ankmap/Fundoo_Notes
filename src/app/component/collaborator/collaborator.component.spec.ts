@@ -34,8 +34,8 @@ import { SortPipePipe } from '../../core/pipe/sort/sort-pipe.pipe';
 import { SearchNotePipe } from '../../core/pipe/filter/search-note.pipe';
 import { NotefilterPipe } from '../../core/pipe/noteFilter/notefilter.pipe';
 import { ArchiveComponent } from '../archive/archive.component';
-import {MatDialogModule} from '@angular/material/dialog';
-
+import { QuestionanswerComponent } from '../questionanswer/questionanswer.component';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 describe('CollaboratorComponent', () => {
   let component: CollaboratorComponent;
@@ -43,15 +43,12 @@ describe('CollaboratorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
+      declarations: [
         ArchiveComponent,
-        /** Parent Components **/
         LoginComponent,
         RegistrationComponent,
         ForgotPasswordComponent,
         ResetPasswordComponent,
-
-        /** Child Components **/
         NavbarComponent,
         NotesAddComponent,
         ReminderComponent,
@@ -66,6 +63,7 @@ describe('CollaboratorComponent', () => {
         TrashComponent,
         ImageCropComponent,
         GetlabelComponent,
+        QuestionanswerComponent,
         PinComponent,
         SearchNotePipe,
         SortPipePipe,
@@ -75,16 +73,15 @@ describe('CollaboratorComponent', () => {
         RouterTestingModule,
         /** Material File **/
         MaterialDesignModule,
-
-        MatDialogModule,
         FlexLayoutModule,
       ],
-      providers: [{
+      providers: [
         /** Pipes **/
         SearchNotePipe,
         SortPipePipe,
         NotefilterPipe,
-      }],
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialogRef, useValue: {} }],
     })
       .compileComponents();
   }));

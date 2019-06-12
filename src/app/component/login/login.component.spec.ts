@@ -1,9 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
-import { FormsModule } from '@angular/forms';
 import { IconComponent } from '../icon/icon.component';
-
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 import { ArchiveComponent } from '../archive/archive.component';
 import { RegistrationComponent } from '../registration/registration.component';
@@ -27,22 +25,20 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SearchNotePipe } from 'src/app/core/pipe/filter/search-note.pipe';
 import { SortPipePipe } from 'src/app/core/pipe/sort/sort-pipe.pipe';
 import { NotefilterPipe } from 'src/app/core/pipe/noteFilter/notefilter.pipe';
-import {MatDialogModule} from '@angular/material/dialog';
+import { QuestionanswerComponent } from '../questionanswer/questionanswer.component';
+
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
+      declarations: [
         ArchiveComponent,
-        /** Parent Components **/
         LoginComponent,
         RegistrationComponent,
         ForgotPasswordComponent,
         ResetPasswordComponent,
-
-        /** Child Components **/
         NavbarComponent,
         NotesAddComponent,
         ReminderComponent,
@@ -58,25 +54,23 @@ describe('LoginComponent', () => {
         ImageCropComponent,
         GetlabelComponent,
         PinComponent,
+        QuestionanswerComponent,
         SearchNotePipe,
         SortPipePipe,
         NotefilterPipe,
       ],
       imports: [
-        FormsModule,
         RouterTestingModule,
         /** Material File **/
         MaterialDesignModule,
-
-        MatDialogModule,
         FlexLayoutModule,
       ],
-      providers: [{
+      providers: [
         /** Pipes **/
         SearchNotePipe,
         SortPipePipe,
         NotefilterPipe,
-      }],
+      ],
     })
     .compileComponents();
   }));
