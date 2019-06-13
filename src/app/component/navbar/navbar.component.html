@@ -109,7 +109,7 @@
         <div fxLayout="column">
             <!-- Notes start -->
             <button type="button" class="button" mat-button (click)="navbarName('Notes')" routerLink="/home">
-                <div class="sideicon" fxLayout="row" fxLayoutGap="25px">
+                <div fxLayout="row" fxLayoutGap="25px">
                     <mat-icon class=name>lightbulb_outline</mat-icon>
                     <h5 class="name">Notes</h5>
                 </div>
@@ -117,7 +117,7 @@
             <!-- Notes End -->
             <!-- Reminder start -->
             <button type="button" class="button" mat-button (click)="navbarName('Reminders')" routerLink="/reminder">
-                <div class="sideicon" fxLayout="row" fxLayoutGap="25px">
+                <div fxLayout="row" fxLayoutGap="25px">
                     <mat-icon class=notifications>notifications_none</mat-icon>
                     <h5 class="name">Reminder</h5>
                 </div>
@@ -128,24 +128,26 @@
 
         <!-- 2nd div LABELS, Edit labels -->
         <div fxLayout="column" fxLayoutGap="20px">
-            <div class="label" fxLayout="row">
+            <div fxLayout="row">
                 <p class="labels">LABELS</p>
             </div>
 
-            <div fxLayout="column" fxFlex="50" fxLayoutGap="20px">
-                <div *ngFor="let data of labelList" routerLink="/getlabel/{{data}}"
-                    (click)="navbarName(data)" routerLinkActive=active class="labelData">
-                    <div fxFlex="20">
-                        <img class="labelImg" src="../../../assets/outline-label-24px.svg">
-                    </div>
-                    <div fxFlex="20">
-                        <div>{{data}}</div>
-                    </div>
-                </div>
+            <div fxLayout="column">
+                <a *ngFor="let data of labelList" routerLink="/getlabel/{{data}}" (click)="navbarName(data)"
+                    routerLinkActive=active>
+                    <button class="button" mat-button fxFlex="100">
+                        <div fxFlex="50">
+                            <img class="labelImg" src="../../../assets/outline-label-24px.svg">
+                        </div>
+                        <div fxFlex="50">
+                            <h5>{{data}}</h5>
+                        </div>
+                    </button>
+                </a>
             </div>
 
             <button type="button" (click)="createLabel()" class="button" mat-button>
-                <div class="sideicon" fxLayout="row" fxLayoutGap="25px">
+                <div fxLayout="row" fxLayoutGap="25px">
                     <img src="../../../assets/outline-create-24px.svg">
                     <h5>Edit labels</h5>
                 </div>
@@ -157,13 +159,13 @@
         <!-- 3rd div Archive, Delete -->
         <div fxLayout="column">
             <button type="button" class="button" mat-button (click)="navbarName('Archive')" routerLink="/archive">
-                <div class="sideicon" fxLayout="row" fxLayoutGap="25px">
+                <div fxLayout="row" fxLayoutGap="25px">
                     <img class="archive" src="../../../assets/outline-archive-24px.svg">
                     <h5 class="name">Archive</h5>
                 </div>
             </button>
             <button type="button" class="button" mat-button (click)="navbarName('Trash')" routerLink="/trash">
-                <div class="sideicon" fxLayout="row" fxLayoutGap="25px">
+                <div fxLayout="row" fxLayoutGap="25px">
                     <img class="Trash" src="../../../assets/outline-delete-24px.svg">
                     <h5 class="name">Trash</h5>
                 </div>

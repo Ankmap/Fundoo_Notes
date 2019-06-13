@@ -71,6 +71,7 @@ export class GetlabelComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         this.label = response["data"].data;
+        this.label.reverse();
         console.log('Get Label Notes ===>', this.label);
         console.log('Add Label to Note response ====>', response);
       }, (error) => {

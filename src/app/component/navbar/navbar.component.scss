@@ -81,12 +81,6 @@
     margin-top: 15px;
     opacity: 0.7;
 }
-.labeldata{
-    height:5vh; 
-    margin-left: 20px;
-    border-style: hidden; 
-    outline: none;
-}
 
 .button{
     display: flex;
@@ -131,7 +125,10 @@ and (max-device-width : 640px) {
     display: none;
   }
 }
-.labelImg{
-    margin-left: 20px;
+a{
+    text-decoration: none;
+    color: black;
 }
- 
+a:focus {
+    background-color: #fcefc3;
+}

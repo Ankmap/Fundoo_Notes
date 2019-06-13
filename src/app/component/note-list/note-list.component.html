@@ -20,7 +20,8 @@
                 </div>
                 <div fxFlex="10">
                     <div class="icon">
-                        <app-pin class="iconButton" (onChangePin)="updatePin(data,$event)"></app-pin>
+                        <!-- <app-pin class="iconButton" [card]='data' (onChangePin)="updatePin(data,$event)"></app-pin> -->
+                        <app-pin [card]='data' (onChangePin)=pinUpdate(data,$event)></app-pin>
                     </div>
                 </div>
             </div>
@@ -90,7 +91,8 @@
                 </div>
                 <div fxFlex="10">
                     <div class="icon">
-                        <app-pin class="iconButton" (onChange)=onPinChange(data,$event)></app-pin>
+                        <!-- <app-pin class="iconButton" [card]='data' (onChangePin)="updatePin(data,$event)"></app-pin> -->
+                        <app-pin [card]='data' (onChangePin)=pinUpdate(data,$event)></app-pin>
                     </div>
                 </div>
             </div>

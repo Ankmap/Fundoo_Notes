@@ -1,6 +1,4 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { NotesService } from 'src/app/core/service/notes/notes.service';
-import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -16,9 +14,7 @@ export class PinComponent implements OnInit {
   @Output() onChangePin = new EventEmitter;
   private isPined: boolean = false;
 
-  constructor(
-    private noteService: NotesService
-  ) { }
+  constructor() { }
 
   ngOnInit() {
     if (this.card) {
@@ -26,29 +22,9 @@ export class PinComponent implements OnInit {
     }
   }
 
-  //pin()
-  
   pin() {
     this.isPined = !this.isPined;
-    // this.onChangePin.emit(this.isPined);
-    if (this.card) {
-      let id = [];
-      id.push(this.card.id);
-      var body = {
-        "isPined": this.isPined,
-        "noteIdList": [id] /* Access noteIdList for particular note*/
-      }
-      console.log('pin Unpin ====>',body)    
-      this.noteService.pinUnpinNotes(body)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe((response) => {
-          this.onChangePin.emit({})
-          console.log('pinUnpin ==>', response);
-        });
-    }
-    else {
-      this.onChangePin.emit(this.isPined);
-    }
+    this.onChangePin.emit(this.isPined);
   }
 
 }

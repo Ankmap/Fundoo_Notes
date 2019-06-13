@@ -324,8 +324,9 @@ export class NoteListComponent implements OnInit {
       .pipe(takeUntil(this.destory$))
       .subscribe((response) => {
         this.anyChanges.emit({})
+        console.log('response remove Label ====>', response);
       }, (error) => {
-        console.log('Error ====>', error);
+        console.log('Error remove Label ====>', error);
       });
     /* For GetAll Note without refresh*/
     setTimeout(() => this.data.getAllNote(), 100);
@@ -341,20 +342,20 @@ export class NoteListComponent implements OnInit {
   }
 
   /**
-   * @Purpose : Pin nad Unpin
+   * @Purpose : Pin and Unpin
    **/
   private isPined: boolean = false;
-  
+
   /**
    * @Purpose : Update Pin
    **/
-  updatePin(data, $event) {
+  pinUpdate(data, $event) {
     this.isPined = $event
     var body = {
       "iPined": this.isPined,
       "noteIdList": [data.id] /* Access noteIdList for particular note*/
     }
-    console.log("Set Pin =====>", body);
+    console.log("Set Pin at pinUpdate =====>", body);
     try {
       this.noteService.pinUnpinNotes(body).subscribe(
         data => {
@@ -363,7 +364,7 @@ export class NoteListComponent implements OnInit {
         },
         error => {
           this.snackbar.open('Error while pin update  ......!', 'Error', { duration: 3000 });
-          console.log("Error something wrong: ", error)
+          console.log("Error something wrong while pin update ====> ", error)
         });
 
     } catch (error) {
