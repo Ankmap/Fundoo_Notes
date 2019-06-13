@@ -28,79 +28,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import {MatDividerModule} from '@angular/material/divider';
+import {StarRatingModule} from 'angular-star-rating';
 
 @NgModule({
-  // imports:[
-  //   BrowserModule,
-  //   AppRoutingModule,
-  //   BrowserAnimationsModule,
-  //   CommonModule,
-  //   FlexLayoutModule,
-  //   FormsModule,
-  //   ReactiveFormsModule,
-  //   HttpClientModule,
-  //   /** Angular material **/
-  //   MatToolbarModule,
-  //   MatButtonModule,
-  //   MatSidenavModule,
-  //   MatIconModule,
-  //   MatListModule,
-  //   MatCardModule,
-  //   MatMenuModule,
-  //   MatFormFieldModule,
-  //   MatInputModule,
-  //   MatRadioModule,
-  //   MatButtonToggleModule,
-  //   MatSnackBarModule,
-  //   MatAutocompleteModule,
-  //   MatDialogModule,
-  //   MatTooltipModule,
-  //   MatDatepickerModule,
-  //   MatSelectModule,
-  //   MatCheckboxModule,
-  //   MatNativeDateModule,
-  //   MatChipsModule,
-  //   ImageCropperModule,
 
-  //   /* Editor */
-  //   FroalaEditorModule.forRoot(), 
-  //   FroalaViewModule.forRoot()
-  // ],
-  // exports:[
-  //   BrowserModule,
-  //   AppRoutingModule,
-  //   BrowserAnimationsModule,
-  //   CommonModule,
-  //   FlexLayoutModule,
-  //   FormsModule,
-  //   ReactiveFormsModule,
-  //   HttpClientModule,
-  //   /** Angular material **/
-  //   MatToolbarModule,
-  //   MatButtonModule,
-  //   MatSidenavModule,
-  //   MatIconModule,
-  //   MatListModule,
-  //   MatCardModule,
-  //   MatMenuModule,
-  //   MatFormFieldModule,
-  //   MatInputModule,
-  //   MatRadioModule,
-  //   MatButtonToggleModule,
-  //   MatSnackBarModule,
-  //   MatAutocompleteModule,
-  //   MatDialogModule,
-  //   MatTooltipModule,
-  //   MatDatepickerModule,
-  //   MatSelectModule,
-  //   MatCheckboxModule,
-  //   MatNativeDateModule,
-  //   MatChipsModule,
-  //   ImageCropperModule,
-  //   /* Editor */
-  //   FroalaEditorModule,
-  //   FroalaViewModule
-  // ]
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -136,7 +67,8 @@ import {MatDividerModule} from '@angular/material/divider';
     DragDropModule,
     MatDividerModule,
     FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot()
+    FroalaViewModule.forRoot(),
+    StarRatingModule.forRoot()
   ],
 
   exports: [
@@ -174,7 +106,8 @@ import {MatDividerModule} from '@angular/material/divider';
     ImageCropperModule,
     MatDividerModule,
     FroalaEditorModule,
-    FroalaViewModule
+    FroalaViewModule,
+    StarRatingModule
   ]
 
 
