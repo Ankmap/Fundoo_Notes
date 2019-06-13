@@ -1,61 +1,85 @@
-<div style="height:5vh"></div>
-<div fxLayout="row" fxLayoutAlign="center center">
-    <div *ngFor="let data of noteList">
-        <div fxFlex.xl='700px' fxFlex.lg='1000px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
-            <div>
-                <div fxFlex=90>
-                    <div fxLayout="column" fxLayoutAlign="start start">
-                        <h5><strong>{{data.title}}</strong></h5>
-                        <h5>{{data.description}}</h5>
+<div style="height:10vh"></div>
+<div fxLayoutAlign="center center">
+    <div fxFlex.xl='700px' fxFlex.lg='1000px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
+        <div *ngFor="let data of noteList">
+            <div fxLayout="column">
+
+                <!-- title, description and close button -->
+                <div fxFlex=100 fxLayoutGap="20px">
+                    <div fxFlex=90>
+                        <div fxLayout="column" fxLayoutAlign="start start">
+                            <h5><strong>{{data.title}}</strong></h5>
+                            <h5>{{data.description}}</h5>
+                        </div>
+                    </div>
+                    <div fxFlex=10>
+                        <button mat-button (click)=close()>Close</button>
                     </div>
                 </div>
-                <div fxFlex=10>
-                    <button mat-button (click)=close()>Close</button>
-                </div>
-            </div>
-            <div style="height:3vh"></div>
-            <mat-divider></mat-divider>
-            <div style="height:3vh"></div>
-
-            <div *ngFor="let item of data.questionAndAnswerNotes.length == 1">
-                <button (click)="question(item.id)" class="question">{{item.message}}</button>
-            </div>
-            <div style="height:3vh"></div>
-
-            <div *ngFor="let item of data.questionAndAnswerNotes.length == 1">
-                <div *ngIf="notecard">
-                    <h5><strong (click)="notecardOpen()">Question Asked</strong></h5>
-                </div>
-
-                <h5><i>Make sure what you are asking is unique, concise, and pharased like a question</i></h5>
                 <div style="height:3vh"></div>
+                <mat-divider></mat-divider>
+                <div style="height:3vh"></div>
+                <!-- Check Question Length if one question is there then reply-->
+                <div *ngIf="data.questionAndAnswerNotes.length == 1">
+                    <!-- Display Question start -->
+                    <h4><strong>Question Asked</strong></h4>
+                    <div style="height:3vh"></div>
+                    <div fxLayout="row" fxLayoutAlign="start center">
+                        <div fxFlex=10>
+                            <div mat-card-avatar [ngStyle]="{'background-color':'lightgray','background-size':'cover',
+                            'height':'50px','width':'50px','border':'1px solid black','border-radius':'50%'}">
+                                <!-- Get FirstLetter of user -->
+                                <div class=nameIcon>{{firstName[0].toUpperCase()}}</div>
+                            </div>
+                        </div>
+                        <div fxFlex=50>
+                            <div *ngFor="let item of data.questionAndAnswerNotes">
+                                <h4>{{item.message}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Display Question end -->
+                    <div style="height:3vh"></div>
+                    <!-- Reply Question start-->
+                    <div fxLayoutAlign="start start">
+                        <button mat-flat-button class="color" *ngIf="notecardreply"
+                            (click)="notecardOpenAnswer()">Reply</button>
+                    </div>
+                    <div *ngIf="!notecardreply">
+                        <textarea [froalaEditor] [(froalaModel)]="replyQue.message" [formControl]="message"></textarea>
+                    </div>
+                    <!-- Reply Question end-->
+                </div>
 
-                <div *ngIf="!notecard">
-                    <textarea [froalaEditor] [formControl]="message" [(froalaModel)]="addQue.message"></textarea>
-                    <div style="height:5vh"></div>
-                    <div fxLayout="row" fxLayoutAlign="end end">
-                        <button mat-raised-button color="primary" (click)=addQuestion(data)
-                            (anyChanges)="refresh($event)">Submit-Question</button>
+                <!-- If no question is there then ask a question -->
+                <div *ngIf="data.questionAndAnswerNotes.length != 1">
+                    <div *ngIf="notecard" (click)="notecardOpen()">
+                        <h4><strong>Ask a Question</strong></h4>
+                    </div>
+                    <div>
+                        <div *ngIf="!notecard && notecardAnswer">
+                            <h5>Make sure what you are asking is unique,concise and phrased like a question.</h5>
+                        </div>
+                        <div style="height:3vh"></div>
+                        <textarea *ngIf="!notecard && notecardAnswer" [froalaEditor] [(froalaModel)]="addQue.message"
+                            [formControl]="message"></textarea>
+                    </div>
+                    <div style="height:3vh"></div>
+                    <!-- Ask Question -->
+                    <div fxLayoutAlign="end end">
+                        <button mat-flat-button class="color" *ngIf="!notecard && notecardAnswer"
+                            (click)="addQuestion()">Submit-Question</button>
                     </div>
                 </div>
-
-                <div style="height:5vh"></div>
-
-                <div *ngIf="notecardreply">
-                    <button (click)="notecardOpenAnswer()">View reply</button>
+                <div style="height:3vh"></div>
+                <!-- Reply Question -->
+                <div fxLayoutAlign="end end">
+                    <div *ngFor="let item of data.questionAndAnswerNotes">
+                        <button mat-flat-button class="color" *ngIf=!notecardreply
+                            (click)=addReply(item.id)>Submit-Answer</button>
+                    </div>
                 </div>
-                <div *ngIf="!notecardreply">
-                    <textarea [froalaEditor] [formControl]="message" [(froalaModel)]="replyQue.message"></textarea>
-                    <div style="height:5vh"></div>
-                </div>
-            </div>
-        </div>
-        <div fxLayout="row" fxLayoutAlign="end end">
-            <div *ngFor="let item of data.questionAndAnswerNotes">
-                <button mat-raised-button color="primary" (click)=addReply(item.id)>Submit-Reply</button>
             </div>
         </div>
     </div>
 </div>
-
-

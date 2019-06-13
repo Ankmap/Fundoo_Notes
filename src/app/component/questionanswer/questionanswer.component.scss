@@ -1,18 +1,15 @@
-.mainCard{
-    height: 750px;
+mat-divider{
+    border-top-color: black;
+    border-top-width: 2px;
 }
-mat-card{
-    height: 500px;
-}
-mat-form-field{
-    width: 1000px;
+.nameIcon{
+    text-align: center;
+    margin-top: 5px;
+    font-size: 25px;
 }
 button{
-    border-style: hidden; 
-    outline: none;  
+   font-size: 20px;
 }
-.question{
-    border-style: hidden; 
-    outline: none;  
-    background-color: white
+.color{
+    background-color: lightgray;
 }

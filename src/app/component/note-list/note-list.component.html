@@ -11,8 +11,8 @@
     <!-- ngClass for grid and list view -->
     <div class="cardSub" *ngFor="let data of pinedArray | sortPipe | searchNote : searchItem"
         [ngClass]=" direction =='row' ? 'cardSub':'cardSub2' ">
-        <mat-card [ngStyle]="{'background-color':data.color}" fxFlex.xl='700px' fxFlex.md='500px'
-        fxFlex.sm='400px' fxFlex.xs='150px'>
+        <mat-card [ngStyle]="{'background-color':data.color}" fxFlex.xl='700px' fxFlex.md='500px' fxFlex.sm='400px'
+            fxFlex.xs='150px'>
             <!-- openDialog for dialog -->
             <div fxFlexLayout=row>
                 <div fxFlex="90">
@@ -67,6 +67,14 @@
                     [card]='data' (onChangeAddNote)="entry($event)" [noteData]='data' (anyChanges)="refresh($event)">
                 </app-icon>
             </div>
+            <!-- display Question start-->
+            <div *ngFor="let question of data.questionAndAnswerNotes">
+                <mat-divider></mat-divider>
+                <div style="height:2vh"></div>
+                <h6><strong>Question Asked</strong></h6>
+                <span class="msg">{{question.message}}</span>
+            </div>
+            <!-- display Question end-->
         </mat-card>
     </div>
 </div>
@@ -134,6 +142,14 @@
                     [card]=data (onChangeAddNote)="entry($event)" [noteData]=data (anyChanges)="refresh($event)">
                 </app-icon>
             </div>
+            <!-- display Question start-->
+            <div *ngFor="let question of data.questionAndAnswerNotes">
+                <mat-divider></mat-divider>
+                <div style="height:2vh"></div>
+                <h6><strong>Question Asked</strong></h6>
+                <span class="msg">{{question.message}}</span>
+            </div>
+            <!-- display Question end-->
         </mat-card>
     </div>
 </div>

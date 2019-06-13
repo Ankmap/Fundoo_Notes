@@ -5,6 +5,7 @@ import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { NotesService } from 'src/app/core/service/notes/notes.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-questionanswer',
@@ -12,6 +13,12 @@ import { NotesService } from 'src/app/core/service/notes/notes.service';
   styleUrls: ['./questionanswer.component.scss']
 })
 export class QuestionanswerComponent implements OnInit {
+
+  /* Get from localstorage */
+  firstName = localStorage.getItem("firstname");
+  lastName = localStorage.getItem("lastname");
+  email = localStorage.getItem("email");
+  img = environment.url + localStorage.getItem("userImage")
 
   /* question Model */
   addQue: Question = new Question();
@@ -30,6 +37,7 @@ export class QuestionanswerComponent implements OnInit {
   /* Notecard open */
   private notecard: boolean = true;
   private notecardreply: boolean = true;
+  private notecardAnswer: boolean = true
 
   constructor(
     private questionService: QuestionService,
@@ -69,7 +77,8 @@ export class QuestionanswerComponent implements OnInit {
           this.snackbar.open('Error while question add......!', 'Done...!', { duration: 3000 });
           console.log("Error while question add ====> ", error)
         });
-        this.addQue.message = null;
+      this.addQue.message = null;
+      this.notecardAnswer = !(this.notecardAnswer);
     } catch (error) {
       console.log("Error while question add ====> ", error)
     }
@@ -94,7 +103,7 @@ export class QuestionanswerComponent implements OnInit {
           this.snackbar.open('Error while Reply add......!', 'Done...!', { duration: 3000 });
           console.log("Error while Reply add ====> ", error)
         });
-        this.replyQue.message = null;
+      this.replyQue.message = null;
     } catch (error) {
       console.log("Error while Reply add ====> ", error)
     }
@@ -138,11 +147,11 @@ export class QuestionanswerComponent implements OnInit {
     console.log('parentId for delete ===>', parentId)
     this.questionService.questionAndAnswerNotesDelete(parentId).subscribe(
       data => {
-        this.snackbar.open('delete question successfully','',{duration:1000});
+        this.snackbar.open('delete question successfully', '', { duration: 1000 });
         console.log('delete question ===>', data)
       },
       error => {
-        this.snackbar.open('delete question error','',{duration:1000});
+        this.snackbar.open('delete question error', '', { duration: 1000 });
         console.log('delete question error ===>', error);
 
       })

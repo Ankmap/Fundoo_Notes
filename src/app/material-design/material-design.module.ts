@@ -27,6 +27,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   // imports:[
@@ -133,6 +134,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatChipsModule,
     ImageCropperModule,
     DragDropModule,
+    MatDividerModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot()
   ],
@@ -170,6 +172,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatSelectModule,
     MatChipsModule,
     ImageCropperModule,
+    MatDividerModule,
     FroalaEditorModule,
     FroalaViewModule
   ]
