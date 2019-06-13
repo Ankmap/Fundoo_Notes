@@ -12,7 +12,7 @@
 }
 
 .example-sidenav{
-    width: 300px;  
+    width: 350px;  
     background-color: white;
 }
 
@@ -118,3 +118,20 @@
     float:left;
     margin-top:5px;
 }
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 360px)
+and (max-device-width : 640px) {
+/* STYLES GO HERE */
+.example-sidenav{
+    width: 180px;
+  }
+.labelImg{
+    display: none;
+  }
+}
+.labelImg{
+    margin-left: 20px;
+}
+ 

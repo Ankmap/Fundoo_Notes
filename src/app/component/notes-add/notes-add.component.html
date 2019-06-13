@@ -14,7 +14,7 @@
         <div fxFlex=70>
           <div>Take a note...</div>
         </div>
-        <div fxFlex=30 fxShow fxHide.sm fxShow fxHide.xs>
+        <div fxFlex=30 fxShow fxHide.sm fxShow fxHide.xs fxShow fxHide.md>
           <abbr title="New List" *ngIf="listNote">
             <button type="button" mat-button (click)="listCardOpen()">
               <img src="../../../assets/outline-check_box-24px.svg">
@@ -130,12 +130,12 @@
         </div>
         <div>
           <div fxLayout='row' fxFlex='100'>
-            <div fxFlex='50'>
+            <div fxFlex='50' fxShow fxHide.sm fxShow fxHide.xs fxShow fxHide.md>
               <!-- App Icon selector -->
               <app-icon (onChangeColor)="receivecolor($event)" (onChangeDateReminder)="receiveReminder($event)">
               </app-icon>
             </div>
-            <div fxFlex='40'>
+            <div fxFlex='40' fxShow fxHide.sm fxShow fxHide.xs fxShow fxHide.md>
               <div fxFlex=100>
                 <div fxFlex=50>
                   <abbr title="Undo">

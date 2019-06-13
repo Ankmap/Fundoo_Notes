@@ -136,7 +136,7 @@
                 <div *ngFor="let data of labelList" routerLink="/getlabel/{{data}}"
                     (click)="navbarName(data)" routerLinkActive=active class="labelData">
                     <div fxFlex="20">
-                        <img style="margin-left: 20px;" src="../../../assets/outline-label-24px.svg">
+                        <img class="labelImg" src="../../../assets/outline-label-24px.svg">
                     </div>
                     <div fxFlex="20">
                         <div>{{data}}</div>
