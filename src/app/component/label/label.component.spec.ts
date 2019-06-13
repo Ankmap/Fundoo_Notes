@@ -24,7 +24,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialDesignModule } from 'src/app/material-design/material-design.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SearchNotePipe } from 'src/app/core/pipe/filter/search-note.pipe';
-import { SortPipePipe } from 'src/app/core/pipe/sort/sort-pipe.pipe';
+import { SortPipe } from '../../core/pipe/sort/sort.pipe';
 import { NotefilterPipe } from 'src/app/core/pipe/noteFilter/notefilter.pipe';
 import { QuestionanswerComponent } from '../questionanswer/questionanswer.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
@@ -58,7 +58,7 @@ describe('LabelComponent', () => {
         QuestionanswerComponent,
         PinComponent,
         SearchNotePipe,
-        SortPipePipe,
+        SortPipe,
         NotefilterPipe,
       ],
       imports: [
@@ -70,7 +70,7 @@ describe('LabelComponent', () => {
       providers: [
         /** Pipes **/
         SearchNotePipe,
-        SortPipePipe,
+        SortPipe,
         NotefilterPipe,
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: MatDialogRef, useValue: {} }],

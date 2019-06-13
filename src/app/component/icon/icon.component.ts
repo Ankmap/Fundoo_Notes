@@ -150,6 +150,7 @@ export class IconComponent implements OnInit {
     this.labelArray = [];
     this.Array = [];
     this.noteService.showNoteLabel().subscribe((response) => {
+      // this.onChangeAddNote.emit({})
       this.label = response["data"].details;
       this.labelList = [];
       this.labelList = this.label;
@@ -165,18 +166,19 @@ export class IconComponent implements OnInit {
           }
         }
       }
+      this.onChangeAddNote.emit({})
     }, (error) => {
       console.log("ERR ====>", error);
     });
     /* For GetAll Note without refresh*/
-    // setTimeout(() => this.dataService.getAllNote(), 5000);
+    setTimeout(() => this.dataService.getAllNote(), 5000);
   }
 
   /**
    * @Purpose : Add Label to Note
    **/
   addLabel(label) {
-    if (this.card) {
+    // if (this.card) {
       this.noteService.addLabelToNotes(this.card.id, label.id)
         .subscribe((response) => {
           this.onChangeAddNote.emit({})
@@ -184,7 +186,7 @@ export class IconComponent implements OnInit {
         }, (error) => {
           console.log(" Add Label to Note error ====>", error);
         });
-    }
+    // }
     /* For GetAll Note without refresh*/
     setTimeout(() => this.dataService.getAllNote(), 100);
   }

@@ -26,7 +26,7 @@ import { PinComponent } from '../pin/pin.component';
 import { MaterialDesignModule } from '../../material-design/material-design.module';
 
 /** Pipe **/
-import { SortPipePipe } from '../../core/pipe/sort/sort-pipe.pipe';
+import { SortPipe } from '../../core/pipe/sort/sort.pipe';
 import { SearchNotePipe } from '../../core/pipe/filter/search-note.pipe';
 import { NotefilterPipe } from '../../core/pipe/noteFilter/notefilter.pipe';
 import { QuestionanswerComponent } from '../questionanswer/questionanswer.component';
@@ -60,7 +60,7 @@ describe('ArchiveComponent', () => {
         QuestionanswerComponent,
         PinComponent,
         SearchNotePipe,
-        SortPipePipe,
+        SortPipe,
         NotefilterPipe,
       ],
       imports: [
@@ -72,7 +72,7 @@ describe('ArchiveComponent', () => {
       providers: [
         /** Pipes **/
         SearchNotePipe,
-        SortPipePipe,
+        SortPipe,
         NotefilterPipe,
       ],
     })

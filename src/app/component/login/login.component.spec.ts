@@ -23,7 +23,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialDesignModule } from 'src/app/material-design/material-design.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SearchNotePipe } from 'src/app/core/pipe/filter/search-note.pipe';
-import { SortPipePipe } from 'src/app/core/pipe/sort/sort-pipe.pipe';
+import { SortPipe } from '../../core/pipe/sort/sort.pipe';
 import { NotefilterPipe } from 'src/app/core/pipe/noteFilter/notefilter.pipe';
 import { QuestionanswerComponent } from '../questionanswer/questionanswer.component';
 
@@ -56,7 +56,7 @@ describe('LoginComponent', () => {
         PinComponent,
         QuestionanswerComponent,
         SearchNotePipe,
-        SortPipePipe,
+        SortPipe,
         NotefilterPipe,
       ],
       imports: [
@@ -68,7 +68,7 @@ describe('LoginComponent', () => {
       providers: [
         /** Pipes **/
         SearchNotePipe,
-        SortPipePipe,
+        SortPipe,
         NotefilterPipe,
       ],
     })

@@ -6,7 +6,7 @@
  *@since   - 22/04/2019
 **************************************************************************************************/ -->
 <div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign="center start">
-    <div class="cardSub" *ngFor="let data of notes | sortPipe | searchNote : searchItem"
+    <div class="cardSub" *ngFor="let data of notes"
         [ngClass]=" direction =='row' ? 'cardSub':'cardSub2' ">
         <div *ngIf="data.isArchive != true && data.isDeleted != true">
             <mat-card [ngStyle]="{'background-color':data.color}">

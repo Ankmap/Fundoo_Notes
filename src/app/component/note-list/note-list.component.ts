@@ -337,7 +337,7 @@ export class NoteListComponent implements OnInit {
   showLabel(data) {
     this.data.changeMessage(data)
     /* For GetAll Note without refresh*/
-    setTimeout(() => this.data.getAllNote(), 100);
+    setTimeout(() => this.data.getAllNote(), 10);
   }
 
   /**

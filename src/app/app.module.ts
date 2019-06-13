@@ -21,9 +21,9 @@ import { ImageCropComponent } from './component/image-crop/image-crop.component'
 import { GetlabelComponent } from './component/getlabel/getlabel.component';
 import { PinComponent } from './component/pin/pin.component';
 import { QuestionanswerComponent } from './component/questionanswer/questionanswer.component';
-import { SortPipePipe } from '../app/core/pipe/sort/sort-pipe.pipe';
 import { SearchNotePipe } from './core/pipe/filter/search-note.pipe';
 import { NotefilterPipe } from './core/pipe/noteFilter/notefilter.pipe';
+import { SortPipe } from './core/pipe/sort/sort.pipe';
 
 @NgModule({
   declarations: [
@@ -48,9 +48,9 @@ import { NotefilterPipe } from './core/pipe/noteFilter/notefilter.pipe';
     GetlabelComponent,
     PinComponent,
     SearchNotePipe,
-    SortPipePipe,
     NotefilterPipe,
     QuestionanswerComponent,
+    SortPipe,
   ],
   imports: [
     MaterialDesignModule,

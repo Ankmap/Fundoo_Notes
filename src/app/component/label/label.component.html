@@ -22,7 +22,8 @@
             </div>
         </div>
     </div>
-    <div *ngFor="let label of labels | sortPipe" style="height:6vh">
+    <!-- <div *ngFor="let label of labels | sort | searchNote : searchItem" style="height:6vh"> -->
+    <div *ngFor="let label of labels" style="height:6vh">
         <div fxLayout=row>
             <div fxFlex="100" fxLayoutAlign="start start" (mouseover)="changeText=true" (mouseout)="changeText=false">
                 <!-- MouseOver for delete label -->

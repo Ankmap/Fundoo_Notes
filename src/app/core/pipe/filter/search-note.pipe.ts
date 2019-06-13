@@ -23,14 +23,4 @@ export class SearchNotePipe implements PipeTransform {
       return JSON.stringify(item).toLowerCase().includes(args);
     });
   }
-
-  //   transform(value: any, input: string) {
-  //     if (input) {
-  //         input = input.toLowerCase();
-  //         return value.filter(function (el: any) {
-  //             return el.toLowerCase().indexOf(input) > -1;
-  //         })
-  //     }
-  //     return value;
-  // }
 }
