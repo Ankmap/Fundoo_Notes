@@ -31,7 +31,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 /** Pipe **/
 import { SortPipe } from '../../core/pipe/sort/sort.pipe';
-import { SearchNotePipe } from '../../core/pipe/filter/search-note.pipe';
+import { FilterPipe } from '../../core/pipe/filter/filter.pipe';
 import { NotefilterPipe } from '../../core/pipe/noteFilter/notefilter.pipe';
 import { ArchiveComponent } from '../archive/archive.component';
 import { QuestionanswerComponent } from '../questionanswer/questionanswer.component';
@@ -65,7 +65,7 @@ describe('CollaboratorComponent', () => {
         GetlabelComponent,
         QuestionanswerComponent,
         PinComponent,
-        SearchNotePipe,
+        FilterPipe,
         SortPipe,
         NotefilterPipe,
       ],
@@ -77,7 +77,7 @@ describe('CollaboratorComponent', () => {
       ],
       providers: [
         /** Pipes **/
-        SearchNotePipe,
+        FilterPipe,
         SortPipe,
         NotefilterPipe,
         { provide: MAT_DIALOG_DATA, useValue: {} },

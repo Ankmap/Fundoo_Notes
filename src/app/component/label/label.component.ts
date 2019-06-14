@@ -27,7 +27,7 @@ export class LabelComponent implements OnInit {
 
   /* Label Model*/
   labels: Label = new Label();
-
+  label: Label[] = [];
   public model: any = {
     "labelName": "",
     "newName": ""
@@ -97,7 +97,8 @@ export class LabelComponent implements OnInit {
     this.note.showNoteLabel()
       .pipe(takeUntil(this.destroy$))
       .subscribe((response: any) => {
-        this.labels = response.data.details
+        this.label = response["data"].details;
+        this.label.reverse();
         console.log("check show Label=====>", response);
       }, (error) => {
         console.log("Data show Label ====>", error);
@@ -108,7 +109,7 @@ export class LabelComponent implements OnInit {
    * @Purpose : ShowLabel in sideNavbar
    **/
   add() {
-    this.done();
+    // this.done();
     this.dialogRef.close();
   }
 

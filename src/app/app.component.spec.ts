@@ -31,9 +31,9 @@ import { MaterialDesignModule } from './material-design/material-design.module';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 import { SortPipe } from '../app/core/pipe/sort/sort.pipe';
-import { SearchNotePipe } from './core/pipe/filter/search-note.pipe';
 import { NotefilterPipe } from './core/pipe/noteFilter/notefilter.pipe';
 import { QuestionanswerComponent } from './component/questionanswer/questionanswer.component';
+import { FilterPipe } from './core/pipe/filter/filter.pipe';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -67,7 +67,7 @@ describe('AppComponent', () => {
         PinComponent,
         QuestionanswerComponent
       ],
-      providers : [SearchNotePipe,SortPipe,NotefilterPipe,
+      providers : [FilterPipe,SortPipe,NotefilterPipe,
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: MatDialogRef, useValue: {} }]
     }).compileComponents();

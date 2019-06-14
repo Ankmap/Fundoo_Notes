@@ -21,7 +21,7 @@ import { PinComponent } from '../pin/pin.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialDesignModule } from 'src/app/material-design/material-design.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { SearchNotePipe } from 'src/app/core/pipe/filter/search-note.pipe';
+import { FilterPipe } from '../../core/pipe/filter/filter.pipe';
 import { SortPipe } from '../../core/pipe/sort/sort.pipe';
 import { NotefilterPipe } from 'src/app/core/pipe/noteFilter/notefilter.pipe';
 import { QuestionanswerComponent } from '../questionanswer/questionanswer.component';
@@ -54,7 +54,7 @@ describe('TrashComponent', () => {
         GetlabelComponent,
         PinComponent,
         QuestionanswerComponent,
-        SearchNotePipe,
+        FilterPipe,
         SortPipe,
         NotefilterPipe,
       ],
@@ -66,7 +66,7 @@ describe('TrashComponent', () => {
       ],
       providers: [
         /** Pipes **/
-        SearchNotePipe,
+        FilterPipe,
         SortPipe,
         NotefilterPipe,
       ],

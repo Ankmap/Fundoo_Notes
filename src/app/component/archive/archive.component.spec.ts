@@ -27,7 +27,7 @@ import { MaterialDesignModule } from '../../material-design/material-design.modu
 
 /** Pipe **/
 import { SortPipe } from '../../core/pipe/sort/sort.pipe';
-import { SearchNotePipe } from '../../core/pipe/filter/search-note.pipe';
+import { FilterPipe } from '../../core/pipe/filter/filter.pipe';
 import { NotefilterPipe } from '../../core/pipe/noteFilter/notefilter.pipe';
 import { QuestionanswerComponent } from '../questionanswer/questionanswer.component';
 
@@ -59,7 +59,7 @@ describe('ArchiveComponent', () => {
         GetlabelComponent,
         QuestionanswerComponent,
         PinComponent,
-        SearchNotePipe,
+        FilterPipe,
         SortPipe,
         NotefilterPipe,
       ],
@@ -71,7 +71,7 @@ describe('ArchiveComponent', () => {
       ],
       providers: [
         /** Pipes **/
-        SearchNotePipe,
+        FilterPipe,
         SortPipe,
         NotefilterPipe,
       ],

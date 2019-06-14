@@ -46,9 +46,10 @@ export class SearchNoteComponent implements OnInit {
   getNotes() {
     this.data.allNote.pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
-        this.notes = response["data"].data;
+        this.notes = response;
+        console.log("response in search ===>", response);
       }, (error) => {
-        console.log("Error:", error);
+        console.log("Error in search ===>", error);
       });
   }
 
