@@ -94,9 +94,13 @@ export class NoteListComponent implements OnInit {
       this.direction = this.view.data
     });
   }
+
+  /**
+   * @Purpose : Pin Unpined Array
+   **/ 
   pinedArray = [];
   unpinedArray = [];
-  /* Get all Note using filter */
+
   getNote() {
     this.data.allNote.pipe(takeUntil(this.destory$)).subscribe(
       data => {
@@ -110,11 +114,9 @@ export class NoteListComponent implements OnInit {
           if ((this.notes[i - 1]["isDeleted"] == false) && (this.notes[i - 1]["isArchived"] == false)) {
             if (this.notes[i - 1]["isPined"] == true) {
               this.pinedArray.push(this.notes[i - 1]);
-              // console.log("pinned array =====>", this.pinedArray);
             }
             else {
               this.unpinedArray.push(this.notes[i - 1]);
-              // console.log("unpinned array =====>", this.unpinedArray);
             }
           }
         }

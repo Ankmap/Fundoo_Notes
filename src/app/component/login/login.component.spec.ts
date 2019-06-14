@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoginComponent } from './login.component';
 import { IconComponent } from '../icon/icon.component';
@@ -65,7 +65,8 @@ describe('LoginComponent', () => {
         /** Material File **/
         MaterialDesignModule,
         FlexLayoutModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
       ],
       providers: [
         /** Pipes **/
@@ -74,7 +75,7 @@ describe('LoginComponent', () => {
         NotefilterPipe,
       ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -86,4 +87,25 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should be invalid', () => {
+    expect(component.register.email).toEqual('Aabc@gmail.com');
+    expect(component.register.email).toEqual('@abc.ABC.com');
+    expect(component.register.email).toEqual('AbC.23@abc.com');
+    expect(component.register.email).toEqual('');
+    expect(component.register.password).toEqual('');
+
+    expect(component.register.email).toBeFalsy();
+    expect(component.register.password).toBeFalsy();
+  });
+
+  it('should be valid', () => {
+    expect(component.register.email).toEqual('abc@gmail.com');
+    expect(component.register.password).toEqual('abcXYZ123');
+    expect(component.register.password).toEqual('@abc123');
+
+    expect(component.register.email).toBeTruthy();
+    expect(component.register.password).toBeTruthy();
+  });
+  
 });
