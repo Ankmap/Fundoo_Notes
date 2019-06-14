@@ -90,6 +90,15 @@
     height: 8vh;
     border-style: hidden; 
     outline: none;
+
+
+    padding-left: 32px;
+    display: inline-block;
+    line-height: 40px;
+    vertical-align: top;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .button:focus {
@@ -125,10 +134,17 @@ and (max-device-width : 640px) {
     display: none;
   }
 }
-a{
-    text-decoration: none;
-    color: black;
+
+@media only screen
+and (min-device-width : 600px)
+and (max-device-width : 640px) {
+/* STYLES GO HERE */
+
 }
-a:focus {
-    background-color: #fcefc3;
+
+h5{
+    letter-spacing: .01785714em;
+    font-family: 'Google Sans',Roboto,Arial,sans-serif;
+    font-weight: 500;
+    line-height: 1.25rem;
 }

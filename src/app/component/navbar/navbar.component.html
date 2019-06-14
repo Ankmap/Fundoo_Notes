@@ -48,14 +48,14 @@
 
             <!-- 3 -->
             <div fxFlex="21%" fxLayoutAlign="space-evenly center">
-                <div fxFlex="7" fxShow fxHide.sm fxShow fxHide.xs>
+                <div fxFlex="7"  fxShow fxHide.sm fxShow fxHide.xs>
                     <abbr title="Refresh">
                         <button style="outline: none;" mat-icon-button (click)="refresh()">
                             <i class="material-icons">refresh</i>
                         </button>
                     </abbr>
                 </div>
-                <div fxFlex="7" fxShow fxHide.sm fxShow fxHide.xs>
+                <div fxFlex="7"  fxShow fxHide.sm fxShow fxHide.xs>
                     <abbr title="Grid">
                         <button style="outline: none;" mat-icon-button *ngIf=list (click)=changeView() fxShow="true">
                             <img src="../../../assets/grid.svg" height="35" width="35">
@@ -65,7 +65,7 @@
                         </button>
                     </abbr>
                 </div>
-                <div fxFlex="7" fxShow fxHide.sm fxShow fxHide.xs>
+                <div fxFlex="7" fxShow fxHide.sm  fxShow fxHide.xs>
                     <abbr title="Google Account">
                         <button style="outline: none;" mat-icon-button (click)="account()">
                             <div mat-card-avatar
@@ -114,7 +114,7 @@
                     <h5 class="name">Notes</h5>
                 </div>
             </button>
-            <!-- Notes End -->
+            <!-- Notes End -->  
             <!-- Reminder start -->
             <button type="button" class="button" mat-button (click)="navbarName('Reminders')" routerLink="/reminder">
                 <div fxLayout="row" fxLayoutGap="25px">
@@ -127,25 +127,15 @@
         <mat-divider></mat-divider>
 
         <!-- 2nd div LABELS, Edit labels -->
-        <div fxLayout="column" fxLayoutGap="20px">
-            <div fxLayout="row">
-                <p class="labels">LABELS</p>
-            </div>
-
-            <div fxLayout="column">
-                <a *ngFor="let data of labelList" routerLink="/getlabel/{{data}}" (click)="navbarName(data)"
-                    routerLinkActive=active>
-                    <button class="button" mat-button fxFlex="100">
-                        <div fxFlex="50">
-                            <img class="labelImg" src="../../../assets/outline-label-24px.svg">
-                        </div>
-                        <div fxFlex="50">
-                            <h5>{{data}}</h5>
-                        </div>
-                    </button>
-                </a>
-            </div>
-
+         <div fxLayout="column">
+            <p class="labels">LABELS</p>
+            <button class="button" mat-button *ngFor="let data of labelList" routerLink="/getlabel/{{data}}" (click)="navbarName(data)"
+                routerLinkActive=active>
+                <div fxLayout="row" fxLayoutGap="25px">
+                    <img class="labelImg" src="../../../assets/outline-label-24px.svg">
+                    <h5>{{data}}</h5>
+                </div>
+            </button>
             <button type="button" (click)="createLabel()" class="button" mat-button>
                 <div fxLayout="row" fxLayoutGap="25px">
                     <img src="../../../assets/outline-create-24px.svg">
@@ -153,7 +143,6 @@
                 </div>
             </button>
         </div>
-
         <mat-divider></mat-divider>
 
         <!-- 3rd div Archive, Delete -->
