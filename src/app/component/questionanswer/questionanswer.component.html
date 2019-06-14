@@ -20,13 +20,13 @@
                 <mat-divider></mat-divider>
                 <div style="height:3vh"></div>
                 <!-- Check Question Length if one question is there then reply-->
-                <div *ngIf="data.questionAndAnswerNotes.length == 1">
+                <div *ngIf="data.questionAndAnswerNotes.length>0">
                     <!-- Display Question start -->
                     <h4><strong>Question Asked</strong></h4>
                     <div style="height:3vh"></div>
                     <div fxLayout="row" fxLayoutAlign="start center">
                         <div fxFlex=10>
-                            <div mat-card-avatar [ngStyle]="{'background-color':'lightgray','background-size':'cover',
+                            <div mat-card-avatar [ngStyle]="{'background-color':'#fcefc3','background-size':'cover',
                             'height':'50px','width':'50px','border':'1px solid black','border-radius':'50%'}">
                                 <!-- Get FirstLetter of user -->
                                 <div class=nameIcon>{{firstName[0].toUpperCase()}}</div>
@@ -34,12 +34,22 @@
                         </div>
                         <div fxFlex=50>
                             <div *ngFor="let item of data.questionAndAnswerNotes">
-                                <h4>{{item.message}}</h4>
+                                <div *ngIf="!item.parentId">
+                                    <h4 (click)="question(item.id)">{{item.message}}</h4>
+                                </div>
+
                             </div>
 
                             <!-- <star-rating-comp [starType]="'icon'"></star-rating-comp> -->
                             <!-- <star-rating-comp star-type="'icon'"></star-rating-comp> -->
 
+                        </div>
+                        <div fxFlex=50>
+                            <div *ngFor="let item of data.questionAndAnswerNotes">
+                                <div *ngIf="item.parentId">
+                                    <h4 (click)="question(item.id)">{{item.message}}</h4>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!-- Display Question end -->
@@ -56,7 +66,7 @@
                 </div>
 
                 <!-- If no question is there then ask a question -->
-                <div *ngIf="data.questionAndAnswerNotes.length != 1">
+                <div *ngIf="!data.questionAndAnswerNotes.length>0">
                     <div *ngIf="notecard" (click)="notecardOpen()">
                         <h4><strong>Ask a Question</strong></h4>
                     </div>
