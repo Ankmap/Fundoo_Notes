@@ -22,29 +22,32 @@
                 <!-- Check Question Length if one question is there then reply-->
                 <div *ngIf="data.questionAndAnswerNotes.length>0">
                     <!-- Display Question start -->
-                    <h4><strong>Question Asked</strong></h4>
-                    <div style="height:3vh"></div>
+
                     <div fxLayout="row" fxLayoutAlign="start center">
-                        <div fxFlex=10>
-                            <div mat-card-avatar [ngStyle]="{'background-color':'#fcefc3','background-size':'cover',
-                            'height':'50px','width':'50px','border':'1px solid black','border-radius':'50%'}">
-                                <!-- Get FirstLetter of user -->
-                                <div class=nameIcon>{{firstName[0].toUpperCase()}}</div>
+                        <div fxFlex=50>
+                            <div fxLayout="row" fxLayoutGap="20px">
+                                <div mat-card-avatar [ngStyle]="{'background-color':'#fcefc3','background-size':'cover',
+                                    'height':'50px','width':'50px','border':'1px solid black','border-radius':'50%'}">
+                                    <!-- Get FirstLetter of user -->
+                                    <div class=nameIcon>{{firstName[0].toUpperCase()}}</div>
+                                </div>
+                                <div>{{firstName}} {{lastName}}</div>
                             </div>
                         </div>
                         <div fxFlex=50>
+                            <h4><strong>Question Asked</strong></h4>
+                            <div style="height:3vh"></div>
                             <div *ngFor="let item of data.questionAndAnswerNotes">
                                 <div *ngIf="!item.parentId">
                                     <h4 (click)="question(item.id)">{{item.message}}</h4>
                                 </div>
-
                             </div>
-
                             <!-- <star-rating-comp [starType]="'icon'"></star-rating-comp> -->
                             <!-- <star-rating-comp star-type="'icon'"></star-rating-comp> -->
-
                         </div>
                         <div fxFlex=50>
+                            <h4><strong>Answers</strong></h4>
+                            <div style="height:3vh"></div>
                             <div *ngFor="let item of data.questionAndAnswerNotes">
                                 <div *ngIf="item.parentId">
                                     <h4 (click)="question(item.id)">{{item.message}}</h4>
@@ -89,8 +92,10 @@
                 <!-- Reply Question -->
                 <div fxLayoutAlign="end end">
                     <div *ngFor="let item of data.questionAndAnswerNotes">
+                        <!-- <div *ngIf="data.questionAndAnswerNotes.length[0]"> -->
                         <button mat-flat-button class="color" *ngIf=!notecardreply
                             (click)=addReply(item.id)>Submit-Answer</button>
+                        <!-- </div> -->
                     </div>
                 </div>
             </div>
