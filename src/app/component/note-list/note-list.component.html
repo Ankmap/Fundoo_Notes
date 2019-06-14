@@ -1,14 +1,13 @@
 <!-- /***********************************************************************************************
- *@Purpose - FundoNotes.
+ *@Purpose - FundoNotes.  | filter : searchItem
  *@file    - note-list.component.html
  *@author  - Ankita Mapari <mapariit@gmail.com>
  *@version - 1.0
  *@since   - 22/04/2019
 **************************************************************************************************/ -->
 <p class=pin>PINNED</p>
-
 <div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign="center center">
-        <div class="cardSub" *ngFor="let data of pinedArray | filter : searchItem"
+        <div class="cardSub" *ngFor="let data of pinedArray"
             [ngClass]=" direction =='row' ? 'cardSub':'cardSub2' ">
             <mat-card [ngStyle]="{'background-color':data.color}">
                 <div fxFlexLayout=row>
@@ -73,11 +72,12 @@
             </mat-card>
         </div>
     </div>
+
 <div style="height:10vh"></div>
 
 <p class=pin>OTHERS</p>
 <div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign="center center">
-    <div class="cardSub" *ngFor="let data of unpinedArray | filter : searchItem"
+    <div class="cardSub" *ngFor="let data of unpinedArray"
         [ngClass]=" direction =='row' ? 'cardSub':'cardSub2' ">
         <mat-card [ngStyle]="{'background-color':data.color}">
             <div fxFlexLayout=row>

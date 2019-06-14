@@ -94,10 +94,10 @@ export class IconComponent implements OnInit {
   }
 
   /* addCollaborator */
-  addCollaborator(cardDetails): void {
+  addCollaborator(collaborators): void {
     const dialogRef = this.dialog.open(CollaboratorComponent, {
       width: '600px',
-      data: { noteData: cardDetails }
+      data: { noteData: collaborators }
     });
     dialogRef.afterClosed()
       .pipe(takeUntil(this.destroy$))

@@ -30,7 +30,7 @@ export class CollaboratorComponent implements OnInit {
 
   /* Add Collaborators */
   collabData: any[];
-  private collaborators = [];
+  // private collaborators = [];
 
   constructor(
     private snackbar: MatSnackBar,
@@ -50,14 +50,12 @@ export class CollaboratorComponent implements OnInit {
   img = environment.url + localStorage.getItem("userImage")
 
   ngOnInit() {
+    // this.firstName = ' ';
     this.firstName = localStorage.getItem("firstname");
-    this.lastName = localStorage.getItem("lastname");
-    this.email = localStorage.getItem("email");
-    this.img = environment.url + localStorage.getItem("userImage")
-    /* collaborators */
-    for (let i = 0; i < this.data.noteData["collaborators"].length; i++) {
-      this.collaborators.push(this.data.noteData["collaborators"][i])
-    }
+    /* collaborators let i = this.notes.length; i > 0; i--*/
+    // for (let i = 0; i < this.data.noteData["collaborators"].length; i++) {
+    //   this.collaborators.push(this.data.noteData["collaborators"][i])
+    // }
   }
 
   /* Close dialog  box */
@@ -84,26 +82,20 @@ export class CollaboratorComponent implements OnInit {
   **/
   addCol(data) {
     console.log("Add collaborators data 1====>", data);
-    console.log("Add collaborators data 2====>", this.collaborators);
+    // console.log("Add collaborators data 2====>", this.collaborators);
     console.log("Add collaborators data note id ===>", this.data.noteData['id']);
     /* Get collaborators details */
     this.collabData = this.userList[0];
-    // for (let i = 0; this.collaborators.length; i++) {
-    //   if (data == this.collaborators[i]) {
-    //     return console.log("Add collaborators")
-    //   }
-    // }
     console.log("Check data ===>", this.collabData);
     // console.log("Check data ===>", data);
     console.log('console for Add collaborators data note id and collaborators details =======================>', this.collabData, this.data.noteData['id']);
     try {
-      // this.noteService.addColNote(data, this.data.noteData['id']).subscribe(
       this.noteService.addColNote(this.collabData, this.data.noteData['id']).subscribe(
         data => {
           this.snackbar.open('Collaborators added successfully......!', 'Done...!', { duration: 3000 });
           console.log('Collaborators added successfully information ==========>', data);
           /* Push data into collaborators */
-          this.collaborators.push(data)
+          // this.collaborators.push(data)
         },
         error => {
           this.snackbar.open('Error while collaboratoring note......!', 'Error', { duration: 3000 });
