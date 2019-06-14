@@ -150,10 +150,8 @@ export class NotesAddComponent implements OnInit {
    * @Purpose : Pin Unpin Note
    **/
   pinUpdate($event) {
-    console.log('this.isPinedthis.isPinedthis.isPined');
     this.isPined = $event
-    this.onChangePin.emit(this.isPined);
-    console.log('onPinChange ====>', this.isPined);
+    console.log('onPinChange while add note ====>', this.isPined);
 
   }
 

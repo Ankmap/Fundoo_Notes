@@ -50,6 +50,10 @@ export class CollaboratorComponent implements OnInit {
   img = environment.url + localStorage.getItem("userImage")
 
   ngOnInit() {
+    this.firstName = localStorage.getItem("firstname");
+    this.lastName = localStorage.getItem("lastname");
+    this.email = localStorage.getItem("email");
+    this.img = environment.url + localStorage.getItem("userImage")
     /* collaborators */
     for (let i = 0; i < this.data.noteData["collaborators"].length; i++) {
       this.collaborators.push(this.data.noteData["collaborators"][i])
@@ -98,7 +102,7 @@ export class CollaboratorComponent implements OnInit {
         data => {
           this.snackbar.open('Collaborators added successfully......!', 'Done...!', { duration: 3000 });
           console.log('Collaborators added successfully information ==========>', data);
-          /* Push data into collaborators */ 
+          /* Push data into collaborators */
           this.collaborators.push(data)
         },
         error => {
@@ -111,8 +115,8 @@ export class CollaboratorComponent implements OnInit {
     /* For GetAll Note without refresh*/
     setTimeout(() => this.dataService.getAllNote(), 10);
   }
-  
-  
+
+
   /**
    *@Purpose : Remove collaborators
   **/
@@ -137,5 +141,5 @@ export class CollaboratorComponent implements OnInit {
       this.dataService.getAllNote();
     }
   }
-  
+
 }

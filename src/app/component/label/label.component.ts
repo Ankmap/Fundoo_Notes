@@ -27,7 +27,6 @@ export class LabelComponent implements OnInit {
 
   /* Label Model*/
   labels: Label = new Label();
-  private labelList = []
 
   public model: any = {
     "labelName": "",
@@ -99,7 +98,6 @@ export class LabelComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe((response: any) => {
         this.labels = response.data.details
-        this.labelList = [];
         console.log("check show Label=====>", response);
       }, (error) => {
         console.log("Data show Label ====>", error);

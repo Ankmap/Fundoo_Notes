@@ -7,7 +7,7 @@
 **************************************************************************************************/ -->
 <p class=pin>PINNED</p>
 
-<div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign="center center">
+<div class="cardMain" fxLayout="{{direction}} wrap">
     <div class="cardSub" *ngFor="let data of pinedArray | searchNote : searchItem"
         [ngClass]=" direction =='row' ? 'cardSub':'cardSub2' " fxLayout="row wrap" fxLayoutAlign="center center">
         <mat-card [ngStyle]="{'background-color':data.color}">
@@ -20,7 +20,6 @@
                 </div>
                 <div fxFlex="10">
                     <div class="icon">
-                        <!-- <app-pin class="iconButton" [card]='data' (onChangePin)="updatePin(data,$event)"></app-pin> -->
                         <app-pin [card]='data' (onChangePin)=pinUpdate(data,$event)></app-pin>
                     </div>
                 </div>
@@ -78,7 +77,7 @@
 <div style="height:10vh"></div>
 
 <p class=pin>OTHERS</p>
-<div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign="center center">
+<div class="cardMain" fxLayout="{{direction}} wrap">
     <div class="cardSub" *ngFor="let data of unpinedArray | searchNote : searchItem"
         [ngClass]=" direction =='row' ? 'cardSub':'cardSub2' ">
         <mat-card [ngStyle]="{'background-color':data.color}">
@@ -91,7 +90,6 @@
                 </div>
                 <div fxFlex="10">
                     <div class="icon">
-                        <!-- <app-pin class="iconButton" [card]='data' (onChangePin)="updatePin(data,$event)"></app-pin> -->
                         <app-pin [card]='data' (onChangePin)=pinUpdate(data,$event)></app-pin>
                     </div>
                 </div>

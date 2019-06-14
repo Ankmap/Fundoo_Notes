@@ -352,10 +352,10 @@ export class NoteListComponent implements OnInit {
   pinUpdate(data, $event) {
     this.isPined = $event
     var body = {
-      "iPined": this.isPined,
+      "isPined": this.isPined,
       "noteIdList": [data.id] /* Access noteIdList for particular note*/
     }
-    console.log("Set Pin at pinUpdate =====>", body);
+    console.log("Set Pin at display note =====>", body);
     try {
       this.noteService.pinUnpinNotes(body).subscribe(
         data => {
