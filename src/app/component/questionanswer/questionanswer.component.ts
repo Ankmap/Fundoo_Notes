@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { QuestionService } from 'src/app/core/service/question/question.service';
 import { Question, Reply } from 'src/app/core/model/question/question';
 import { FormControl } from '@angular/forms';
@@ -10,9 +10,11 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-questionanswer',
   templateUrl: './questionanswer.component.html',
-  styleUrls: ['./questionanswer.component.scss']
+  styleUrls: ['./questionanswer.component.scss'],
 })
 export class QuestionanswerComponent implements OnInit {
+
+  @Output() Onchages = new EventEmitter()
 
   /* Get from localstorage */
   firstName = localStorage.getItem("firstname");
@@ -27,6 +29,7 @@ export class QuestionanswerComponent implements OnInit {
   private noteList;
   private displayQuestion;
   private questionData = '';
+  count:String;
 
   /* Binding the message and description */
   message = new FormControl('')
@@ -116,6 +119,7 @@ export class QuestionanswerComponent implements OnInit {
         data => {
           this.snackbar.open('Question add successfully......!', 'Done...!', { duration: 4000, verticalPosition: 'top' });
           console.log('question add successfully......!', data);
+          this.Onchages.emit({})
         },
         error => {
           this.snackbar.open('Error while question add......!', 'Done...!', { duration: 3000 });
@@ -156,18 +160,18 @@ export class QuestionanswerComponent implements OnInit {
   /**
     * @Purpose : Delete Question
   **/
-  // question(parentId) {
-  //   console.log('parentId for delete ===>', parentId)
-  //   this.questionService.questionAndAnswerNotesDelete(parentId).subscribe(
-  //     data => {
-  //       this.snackbar.open('delete question successfully', '', { duration: 1000 });
-  //       console.log('delete question ===>', data)
-  //     },
-  //     error => {
-  //       this.snackbar.open('delete question error', '', { duration: 1000 });
-  //       console.log('delete question error ===>', error);
+  question(parentId) {
+    console.log('parentId for delete ===>', parentId)
+    this.questionService.questionAndAnswerNotesDelete(parentId).subscribe(
+      data => {
+        this.snackbar.open('delete question successfully', '', { duration: 1000 });
+        console.log('delete question ===>', data)
+      },
+      error => {
+        this.snackbar.open('delete question error', '', { duration: 1000 });
+        console.log('delete question error ===>', error);
 
-  //     })
-  // }
+      })
+  }
 
 }

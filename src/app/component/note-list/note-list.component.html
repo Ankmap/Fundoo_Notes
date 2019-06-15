@@ -6,14 +6,14 @@
  *@since   - 22/04/2019
 **************************************************************************************************/ -->
 <p class=pin *ngIf="pinedArray.length > 0">PINNED</p>
-<div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign="center center">
+<div class="cardMain" fxLayout="{{direction}} wrap">
     <div class="cardSub" *ngFor="let data of pinedArray" [ngClass]=" direction =='row' ? 'cardSub':'cardSub2' " cdkDrag>
         <mat-card [ngStyle]="{'background-color':data.color}">
             <div fxFlexLayout=row>
                 <div fxFlex="90">
                     <div (click)="openDialog(data)">
-                        <div class="title">{{data.title}}</div>
-                        <div class="description"> {{data.description }}</div>
+                        <div class="title"><div innerHTML="{{data.title}}"></div></div>
+                        <div class="description"><div innerHTML="{{data.description}}"></div></div>
                     </div>
                 </div>
                 <div fxFlex="10">
@@ -65,8 +65,9 @@
                 <div *ngIf="!question.parentId">
                     <div style="height:2vh"></div>
                     <mat-divider></mat-divider>
+                    <div style="height:2vh"></div>
                     <h6><strong>Question Asked</strong></h6>
-                    <span class="msg">{{question.message}}</span>
+                    <span class="msg"><div innerHTML="{{question.message}}"></div></span>
                 </div>
             </div>
             <!-- display Question end-->
@@ -74,18 +75,18 @@
     </div>
 </div>
 
-<div style="height:10vh"></div>
+<div style="height:5vh"></div>
 
 <p class=pin *ngIf="unpinedArray.length > 0">OTHERS</p>
-<div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign="center center">
+<div class="cardMain" fxLayout="{{direction}} wrap">
     <div class="cardSub" *ngFor="let data of unpinedArray" [ngClass]=" direction =='row' ? 'cardSub':'cardSub2' "
         cdkDrag>
         <mat-card [ngStyle]="{'background-color':data.color}">
             <div fxFlexLayout=row>
                 <div fxFlex="90">
                     <div (click)="openDialog(data)">
-                        <div class="title">{{data.title}}</div>
-                        <div class="description"> {{data.description }}</div>
+                        <div class="title"><div innerHTML="{{data.title}}"></div></div>
+                        <div class="description"><div innerHTML="{{data.description}}"></div></div>
                     </div>
                 </div>
                 <div fxFlex="10">
@@ -137,8 +138,9 @@
                 <div *ngIf="!question.parentId">
                     <div style="height:2vh"></div>
                     <mat-divider></mat-divider>
+                    <div style="height:2vh"></div>
                     <h6><strong>Question Asked</strong></h6>
-                    <span class="msg">{{question.message}}</span>
+                    <span class="msg"><div innerHTML="{{question.message}}"></div></span>
                 </div>
             </div>
             <!-- display Question end-->

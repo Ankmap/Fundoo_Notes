@@ -34,9 +34,11 @@ mat-card{
 .title{
     word-break: break-all;
     font-weight: bold;
+    color: black;
 }
 .description{
     word-break: break-all;
+    color: black;
 }
 .clear{ 
     position: absolute;
@@ -60,7 +62,7 @@ mat-chip {
 .cardMain{
     max-width: 1000px;
     overflow: hidden;
-    margin-left: 100px
+    // margin-left: 100px
 }
 @media only screen
 and (min-device-width : 959px)
@@ -81,8 +83,8 @@ and (max-device-width : 640px) {
 }
 .pin{
     opacity: 0.7;
-    margin-left: 150px
 }
 .msg{
     opacity: 0.5;
+    font-size: 3px;
 }

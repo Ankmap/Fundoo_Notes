@@ -5,9 +5,11 @@
  *@version - 1.0
  *@since   - 22/04/2019
 **************************************************************************************************/
-// .cardMain{
-//     height: 750px;
-// }
+.cardMain{
+    width: 1000px;
+    display: flex;
+    justify-content: center;
+}
 .cardSub{
     border-radius: 5%;
     width: 285px;

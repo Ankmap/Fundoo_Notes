@@ -30,7 +30,7 @@ export class CollaboratorComponent implements OnInit {
 
   /* Add Collaborators */
   collabData: any[];
-  // private collaborators = [];
+  private collaborators = [];
 
   constructor(
     private snackbar: MatSnackBar,
@@ -53,9 +53,9 @@ export class CollaboratorComponent implements OnInit {
     // this.firstName = ' ';
     this.firstName = localStorage.getItem("firstname");
     /* collaborators let i = this.notes.length; i > 0; i--*/
-    // for (let i = 0; i < this.data.noteData["collaborators"].length; i++) {
-    //   this.collaborators.push(this.data.noteData["collaborators"][i])
-    // }
+    for (let i = 0; i < this.data.noteData["collaborators"].length; i++) {
+      this.collaborators.push(this.data.noteData["collaborators"][i])
+    }
   }
 
   /* Close dialog  box */
@@ -82,12 +82,12 @@ export class CollaboratorComponent implements OnInit {
   **/
   addCol(data) {
     console.log("Add collaborators data 1====>", data);
-    // console.log("Add collaborators data 2====>", this.collaborators);
+    console.log("Add collaborators data 2====>", this.collaborators);
     console.log("Add collaborators data note id ===>", this.data.noteData['id']);
     /* Get collaborators details */
     this.collabData = this.userList[0];
     console.log("Check data ===>", this.collabData);
-    // console.log("Check data ===>", data);
+    console.log("Check data ===>", data);
     console.log('console for Add collaborators data note id and collaborators details =======================>', this.collabData, this.data.noteData['id']);
     try {
       this.noteService.addColNote(this.collabData, this.data.noteData['id']).subscribe(
@@ -95,7 +95,7 @@ export class CollaboratorComponent implements OnInit {
           this.snackbar.open('Collaborators added successfully......!', 'Done...!', { duration: 3000 });
           console.log('Collaborators added successfully information ==========>', data);
           /* Push data into collaborators */
-          // this.collaborators.push(data)
+          this.collaborators.push(data)
         },
         error => {
           this.snackbar.open('Error while collaboratoring note......!', 'Error', { duration: 3000 });
