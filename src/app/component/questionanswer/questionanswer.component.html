@@ -8,8 +8,12 @@
                 <div fxFlex=100 fxLayoutGap="20px">
                     <div fxFlex=90>
                         <div fxLayout="column" fxLayoutAlign="start start">
-                            <h4><strong><div innerHTML="{{data.title}}"></div></strong></h4>
-                            <h4><div innerHTML="{{data.description}}"></div></h4>
+                            <h4><strong>
+                                    <div innerHTML="{{data.title}}"></div>
+                                </strong></h4>
+                            <h4>
+                                <div innerHTML="{{data.description}}"></div>
+                            </h4>
                         </div>
                     </div>
                     <div fxFlex=10>
@@ -28,7 +32,9 @@
                             <h4><strong>Question Asked</strong></h4>
                             <div *ngFor="let item of data.questionAndAnswerNotes">
                                 <div *ngIf="!item.parentId">
-                                    <h5 (click)="question(item.id)"><div innerHTML="{{item.message}}"></div></h5>
+                                    <h5 (click)="question(item.id)">
+                                        <div innerHTML="{{item.message}}"></div>
+                                    </h5>
                                 </div>
                             </div>
                         </div>
@@ -44,10 +50,13 @@
                                     <div>{{firstName}} {{lastName}}</div>
                                     <div *ngFor="let item of data.questionAndAnswerNotes">
                                         <div *ngIf="!item.parentId">
-                                            <h3 (click)="question(item.id)"><div innerHTML="{{item.message}}"></div></h3>
+                                            <h3 (click)="question(item.id)">
+                                                <div innerHTML="{{item.message}}"></div>
+                                            </h3>
                                         </div>
                                     </div>
                                 </div>
+                                <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>
                             </div>
                         </div>
                         <div fxFlex=50>
@@ -58,7 +67,9 @@
                                         [ngStyle]="{'background-image': 'url('+img+')','background-color':'#fcefc3','background-size':'cover',
                                         'height':'60px','width':'60px','border':'3px solid white','border-radius':'50%'}">
                                     </div>
-                                    <h4 class="answers" (click)="question(item.id)"><div innerHTML="{{item.message}}"></div></h4>
+                                    <h4 class="answers" (click)="question(item.id)">
+                                        <div innerHTML="{{item.message}}"></div>
+                                    </h4>
                                 </div>
                             </div>
                         </div>

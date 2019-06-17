@@ -1,0 +1,44 @@
+.navbar{
+    background-color: orange;
+}
+p{
+    font-size: 35px;
+    opacity: 0.8;
+}
+.front{
+    display: flex;
+    background-color: white;
+    width: 250px;
+    height:50vh;
+    position: fixed;
+    margin-top: -420px;
+}
+
+.frontSub{
+    display: flex;
+    background-color: gray;
+    width: 250px;
+    margin-left: 30px;
+    height:50vh;
+}
+.cart{
+    font-size:15px;
+    width: 150px;
+    color: white;
+}
+.cart:hover{
+    font-size:15px !important;
+    color: white;
+}
+
+.addtoCart:hover > .frontSub {
+    background-color: orange;
+}
+.addtoCart:hover{
+    opacity: 1;
+    transform: 'scale(1.5)' 
+}
+
+/*
+
+*/ 

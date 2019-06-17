@@ -1,0 +1,49 @@
+<div fxLayout="column" fxLayoutGap="50px">
+  <mat-toolbar class="navbar">
+    <div fxFlex=3></div>
+    <div fxFlex=14>
+      <h2>FundooNotes</h2>
+    </div>
+    <div fxFlex=83></div>
+  </mat-toolbar>
+  <!-- navbar end -->
+  <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="100px">
+    <div>
+      <p>Which fundooNotes service package do you want ?</p>
+    </div>
+    <div fxLayout="row" fxLayoutGap="100px">
+      <!-- Advance cart gray=sub-->
+      <div (click)="addtoCart()" class="addtoCart" [@simpleFadeAnimation]="'in'">
+        <mat-card class="frontSub"></mat-card>
+        <mat-card class="front" fxLayoutAlign="center center">
+          <div fxLayout="column" fxLayoutGap="30px">
+            <h6><strong>$ 6.99 per Month</strong></h6>
+            <a>Advance</a>
+            <li>Unlimited</li>
+            <li>Nice</li>
+            <li>Unlimited</li>
+            <li>Nice</li>
+          </div>
+          <div class="cart" style="margin-top: 420px;">ADD TO CART</div>
+          <!--  -->
+        </mat-card>
+      </div>
+      <!-- Basic cart -->
+      <div (click)="addtoCart()" class="addtoCart" [@simpleFadeAnimation]="'in'">
+        <mat-card class="frontSub"></mat-card>
+        <mat-card class="front" fxLayoutAlign="center center">
+          <div fxLayout="column" fxLayoutGap="30px">
+            <h6><strong>$ 6.99 per Month</strong></h6>
+            <a>Advance</a>
+            <li>Unlimited</li>
+            <li>Nice</li>
+            <li>Unlimited</li>
+            <li>Nice</li>
+          </div>
+          <div class="cart" style="margin-top: 420px;">ADD TO CART</div>
+          <!--  -->
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

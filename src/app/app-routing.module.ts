@@ -28,14 +28,20 @@ import { AuthGuard } from './core/service/auth/auth.guard'
 
 /*Component lifecycle hook*/
 import { ComponentLifecycleComponent } from './component/component-lifecycle/component-lifecycle.component';
+import { CartComponent } from './component/cart/cart.component';
+import { OpenCartComponent } from './component/open-cart/open-cart.component';
+import { CartmainComponent } from './component/cartmain/cartmain.component';
 
 /*Routing path set*/
 const appRoutes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'cart', pathMatch: 'full' },
+  { path: 'cart', component:CartComponent},
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'resetpassword/:token', component: ResetPasswordComponent },
+  { path: 'opencart', component:OpenCartComponent},
+  { path: 'mainCart', component:CartmainComponent},
   {
     /*Apply AuthGuard*/
     path: '', component: NavbarComponent, canActivate: [AuthGuard],

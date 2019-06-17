@@ -5,7 +5,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 /**
  * @Purpose : Material Required file 
  **/
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCardModule, MatSlideToggleModule, MatSliderModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCardModule, MatSlideToggleModule, MatSliderModule, MatProgressSpinnerModule, MatStepperModule } from '@angular/material';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import { MatRadioModule } from '@angular/material/radio';
@@ -68,7 +68,8 @@ import {StarRatingModule} from 'angular-star-rating';
     MatDividerModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
-    StarRatingModule.forRoot()
+    StarRatingModule.forRoot(),
+    MatStepperModule
   ],
 
   exports: [
@@ -107,7 +108,8 @@ import {StarRatingModule} from 'angular-star-rating';
     MatDividerModule,
     FroalaEditorModule,
     FroalaViewModule,
-    StarRatingModule
+    StarRatingModule,
+    MatStepperModule
   ]
 
 

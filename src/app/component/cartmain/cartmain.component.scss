@@ -1,0 +1,31 @@
+.navbar{
+    background-color: orange;
+}
+.fundooNotes{
+    border-radius: 25px 25px 25px 25px;
+    border-style: hidden; 
+    outline: none;
+    background-color: orange;
+}
+.cart{
+    height:100px;
+    width:120px;
+    background-color: gray;
+    border-radius: 5px;
+}
+.endcart{
+    height:100px;
+    width:200px;
+    background-color: lightgray;
+}
+.divider{
+    width: 800px
+}
+// @media only screen
+// and (min-device-width : 360px)
+// and (max-device-width : 640px) {
+// /* STYLES GO HERE */
+// .divider{
+//     width: 100px
+//     }
+// }

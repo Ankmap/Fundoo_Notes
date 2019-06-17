@@ -24,6 +24,9 @@ import { QuestionanswerComponent } from './component/questionanswer/questionansw
 import { NotefilterPipe } from './core/pipe/noteFilter/notefilter.pipe';
 import { SortPipe } from './core/pipe/sort/sort.pipe';
 import { FilterPipe } from './core/pipe/filter/filter.pipe';
+import { CartComponent } from './component/cart/cart.component';
+import { OpenCartComponent } from './component/open-cart/open-cart.component';
+import { CartmainComponent } from './component/cartmain/cartmain.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +55,9 @@ import { FilterPipe } from './core/pipe/filter/filter.pipe';
     QuestionanswerComponent,
     SortPipe,
     FilterPipe,
+    CartComponent,
+    OpenCartComponent,
+    CartmainComponent,
   ],
   imports: [
     MaterialDesignModule,
