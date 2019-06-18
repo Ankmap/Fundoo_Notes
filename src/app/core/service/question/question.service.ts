@@ -36,4 +36,11 @@ export class QuestionService {
     return this.service.postDataquestionAndAnswerNotes("/questionAndAnswerNotes/reply/" + parentId,body)
   }
 
+  /**
+   *4. @Purpose : reply
+   **/
+  questionAndAnswerrate(parentId,body) {
+    return this.service.postDataquestionAndAnswerNotes("/questionAndAnswerNotes/rate/" + parentId,body)
+  }
+
 }

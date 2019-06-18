@@ -12,8 +12,8 @@
       <p>Which fundooNotes service package do you want ?</p>
     </div>
     <div fxLayout="row" fxLayoutGap="100px">
-      <!-- Advance cart gray=sub-->
-      <div (click)="addtoCart()" class="addtoCart" [@simpleFadeAnimation]="'in'">
+      <!-- Advance cart gray=sub  [@simpleFadeAnimation]="'in'"-->
+      <div (click)="addtoCart()" class="addtoCart">
         <mat-card class="frontSub"></mat-card>
         <mat-card class="front" fxLayoutAlign="center center">
           <div fxLayout="column" fxLayoutGap="30px">
@@ -28,8 +28,8 @@
           <!--  -->
         </mat-card>
       </div>
-      <!-- Basic cart -->
-      <div (click)="addtoCart()" class="addtoCart" [@simpleFadeAnimation]="'in'">
+      <!-- Basic cart  [@simpleFadeAnimation]="'in'"-->
+      <div (click)="addtoCart()" class="addtoCart">
         <mat-card class="frontSub"></mat-card>
         <mat-card class="front" fxLayoutAlign="center center">
           <div fxLayout="column" fxLayoutGap="30px">

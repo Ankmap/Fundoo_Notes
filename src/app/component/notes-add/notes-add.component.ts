@@ -10,6 +10,8 @@ import { NotesService } from '../../core/service/notes/notes.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataService } from 'src/app/core/service/data/data.service';
 import { Note } from '../../core/model/note/note';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-notes-add',
@@ -18,6 +20,8 @@ import { Note } from '../../core/model/note/note';
 })
 
 export class NotesAddComponent implements OnInit {
+
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
   /**
    * @Purpose : using @ViewChild to inject the plain HTML element of a component
@@ -124,7 +128,9 @@ export class NotesAddComponent implements OnInit {
       return false;
     }
     try {
-      this.NoteAddService.addNote(body).subscribe(
+      this.NoteAddService.addNote(body)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
         data => {
           this.snackbar.open('Note added successfully......!', 'Done...!', { duration: 3000 });
           console.log('Register infor ==========>', data);
@@ -160,6 +166,10 @@ export class NotesAddComponent implements OnInit {
    */
   listCardOpen() {
     this.listNote = false;
+  }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }
 

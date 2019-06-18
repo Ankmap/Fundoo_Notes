@@ -40,7 +40,7 @@
                         </div>
 
                         <div fxFlex=50>
-                            <div fxLayout="row" fxLayoutGap="20px">
+                            <div fxLayout="row" fxLayoutGap="25px">
                                 <div mat-card-avatar [ngStyle]="{'background-image': 'url('+img+')','background-color':'#fcefc3','background-size':'cover',
                                     'height':'60px','width':'60px','border':'3px solid white','border-radius':'50%'}">
                                     <!-- Get FirstLetter of user -->
@@ -56,13 +56,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>
+                                <!-- star rating -->
+                                <a *ngFor="let item of starList; let i=index " (click)="setStar(i)">
+                                    <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>
+                                </a>
+                                Rating :- {{rating}} stars
                             </div>
                         </div>
                         <div fxFlex=50>
                             <!-- <h4><strong>Answers</strong></h4> -->
                             <div *ngFor="let item of data.questionAndAnswerNotes">
-                                <div *ngIf="item.parentId">
+                                <div *ngIf="item.parentId && item.isApproved === true">
                                     <div mat-card-avatar
                                         [ngStyle]="{'background-image': 'url('+img+')','background-color':'#fcefc3','background-size':'cover',
                                         'height':'60px','width':'60px','border':'3px solid white','border-radius':'50%'}">
@@ -114,11 +118,13 @@
                 <!-- Reply Question start-->
                 <div fxLayoutAlign="end end">
                     <div *ngFor="let item of data.questionAndAnswerNotes">
-                        <button mat-flat-button class="color" *ngIf=!notecardreply
-                            (click)=addReply(item.id)>Submit-Answer</button>
+                        <div *ngIf="item.isApproved === true">
+                            <button mat-flat-button class="color" *ngIf=!notecardreply
+                                (click)=addReply(item.id)>Submit-Answer</button>
+                        </div>
                     </div>
                 </div>
-                <!-- Reply Question end-->
+                <!-- Reply Question end && item.isApproved === true-->
             </div>
         </div>
     </div>

@@ -36,6 +36,9 @@ import { NotefilterPipe } from '../../core/pipe/noteFilter/notefilter.pipe';
 import { ArchiveComponent } from '../archive/archive.component';
 import { QuestionanswerComponent } from '../questionanswer/questionanswer.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { OpenCartComponent } from '../open-cart/open-cart.component';
+import { CartmainComponent } from '../cartmain/cartmain.component';
+import { CartComponent } from '../cart/cart.component';
 
 describe('CollaboratorComponent', () => {
   let component: CollaboratorComponent;
@@ -68,6 +71,9 @@ describe('CollaboratorComponent', () => {
         FilterPipe,
         SortPipe,
         NotefilterPipe,
+        CartComponent,
+        CartmainComponent,
+        OpenCartComponent
       ],
       imports: [
         RouterTestingModule,

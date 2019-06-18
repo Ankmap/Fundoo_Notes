@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-open-cart',
@@ -8,6 +9,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./open-cart.component.scss']
 })
 export class OpenCartComponent implements OnInit {
+
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
     private router : Router,
@@ -23,5 +26,9 @@ export class OpenCartComponent implements OnInit {
   }
   cartBack(): void {
     this.dialogRef.close();
+  }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

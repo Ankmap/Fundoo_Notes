@@ -11,6 +11,8 @@ import { User } from '../../core/model/user/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/core/service/user/user.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +21,8 @@ import { UserService } from 'src/app/core/service/user/user.service';
 })
 
 export class LoginComponent implements OnInit {
+
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
   register: User = new User();
   constructor(private userService: UserService, private snackbar: MatSnackBar, private router: Router) { }
@@ -50,30 +54,39 @@ export class LoginComponent implements OnInit {
     var body = {
       "email": this.register.email,
       "password": this.register.password,
-      "userId":this.register.id
+      "userId": this.register.id
     }
     console.log('Console for Login Account ======>', body);
     try {
-      this.userService.userLogin(body).subscribe(
-        data => {
-          console.log("Data while login account ====>", data)
-          localStorage.setItem('token', data['id']);
-          localStorage.setItem('firstname', data['firstName']);
-          localStorage.setItem('lastname', data['lastName']);
-          localStorage.setItem('email', data['email']);
-          localStorage.setItem('userId', data['userId']);
-          localStorage.setItem('userImage', data['imageUrl'])
-          this.snackbar.open('Login done successfully......!', 'Done...!', { duration: 3000, panelClass: 'center',
-           });
-          this.router.navigateByUrl('/home');
-        },
-        error => {
-          this.snackbar.open('Error while login account......!', 'Error', { duration: 3000, panelClass: 'center',
-          verticalPosition: 'top' });
-          console.log("Error while login account ====>", error)
-        });
+      this.userService.userLogin(body)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            console.log("Data while login account ====>", data)
+            localStorage.setItem('token', data['id']);
+            localStorage.setItem('firstname', data['firstName']);
+            localStorage.setItem('lastname', data['lastName']);
+            localStorage.setItem('email', data['email']);
+            localStorage.setItem('userId', data['userId']);
+            localStorage.setItem('userImage', data['imageUrl'])
+            this.snackbar.open('Login done successfully......!', 'Done...!', {
+              duration: 3000, panelClass: 'center',
+            });
+            this.router.navigateByUrl('/home');
+          },
+          error => {
+            this.snackbar.open('Error while login account......!', 'Error', {
+              duration: 3000, panelClass: 'center',
+              verticalPosition: 'top'
+            });
+            console.log("Error while login account ====>", error)
+          });
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
+  }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

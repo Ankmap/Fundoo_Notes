@@ -11,6 +11,8 @@ import { FormControl } from '@angular/forms';
 import { Note } from 'src/app/core/model/note/note';
 import { NotesService } from 'src/app/core/service/notes/notes.service';
 import { DataService } from 'src/app/core/service/data/data.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dialog',
@@ -19,6 +21,7 @@ import { DataService } from 'src/app/core/service/data/data.service';
 })
 
 export class DialogComponent implements OnInit {
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
   /**
   * @Purpose : Bind title and description
@@ -70,18 +73,24 @@ export class DialogComponent implements OnInit {
     }
     console.log('console for updateNote ============', body);
     try {
-      this.noteService.updateNote(body).subscribe(
-        data => {
-          this.snackbar.open('Note update successfully......!', 'Done...!', { duration: 3000 });
-          console.log('Note update successfully ==========>', data);
-        },
-        error => {
-          this.snackbar.open('Error while update note......!', 'Error', { duration: 3000 });
-          console.log("Error while update note ===========>", error)
-        });
+      this.noteService.updateNote(body)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            this.snackbar.open('Note update successfully......!', 'Done...!', { duration: 3000 });
+            console.log('Note update successfully ==========>', data);
+          },
+          error => {
+            this.snackbar.open('Error while update note......!', 'Error', { duration: 3000 });
+            console.log("Error while update note ===========>", error)
+          });
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
     setTimeout(() => this.dataService.getAllNote(), 100);
+  }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

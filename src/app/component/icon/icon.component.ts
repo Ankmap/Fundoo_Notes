@@ -33,6 +33,7 @@ export class IconComponent implements OnInit {
   @Output() onChangeAddNote = new EventEmitter()
   @Output() popupChange = new EventEmitter()
   @Output() onChangeCollaborator = new EventEmitter()
+  @Output() onChangeAskQuestion = new EventEmitter()
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
@@ -149,27 +150,29 @@ export class IconComponent implements OnInit {
   showLabel() {
     this.labelArray = [];
     this.Array = [];
-    this.noteService.showNoteLabel().subscribe((response) => {
-      // this.onChangeAddNote.emit({})
-      this.label = response["data"].details;
-      this.labelList = [];
-      this.labelList = this.label;
+    this.noteService.showNoteLabel()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        // this.onChangeAddNote.emit({})
+        this.label = response["data"].details;
+        this.labelList = [];
+        this.labelList = this.label;
 
-      for (let i = 0; i < this.labelList.length; i++) {
-        this.labelList[i].isChecked = false; /* False check */
-        if (this.card) {
-          for (let j = 0; j < this.card.noteLabels.length; j++) {
-            if (this.labelList[i].label == this.card.noteLabels[j].label) {
-              this.Array.push(this.labelList[i])
-              this.labelList[i].isChecked = true; /* true check */
+        for (let i = 0; i < this.labelList.length; i++) {
+          this.labelList[i].isChecked = false; /* False check */
+          if (this.card) {
+            for (let j = 0; j < this.card.noteLabels.length; j++) {
+              if (this.labelList[i].label == this.card.noteLabels[j].label) {
+                this.Array.push(this.labelList[i])
+                this.labelList[i].isChecked = true; /* true check */
+              }
             }
           }
         }
-      }
-      this.onChangeAddNote.emit({})
-    }, (error) => {
-      console.log("ERR ====>", error);
-    });
+        this.onChangeAddNote.emit({})
+      }, (error) => {
+        console.log("ERR ====>", error);
+      });
     /* For GetAll Note without refresh*/
     setTimeout(() => this.dataService.getAllNote(), 5000);
   }
@@ -179,13 +182,14 @@ export class IconComponent implements OnInit {
    **/
   addLabel(label) {
     // if (this.card) {
-      this.noteService.addLabelToNotes(this.card.id, label.id)
-        .subscribe((response) => {
-          this.onChangeAddNote.emit({})
-          console.log("  Add Label to Note response ====>", response);
-        }, (error) => {
-          console.log(" Add Label to Note error ====>", error);
-        });
+    this.noteService.addLabelToNotes(this.card.id, label.id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        this.onChangeAddNote.emit({})
+        console.log("  Add Label to Note response ====>", response);
+      }, (error) => {
+        console.log(" Add Label to Note error ====>", error);
+      });
     // }
     /* For GetAll Note without refresh*/
     setTimeout(() => this.dataService.getAllNote(), 100);
@@ -196,6 +200,7 @@ export class IconComponent implements OnInit {
    **/
   removeLabel(label) {
     this.noteService.removeLabelToNotes(this.card.id, label.id)
+      .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         this.onChangeAddNote.emit({})
         console.log(" Remove Label from Note response ====>", response);
@@ -204,5 +209,9 @@ export class IconComponent implements OnInit {
       });
     /* For GetAll Note without refresh*/
     setTimeout(() => this.dataService.getAllNote(), 100);
+  }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

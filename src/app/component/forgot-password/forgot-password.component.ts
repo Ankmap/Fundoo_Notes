@@ -11,6 +11,8 @@ import { User } from '../../core/model/user/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/core/service/user/user.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-forgot-password',
@@ -19,6 +21,8 @@ import { UserService } from 'src/app/core/service/user/user.service';
 })
 
 export class ForgotPasswordComponent implements OnInit {
+  destroy$: Subject<boolean> = new Subject<boolean>();
+
   register: User = new User();
   model: any;
   constructor(private userService: UserService, private snackbar: MatSnackBar, private router: Router) { }
@@ -38,17 +42,23 @@ export class ForgotPasswordComponent implements OnInit {
       "email": this.register.email
     }
     try {
-      this.userService.userReset(body).subscribe(
-        data => {
-          this.snackbar.open('Reset link send to ur register email id...', 'Check it', { duration: 3000 });
-          console.log('data', data);
-        },
-        error => {
-          this.snackbar.open('Please enter register email', 'Error', { duration: 3000 });
-          console.log("error: ", error)
-        });
+      this.userService.userReset(body)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            this.snackbar.open('Reset link send to ur register email id...', 'Check it', { duration: 3000 });
+            console.log('data', data);
+          },
+          error => {
+            this.snackbar.open('Please enter register email', 'Error', { duration: 3000 });
+            console.log("error: ", error)
+          });
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
+  }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

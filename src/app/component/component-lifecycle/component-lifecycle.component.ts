@@ -46,4 +46,5 @@ export class ComponentLifecycleComponent implements OnInit {
   ngOnInit() {
     console.log('ngOnInit22');
   }
+  
 }

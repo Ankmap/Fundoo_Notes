@@ -42,16 +42,20 @@ export class GetlabelComponent implements OnInit {
     /* Accessing url parameters 
        The subscription will continue to update as the parameter changes for that specific route.
     */
-    this.route.params.subscribe((params: Params) => {
-      this.labelName = params['label'];
-      this.labelNotes();
-    })
+    this.route.params
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((params: Params) => {
+        this.labelName = params['label'];
+        this.labelNotes();
+      })
 
     /* Grid View*/
-    this.dataService.getView().subscribe((response) => {
-      this.view = response;
-      this.direction = this.view.data
-    });
+    this.dataService.getView()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        this.view = response;
+        this.direction = this.view.data
+      });
   }
 
   /**
@@ -77,5 +81,9 @@ export class GetlabelComponent implements OnInit {
       }, (error) => {
         console.log('Add Label to Note error ====>', error);
       });
+  }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

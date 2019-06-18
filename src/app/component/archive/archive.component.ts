@@ -21,8 +21,8 @@ import { DataService } from 'src/app/core/service/data/data.service';
 
 export class ArchiveComponent implements OnInit {
 
-  destory$: Subject<boolean> = new Subject<boolean>();
-
+  destroy$: Subject<boolean> = new Subject<boolean>();
+  
   constructor(
     private noteService: NotesService,
     private snackbar: MatSnackBar,
@@ -45,10 +45,12 @@ export class ArchiveComponent implements OnInit {
     this.getArchivedList();
 
     /* Grid View */
-    this.dataService.getView().subscribe((response) => {
-      this.view = response;
-      this.direction = this.view.data
-    });
+    this.dataService.getView()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        this.view = response;
+        this.direction = this.view.data
+      });
   }
 
   /**
@@ -56,7 +58,7 @@ export class ArchiveComponent implements OnInit {
    **/
   getArchivedList() {
     this.noteService.getArchivedList()
-      .pipe(takeUntil(this.destory$))
+      .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         this.notes = response["data"].data.filter(function (el) {
           return (el.isArchived === true)
@@ -79,20 +81,26 @@ export class ArchiveComponent implements OnInit {
     }
     console.log('Archive Note =====>', body);
     try {
-      this.noteService.archiveNote(body).subscribe(
-        data => {
-          this.snackbar.open(' Note unarchive ', ' Undo ', { duration: 1000 });
-          console.log('Archive Note Successfully....!', data);
-        },
-        error => {
-          this.snackbar.open(' Note archive ', ' Undo ', { duration: 3000 });
-          console.log("Error something wrong: ", error)
-        });
+      this.noteService.archiveNote(body)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            this.snackbar.open(' Note unarchive ', ' Undo ', { duration: 1000 });
+            console.log('Archive Note Successfully....!', data);
+          },
+          error => {
+            this.snackbar.open(' Note archive ', ' Undo ', { duration: 3000 });
+            console.log("Error something wrong: ", error)
+          });
     }
     catch (error) {
       this.snackbar.open('Error while archive note', "error", { duration: 3000 });
     }
     /* For GetAll Note without refresh*/
     setTimeout(() => this.dataService.getAllNote(), 100);
+  }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

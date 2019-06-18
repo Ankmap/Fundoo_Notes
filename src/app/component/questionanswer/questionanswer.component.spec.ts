@@ -26,6 +26,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FilterPipe } from '../../core/pipe/filter/filter.pipe';
 import { SortPipe } from '../../core/pipe/sort/sort.pipe';
 import { NotefilterPipe } from 'src/app/core/pipe/noteFilter/notefilter.pipe';
+import { OpenCartComponent } from '../open-cart/open-cart.component';
+import { CartmainComponent } from '../cartmain/cartmain.component';
+import { CartComponent } from '../cart/cart.component';
 
 describe('QuestionanswerComponent', () => {
   let component: QuestionanswerComponent;
@@ -58,6 +61,9 @@ describe('QuestionanswerComponent', () => {
         FilterPipe,
         SortPipe,
         NotefilterPipe,
+        CartComponent,
+        CartmainComponent,
+        OpenCartComponent
       ],
       imports: [
         RouterTestingModule,

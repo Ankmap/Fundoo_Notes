@@ -27,6 +27,7 @@ export class NavbarComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
+
   /* Get from localStorage */
   firstName = localStorage.getItem("firstname");
   lastName = localStorage.getItem("lastname");
@@ -41,10 +42,10 @@ export class NavbarComponent implements OnInit {
   private labelList = [];
 
   /* signOut */
-  private signoutCard: boolean = false; 
+  private signoutCard: boolean = false;
 
   /* search the note */
-  private searchValue: any; 
+  private searchValue: any;
 
   /* Grid */
   list: boolean = true;
@@ -52,11 +53,11 @@ export class NavbarComponent implements OnInit {
   view: any;
   direction: string;
 
-  /* Show Name */ 
+  /* Show Name */
   appName: String;
   private labelShow: boolean = false;
-  private labelValue ='';
-  
+  private labelValue = '';
+
   /* Profile img uploader */
   private img;
   private width;
@@ -83,22 +84,28 @@ export class NavbarComponent implements OnInit {
     this.showLabel();
 
     /* For gridView and ListView */
-    this.data.getView().subscribe((response) => {
-      this.view = response;
-      this.direction = this.view.data;
-    });
+    this.data.getView()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        this.view = response;
+        this.direction = this.view.data;
+      });
 
     /* Image upload */
     // this.img = 'http://34.213.106.173/' + this.image;
     this.img = environment.url + this.image;
     this.isLargeScreen();
 
-    /* On Click Label show all note with that label */ 
-    this.data.currentMessageLabel.subscribe(message => {this.message = message;
-    if (this.message != "default") {
-      this.router.navigateByUrl('/getlabel/'+this.message);
-      this.navbarName(this.message)}
-    });
+    /* On Click Label show all note with that label */
+    this.data.currentMessageLabel
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(message => {
+      this.message = message;
+        if (this.message != "default") {
+          this.router.navigateByUrl('/getlabel/' + this.message);
+          this.navbarName(this.message)
+        }
+      });
   }
 
   /* Image upload */
@@ -110,16 +117,18 @@ export class NavbarComponent implements OnInit {
    * @Purpose : Logout
    **/
   logout() {
-    this.UserService.userLogout().subscribe((response) => {
-      console.log("response ====>", response);
-      localStorage.removeItem("token");
-      localStorage.removeItem("userId");
-      localStorage.removeItem("firstname");
-      localStorage.removeItem("lastname");
-      localStorage.removeItem("email");
-      // localStorage.removeItem("userImage");
-      this.router.navigateByUrl('/login');
-    });
+    this.UserService.userLogout()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        console.log("response ====>", response);
+        localStorage.removeItem("token");
+        localStorage.removeItem("userId");
+        localStorage.removeItem("firstname");
+        localStorage.removeItem("lastname");
+        localStorage.removeItem("email");
+        // localStorage.removeItem("userImage");
+        this.router.navigateByUrl('/login');
+      });
   }
 
   /**
@@ -185,9 +194,11 @@ export class NavbarComponent implements OnInit {
   displayNote() {
     this.appName = "Notes";
     this.router.navigateByUrl('/home')
-    this.data.allNote.subscribe((response) => {
-      console.log("response ====>", response);
-    });
+    this.data.allNote
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        console.log("response ====>", response);
+      });
   }
 
   /**
@@ -245,9 +256,13 @@ export class NavbarComponent implements OnInit {
       });
   }
 
-  /* Show label Name */ 
+  /* Show label Name */
   navbarName(aa) {
     this.labelShow = true
     this.labelValue = aa
+  }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

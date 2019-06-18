@@ -28,6 +28,9 @@ import { SortPipe } from '../../core/pipe/sort/sort.pipe';
 import { NotefilterPipe } from 'src/app/core/pipe/noteFilter/notefilter.pipe';
 import { QuestionanswerComponent } from '../questionanswer/questionanswer.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { CartComponent } from '../cart/cart.component';
+import { CartmainComponent } from '../cartmain/cartmain.component';
+import { OpenCartComponent } from '../open-cart/open-cart.component';
 
 describe('LabelComponent', () => {
   let component: LabelComponent;
@@ -60,6 +63,9 @@ describe('LabelComponent', () => {
         FilterPipe,
         SortPipe,
         NotefilterPipe,
+        CartComponent,
+        CartmainComponent,
+        OpenCartComponent
       ],
       imports: [
         RouterTestingModule,

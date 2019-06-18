@@ -20,20 +20,21 @@ import { takeUntil } from 'rxjs/operators';
 export class SearchNoteComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
-  
+
+
   constructor(
-    private data: DataService, 
+    private data: DataService,
     private searchService: NotesService
-    ) { }
+  ) { }
 
   private notes: Note[] = [];
   private message: string
 
   ngOnInit() {
-    /* For get all Note */ 
+    /* For get all Note */
     this.getNotes()
 
-    /* For current message Search */ 
+    /* For current message Search */
     this.data.currentMessageSearch.pipe(takeUntil(this.destroy$))
       .subscribe(message => {
         this.message = message
@@ -42,9 +43,10 @@ export class SearchNoteComponent implements OnInit {
 
   /**
    * @Purpose : GetNotes  method for search
-   **/ 
+   **/
   getNotes() {
-    this.data.allNote.pipe(takeUntil(this.destroy$))
+    this.data.allNote
+      .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         this.notes = response;
         console.log("response in search ===>", response);
@@ -52,5 +54,8 @@ export class SearchNoteComponent implements OnInit {
         console.log("Error in search ===>", error);
       });
   }
-
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
 }

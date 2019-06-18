@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { MatDialog } from '@angular/material';
 import { OpenCartComponent } from '../open-cart/open-cart.component';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -27,6 +28,7 @@ import { OpenCartComponent } from '../open-cart/open-cart.component';
   ]
 })
 export class CartComponent implements OnInit {
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
     private dialog: MatDialog,
@@ -41,5 +43,10 @@ export class CartComponent implements OnInit {
       height: ''
     });
     dialogRef.afterClosed()
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

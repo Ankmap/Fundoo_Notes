@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-cartmain',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cartmain.component.scss']
 })
 export class CartmainComponent implements OnInit {
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
 }

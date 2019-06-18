@@ -6,6 +6,9 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { NotesService } from 'src/app/core/service/notes/notes.service';
 import { environment } from 'src/environments/environment';
+import { DataService } from 'src/app/core/service/data/data.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-questionanswer',
@@ -14,7 +17,9 @@ import { environment } from 'src/environments/environment';
 })
 export class QuestionanswerComponent implements OnInit {
 
-  @Output() Onchages = new EventEmitter()
+  destroy$: Subject<boolean> = new Subject<boolean>();
+
+  @Output() onChangeAskQuestion = new EventEmitter()
 
   /* Get from localstorage */
   firstName = localStorage.getItem("firstname");
@@ -25,11 +30,10 @@ export class QuestionanswerComponent implements OnInit {
   /* question Model */
   addQue: Question = new Question();
   replyQue: Reply = new Reply();
+
   /* Get Notes Detail */
   private noteList;
-  private displayQuestion;
   private questionData = '';
-  count:String;
 
   /* Binding the message and description */
   message = new FormControl('')
@@ -47,27 +51,21 @@ export class QuestionanswerComponent implements OnInit {
     private route: ActivatedRoute,
     private snackbar: MatSnackBar,
     private router: Router,
-    private noteService: NotesService
+    private noteService: NotesService,
+    private dataService: DataService
   ) { }
 
   ngOnInit() {
     /* Get  Note Id */
-    this.route.params.subscribe((params: Params) => {
-      this.questionData = params['id'];
-      console.log('check aquestion id ====>', this.questionData);
-    });
+    this.route.params
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((params: Params) => {
+        this.questionData = params['id'];
+        console.log('check aquestion id ====>', this.questionData);
+      });
 
     /* Get Notes Detail */
     this.getNotesDetail()
-  }
-
-  /**
-    * @Purpose: Refresh event 
-  **/
-  refresh(event) {
-    if (event) {
-      this.getNotesDetail();
-    }
   }
 
 
@@ -90,19 +88,21 @@ export class QuestionanswerComponent implements OnInit {
   * @Purpose : Get Notes Detail
   **/
   getNotesDetail() {
-    this.noteService.getNotesDetail(this.questionData).subscribe(
-      (data: any) => {
-        this.addQue = data["data"].data;
-        this.noteList = [];
-        this.noteList = this.addQue;
-        this.snackbar.open('Get Notes Detail', '', { duration: 4000 });
-        console.log('Get Notes Detail ===>', data);
-        console.log('Get Question Notes Detail show ===>', this.noteList);
-      },
-      error => {
-        this.snackbar.open('Get Notes Detail ===>', '', { duration: 3000 });
-        console.log("Get Notes Detail ===>", error)
-      })
+    this.noteService.getNotesDetail(this.questionData)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (data: any) => {
+          this.addQue = data["data"].data;
+          this.noteList = [];
+          this.noteList = this.addQue;
+          // this.snackbar.open('Get Notes Detail', '', { duration: 4000 });
+          console.log('Get Notes Detail ===>', data);
+          console.log('Get Question Notes Detail show ===>', this.noteList);
+        },
+        error => {
+          // this.snackbar.open('Get Notes Detail ===>', '', { duration: 3000 });
+          console.log("Get Notes Detail ===>", error)
+        })
   }
 
   /**
@@ -115,16 +115,19 @@ export class QuestionanswerComponent implements OnInit {
     }
     console.log('Add Question ====>', body)
     try {
-      this.questionService.questionAndAnswerNotes(body).subscribe(
-        data => {
-          this.snackbar.open('Question add successfully......!', 'Done...!', { duration: 4000, verticalPosition: 'top' });
-          console.log('question add successfully......!', data);
-          this.Onchages.emit({})
-        },
-        error => {
-          this.snackbar.open('Error while question add......!', 'Done...!', { duration: 3000 });
-          console.log("Error while question add ====> ", error)
-        });
+      this.questionService.questionAndAnswerNotes(body)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            this.snackbar.open('Question add successfully......!', 'Done...!', { duration: 4000, verticalPosition: 'top' });
+            console.log('question add successfully......!', data);
+            this.getNotesDetail();
+            this.dataService.changeMessage('')
+          },
+          error => {
+            this.snackbar.open('Error while question add......!', 'Done...!', { duration: 3000 });
+            console.log("Error while question add ====> ", error)
+          });
       this.addQue.message = null;
       this.notecardAnswer = !(this.notecardAnswer);
     } catch (error) {
@@ -142,15 +145,19 @@ export class QuestionanswerComponent implements OnInit {
     }
     console.log('Reply Question ====>', body)
     try {
-      this.questionService.questionAndAnswerNotesreply(parentId, body).subscribe(
-        data => {
-          this.snackbar.open('Reply add successfully......!', 'Done...!', { duration: 4000, verticalPosition: 'top' });
-          console.log('Reply add successfully......!', data);
-        },
-        error => {
-          this.snackbar.open('Error while Reply add......!', 'Done...!', { duration: 3000 });
-          console.log("Error while Reply add ====> ", error)
-        });
+      this.questionService.questionAndAnswerNotesreply(parentId, body)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            this.snackbar.open('Reply add successfully......!', 'Done...!', { duration: 4000, verticalPosition: 'top' });
+            console.log('Reply add successfully......!', data);
+            this.getNotesDetail();
+            this.dataService.changeMessage('')
+          },
+          error => {
+            this.snackbar.open('Error while Reply add......!', 'Done...!', { duration: 3000 });
+            console.log("Error while Reply add ====> ", error)
+          });
       this.replyQue.message = null;
     } catch (error) {
       console.log("Error while Reply add ====> ", error)
@@ -160,18 +167,43 @@ export class QuestionanswerComponent implements OnInit {
   /**
     * @Purpose : Delete Question
   **/
-  question(parentId) {
-    console.log('parentId for delete ===>', parentId)
-    this.questionService.questionAndAnswerNotesDelete(parentId).subscribe(
-      data => {
-        this.snackbar.open('delete question successfully', '', { duration: 1000 });
-        console.log('delete question ===>', data)
-      },
-      error => {
-        this.snackbar.open('delete question error', '', { duration: 1000 });
-        console.log('delete question error ===>', error);
+  // question(parentId) {
+  //   console.log('parentId for delete ===>', parentId)
+  //   this.questionService.questionAndAnswerNotesDelete(parentId)
+  //     .pipe(takeUntil(this.destroy$))
+  //     .subscribe(
+  //       data => {
+  //         this.snackbar.open('delete question successfully', '', { duration: 1000 });
+  //         console.log('delete question ===>', data)
+  //         this.getNotesDetail();
+  //         this.dataService.changeMessage('')
+  //       },
+  //       error => {
+  //         this.snackbar.open('delete question error', '', { duration: 1000 });
+  //         console.log('delete question error ===>', error);
 
-      })
+  //       })
+  // }
+
+  title = 'Star Rating';
+  // create a list which contains status of 5 stars
+  starList: boolean[] = [true, true, true, true, true];       
+  rating: number;
+  //Create a function which receives the value counting of stars click, 
+  //and according to that value we do change the value of that star in list.
+  setStar(data: any) {
+    this.rating = data + 1;
+    for (var i = 0; i <= 4; i++) {
+      if (i <= data) {
+        this.starList[i] = false;
+      }
+      else {
+        this.starList[i] = true;
+      }
+    }
   }
-
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
 }

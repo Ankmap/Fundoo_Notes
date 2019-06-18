@@ -36,6 +36,9 @@ import { ArchiveComponent } from '../archive/archive.component';
 import { CollaboratorComponent } from '../collaborator/collaborator.component';
 import { QuestionanswerComponent } from '../questionanswer/questionanswer.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { OpenCartComponent } from '../open-cart/open-cart.component';
+import { CartmainComponent } from '../cartmain/cartmain.component';
+import { CartComponent } from '../cart/cart.component';
 
 describe('DialogComponent', () => {
   let component: DialogComponent;
@@ -68,6 +71,9 @@ describe('DialogComponent', () => {
         FilterPipe,
         SortPipe,
         NotefilterPipe,
+        CartComponent,
+        CartmainComponent,
+        OpenCartComponent
       ],
       imports: [
         RouterTestingModule,

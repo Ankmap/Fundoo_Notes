@@ -11,6 +11,8 @@ import { DataService } from 'src/app/core/service/data/data.service';
 import { MatDialog, MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { environment } from 'src/environments/environment';
 import { UserService } from 'src/app/core/service/user/user.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-collaborator',
@@ -19,6 +21,8 @@ import { UserService } from 'src/app/core/service/user/user.service';
 })
 
 export class CollaboratorComponent implements OnInit {
+
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
   /* Decorators */
   @Input() noteData;
@@ -68,13 +72,15 @@ export class CollaboratorComponent implements OnInit {
     let body = {
       'searchWord': this.searchValue
     }
-    this.userService.searchUserList(body).subscribe((response) => {
-      this.userList = [];
-      this.userList = response['data'].details;
-      console.log("Search Word userList response ===>", this.userList);
-    }, (error) => {
-      console.log(" Search Word userList error ===>", error);
-    });
+    this.userService.searchUserList(body)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        this.userList = [];
+        this.userList = response['data'].details;
+        console.log("Search Word userList response ===>", this.userList);
+      }, (error) => {
+        console.log(" Search Word userList error ===>", error);
+      });
   }
 
   /**
@@ -90,17 +96,19 @@ export class CollaboratorComponent implements OnInit {
     console.log("Check data ===>", data);
     console.log('console for Add collaborators data note id and collaborators details =======================>', this.collabData, this.data.noteData['id']);
     try {
-      this.noteService.addColNote(this.collabData, this.data.noteData['id']).subscribe(
-        data => {
-          this.snackbar.open('Collaborators added successfully......!', 'Done...!', { duration: 3000 });
-          console.log('Collaborators added successfully information ==========>', data);
-          /* Push data into collaborators */
-          this.collaborators.push(data)
-        },
-        error => {
-          this.snackbar.open('Error while collaboratoring note......!', 'Error', { duration: 3000 });
-          console.log("Error while collaboratoring note", error)
-        });
+      this.noteService.addColNote(this.collabData, this.data.noteData['id'])
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            this.snackbar.open('Collaborators added successfully......!', 'Done...!', { duration: 3000 });
+            console.log('Collaborators added successfully information ==========>', data);
+            /* Push data into collaborators */
+            this.collaborators.push(data)
+          },
+          error => {
+            this.snackbar.open('Error while collaboratoring note......!', 'Error', { duration: 3000 });
+            console.log("Error while collaboratoring note", error)
+          });
     } catch (error) {
       this.snackbar.open('Error something wrong', "error", { duration: 3000 });
     }
@@ -114,6 +122,7 @@ export class CollaboratorComponent implements OnInit {
   **/
   removeCol(data) {
     this.noteService.removeCollaborators(this.data.noteData['id'], data.userId)
+      .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         this.snackbar.open('Collaborators remove successfully......!', 'Done...!', { duration: 3000 });
         console.log("Remove Collaborators To Notes response ===>", response);
@@ -134,4 +143,8 @@ export class CollaboratorComponent implements OnInit {
     }
   }
 
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
 }

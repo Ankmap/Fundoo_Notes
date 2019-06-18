@@ -7,8 +7,9 @@
 **************************************************************************************************/
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { NotesService } from '../notes/notes.service'; 
- 
+import { NotesService } from '../notes/notes.service';
+import { takeUntil } from 'rxjs/operators';
+
 /**
  * @Purpose : The BehaviorSubject has the characteristic that it stores the “current” value. 
  * This means that you can always directly get the last emitted value from the BehaviorSubject.
@@ -17,11 +18,11 @@ import { NotesService } from '../notes/notes.service';
   providedIn: 'root'
 })
 export class DataService {
-
+  destroy$: Subject<boolean> = new Subject<boolean>();
   /* Required for Grid*/
   result: boolean = true;
   subject = new Subject
-  
+
   constructor(private noteService: NotesService) {
     /* Call getAllNote Method*/
     this.getAllNote();
@@ -31,17 +32,20 @@ export class DataService {
    * @Description : private BehaviorSubject hold the current value of the message
    **/
   private assignData = new BehaviorSubject<any[]>([]);
-  allNote = this.assignData.asObservable( ); /* allNote() method is store all note*/
+  allNote = this.assignData.asObservable(); /* allNote() method is store all note*/
 
   /**
    * @Purpose : get note and access without refresh
    **/
   getAllNote() {
-    this.noteService.getNotes().subscribe(data => {
+    this.noteService.getNotes()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(data => {
       this.assignData.next(data.data.data)
       console.log("Get total notes in google keep ===>", data.data.data);
     })
   }
+
   /********************************** get note without refresh End**************************************/
 
   /**
@@ -62,19 +66,19 @@ export class DataService {
   }
   /********************************** Search End**************************************/
 
-  /* change message for label*/ 
+  /* change message for label*/
   private messageSource = new BehaviorSubject('default message');
   currentMessage = this.messageSource.asObservable();
 
-  changeMessage(messsge:string){
+  changeMessage(messsge: string) {
     this.messageSource.next(messsge)
   }
 
-  /* Current message for label*/ 
+  /* Current message for label*/
   private messageSourceLabel = new BehaviorSubject('default');
   currentMessageLabel = this.messageSourceLabel.asObservable();
 
-  changeMessageLabel(messsge:string){
+  changeMessageLabel(messsge: string) {
     this.messageSourceLabel.next(messsge)
   }
   /********************************** grid start**************************************/
@@ -95,4 +99,9 @@ export class DataService {
     return this.subject.asObservable();
   }
   /********************************** grid End**************************************/
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
 }

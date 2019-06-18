@@ -10,6 +10,7 @@ export class PinComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
+
   @Input() card
   @Output() onChangePin = new EventEmitter;
   private isPined: boolean = false;
@@ -26,5 +27,8 @@ export class PinComponent implements OnInit {
     this.isPined = !this.isPined;
     this.onChangePin.emit(this.isPined);
   }
-
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
 }

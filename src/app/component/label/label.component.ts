@@ -25,6 +25,7 @@ export class LabelComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
+
   /* Label Model*/
   labels: Label = new Label();
   label: Label[] = [];
@@ -74,7 +75,8 @@ export class LabelComponent implements OnInit {
     }
     console.log('Data for edit label', body);
     try {
-      this.note.addLabel(body).pipe(takeUntil(this.destroy$))
+      this.note.addLabel(body)
+        .pipe(takeUntil(this.destroy$))
         .subscribe((response) => {
           console.log("Response ====>", response);
           this.showLabel();
@@ -160,5 +162,8 @@ export class LabelComponent implements OnInit {
     this.labelId = id;
     this.model.newName = labelName
   }
-
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
 }

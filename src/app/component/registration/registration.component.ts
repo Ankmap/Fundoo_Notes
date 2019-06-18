@@ -11,6 +11,8 @@ import { User } from '../../core/model/user/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/core/service/user/user.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-registration',
@@ -18,6 +20,9 @@ import { UserService } from 'src/app/core/service/user/user.service';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
+
+  destroy$: Subject<boolean> = new Subject<boolean>();
+
   register: User = new User();
   constructor(private userService: UserService, private snackbar: MatSnackBar, private router: Router) {
     /*Enable and disabel Button Button*/
@@ -83,17 +88,19 @@ export class RegistrationComponent implements OnInit {
     console.log('console forthis.register @@@@@@@@@@@@@@@@@=======================>', this.register);
     try {
       if (this.password.value == this.confirmPassword.value)
-        this.userService.userSignup(body).subscribe(
-          data => {
-            console.log("console for data =======================>", data);
-            this.snackbar.open('Register done successfully......!', 'Done...!', { duration: 3000 });
-            this.router.navigateByUrl('login');
-            console.log('Register infor ==========>', data);
-          },
-          error => {
-            this.snackbar.open('Error while creating account......!', 'Error', { duration: 3000 });
-            console.log("Error something wrong: ", error)
-          });
+        this.userService.userSignup(body)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe(
+            data => {
+              console.log("console for data =======================>", data);
+              this.snackbar.open('Register done successfully......!', 'Done...!', { duration: 3000 });
+              this.router.navigateByUrl('login');
+              console.log('Register infor ==========>', data);
+            },
+            error => {
+              this.snackbar.open('Error while creating account......!', 'Error', { duration: 3000 });
+              console.log("Error something wrong: ", error)
+            });
       else {
         this.snackbar.open('password and confirmpassword does not match......!', 'Error...!', { duration: 3000 });
         console.log("password and confirmpassword does not match");
@@ -101,5 +108,9 @@ export class RegistrationComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
+  }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

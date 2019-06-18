@@ -21,14 +21,15 @@ export class ImageCropComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(
-    private UserService: UserService, 
-    private dialogRef: MatDialogRef<ImageCropComponent>,
-    @Inject(MAT_DIALOG_DATA) 
-    private data: any
-    ) { }
 
-  /* Image Crop */ 
+  constructor(
+    private UserService: UserService,
+    private dialogRef: MatDialogRef<ImageCropComponent>,
+    @Inject(MAT_DIALOG_DATA)
+    private data: any
+  ) { }
+
+  /* Image Crop */
   private apiImage;
   private croppedImage;
 
@@ -55,7 +56,11 @@ export class ImageCropComponent implements OnInit {
         this.dialogRef.close();
         localStorage.setItem("userImage", res['status'].imageUrl);
       }, error => {
-        console.log(" Upload Image Error ====>",error);  
+        console.log(" Upload Image Error ====>", error);
       });
+  }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

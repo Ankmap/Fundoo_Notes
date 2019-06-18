@@ -23,13 +23,14 @@ export class ReminderComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
+
   /* Reminder */
   private reminderArray = [];
   private array = [];
 
   /* Note model */
   private notes: Note[] = [];
-  
+
   /* Grid View and list view */
   direction: String = "row";
   wrap: string = "wrap";
@@ -37,7 +38,7 @@ export class ReminderComponent implements OnInit {
 
   /* SetColor */
   setColor: any;
-  
+
   /* Reminder Update */
   setReminder: any;
 
@@ -46,21 +47,23 @@ export class ReminderComponent implements OnInit {
   archiveNote1: any
 
   constructor(
-    private noteService : NotesService,
-    private dataService : DataService,
-    private snackbar : MatSnackBar
+    private noteService: NotesService,
+    private dataService: DataService,
+    private snackbar: MatSnackBar
   ) { }
 
   ngOnInit() {
 
-    /* Show Reminder */ 
+    /* Show Reminder */
     this.showReminder();
 
     /* Grid View and list view */
-    this.dataService.getView().subscribe((response) => {
-      this.view = response;
-      this.direction = this.view.data
-    });
+    this.dataService.getView()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        this.view = response;
+        this.direction = this.view.data
+      });
   }
 
 
@@ -73,7 +76,7 @@ export class ReminderComponent implements OnInit {
       .subscribe((response) => {
         this.notes = [];
         this.notes = response["data"].data;
-        console.log("Show Reminder ====>",this.notes);
+        console.log("Show Reminder ====>", this.notes);
         this.reminderArray = [];
         this.reminderArray.push(this.notes)
       });
@@ -90,15 +93,17 @@ export class ReminderComponent implements OnInit {
     }
     console.log("colorUpdate =====>", colorUpdate);
     try {
-      this.noteService.cardColorChange(colorUpdate).subscribe(
-        data => {
-          this.snackbar.open('color update successfully......!', 'Done...!', { duration: 3000 });
-          console.log('Register infor ==========>', data);
-        },
-        error => {
-          this.snackbar.open('Error while update note color ......!', 'Error', { duration: 3000 });
-          console.log("Error something wrong: ", error)
-        });
+      this.noteService.cardColorChange(colorUpdate)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            this.snackbar.open('color update successfully......!', 'Done...!', { duration: 3000 });
+            console.log('Register infor ==========>', data);
+          },
+          error => {
+            this.snackbar.open('Error while update note color ......!', 'Error', { duration: 3000 });
+            console.log("Error something wrong: ", error)
+          });
 
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
@@ -118,15 +123,17 @@ export class ReminderComponent implements OnInit {
     }
     console.log("Remove Reminder =====>", body);
     try {
-      this.noteService.removeReminderNotes(body).subscribe(
-        data => {
-          this.snackbar.open('Reminder removed successfully......!', 'Done...!', { duration: 3000 });
-          console.log('Register infor ==========>', data);
-        },
-        error => {
-          this.snackbar.open('Error while removed note reminder ......!', 'Error', { duration: 3000 });
-          console.log("Error something wrong: ", error)
-        });
+      this.noteService.removeReminderNotes(body)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            this.snackbar.open('Reminder removed successfully......!', 'Done...!', { duration: 3000 });
+            console.log('Register infor ==========>', data);
+          },
+          error => {
+            this.snackbar.open('Error while removed note reminder ......!', 'Error', { duration: 3000 });
+            console.log("Error something wrong: ", error)
+          });
 
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
@@ -147,20 +154,26 @@ export class ReminderComponent implements OnInit {
     console.log('Archive Note =====>', body);
 
     try {
-      this.noteService.archiveNote(body).subscribe(
-        data => {
-          this.snackbar.open(' Note archive ', ' Undo ', { duration: 1000 });
-          console.log('Archive Note Successfully....!', data);
-        },
-        error => {
-          this.snackbar.open(' Note unarchive ', ' Undo ', { duration: 3000 });
-          console.log("Error something wrong: ", error)
-        });
+      this.noteService.archiveNote(body)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            this.snackbar.open(' Note archive ', ' Undo ', { duration: 1000 });
+            console.log('Archive Note Successfully....!', data);
+          },
+          error => {
+            this.snackbar.open(' Note unarchive ', ' Undo ', { duration: 3000 });
+            console.log("Error something wrong: ", error)
+          });
     }
     catch (error) {
       this.snackbar.open('Error while archive note', "error", { duration: 3000 });
     }
     /* For GetAll Note without refresh*/
     setTimeout(() => this.dataService.getAllNote(), 100);
+  }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

@@ -1,10 +1,3 @@
-/*****************************************************************************************************
- *@Purpose - FundoNotes.
- *@file    - note-list.component.ts
- *@author  - Ankita Mapari <mapariit@gmail.com>
- *@version - 1.0
- *@since   - 22/04/2019
-**************************************************************************************************/
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Note } from '../../core/model/note/note'
 import { DataService } from '../../core/service/data/data.service'
@@ -30,7 +23,8 @@ export class NoteListComponent implements OnInit {
   wrap: string = "wrap";
   view: any;
 
-  destory$: Subject<boolean> = new Subject<boolean>();
+  destroy$: Subject<boolean> = new Subject<boolean>();
+
 
   /**
    * @Purpose : Pass data from the parent component class to the child component class
@@ -83,47 +77,52 @@ export class NoteListComponent implements OnInit {
     this.getNote();
 
     /* Current message view */
-    this.data.currentMessageView.pipe(takeUntil(this.destory$))
+    this.data.currentMessageView
+      .pipe(takeUntil(this.destroy$))
       .subscribe(message => {
         this.view = message
       })
 
     /* Grid View and list view */
-    this.data.getView().subscribe((response) => {
-      this.view = response;
-      this.direction = this.view.data
-    });
+    this.data.getView()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        this.view = response;
+        this.direction = this.view.data
+      });
   }
 
   /**
    * @Purpose : Pin Unpined Array
-   **/ 
+   **/
   pinedArray = [];
   unpinedArray = [];
 
   getNote() {
-    this.data.allNote.pipe(takeUntil(this.destory$)).subscribe(
-      data => {
-        this.notes = data
-        // this.notes = this.notes.filter(function (el) {
-        //   return (el.isArchived === false && el.isDeleted === false);
-        // });
-        this.pinedArray = [];
-        this.unpinedArray = []
-        for (let i = this.notes.length; i > 0; i--) {
-          if ((this.notes[i - 1]["isDeleted"] == false) && (this.notes[i - 1]["isArchived"] == false)) {
-            if (this.notes[i - 1]["isPined"] == true) {
-              this.pinedArray.push(this.notes[i - 1]);
-            }
-            else {
-              this.unpinedArray.push(this.notes[i - 1]);
+    this.data.allNote.pipe(takeUntil(this.destroy$))
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        data => {
+          this.notes = data
+          // this.notes = this.notes.filter(function (el) {
+          //   return (el.isArchived === false && el.isDeleted === false);
+          // });
+          this.pinedArray = [];
+          this.unpinedArray = []
+          for (let i = this.notes.length; i > 0; i--) {
+            if ((this.notes[i - 1]["isDeleted"] == false) && (this.notes[i - 1]["isArchived"] == false)) {
+              if (this.notes[i - 1]["isPined"] == true) {
+                this.pinedArray.push(this.notes[i - 1]);
+              }
+              else {
+                this.unpinedArray.push(this.notes[i - 1]);
+              }
             }
           }
-        }
-        console.log("pinned array =====>", this.pinedArray);
-        console.log("unpinned array =====>", this.unpinedArray);
-        console.log('Get all Notes in  home =====>', this.notes)
-      });
+          console.log("pinned array =====>", this.pinedArray);
+          console.log("unpinned array =====>", this.unpinedArray);
+          console.log('Get all Notes in  home =====>', this.notes)
+        });
 
   }
   /**
@@ -137,15 +136,17 @@ export class NoteListComponent implements OnInit {
     }
     console.log("colorUpdate =====>", colorUpdate);
     try {
-      this.noteService.cardColorChange(colorUpdate).subscribe(
-        data => {
-          this.snackbar.open('color update successfully......!', 'Done...!', { duration: 3000 });
-          console.log('Register infor ==========>', data);
-        },
-        error => {
-          this.snackbar.open('Error while update note color ......!', 'Error', { duration: 3000 });
-          console.log("Error something wrong: ", error)
-        });
+      this.noteService.cardColorChange(colorUpdate)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            this.snackbar.open('color update successfully......!', 'Done...!', { duration: 3000 });
+            console.log('Register infor ==========>', data);
+          },
+          error => {
+            this.snackbar.open('Error while update note color ......!', 'Error', { duration: 3000 });
+            console.log("Error something wrong: ", error)
+          });
 
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
@@ -165,15 +166,17 @@ export class NoteListComponent implements OnInit {
     }
     console.log("DeleteNote =======>", deleteNote);
     try {
-      this.noteService.deleteNote(deleteNote).subscribe(
-        data => {
-          this.snackbar.open('Note deleted successfully......!', 'Done...!', { duration: 3000 });
-          console.log('Register infor ==========>', data);
-        },
-        error => {
-          this.snackbar.open('Error while update note color ......!', 'Error', { duration: 3000 });
-          console.log("Error something wrong: ", error)
-        });
+      this.noteService.deleteNote(deleteNote)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            this.snackbar.open('Note deleted successfully......!', 'Done...!', { duration: 3000 });
+            console.log('Register infor ==========>', data);
+          },
+          error => {
+            this.snackbar.open('Error while update note color ......!', 'Error', { duration: 3000 });
+            console.log("Error something wrong: ", error)
+          });
 
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
@@ -193,15 +196,17 @@ export class NoteListComponent implements OnInit {
     }
     console.log("DeleteNote =======>", trashNote);
     try {
-      this.noteService.trashNotes(trashNote).subscribe(
-        data => {
-          this.snackbar.open('Note saved in trash successfully......!', 'Done...!', { duration: 3000 });
-          console.log('Note saved in trash successfully......!', data);
-        },
-        error => {
-          this.snackbar.open('Error while trash note  ......!', 'Error', { duration: 3000 });
-          console.log("Error while trash note ====> ", error)
-        });
+      this.noteService.trashNotes(trashNote)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            this.snackbar.open('Note saved in trash successfully......!', 'Done...!', { duration: 3000 });
+            console.log('Note saved in trash successfully......!', data);
+          },
+          error => {
+            this.snackbar.open('Error while trash note  ......!', 'Error', { duration: 3000 });
+            console.log("Error while trash note ====> ", error)
+          });
 
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
@@ -224,9 +229,11 @@ export class NoteListComponent implements OnInit {
       }
     });
     /* Close the dialog box */
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog closed: ${result}`);
-    });
+    dialogRef.afterClosed()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(result => {
+        console.log(`Dialog closed: ${result}`);
+      });
   }
 
   /**
@@ -240,15 +247,17 @@ export class NoteListComponent implements OnInit {
     }
     console.log('Archive Note =====>', archiveNote);
     try {
-      this.noteService.archiveNote(archiveNote).subscribe(
-        data => {
-          this.snackbar.open(' Note archive ', ' Undo ', { duration: 1000 });
-          console.log('Archive Note Successfully....!', data);
-        },
-        error => {
-          this.snackbar.open(' Note unarchive ', ' Undo ', { duration: 3000 });
-          console.log("Error something wrong: ", error)
-        });
+      this.noteService.archiveNote(archiveNote)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            this.snackbar.open(' Note archive ', ' Undo ', { duration: 1000 });
+            console.log('Archive Note Successfully....!', data);
+          },
+          error => {
+            this.snackbar.open(' Note unarchive ', ' Undo ', { duration: 3000 });
+            console.log("Error something wrong: ", error)
+          });
     }
     catch (error) {
       this.snackbar.open('Error while archive note', "error", { duration: 3000 });
@@ -268,15 +277,17 @@ export class NoteListComponent implements OnInit {
     }
     console.log("colorUpdate =====>", reminderUpdate);
     try {
-      this.noteService.addUpdateReminderNotes(reminderUpdate).subscribe(
-        data => {
-          this.snackbar.open('Reminder update successfully......!', 'Done...!', { duration: 3000 });
-          console.log('Register infor ==========>', data);
-        },
-        error => {
-          this.snackbar.open('Error while update note reminder ......!', 'Error', { duration: 3000 });
-          console.log("Error something wrong: ", error)
-        });
+      this.noteService.addUpdateReminderNotes(reminderUpdate)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            this.snackbar.open('Reminder update successfully......!', 'Done...!', { duration: 3000 });
+            console.log('Register infor ==========>', data);
+          },
+          error => {
+            this.snackbar.open('Error while update note reminder ......!', 'Error', { duration: 3000 });
+            console.log("Error something wrong: ", error)
+          });
 
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
@@ -296,15 +307,17 @@ export class NoteListComponent implements OnInit {
     }
     console.log("colorUpdate =====>", reminderUpdate);
     try {
-      this.noteService.removeReminderNotes(reminderUpdate).subscribe(
-        data => {
-          this.snackbar.open('Reminder removed successfully......!', 'Done...!', { duration: 3000 });
-          console.log('Register infor ==========>', data);
-        },
-        error => {
-          this.snackbar.open('Error while removed note reminder ......!', 'Error', { duration: 3000 });
-          console.log("Error something wrong: ", error)
-        });
+      this.noteService.removeReminderNotes(reminderUpdate)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            this.snackbar.open('Reminder removed successfully......!', 'Done...!', { duration: 3000 });
+            console.log('Register infor ==========>', data);
+          },
+          error => {
+            this.snackbar.open('Error while removed note reminder ......!', 'Error', { duration: 3000 });
+            console.log("Error something wrong: ", error)
+          });
 
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
@@ -325,7 +338,7 @@ export class NoteListComponent implements OnInit {
 
   removeLabel(labelId, cardId) {
     this.noteService.removeLabelToNotes(cardId, labelId)
-      .pipe(takeUntil(this.destory$))
+      .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         this.anyChanges.emit({})
         console.log('response remove Label ====>', response);
@@ -361,15 +374,17 @@ export class NoteListComponent implements OnInit {
     }
     console.log("Set Pin at display note =====>", body);
     try {
-      this.noteService.pinUnpinNotes(body).subscribe(
-        data => {
-          this.snackbar.open('pin update successfully......!', 'Done...!', { duration: 3000 });
-          console.log('pin update successfully ==========>', data);
-        },
-        error => {
-          this.snackbar.open('Error while pin update  ......!', 'Error', { duration: 3000 });
-          console.log("Error something wrong while pin update ====> ", error)
-        });
+      this.noteService.pinUnpinNotes(body)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            this.snackbar.open('pin update successfully......!', 'Done...!', { duration: 3000 });
+            console.log('pin update successfully ==========>', data);
+          },
+          error => {
+            this.snackbar.open('Error while pin update  ......!', 'Error', { duration: 3000 });
+            console.log("Error something wrong while pin update ====> ", error)
+          });
 
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
@@ -377,7 +392,8 @@ export class NoteListComponent implements OnInit {
     /* For GetAll Note without refresh*/
     setTimeout(() => this.data.getAllNote(), 100);
   }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
 }
-
-
-

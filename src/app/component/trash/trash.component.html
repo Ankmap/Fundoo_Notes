@@ -3,8 +3,8 @@
         [ngClass]=" direction =='row' ? 'cardSub':'cardSub2' " cdkDrag>
         <div *ngIf="data.isDeleted === true">
             <mat-card [ngStyle]="{'background-color':data.color}">
-                <div class="title">{{data.title}}</div>
-                <div class="description"> {{data.description }}</div>
+                <div class="title"><div innerHTML="{{data.title}}"></div></div>
+                <div class="description"><div innerHTML="{{data.description}}"></div></div>
                 <br>
 
                 <div class="icon">

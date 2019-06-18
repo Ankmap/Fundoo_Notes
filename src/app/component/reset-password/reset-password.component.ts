@@ -11,6 +11,8 @@ import { User } from '../../core/model/user/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/core/service/user/user.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-reset-password',
@@ -19,6 +21,8 @@ import { UserService } from 'src/app/core/service/user/user.service';
 })
 
 export class ResetPasswordComponent implements OnInit {
+  destroy$: Subject<boolean> = new Subject<boolean>();
+
   register: User = new User();
   model: any;
   constructor(private userService: UserService, private snackbar: MatSnackBar, private router: Router, private activeRoute: ActivatedRoute) { }
@@ -47,27 +51,32 @@ export class ResetPasswordComponent implements OnInit {
       this.confirmpassword.hasError('confirmpassword') ? 'Enter min 4 digit confirmpassword' : '';
   }
 
-  
+
 
   login() {
     try {
       this.model = {
-        "newPassword":this.password.value,
-        }
+        "newPassword": this.password.value,
+      }
       var data = new FormData();
       data.append('newPassword', this.password.value);
-      this.userService.userResetpassword(this.model).subscribe(
-        data => {
-          console.log("Data =========>", data);
-          this.snackbar.open('Note updated successfully.......!', 'Done...!', { duration: 3000 });
-        },
-        error => {
-          console.log("Error =========>", error);
-          this.snackbar.open('Error while update the note.......!', 'Error...!', { duration: 3000 });
-        })
+      this.userService.userResetpassword(this.model)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            console.log("Data =========>", data);
+            this.snackbar.open('Note updated successfully.......!', 'Done...!', { duration: 3000 });
+          },
+          error => {
+            console.log("Error =========>", error);
+            this.snackbar.open('Error while update the note.......!', 'Error...!', { duration: 3000 });
+          })
     } catch (err) {
       console.log('Try-Catch:', err);
     }
   }
-
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
 }
