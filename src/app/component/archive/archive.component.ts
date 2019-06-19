@@ -87,6 +87,8 @@ export class ArchiveComponent implements OnInit {
           data => {
             this.snackbar.open(' Note unarchive ', ' Undo ', { duration: 1000 });
             console.log('Archive Note Successfully....!', data);
+            this.dataService.getAllNote();
+            this.dataService.changeMessage('')
           },
           error => {
             this.snackbar.open(' Note archive ', ' Undo ', { duration: 3000 });

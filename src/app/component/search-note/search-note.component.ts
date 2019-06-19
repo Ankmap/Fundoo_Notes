@@ -35,7 +35,8 @@ export class SearchNoteComponent implements OnInit {
     this.getNotes()
 
     /* For current message Search */
-    this.data.currentMessageSearch.pipe(takeUntil(this.destroy$))
+    this.data.currentMessageSearch
+      .pipe(takeUntil(this.destroy$))
       .subscribe(message => {
         this.message = message
       })

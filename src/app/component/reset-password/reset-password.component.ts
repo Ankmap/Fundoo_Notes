@@ -65,11 +65,11 @@ export class ResetPasswordComponent implements OnInit {
         .subscribe(
           data => {
             console.log("Data =========>", data);
-            this.snackbar.open('Note updated successfully.......!', 'Done...!', { duration: 3000 });
+            this.snackbar.open('Password updated successfully.......!', 'Done...!', { duration: 3000 });
           },
           error => {
             console.log("Error =========>", error);
-            this.snackbar.open('Error while update the note.......!', 'Error...!', { duration: 3000 });
+            this.snackbar.open('Error while update the password.......!', 'Error...!', { duration: 3000 });
           })
     } catch (err) {
       console.log('Try-Catch:', err);

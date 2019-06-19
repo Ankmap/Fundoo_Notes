@@ -37,10 +37,16 @@ export class QuestionService {
   }
 
   /**
-   *4. @Purpose : reply
+   *4. @Purpose : rate
    **/
   questionAndAnswerrate(parentId,body) {
     return this.service.postDataquestionAndAnswerNotes("/questionAndAnswerNotes/rate/" + parentId,body)
   }
 
+  /**
+   *4. @Purpose : like
+   **/
+  questionAndAnswerlike(parentId,body) {
+    return this.service.postDataquestionAndAnswerNotes("/questionAndAnswerNotes/like/" + parentId,body)
+  }
 }

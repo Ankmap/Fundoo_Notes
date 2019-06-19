@@ -142,6 +142,8 @@ export class NoteListComponent implements OnInit {
           data => {
             this.snackbar.open('color update successfully......!', 'Done...!', { duration: 3000 });
             console.log('Register infor ==========>', data);
+            this.data.getAllNote();
+            this.data.changeMessage('')
           },
           error => {
             this.snackbar.open('Error while update note color ......!', 'Error', { duration: 3000 });
@@ -172,6 +174,8 @@ export class NoteListComponent implements OnInit {
           data => {
             this.snackbar.open('Note deleted successfully......!', 'Done...!', { duration: 3000 });
             console.log('Register infor ==========>', data);
+            this.data.getAllNote();
+            this.data.changeMessage('')
           },
           error => {
             this.snackbar.open('Error while update note color ......!', 'Error', { duration: 3000 });
@@ -202,6 +206,8 @@ export class NoteListComponent implements OnInit {
           data => {
             this.snackbar.open('Note saved in trash successfully......!', 'Done...!', { duration: 3000 });
             console.log('Note saved in trash successfully......!', data);
+            this.data.getAllNote();
+            this.data.changeMessage('')
           },
           error => {
             this.snackbar.open('Error while trash note  ......!', 'Error', { duration: 3000 });
@@ -232,7 +238,7 @@ export class NoteListComponent implements OnInit {
     dialogRef.afterClosed()
       .pipe(takeUntil(this.destroy$))
       .subscribe(result => {
-        console.log(`Dialog closed: ${result}`);
+        console.log('Dialog closed');
       });
   }
 
@@ -253,6 +259,8 @@ export class NoteListComponent implements OnInit {
           data => {
             this.snackbar.open(' Note archive ', ' Undo ', { duration: 1000 });
             console.log('Archive Note Successfully....!', data);
+            this.data.getAllNote();
+            this.data.changeMessage('')
           },
           error => {
             this.snackbar.open(' Note unarchive ', ' Undo ', { duration: 3000 });
@@ -283,6 +291,8 @@ export class NoteListComponent implements OnInit {
           data => {
             this.snackbar.open('Reminder update successfully......!', 'Done...!', { duration: 3000 });
             console.log('Register infor ==========>', data);
+            this.data.getAllNote();
+            this.data.changeMessage('')
           },
           error => {
             this.snackbar.open('Error while update note reminder ......!', 'Error', { duration: 3000 });
@@ -313,6 +323,8 @@ export class NoteListComponent implements OnInit {
           data => {
             this.snackbar.open('Reminder removed successfully......!', 'Done...!', { duration: 3000 });
             console.log('Register infor ==========>', data);
+            this.data.getAllNote();
+            this.data.changeMessage('')
           },
           error => {
             this.snackbar.open('Error while removed note reminder ......!', 'Error', { duration: 3000 });

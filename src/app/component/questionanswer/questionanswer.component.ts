@@ -34,7 +34,8 @@ export class QuestionanswerComponent implements OnInit {
   /* Get Notes Detail */
   private noteList;
   private questionData = '';
-
+  private questionAnswerId;
+  private parentId;
   /* Binding the message and description */
   message = new FormControl('')
 
@@ -98,6 +99,11 @@ export class QuestionanswerComponent implements OnInit {
           // this.snackbar.open('Get Notes Detail', '', { duration: 4000 });
           console.log('Get Notes Detail ===>', data);
           console.log('Get Question Notes Detail show ===>', this.noteList);
+          this.questionAnswerId = this.noteList[0].questionAndAnswerNotes[0];
+          console.log('check parentId ====>', this.questionAnswerId.id);
+          console.log('Question Answer Note =====>', this.questionAnswerId)
+          console.log('Question Id is answer parentId =====>', this.questionAnswerId.id)
+          this.parentId = this.questionAnswerId.id;
         },
         error => {
           // this.snackbar.open('Get Notes Detail ===>', '', { duration: 3000 });
@@ -138,14 +144,16 @@ export class QuestionanswerComponent implements OnInit {
   /**
     * @Purpose : Add Question
   **/
-  addReply(parentId) {
-    console.log('parentId ===>', parentId)
+  addReply() {
+    this.parentId = this.questionAnswerId.id;
+    console.log('check parentId in add answer ====>', this.parentId);
+
     var body = {
       "message": this.replyQue.message,
     }
     console.log('Reply Question ====>', body)
     try {
-      this.questionService.questionAndAnswerNotesreply(parentId, body)
+      this.questionService.questionAndAnswerNotesreply(this.parentId, body)
         .pipe(takeUntil(this.destroy$))
         .subscribe(
           data => {
@@ -187,19 +195,66 @@ export class QuestionanswerComponent implements OnInit {
 
   title = 'Star Rating';
   // create a list which contains status of 5 stars
-  starList: boolean[] = [true, true, true, true, true];       
+  starList: boolean[] = [true, true, true, true, true];
   rating: number;
   //Create a function which receives the value counting of stars click, 
   //and according to that value we do change the value of that star in list.
-  setStar(data: any) {
-    this.rating = data + 1;
-    for (var i = 0; i <= 4; i++) {
-      if (i <= data) {
-        this.starList[i] = false;
-      }
-      else {
-        this.starList[i] = true;
-      }
+  setStarQuestion(data: any) {
+    this.parentId = this.questionAnswerId.id;
+    console.log('check parentId in rating ====>', this.parentId);
+    var body = {
+      "rate": this.rating = data + 1,
+    }
+    console.log('Rate Question ====>', body)
+    try {
+      this.questionService.questionAndAnswerrate(this.parentId, body)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            for (var i = 0; i <= 4; i++) {
+              if (i <= data) {
+                this.starList[i] = false;
+              }
+              else {
+                this.starList[i] = true;
+              }
+            }
+            console.log('Question Rating ====>', this.rating);
+            console.log('rate add successfully......!', data);
+            this.getNotesDetail();
+            this.dataService.changeMessage('')
+          },
+          error => {
+            console.log("Error while rate add ====> ", error)
+          });
+    } catch (error) {
+      console.log("Error while rate add ====> ", error)
+    }
+  }
+
+  private like: boolean = true;
+
+  setLikeQuestion() {
+    this.parentId = this.questionAnswerId.id;
+    console.log('check parentId in like ====>', this.parentId);
+    var body = {
+      "like": this.like,
+    }
+    console.log('Like Question ====>', body)
+    try {
+      this.questionService.questionAndAnswerlike(this.parentId, body)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            console.log('rate add successfully......!', data);
+            this.getNotesDetail();
+            this.dataService.changeMessage('')
+          },
+          error => {
+            console.log("Error while rate add ====> ", error)
+          });
+    } catch (error) {
+      console.log("Error while rate add ====> ", error)
     }
   }
   ngOnDestroy() {

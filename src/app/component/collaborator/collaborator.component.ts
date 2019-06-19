@@ -104,6 +104,8 @@ export class CollaboratorComponent implements OnInit {
             console.log('Collaborators added successfully information ==========>', data);
             /* Push data into collaborators */
             this.collaborators.push(data)
+            this.dataService.getAllNote();
+            this.dataService.changeMessage('')
           },
           error => {
             this.snackbar.open('Error while collaboratoring note......!', 'Error', { duration: 3000 });
@@ -126,6 +128,8 @@ export class CollaboratorComponent implements OnInit {
       .subscribe((response) => {
         this.snackbar.open('Collaborators remove successfully......!', 'Done...!', { duration: 3000 });
         console.log("Remove Collaborators To Notes response ===>", response);
+        this.dataService.getAllNote();
+        this.dataService.changeMessage('')
       }, (error) => {
         this.snackbar.open('Error while Collaborators remove......!', 'Error...!', { duration: 3000 });
         console.log("Remove Collaborators To Notes error ===>", error);

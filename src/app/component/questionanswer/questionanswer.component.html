@@ -57,10 +57,13 @@
                                     </div>
                                 </div>
                                 <!-- star rating -->
-                                <a *ngFor="let item of starList; let i=index " (click)="setStar(i)">
+                                <div>
+                                    <img (click)="setLikeQuestion()" src="../../../assets/outline-thumb_up-24px.svg">
+                                </div>
+                                <a *ngFor="let item of starList; let i=index " (click)="setStarQuestion(i)">
                                     <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>
                                 </a>
-                                Rating :- {{rating}} stars
+                                <div>Rating :- {{rating}} stars</div>
                             </div>
                         </div>
                         <div fxFlex=50>
@@ -117,14 +120,9 @@
                 <div style="height:3vh"></div>
                 <!-- Reply Question start-->
                 <div fxLayoutAlign="end end">
-                    <div *ngFor="let item of data.questionAndAnswerNotes">
-                        <div *ngIf="item.isApproved === true">
-                            <button mat-flat-button class="color" *ngIf=!notecardreply
-                                (click)=addReply(item.id)>Submit-Answer</button>
-                        </div>
-                    </div>
+                    <button mat-flat-button class="color" *ngIf=!notecardreply (click)=addReply()>Submit-Answer</button>
                 </div>
-                <!-- Reply Question end && item.isApproved === true-->
+                <!-- Reply Question end -->
             </div>
         </div>
     </div>

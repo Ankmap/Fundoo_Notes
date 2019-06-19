@@ -6,6 +6,7 @@
  *@since   - 22/04/2019
 **************************************************************************************************/
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-component-lifecycle',
@@ -13,7 +14,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./component-lifecycle.component.scss']
 })
 export class ComponentLifecycleComponent implements OnInit {
-
+  destroy$: Subject<boolean> = new Subject<boolean>();
   constructor() {
     console.log(' in construtor');
   }
@@ -29,9 +30,9 @@ export class ComponentLifecycleComponent implements OnInit {
   ngAfterViewChecked() {
     console.log("ngAfterViewChecked77");
   }
-  ngOnDestroy() {
-    console.log("ngOnDestroy88");
-  }
+  // ngOnDestroy() {
+  //   console.log("ngOnDestroy88");
+  // }
 
   ngAfterContentInit() {
     console.log("ngAfterContentInit44");
@@ -46,5 +47,8 @@ export class ComponentLifecycleComponent implements OnInit {
   ngOnInit() {
     console.log('ngOnInit22');
   }
-  
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
 }

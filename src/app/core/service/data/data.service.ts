@@ -39,11 +39,11 @@ export class DataService {
    **/
   getAllNote() {
     this.noteService.getNotes()
-    .pipe(takeUntil(this.destroy$))
-    .subscribe(data => {
-      this.assignData.next(data.data.data)
-      console.log("Get total notes in google keep ===>", data.data.data);
-    })
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(data => {
+        this.assignData.next(data.data.data)
+        console.log("Get total notes in google keep ===>", data.data.data);
+      })
   }
 
   /********************************** get note without refresh End**************************************/

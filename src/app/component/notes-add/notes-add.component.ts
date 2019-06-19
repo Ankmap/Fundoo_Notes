@@ -129,16 +129,18 @@ export class NotesAddComponent implements OnInit {
     }
     try {
       this.NoteAddService.addNote(body)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        data => {
-          this.snackbar.open('Note added successfully......!', 'Done...!', { duration: 3000 });
-          console.log('Register infor ==========>', data);
-        },
-        error => {
-          this.snackbar.open('Error while adding note......!', 'Error', { duration: 3000 });
-          console.log("Error something wrong: ", error)
-        });
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            this.snackbar.open('Note added successfully......!', 'Done...!', { duration: 3000 });
+            console.log('Register infor ==========>', data);
+            this.dataService.getAllNote();
+            this.dataService.changeMessage('')
+          },
+          error => {
+            this.snackbar.open('Error while adding note......!', 'Error', { duration: 3000 });
+            console.log("Error something wrong: ", error)
+          });
 
       /* Null title, description, and color null after add note */
       this.addNotes.title = null;

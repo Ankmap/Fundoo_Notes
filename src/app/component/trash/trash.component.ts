@@ -55,6 +55,8 @@ export class TrashComponent implements OnInit {
       .subscribe((response) => {
         this.notes = response["data"].data;
         console.log(" getTrashNotesList ======> ", this.notes);
+        this.dataService.getAllNote();
+        this.dataService.changeMessage('')
       }, (error) => {
         console.log("getArchivedList ======>", error);
       });
@@ -78,6 +80,8 @@ export class TrashComponent implements OnInit {
           data => {
             this.snackbar.open('Note deleted Forever successfully......!', 'Done...!', { duration: 3000 });
             console.log('Note deleted successfully ==========>', data);
+            this.dataService.getAllNote();
+            this.dataService.changeMessage('')
           },
           error => {
             this.snackbar.open('Error while deleted note  ......!', 'Error', { duration: 3000 });
@@ -108,6 +112,8 @@ export class TrashComponent implements OnInit {
           data => {
             this.snackbar.open('Note restore successfully......!', 'Done...!', { duration: 3000 });
             console.log('Note restore successfully ==========>', data);
+            this.dataService.getAllNote();
+            this.dataService.changeMessage('')
           },
           error => {
             console.log("Error something wrong: ", error)
