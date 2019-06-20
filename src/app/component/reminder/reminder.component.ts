@@ -25,7 +25,7 @@ export class ReminderComponent implements OnInit {
 
 
   /* Reminder */
-  private reminderArray = [];
+  // private reminderArray = [];
   private array = [];
 
   /* Note model */
@@ -77,8 +77,7 @@ export class ReminderComponent implements OnInit {
         this.notes = [];
         this.notes = response["data"].data;
         console.log("Show Reminder ====>", this.notes);
-        this.reminderArray = [];
-        this.reminderArray.push(this.notes)
+        // this.reminderArray.push(this.notes)
       });
   }
 
@@ -99,6 +98,8 @@ export class ReminderComponent implements OnInit {
           data => {
             this.snackbar.open('color update successfully......!', 'Done...!', { duration: 3000 });
             console.log('Register infor ==========>', data);
+            this.dataService.getAllNote();
+            this.dataService.changeMessage('')
           },
           error => {
             this.snackbar.open('Error while update note color ......!', 'Error', { duration: 3000 });

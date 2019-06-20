@@ -175,23 +175,23 @@ export class QuestionanswerComponent implements OnInit {
   /**
     * @Purpose : Delete Question
   **/
-  // question(parentId) {
-  //   console.log('parentId for delete ===>', parentId)
-  //   this.questionService.questionAndAnswerNotesDelete(parentId)
-  //     .pipe(takeUntil(this.destroy$))
-  //     .subscribe(
-  //       data => {
-  //         this.snackbar.open('delete question successfully', '', { duration: 1000 });
-  //         console.log('delete question ===>', data)
-  //         this.getNotesDetail();
-  //         this.dataService.changeMessage('')
-  //       },
-  //       error => {
-  //         this.snackbar.open('delete question error', '', { duration: 1000 });
-  //         console.log('delete question error ===>', error);
+  question(parentId) {
+    console.log('parentId for delete ===>', parentId)
+    this.questionService.questionAndAnswerNotesDelete(parentId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        data => {
+          this.snackbar.open('delete question successfully', '', { duration: 1000 });
+          console.log('delete question ===>', data)
+          this.getNotesDetail();
+          this.dataService.changeMessage('')
+        },
+        error => {
+          this.snackbar.open('delete question error', '', { duration: 1000 });
+          console.log('delete question error ===>', error);
 
-  //       })
-  // }
+        })
+  }
 
   title = 'Star Rating';
   // create a list which contains status of 5 stars
@@ -202,6 +202,14 @@ export class QuestionanswerComponent implements OnInit {
   setStarQuestion(data: any) {
     this.parentId = this.questionAnswerId.id;
     console.log('check parentId in rating ====>', this.parentId);
+    for (var i = 0; i <= 4; i++) {
+      if (i <= data) {
+        this.starList[i] = false;
+      }
+      else {
+        this.starList[i] = true;
+      }
+    }
     var body = {
       "rate": this.rating = data + 1,
     }
@@ -211,14 +219,6 @@ export class QuestionanswerComponent implements OnInit {
         .pipe(takeUntil(this.destroy$))
         .subscribe(
           data => {
-            for (var i = 0; i <= 4; i++) {
-              if (i <= data) {
-                this.starList[i] = false;
-              }
-              else {
-                this.starList[i] = true;
-              }
-            }
             console.log('Question Rating ====>', this.rating);
             console.log('rate add successfully......!', data);
             this.getNotesDetail();

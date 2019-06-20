@@ -18,6 +18,7 @@ h5{
 }
 .answers{
     margin-left: 40px;
+    word-break: break-all;
 }
 button{
     border-style: hidden; 
@@ -25,4 +26,7 @@ button{
 }
 i{
     font-size: 30px;    
+}
+.question{
+    word-break: break-all; 
 }

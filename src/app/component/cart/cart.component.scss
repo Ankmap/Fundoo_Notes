@@ -1,44 +1,41 @@
 .navbar{
     background-color: orange;
 }
-p{
-    font-size: 35px;
-    opacity: 0.8;
-}
-.front{
-    display: flex;
-    background-color: white;
-    width: 250px;
-    height:50vh;
-    position: fixed;
-    margin-top: -420px;
-}
 
-.frontSub{
-    display: flex;
-    background-color: gray;
-    width: 250px;
-    margin-left: 30px;
-    height:50vh;
-}
-.cart{
-    font-size:15px;
-    width: 150px;
-    color: white;
-}
-.cart:hover{
-    font-size:15px !important;
-    color: white;
-}
-
-.addtoCart:hover > .frontSub {
+.cartMain:hover >.addCart mat-card {
     background-color: orange;
-}
-.addtoCart:hover{
-    opacity: 1;
-    transform: 'scale(1.5)' 
+    // transform: translate(50px,100px);
+    transform: scale(1.2);      
 }
 
-/*
+.cartMain .cartSub:hover{
+    // transform: translate(50px,100px);
+    transform: scale(1.2); 
+}
 
-*/ 
+.addCart mat-card{
+    width: 225px;
+    height: 380px;
+    margin-top: 145px;
+    background-color: #a9a9a9;
+}
+
+.addCart h5{
+    margin-top: 330px;
+    color: white;
+    font-size: 21px;
+}
+.cartSub mat-card{
+    width: 225px;
+    height: 385px;
+    margin-top: -435px;
+    margin-left: -35px; 
+}
+
+button{
+    outline: none
+}
+
+h3{
+    opacity: 0.6;
+}
