@@ -13,4 +13,6 @@ Required for animation
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 // 
 
-
+.app-full-bleed-dialog .mat-dialog-container {
+    padding: 0;
+}

@@ -4,12 +4,10 @@
 
 .cartMain:hover >.addCart mat-card {
     background-color: orange;
-    // transform: translate(50px,100px);
     transform: scale(1.2);      
 }
 
 .cartMain .cartSub:hover{
-    // transform: translate(50px,100px);
     transform: scale(1.2); 
 }
 
@@ -33,7 +31,8 @@
 }
 
 button{
-    outline: none
+    outline: none;
+    color:blue;
 }
 
 h3{

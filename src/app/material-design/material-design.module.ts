@@ -27,8 +27,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import {MatDividerModule} from '@angular/material/divider';
-import {StarRatingModule} from 'angular-star-rating';
+import { MatDividerModule } from '@angular/material/divider';
+import { StarRatingModule } from 'angular-star-rating';
+import {
+  MatOptionModule,
+  MatTableModule,
+} from '@angular/material';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
 
@@ -69,7 +74,10 @@ import {StarRatingModule} from 'angular-star-rating';
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
     StarRatingModule.forRoot(),
-    MatStepperModule
+    MatStepperModule,
+    MatOptionModule,
+    MatTableModule,
+    MatTabsModule
   ],
 
   exports: [
@@ -109,7 +117,10 @@ import {StarRatingModule} from 'angular-star-rating';
     FroalaEditorModule,
     FroalaViewModule,
     StarRatingModule,
-    MatStepperModule
+    MatStepperModule,
+    MatOptionModule,
+    MatTableModule,
+    MatTabsModule
   ]
 
 

@@ -16,4 +16,23 @@ export class ProductService {
   userService() {
     return this.service.postDataForuserService("/user/service")
   }
+
+  /**
+   *2. @Purpose : Product Carts Add To Cart 
+   **/
+
+  addToCart(body) {
+    // return this.service.postDataaddToCart("/productcarts/addToCart", body)
+    return this.service.postDataForEncodedReset("/productcarts/addToCart", body)
+  }
+
+  /**
+  *3. @Purpose : Product Carts Add To Cart 
+  **/
+
+  getCartDetails(cartId) {
+    return this.service.postDataaddToCart("/productcarts/getCartDetails/", + cartId)
+  }
+
+
 }

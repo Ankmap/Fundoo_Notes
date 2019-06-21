@@ -22,7 +22,7 @@ export class HttpService {
   postData(path, body) {
     return this.http.post(environment.baseUrl + path, body);
   }
-  
+
   /**
    * @Purpose : Reset Passwoprd
    **/
@@ -330,9 +330,9 @@ export class HttpService {
     return this.http.post(environment.baseUrl + path, body, httpOptions);
   }
 
-   /**
-   * @Purpose : Add Label To Notes
-   **/
+  /**
+  * @Purpose : Add Label To Notes
+  **/
   postDataForaddLabelToNotes(path, body) {
     console.log(body);
     const httpOptions = {
@@ -393,7 +393,7 @@ export class HttpService {
   /**
    * @Purpose : Question And Answer Notes
    **/
-  postDataquestionAndAnswerNotes(path, body){
+  postDataquestionAndAnswerNotes(path, body) {
     console.log(body);
     const httpOptions = {
       headers: new HttpHeaders({
@@ -408,7 +408,7 @@ export class HttpService {
   /**
    * @Purpose : Question And Answer Notes Add
    **/
-  postDatagetNotesDetail(path){
+  postDatagetNotesDetail(path) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -419,9 +419,9 @@ export class HttpService {
     return this.http.get(environment.baseUrl + path, httpOptions);
   }
 
-    /**
-   * @Purpose : Question And Answer Notes Delete 
-   **/
+  /**
+ * @Purpose : Question And Answer Notes Delete 
+ **/
   postDataForDeleteQuestion(path) {
     let httpAuthOptions = {
       headers: new HttpHeaders({
@@ -445,4 +445,20 @@ export class HttpService {
     console.log('token ==================>', localStorage.getItem('token'));
     return this.http.get(environment.baseUrl + path, httpOptions);
   }
+  /**
+   * @Purpose : Question And Answer Notes
+   **/
+
+  postDataaddToCart(path, body) {
+    console.log(body);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': localStorage.getItem('token')
+      })
+    };
+    console.log('token ==================>', localStorage.getItem('token'));
+    return this.http.post(environment.baseUrl + path, body, httpOptions);
+  }
+
 }

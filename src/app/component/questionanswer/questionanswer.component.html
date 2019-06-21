@@ -3,14 +3,15 @@
     <div fxFlex.xl='700px' fxFlex.lg='1000px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
         <div *ngFor="let data of noteList">
             <div fxLayout="column">
-
                 <!-- title, description and close button -->
                 <div fxFlex=100 fxLayoutGap="20px">
                     <div fxFlex=90>
                         <div fxLayout="column" fxLayoutAlign="start start">
-                            <h4><strong>
+                            <h4>
+                                <strong>
                                     <div innerHTML="{{data.title}}"></div>
-                                </strong></h4>
+                                </strong>
+                            </h4>
                             <h4>
                                 <div innerHTML="{{data.description}}"></div>
                             </h4>
@@ -20,19 +21,20 @@
                         <button mat-button (click)=close()>Close</button>
                     </div>
                 </div>
+                <!-- ------------------------------------------------------------------------------------- -->
                 <div style="height:3vh"></div>
                 <mat-divider></mat-divider>
                 <div style="height:3vh"></div>
-
-                <!-- Check Question Length if one question is there then reply-->
+                <!-- Check Question Length if one question is there then Display question-->
                 <div *ngIf="data.questionAndAnswerNotes.length>0">
                     <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="30px">
-
                         <div fxFlex=50>
                             <h4><strong>Question Asked</strong></h4>
+                            <!-- Display Question -->
                             <div *ngFor="let item of data.questionAndAnswerNotes">
                                 <div *ngIf="!item.parentId">
-                                    <h5 (click)="question(item.id)">
+                                    <!-- Delete Question -->
+                                    <h5 (click)="questionDelete()">
                                         <div innerHTML="{{item.message}}"></div>
                                     </h5>
                                 </div>
@@ -44,45 +46,56 @@
                                 <div mat-card-avatar [ngStyle]="{'background-image': 'url('+img+')','background-color':'#fcefc3','background-size':'cover',
                                     'height':'60px','width':'60px','border':'3px solid white','border-radius':'50%'}">
                                     <!-- Get FirstLetter of user -->
-                                    <!-- <div class=nameIcon>{{firstName[0].toUpperCase()}}</div> -->
+                                    <div class=nameIcon>{{firstName[0].toUpperCase()}}</div>
                                 </div>
                                 <div fxLayout="column">
                                     <div>{{firstName}} {{lastName}}</div>
                                     <div *ngFor="let item of data.questionAndAnswerNotes">
                                         <div *ngIf="!item.parentId">
-                                            <h3 (click)="question(item.id)">
-                                                <div innerHTML="{{item.message}}"></div>
-                                            </h3>
+                                            <div innerHTML="{{item.message}}"></div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- star rating -->
+                                <!-- Like the question -->
                                 <div>
-                                    <img (click)="setLikeQuestion()" src="../../../assets/outline-thumb_up-24px.svg">
+                                    <!-- <img (click)="setLikeQuestion()" src="../../../assets/outline-thumb_up-24px.svg"> -->
+                                    <div *ngIf=!like>
+                                        <img (click)=setLikeQuestion() src="../../../assets/outline-thumb_up-24px.svg">
+                                    </div>
+                                    <div *ngIf=like>
+                                        <img (click)=setLikeQuestion() src="../../../assets/baseline-thumb_up-24px.svg">
+                                    </div>
+                                    <div *ngFor="let likes of questionLike">
+                                        Like :- {{likes.like}}
+                                    </div>
                                 </div>
-                                <a *ngFor="let item of starList; let i=index " (click)="setStarQuestion(i)">
-                                    <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>
-                                </a>
-                                <div>Rating :- {{rating}} stars</div>
+                                <!-- Rate the question -->
+                                <div fxLayoutGap='20px'>
+                                    <a *ngFor="let item of starList; let i=index " (click)="setStarQuestion(i)">
+                                        <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>
+                                    </a>
+                                    <div *ngFor="let ratequestion of questionRate">
+                                        <h5> Rating :- {{ratequestion.rate}} stars</h5>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                         <div fxFlex=50>
-                            <!-- <h4><strong>Answers</strong></h4> -->
+                            <!-- Display Answer -->
                             <div *ngFor="let item of data.questionAndAnswerNotes">
-                                <!-- <div *ngIf="item.parentId && item.isApproved === true"> -->
+                                <div *ngIf="item.parentId && item.isApproved === true">
                                     <div mat-card-avatar
                                         [ngStyle]="{'background-image': 'url('+img+')','background-color':'#fcefc3','background-size':'cover',
                                         'height':'60px','width':'60px','border':'3px solid white','border-radius':'50%'}">
                                     </div>
-                                    <h4 class="answers" (click)="question(item.id)">
+                                    <h4 class="answers">
                                         <div innerHTML="{{item.message}}"></div>
                                     </h4>
-                                <!-- </div> -->
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Display Question end -->
-                    <div style="height:5vh"></div>
 
                     <!-- Reply Question start-->
                     <div fxLayoutAlign="end end">
@@ -92,10 +105,8 @@
                     <div *ngIf="!notecardreply">
                         <textarea [froalaEditor] [(froalaModel)]="replyQue.message" [formControl]="message"></textarea>
                     </div>
-                    <!-- Reply Question end class="fr-tag" @Html.Raw-->
-
                 </div>
-
+                <!-- ---------------------------------------------------------------------------------------->
                 <!-- If no question is there then ask a question -->
                 <div *ngIf="!data.questionAndAnswerNotes.length>0">
                     <div *ngIf="notecard" (click)="notecardOpen()">
@@ -117,12 +128,13 @@
                             (click)="addQuestion()">Submit-Question</button>
                     </div>
                 </div>
-                <div style="height:3vh"></div>
+                <!-- ---------------------------------------------------------------------------------------->
                 <!-- Reply Question start-->
+                <div style="height:2vh"></div>
                 <div fxLayoutAlign="end end">
                     <button mat-flat-button class="color" *ngIf=!notecardreply (click)=addReply()>Submit-Answer</button>
                 </div>
-                <!-- Reply Question end -->
+                <!-- ---------------------------------------------------------------------------------------->
             </div>
         </div>
     </div>

@@ -6,6 +6,7 @@
     border-style: hidden; 
     outline: none;
     background-color: orange;
+    margin-top: 24px;
 }
 .cart{
     height:100px;
@@ -29,3 +30,28 @@
 //     width: 100px
 //     }
 // }
+.price{
+    margin-left: 430px;
+}
+.opacity{
+    opacity: 0.7;
+}
+.box{
+    padding: 12px;
+    border: groove 1px; 
+    width: 850px;
+    height: 300px;
+}
+.box1{
+    padding: 12px;
+    border: groove 1px; 
+    width: 500px;
+    margin-top: -85px;
+    margin-left: 55px;
+}
+.box3{
+    height: 150px;
+    padding: 12px;
+    border: groove 1px; 
+    width: 850px;
+}

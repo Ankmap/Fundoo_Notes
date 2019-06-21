@@ -74,11 +74,13 @@ export class DialogComponent implements OnInit {
     console.log('console for updateNote ============', body);
     try {
       this.noteService.updateNote(body)
-        .pipe(takeUntil(this.destroy$))
+        // .pipe(takeUntil(this.destroy$))
         .subscribe(
           data => {
             this.snackbar.open('Note update successfully......!', 'Done...!', { duration: 3000 });
             console.log('Note update successfully ==========>', data);
+            this.dataService.getAllNote();
+            this.dataService.changeMessage('')
           },
           error => {
             this.snackbar.open('Error while update note......!', 'Error', { duration: 3000 });

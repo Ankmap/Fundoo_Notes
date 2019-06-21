@@ -26,49 +26,198 @@
   <div fxFlex=8></div>
   <div fxFlex=70>
     <div fxLayout="column" fxLayoutGap="20px">
-      <div>
-        <button class="fundooNotes" mat-button>FundooNotes</button>
+      <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+        <div>
+          <button class="fundooNotes" mat-button>FundooNotes</button>
+        </div>
+        <div>
+          <mat-tab-group>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon" (click)="content='showSubContent'">shopping_cart</mat-icon>
+              </ng-template>
+              SIGN IN
+            </mat-tab>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon" (click)="content='showSubContentTwo'">shopping_cart</mat-icon>
+              </ng-template>
+              PLACE ORDER
+            </mat-tab>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon" (click)="content='showSubContentThree'">shopping_cart</mat-icon>
+              </ng-template>
+              COMPLETE PAYMENT
+            </mat-tab>
+          </mat-tab-group>
+        </div>
       </div>
-      <strong>Shopping Cart</strong>
-      <div class="divider">
-        <mat-divider></mat-divider>
-      </div>
-      <div fxFlex=70 fxLayoutGap="50px">
-        <div fxFlex=90>
-          <div fxFlex=100 fxLayoutGap="70px">
-            <div fxFlex=15>
-              <mat-card class="cart">
-              </mat-card>
-            </div>
-            <div fxFlex=55>
-              <p> Advance Pack Details </p>
-              <div>
-                <div fxFlex=50>
-                  <li>cart1</li>
-                  <li>cart1</li>
+      <div [ngSwitch]="content" fxLayout="row" fxLayoutGap="20px">
+        <div *ngSwitchDefault fxLayout="column" fxLayoutGap="20px">
+          <strong>Shopping Cart</strong>
+          <div fxLayout="row" fxLayoutGap="150px">
+            <p class="price">Price</p>
+            <p>Validity</p>
+          </div>
+          <div class="divider">
+            <mat-divider></mat-divider>
+          </div>
+          <div fxFlex=70 fxLayoutGap="50px">
+            <div fxFlex=90>
+              <div fxFlex=100 fxLayoutGap="70px">
+                <div fxFlex=15>
+                  <mat-card class="cart">
+                  </mat-card>
                 </div>
-                <div fxFlex=50>
-                  <li>cart1</li>
-                  <li>cart1</li>
+                <div fxFlex=55>
+                  <p> Advance Pack Details </p>
+                  <div>
+                    <div fxFlex=50>
+                      <li>cart1</li>
+                      <li>cart1</li>
+                    </div>
+                    <div fxFlex=50>
+                      <li>cart1</li>
+                      <li>cart1</li>
+                    </div>
+                  </div>
+                </div>
+
+                <div fxFlex=15>
+                  $ 6.99
+                </div>
+                <div fxFlex=15>
+                  <button mat-button>per Month</button>
                 </div>
               </div>
             </div>
-            <div fxFlex=15>
-              $ 6.99
-            </div>
-            <div fxFlex=15>
-              per Month
+            <div fxFlex=10>
+              <div class="endcart">
+                <button mat-button>Proceed to checkout</button>
+              </div>
             </div>
           </div>
-        </div>
-        <div fxFlex=10>
-          <div class="endcart">
-            <button mat-button>Proceed to checkout</button>
+          <div class="divider">
+            <mat-divider></mat-divider>
           </div>
         </div>
-      </div>
-      <div class="divider">
-        <mat-divider></mat-divider>
+        <div *ngSwitchCase="'showSubContent'" fxLayout="column" fxLayoutGap="20px">
+          <strong>Shopping Cart</strong>
+          <div fxLayout="row" fxLayoutGap="150px">
+            <p class="price">Price</p>
+            <p>Validity</p>
+          </div>
+          <div class="divider">
+            <mat-divider></mat-divider>
+          </div>
+          <div fxFlex=70 fxLayoutGap="50px">
+            <div fxFlex=90>
+              <div fxFlex=100 fxLayoutGap="70px">
+                <div fxFlex=15>
+                  <mat-card class="cart">
+                  </mat-card>
+                </div>
+                <div fxFlex=55>
+                  <p> Advance Pack Details </p>
+                  <div>
+                    <div fxFlex=50>
+                      <li>cart1</li>
+                      <li>cart1</li>
+                    </div>
+                    <div fxFlex=50>
+                      <li>cart1</li>
+                      <li>cart1</li>
+                    </div>
+                  </div>
+                </div>
+
+                <div fxFlex=15>
+                  $ 6.99
+                </div>
+                <div fxFlex=15>
+                  per Month
+                </div>
+              </div>
+            </div>
+            <div fxFlex=10>
+              <div class="endcart">
+                <button mat-button>Proceed to checkout</button>
+              </div>
+            </div>
+          </div>
+          <div class="divider">
+            <mat-divider></mat-divider>
+          </div>
+        </div>
+        <div *ngSwitchCase="'showSubContentTwo'">
+          <h6><strong>Review your order</strong></h6>
+          <p class="opacity">By clicking on the 'Place your order and pay button you agree to fundooNotes</p>
+          <div class="box">
+            <div fxFlex='5'></div>
+            <div fxFlex=100 fxLayoutGap="70px">
+              <div fxFlex=15>
+                <mat-card class="cart">
+                </mat-card>
+              </div>
+              <div fxFlex=55>
+                <p> Advance Pack Details </p>
+                <div>
+                  <div fxFlex=50>
+                    <li>cart1</li>
+                    <li>cart1</li>
+                  </div>
+                  <div fxFlex=50>
+                    <li>cart1</li>
+                    <li>cart1</li>
+                  </div>
+                </div>
+              </div>
+              <div fxFlex=15>
+                $ 6.99
+              </div>
+              <div fxFlex=15>
+                <button mat-button>per Month</button>
+              </div>
+            </div>
+            <div fxFlex='5'></div>
+          </div>
+          <mat-divider></mat-divider>
+          <p style="margin-top: -100px;margin-left: 55px;">Daily Address</p>
+          <div class="box1"></div>
+        </div>
+        <div *ngSwitchCase="'showSubContentThree'">
+          <h6><strong>Order list</strong></h6>
+          <div class="box3">
+            <div fxFlex='5'></div>
+            <div fxFlex=100 fxLayoutGap="70px">
+              <div fxFlex=15>
+                <mat-card class="cart">
+                </mat-card>
+              </div>
+              <div fxFlex=55>
+                <p> Advance Pack Details </p>
+                <div>
+                  <div fxFlex=50>
+                    <li>cart1</li>
+                    <li>cart1</li>
+                  </div>
+                  <div fxFlex=50>
+                    <li>cart1</li>
+                    <li>cart1</li>
+                  </div>
+                </div>
+              </div>
+              <div fxFlex=15>
+                $ 6.99
+              </div>
+              <div fxFlex=15>
+                <button mat-button>per Month</button>
+              </div>
+            </div>
+            <div fxFlex='5'></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

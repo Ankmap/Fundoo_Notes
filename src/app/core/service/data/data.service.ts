@@ -66,7 +66,7 @@ export class DataService {
   }
   /********************************** Search End**************************************/
 
-  /* change message for label*/
+  /* change message for label/Note*/
   private messageSource = new BehaviorSubject('default message');
   currentMessage = this.messageSource.asObservable();
 

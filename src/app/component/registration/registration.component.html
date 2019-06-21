@@ -7,135 +7,135 @@
  *@since   - 22/04/2019
 **************************************************************************************************/
  -->
- <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="6%">
-        <div fxLayout='column' fxFlex="60" fxLayoutGap="5%">
-            <div fxFlex.lg="100%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
-            <!-- Registration form start -->
-            <mat-card>
-                <form>
-                    <div fxLayoutAlign=left>
-                        <mat-card-title>
-                            <h4>
-                                <span class="blue">F</span>
-                                <span class="red">u</span>
-                                <span class="navy">n</span>
-                                <span class="purple">d</span>
-                                <span class="yellow">o</span>
-                                <span class="red">o</span>
-                                <span class="navy">n</span>
-                                <span class="green">o</span>
-                                <span class="purple">t</span>
-                                <span class="red">e</span>
-                                <span class="navy">s</span>
-                            </h4>
-                            <h5>Create your Fundoo Account</h5>
-                        </mat-card-title>
+<div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="6%">
+    <div fxLayout='column' fxFlex="60" fxLayoutGap="5%">
+        <div fxFlex.lg="100%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
+        <!-- Registration form start -->
+        <mat-card>
+            <form>
+                <div fxLayoutAlign=left>
+                    <mat-card-title>
+                        <h4>
+                            <span class="blue">F</span>
+                            <span class="red">u</span>
+                            <span class="navy">n</span>
+                            <span class="purple">d</span>
+                            <span class="yellow">o</span>
+                            <span class="red">o</span>
+                            <span class="navy">n</span>
+                            <span class="green">o</span>
+                            <span class="purple">t</span>
+                            <span class="red">e</span>
+                            <span class="navy">s</span>
+                        </h4>
+                        <h5>Create your Fundoo Account</h5>
+                    </mat-card-title>
+                </div>
+                <mat-card-content>
+                    <div>
+                        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="2%" fxLayout.xs="column wrap"
+                            fxLayout.md="column wrap">
+                            <div>
+                                <mat-form-field class="name" appearance="outline">
+                                    <mat-label>Firstname</mat-label>
+                                    <input matInput placeholder="Firstname" [(ngModel)]="register.firstName"
+                                        [formControl]="firstName" required>
+                                    <mat-error *ngIf="firstName.invalid">{{firstNameValidation()}}</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field class="name" appearance="outline">
+                                    <mat-label>Lastname</mat-label>
+                                    <input matInput placeholder="Lastname" [(ngModel)]="register.lastName"
+                                        [formControl]="lastName" required>
+                                    <mat-error *ngIf="lastName.invalid">{{lastNameValidation()}}</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="start">
+                            <div fxFlex="100" fxLayout.xs="column wrap" fxLayout.md="column wrap">
+                                <mat-form-field class="username" appearance="outline">
+                                    <mat-label>Username</mat-label>
+                                    <input matInput placeholder="Username" [(ngModel)]="register.email"
+                                        [formControl]="email" required>
+                                    <mat-error *ngIf="email.invalid">{{emailValidation()}}</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="2%" fxLayout.xs="column wrap"
+                            fxLayout.md="column wrap">
+                            <div>
+                                <mat-form-field class="password" appearance="outline">
+                                    <mat-label>Password</mat-label>
+                                    <input matInput placeholder="Password" [(ngModel)]="register.password"
+                                        [formControl]="password" required [type]="hide ? 'text' : 'password'">
+                                    <mat-error *ngIf="password.invalid">{{passwordValidation()}}</mat-error>
+                                    <mat-hint>Enter min 4 digit password</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field class="password" appearance="outline">
+                                    <mat-label>Confirm</mat-label>
+                                    <input matInput placeholder="Confirm" [(ngModel)]="register.confirmPassword"
+                                        [formControl]="confirmPassword" required [type]="hide ? 'text' : 'password'">
+                                    <mat-error *ngIf="confirmPassword.invalid">{{confirmPasswordValidation()}}
+                                    </mat-error>
+                                    <mat-hint>Enter min 4 digit password</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <mat-icon matSuffix (click)="hide = !hide">
+                                {{hide ? 'visibility' : 'visibility_off'}}
+                            </mat-icon>
+                        </div>
                     </div>
-                    <mat-card-content>
-                        <div>
-                            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="2%" fxLayout.xs="column wrap"
-                                fxLayout.md="column wrap">
-                                <div>
-                                    <mat-form-field class="name" appearance="outline">
-                                        <mat-label>Firstname</mat-label>
-                                        <input matInput placeholder="Firstname" [(ngModel)]="register.firstName"
-                                            [formControl]="firstName" required>
-                                        <mat-error *ngIf="firstName.invalid">{{firstNameValidation()}}</mat-error>
-                                    </mat-form-field>
-                                </div>
-                                <div>
-                                    <mat-form-field class="name" appearance="outline">
-                                        <mat-label>Lastname</mat-label>
-                                        <input matInput placeholder="Lastname" [(ngModel)]="register.lastName"
-                                            [formControl]="lastName" required>
-                                        <mat-error *ngIf="lastName.invalid">{{lastNameValidation()}}</mat-error>
-                                    </mat-form-field>
-                                </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <div>
+                        <div fxLayout="column" fxLayoutGap="3%" fxLayout.xs="column wrap" fxLayout.md="column wrap">
+                            <div class="butttons" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="4%">
+                                <p>
+                                    <mat-button-toggle-group appearance="legacy" name="fontStyle"
+                                        aria-label="Font Style" [formControl]="advancedService"
+                                        [(ngModel)]="register.service">
+                                        <mat-button-toggle value="advance" (click)="currentLesson = '1'"
+                                            [disabled]="currentLesson !== '1'" class="primair">Advanced
+                                        </mat-button-toggle>
+                                    </mat-button-toggle-group>
+                                    <mat-error *ngIf="advancedService.invalid">{{advancedServiceValidation()}}
+                                    </mat-error>
+                                </p>
+                                <p>
+                                    <mat-button-toggle-group appearance="legacy" name="fontStyle"
+                                        aria-label="Font Style" [formControl]="basicService"
+                                        [(ngModel)]="register.service">
+                                        <mat-button-toggle value="basic" (click)="currentLesson = '2'"
+                                            [disabled]="currentLesson !== '2'" class="primair">Basic</mat-button-toggle>
+                                    </mat-button-toggle-group>
+                                    <mat-error *ngIf="basicService.invalid">{{basicServiceValidation()}}
+                                    </mat-error>
+                                </p>
                             </div>
-                            <div fxLayout="row" fxLayoutAlign="start">
-                                <div fxFlex="100" fxLayout.xs="column wrap" fxLayout.md="column wrap">
-                                    <mat-form-field class="username" appearance="outline">
-                                        <mat-label>Username</mat-label>
-                                        <input matInput placeholder="Username" [(ngModel)]="register.email"
-                                            [formControl]="email" required>
-                                        <mat-error *ngIf="email.invalid">{{emailValidation()}}</mat-error>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="2%" fxLayout.xs="column wrap"
-                                fxLayout.md="column wrap">
+                            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="40%">
                                 <div>
-                                    <mat-form-field class="password" appearance="outline">
-                                        <mat-label>Password</mat-label>
-                                        <input matInput placeholder="Password" [(ngModel)]="register.password"
-                                            [formControl]="password" required [type]="hide ? 'text' : 'password'">
-                                        <mat-error *ngIf="password.invalid">{{passwordValidation()}}</mat-error>
-                                        <mat-hint>Enter min 4 digit password</mat-hint>
-                                    </mat-form-field>
+                                    <p style="margin-left:18px;" mat-button routerLink="/login">Sign in instead</p>
                                 </div>
-                                <div>
-                                    <mat-form-field class="password" appearance="outline">
-                                        <mat-label>Confirm</mat-label>
-                                        <input matInput placeholder="Confirm" [(ngModel)]="register.confirmPassword"
-                                            [formControl]="confirmPassword" required [type]="hide ? 'text' : 'password'">
-                                        <mat-error *ngIf="confirmPassword.invalid">{{confirmPasswordValidation()}}
-                                        </mat-error>
-                                        <mat-hint>Enter min 4 digit password</mat-hint>
-                                    </mat-form-field>
+                                <div fxLayoutAlign="end end">
+                                    <button mat-flat-button color="primary" (click)="submit(register)"
+                                        [disabled]="email.invalid || firstName.invalid || lastName.invalid || password.invalid || confirmPassword.invalid || advancedService.invalid || basicService.invalid"
+                                        (click)="submit(register)" (click)="submit(register)"
+                                        routerLink="/login">signup</button>
                                 </div>
-                                <mat-icon matSuffix (click)="hide = !hide">
-                                    {{hide ? 'visibility' : 'visibility_off'}}
-                                </mat-icon>
                             </div>
                         </div>
-                    </mat-card-content>
-                    <mat-card-actions>
-                        <div>
-                            <div fxLayout="column" fxLayoutGap="3%" fxLayout.xs="column wrap" fxLayout.md="column wrap">
-                                <div class="butttons" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="4%">
-                                    <p>
-                                        <mat-button-toggle-group appearance="legacy" name="fontStyle"
-                                            aria-label="Font Style" [formControl]="advancedService"
-                                            [(ngModel)]="register.service">
-                                            <mat-button-toggle value="advance" (click)="currentLesson = '1'"
-                                                [disabled]="currentLesson !== '1'" class="primair">Advanced
-                                            </mat-button-toggle>
-                                        </mat-button-toggle-group>
-                                        <mat-error *ngIf="advancedService.invalid">{{advancedServiceValidation()}}
-                                        </mat-error>
-                                    </p>
-                                    <p>
-                                        <mat-button-toggle-group appearance="legacy" name="fontStyle"
-                                            aria-label="Font Style" [formControl]="basicService"
-                                            [(ngModel)]="register.service">
-                                            <mat-button-toggle value="basic" (click)="currentLesson = '2'"
-                                                [disabled]="currentLesson !== '2'" class="primair">Basic</mat-button-toggle>
-                                        </mat-button-toggle-group>
-                                        <mat-error *ngIf="basicService.invalid">{{basicServiceValidation()}}
-                                        </mat-error>
-                                    </p>
-                                </div>
-                                <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="40%">
-                                    <div>
-                                        <p style="margin-left:18px;" mat-button routerLink="/login">Sign in instead</p>
-                                    </div>
-                                    <div fxLayoutAlign="end end">
-                                        <button mat-flat-button color="primary" (click)="submit(register)"
-                                            [disabled]="email.invalid || firstName.invalid || lastName.invalid || password.invalid || confirmPassword.invalid || advancedService.invalid || basicService.invalid"
-                                            (click)="submit(register)" (click)="submit(register)"
-                                            routerLink="/login">signup</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div fxLayoutAlign="end" fxHide fxShow.gt-md fxLayout.md='row' fxFlex.md="10px"
-                                fxLayout.sm='row' fxFlex.sm="50px">
-                                <img src="https://ssl.gstatic.com/accounts/signup/glif/account.svg">
-                            </div>
+                        <div fxLayoutAlign="end" fxHide fxShow.gt-md fxLayout.md='row' fxFlex.md="10px"
+                            fxLayout.sm='row' fxFlex.sm="50px">
+                            <img src="https://ssl.gstatic.com/accounts/signup/glif/account.svg">
                         </div>
-                    </mat-card-actions>
-                </form>
-            </mat-card>
-            <!--Restration form end -->
-            <div fxFlex.lg="20%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
-        </div>
+                    </div>
+                </mat-card-actions>
+            </form>
+        </mat-card>
+        <!--Restration form end -->
+        <div fxFlex.lg="20%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
     </div>
+</div>

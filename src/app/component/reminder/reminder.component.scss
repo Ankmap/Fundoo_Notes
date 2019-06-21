@@ -54,3 +54,18 @@ mat-card{
 .reminderMain:hover .iconClear {
     visibility: visible;
 }
+// @media only screen
+// and (min-device-width : 360px)
+// and (max-device-width : 640px) {
+// /* STYLES GO HERE */
+// .cardMain{
+//     max-width: 800px;
+//  }
+// mat-card{
+//     width: 200px;
+// }
+// .cardSub{
+//     display: flex;
+//     justify-content: center
+// }
+// }

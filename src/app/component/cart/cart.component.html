@@ -7,49 +7,31 @@
     <div fxFlex=83></div>
   </mat-toolbar>
   <h3>Which fundooNotes service package do you want ?</h3>
+
   <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="150px">
-    <div class="cartMain" (click)="addtoCart()" [@simpleFadeAnimation]="'in'">
-      <div class="addCart">
-        <mat-card>
-          <h5>ADD TO CART</h5>
-        </mat-card>
-      </div>
-      <div class="cartSub">
-        <mat-card>
-          <div style="height:1vh;"></div>
-          <h4>$6.99 Per Month</h4>
-          <div fxLayoutAlign="start">
-            <button mat-button>Advance</button>
-          </div>
-          <div fxLayout="column" fxLayoutGap="25px">
-            <li>Unlimited Wall Space</li>
-            <li>Nice Interface</li>
-            <li>$6.99/Month</li>
-            <li>Ability to add only title and description</li>
-          </div>
-        </mat-card>
-      </div>
-    </div>
-    <div class="cartMain" (click)="addtoCart()" [@simpleFadeAnimation]="'in'">
-      <div class="addCart">
-        <mat-card>
-          <h5>ADD TO CART</h5>
-        </mat-card>
-      </div>
-      <div class="cartSub">
-        <mat-card>
-          <div style="height:1vh;"></div>
-          <h4>$6.99 Per Month</h4>
-          <div fxLayoutAlign="start">
-            <button mat-button>Advance</button>
-          </div>
-          <div fxLayout="column" fxLayoutGap="25px">
-            <li>Unlimited Wall Space</li>
-            <li>Nice Interface</li>
-            <li>$6.99/Month</li>
-            <li>Ability to add only title and description</li>
-          </div>
-        </mat-card>
+    <div *ngFor="let data of product">
+      <div class="cartMain" (click)="addtoCart()" [@simpleFadeAnimation]="'in'">
+        <div class="addCart">
+          <mat-card>
+            <h5>ADD TO CART</h5>
+          </mat-card>
+        </div>
+        <div class="cartSub">
+          <mat-card>
+            <div style="height:1vh;"></div>
+            <h2>${{data.price}} Per Month</h2>
+            <div fxLayoutAlign="start">
+              <button mat-button (click)="addToRegistration(data.id)">{{data.name}}</button>
+              <!-- <div>{{data.id}}</div> -->
+            </div>
+            <div fxLayout="column" fxLayoutGap="25px">
+              <li>Unlimited Wall Space</li>
+              <li>Nice Interface</li>
+              <li>$6.99/Month</li>
+              <li>{{data.description}}</li>
+            </div>
+          </mat-card>
+        </div>
       </div>
     </div>
   </div>

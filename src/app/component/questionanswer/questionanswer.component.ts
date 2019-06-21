@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { QuestionService } from 'src/app/core/service/question/question.service';
 import { Question, Reply } from 'src/app/core/model/question/question';
 import { FormControl } from '@angular/forms';
@@ -19,8 +19,6 @@ export class QuestionanswerComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  @Output() onChangeAskQuestion = new EventEmitter()
-
   /* Get from localstorage */
   firstName = localStorage.getItem("firstname");
   lastName = localStorage.getItem("lastname");
@@ -34,18 +32,29 @@ export class QuestionanswerComponent implements OnInit {
   /* Get Notes Detail */
   private noteList;
   private questionData = '';
-  private questionAnswerId;
+  private questionDisplay;
   private parentId;
-  /* Binding the message and description */
+  private questionRate;
+  private questionLike;
+
+  /* Binding the message */
   message = new FormControl('')
 
-  /* Decorator */
+  /* Decorator to get id */
   @Input() id;
 
-  /* Notecard open */
+  /* Notecard open conditions */
   private notecard: boolean = true;
   private notecardreply: boolean = true;
   private notecardAnswer: boolean = true
+
+  /* Rate the question */
+  title = 'Star Rating';
+  starList: boolean[] = [true, true, true, true, true];
+  rating: number;
+
+  /* Like the question */
+  private like: boolean = true;
 
   constructor(
     private questionService: QuestionService,
@@ -75,9 +84,7 @@ export class QuestionanswerComponent implements OnInit {
     this.router.navigateByUrl('/home');
   }
 
-  /**
-   * @Purpose : For new Notecard open
-   **/
+  /** For new Notecard open **/
   notecardOpen() {
     this.notecard = !(this.notecard);
   }
@@ -85,6 +92,7 @@ export class QuestionanswerComponent implements OnInit {
   notecardOpenAnswer() {
     this.notecardreply = !(this.notecardreply);
   }
+
   /**
   * @Purpose : Get Notes Detail
   **/
@@ -96,17 +104,19 @@ export class QuestionanswerComponent implements OnInit {
           this.addQue = data["data"].data;
           this.noteList = [];
           this.noteList = this.addQue;
-          // this.snackbar.open('Get Notes Detail', '', { duration: 4000 });
-          console.log('Get Notes Detail ===>', data);
-          console.log('Get Question Notes Detail show ===>', this.noteList);
-          this.questionAnswerId = this.noteList[0].questionAndAnswerNotes[0];
-          console.log('check parentId ====>', this.questionAnswerId.id);
-          console.log('Question Answer Note =====>', this.questionAnswerId)
-          console.log('Question Id is answer parentId =====>', this.questionAnswerId.id)
-          this.parentId = this.questionAnswerId.id;
+          console.log('Get Notes Detail ===>', this.noteList);
+          this.questionDisplay = this.noteList[0].questionAndAnswerNotes[0];
+          console.log('Question Display ===>', this.questionDisplay);
+          this.parentId = this.questionDisplay.id[0];
+          console.log('Question Id is answer parentId =====>', this.questionDisplay.id)
+          /* Rate an like */ 
+          this.questionRate = this.questionDisplay.rate;
+          console.log('Rate the question ====>',this.questionRate);
+          this.questionLike = this.questionDisplay.like;
+          console.log('Like the question ====>',this.questionLike);
+          
         },
         error => {
-          // this.snackbar.open('Get Notes Detail ===>', '', { duration: 3000 });
           console.log("Get Notes Detail ===>", error)
         })
   }
@@ -142,16 +152,15 @@ export class QuestionanswerComponent implements OnInit {
   }
 
   /**
-    * @Purpose : Add Question
+    * @Purpose : Add Replys
   **/
   addReply() {
-    this.parentId = this.questionAnswerId.id;
-    console.log('check parentId in add answer ====>', this.parentId);
-
+    this.parentId = this.questionDisplay.id;
+    console.log('Check parentId in add answer ====>', this.parentId);
     var body = {
       "message": this.replyQue.message,
     }
-    console.log('Reply Question ====>', body)
+    console.log('Reply Question body ====>', body)
     try {
       this.questionService.questionAndAnswerNotesreply(this.parentId, body)
         .pipe(takeUntil(this.destroy$))
@@ -175,14 +184,15 @@ export class QuestionanswerComponent implements OnInit {
   /**
     * @Purpose : Delete Question
   **/
-  question(parentId) {
-    console.log('parentId for delete ===>', parentId)
-    this.questionService.questionAndAnswerNotesDelete(parentId)
+  questionDelete() {
+    this.parentId = this.questionDisplay.id;
+    console.log('check parentId in question delete ====>', this.parentId);
+    this.questionService.questionAndAnswerNotesDelete(this.parentId)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         data => {
-          this.snackbar.open('delete question successfully', '', { duration: 1000 });
-          console.log('delete question ===>', data)
+          this.snackbar.open('Delete question successfully', '', { duration: 1000 });
+          console.log('Delete question successfully ===>', data)
           this.getNotesDetail();
           this.dataService.changeMessage('')
         },
@@ -193,14 +203,12 @@ export class QuestionanswerComponent implements OnInit {
         })
   }
 
-  title = 'Star Rating';
-  // create a list which contains status of 5 stars
-  starList: boolean[] = [true, true, true, true, true];
-  rating: number;
-  //Create a function which receives the value counting of stars click, 
-  //and according to that value we do change the value of that star in list.
+  /**
+    * @Purpose : Rate Question
+  **/
+
   setStarQuestion(data: any) {
-    this.parentId = this.questionAnswerId.id;
+    this.parentId = this.questionDisplay.id;
     console.log('check parentId in rating ====>', this.parentId);
     for (var i = 0; i <= 4; i++) {
       if (i <= data) {
@@ -213,7 +221,7 @@ export class QuestionanswerComponent implements OnInit {
     var body = {
       "rate": this.rating = data + 1,
     }
-    console.log('Rate Question ====>', body)
+    console.log('Rate the question ====>', body)
     try {
       this.questionService.questionAndAnswerrate(this.parentId, body)
         .pipe(takeUntil(this.destroy$))
@@ -232,31 +240,35 @@ export class QuestionanswerComponent implements OnInit {
     }
   }
 
-  private like: boolean = true;
 
+  /**
+    * @Purpose : Like Question
+  **/
   setLikeQuestion() {
-    this.parentId = this.questionAnswerId.id;
-    console.log('check parentId in like ====>', this.parentId);
+    this.like = !this.like;
+    this.parentId = this.questionDisplay.id;
+    console.log('check parentId in like the question ====>', this.parentId);
     var body = {
       "like": this.like,
     }
-    console.log('Like Question ====>', body)
+    console.log('Like Question body ====>', body)
     try {
       this.questionService.questionAndAnswerlike(this.parentId, body)
         .pipe(takeUntil(this.destroy$))
         .subscribe(
           data => {
-            console.log('rate add successfully......!', data);
+            console.log('Like question successfully......!', data);
             this.getNotesDetail();
             this.dataService.changeMessage('')
           },
           error => {
-            console.log("Error while rate add ====> ", error)
+            console.log("Error while like question ====> ", error)
           });
     } catch (error) {
-      console.log("Error while rate add ====> ", error)
+      console.log("Error while like question ====> ", error)
     }
   }
+
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();

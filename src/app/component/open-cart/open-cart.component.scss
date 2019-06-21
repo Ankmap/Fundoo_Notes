@@ -1,6 +1,33 @@
 .navbar{
-    // background-color: orange;
+    background-color: orange;
 }
-.feature1:hover, .feature2:hover, .feature3:hover{
+
+button{
+    outline: none;
+}
+p{
+    color: white;
+    font-size: 20px;
+    display: flex;
+    margin-top: 10px;
+    margin-left: 6px;
+}
+.textp{
+    width: 650px;
+    margin-left: 40px;
+}
+mat-divider{
+    width: 600px;
+    margin-left: 40px;
+}
+.feature{
+    font-size: 20px;
+}
+.feature:hover, mat-divider:hover {
     color: orange;
+    border-top-color: orange;
+    border-top-width: 2px;
+}
+.btn{
+    margin-left: 30px;
 }

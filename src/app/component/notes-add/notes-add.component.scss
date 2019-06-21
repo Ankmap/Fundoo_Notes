@@ -17,12 +17,7 @@ button{
     box-shadow: 0 3px 5px rgba(0,0,0,0.20);
     border-radius: 10px;
 }
-// .mainCard{
-//     // width: 1000px;
-//     margin-left: 210px;
-//     margin-top: 15px;
-//     overflow: hidden;
-// }
+
 .color{
     margin: 2px;
     padding: 7px;
@@ -38,6 +33,7 @@ span{
     border-style: hidden;
     outline: none;
     width: 670px; 
+    word-break: break-all;
 }
 
 .text:empty:before{
@@ -90,4 +86,13 @@ mat-drawer-content {
     display: block;
     height: 100%;
     overflow: hidden;
+}
+.title{
+    word-break: break-all;
+    font-weight: bold;
+    color: black;
+}
+.description{
+    word-break: break-all;
+    color: black;
 }

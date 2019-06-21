@@ -2,26 +2,46 @@
   <div class="navbar">
     <p>Advanced pack details</p>
   </div>
-  <mat-horizontal-stepper>
-    <mat-step>
-      <ng-template matStepLabel>Feature1</ng-template>
-     1.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Feature2</ng-template>
-      2.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Feature3</ng-template>
-      3.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-    </mat-step>
-  </mat-horizontal-stepper>
-  <div fxLayout="row" fxLayoutGap="20px">
+  <div fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="space-around center">
+      <div (click)="content='showSubContent'" class="feature">Feature1</div>
+      <div (click)="content='showSubContentTwo'" class="feature">Feature2</div>
+      <div (click)="content='showSubContentThree'" class="feature">Feature3</div>
+    </div>
+    <mat-divider></mat-divider>
+    <div style="height:3vh;"></div>
+    <div fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="space-around center">
+      <div [ngSwitch]="content" class="textp">
+        <div *ngSwitchDefault>
+          111 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+          industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book.
+        </div>
+        <div *ngSwitchCase="'showSubContent'">
+          111 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+          industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book.
+        </div>
+        <div *ngSwitchCase="'showSubContentTwo'">
+          222 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+          industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book.
+        </div>
+        <div *ngSwitchCase="'showSubContentThree'">
+          333 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+          industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxFlex=10></div>
+  <div fxLayout="row" fxLayoutGap="350px" class="btn">
     <div fxLayoutAlign="start start">
-      <button mat-button (click)="cartBack()">Remove</button>
+      <button mat-flat-button color="primary" (click)="cartBack()">Remove</button>
     </div>
     <div fxLayoutAlign="end end">
-      <button mat-button (click)="cartGo()">Proceed to checkout</button>
+      <button mat-flat-button color="primary" (click)="cartGo()">Proceed to checkout</button>
     </div>
   </div>
 </div>

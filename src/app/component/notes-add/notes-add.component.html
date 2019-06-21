@@ -8,8 +8,8 @@
 <div class="mainCard" fxLayout='column' fxLayoutGap='30px'>
   <!-- Notecard start -->
   <div *ngIf="notecard && listNote" fxLayoutAlign="center center">
-    <mat-card class="card" (click)="notecardOpen()" fxFlex.xl='700px' fxFlex.lg='750px' fxFlex.md='500px'
-      fxFlex.sm='400px' fxFlex.xs='150px'>
+    <mat-card class="card" (click)="notecardOpen()" fxFlex.xl='700px' fxFlex.lg='750px' fxFlex.md='700px'
+      fxFlex.sm='600px' fxFlex.xs='300px'>
       <div fxLayout='row' fxFlex=100 fxLayoutAlign="center center">
         <div fxFlex=70>
           <div>Take a note...</div>
@@ -41,7 +41,7 @@
 
   <!-- CheckList start-->
   <div fxLayoutAlign="center center" *ngIf="!listNote">
-    <mat-card class="card" fxFlex.xl='700px' fxFlex.lg='750px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
+    <mat-card class="card" fxFlex.xl='700px' fxFlex.lg='750px' fxFlex.md='700px' fxFlex.sm='600px' fxFlex.xs='200px'>
       <div>
         <div>
           <div fxFlex='90'>
@@ -108,7 +108,7 @@
   <!-- add notecard start -->
   <div fxLayoutAlign="space-around center" *ngIf="!notecard">
     <mat-card [style.backgroundColor]="setColor" class="card" fxFlex.xl='700px' fxFlex.lg='750px' fxFlex.md='500px'
-      fxFlex.sm='400px' fxFlex.xs='150px'>
+    fxFlex.sm='600px' fxFlex.xs='300px'>
       <div>
         <div fxLayout='column' fxLayoutGap='20px'>
           <!-- For title binding -->
@@ -130,7 +130,7 @@
         </div>
         <div>
           <div fxLayout='row' fxFlex='100'>
-            <div fxFlex='50' fxShow fxHide.sm fxShow fxHide.xs fxShow fxHide.md>
+            <div fxFlex='50'>
               <!-- App Icon selector -->
               <app-icon (onChangeColor)="receivecolor($event)" (onChangeDateReminder)="receiveReminder($event)">
               </app-icon>

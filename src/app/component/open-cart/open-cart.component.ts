@@ -13,15 +13,16 @@ export class OpenCartComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
-    private router : Router,
+    private router: Router,
     public dialogRef: MatDialogRef<OpenCartComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit() {
   }
+
   cartGo(): void {
-    this.router.navigateByUrl('/mainCart');
+    this.router.navigateByUrl('/registration');
     this.dialogRef.close();
   }
   cartBack(): void {
