@@ -1,6 +1,7 @@
 <div fxLayout="column" fxLayoutGap="20px">
-  <div class="navbar">
-    <p>Advanced pack details</p>
+  <div class="navbar" fxLayout="row">
+    <h4><strong>Advanced pack details</strong></h4>
+    <p>${{cartData.price}} Per Month</p>
   </div>
   <div fxLayout="column">
     <div fxLayout="row" fxLayoutAlign="space-around center">
@@ -13,24 +14,22 @@
     <div fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="space-around center">
       <div [ngSwitch]="content" class="textp">
         <div *ngSwitchDefault>
-          111 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-          industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book.
+          {{cartData.description}}
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
         </div>
         <div *ngSwitchCase="'showSubContent'">
-          111 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-          industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book.
+          {{cartData.description}}
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
         </div>
         <div *ngSwitchCase="'showSubContentTwo'">
-          222 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-          industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book.
+          {{cartData.description}}
+          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+          galley of type and scrambled it to make a type specimen book.
         </div>
         <div *ngSwitchCase="'showSubContentThree'">
-          333 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-          industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book.
+          {{cartData.description}}
+          It is a long established fact that a reader will be distracted by the readable content of a page when looking
+          at its layout.
         </div>
       </div>
     </div>
@@ -41,7 +40,7 @@
       <button mat-flat-button color="primary" (click)="cartBack()">Remove</button>
     </div>
     <div fxLayoutAlign="end end">
-      <button mat-flat-button color="primary" (click)="cartGo()">Proceed to checkout</button>
+      <button mat-flat-button color="primary" (click)="cartGo(cartData.name)">Proceed to checkout</button>
     </div>
   </div>
 </div>

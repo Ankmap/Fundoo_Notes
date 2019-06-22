@@ -37,11 +37,11 @@ const appRoutes: Routes = [
   { path: '', redirectTo: 'cart', pathMatch: 'full' },
   { path: 'cart', component:CartComponent},
   { path: 'login', component: LoginComponent },
-  { path: 'registration', component: RegistrationComponent },
+  { path: 'registration/:name', component: RegistrationComponent },
   { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'resetpassword/:token', component: ResetPasswordComponent },
   { path: 'opencart', component:OpenCartComponent},
-  { path: 'mainCart', component:CartmainComponent},
+  { path: 'mainCart/:name', component:CartmainComponent},
   {
     /*Apply AuthGuard*/
     path: '', component: NavbarComponent, canActivate: [AuthGuard],

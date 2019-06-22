@@ -23,7 +23,7 @@ export class ProductService {
 
   addToCart(body) {
     // return this.service.postDataaddToCart("/productcarts/addToCart", body)
-    return this.service.postDataForEncodedReset("/productcarts/addToCart", body)
+    return this.service.postDataaddToCart("/productcarts/addToCart", body)
   }
 
   /**
@@ -34,5 +34,12 @@ export class ProductService {
     return this.service.postDataaddToCart("/productcarts/getCartDetails/", + cartId)
   }
 
+  /**
+  *4. @Purpose : Product Carts user Cart List
+  **/
+
+  userCartList() {
+    return this.service.postDataForuserService("/productcarts/userCartList")
+  }
 
 }

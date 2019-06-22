@@ -48,3 +48,48 @@ img{
         width: 200px;
     }  
 }
+// 
+
+.addCart mat-card{
+    width: 120px;
+    height: 140px;
+    background-color: #a9a9a9;
+}
+
+.addCart .p{
+    margin-top: 110px;
+    color: black;
+    font-size: 10px;
+}
+.cartSub .p{
+    font-size:8px;  
+}
+.cartSub mat-card{
+    width: 120px;
+    margin-left: -20px;
+    margin-top: -165px;
+    height: 140px;
+}
+button{
+    outline: none;
+    color:blue;
+}
+
+h3{
+    opacity: 0.6;
+}
+
+.p1{
+    font-size: 12px;
+}
+
+.p2{
+    font-size: 10px;
+}
+
+li{
+    font-size:8px;
+}
+.select{
+    background-color: orange;
+}

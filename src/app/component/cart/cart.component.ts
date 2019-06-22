@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { OpenCartComponent } from '../open-cart/open-cart.component';
@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 import { ProductService } from 'src/app/core/service/productCarts/product.service';
 import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { Product } from 'src/app/core/model/productCart/product';
 
 @Component({
   selector: 'app-cart',
@@ -32,9 +33,11 @@ import { Router } from '@angular/router';
 })
 export class CartComponent implements OnInit {
 
+  @Input() data;
+
   destroy$: Subject<boolean> = new Subject<boolean>();
-  private product;
-  private productId;
+
+  product: Product[] = []
 
   constructor(
     private dialog: MatDialog,
@@ -47,10 +50,23 @@ export class CartComponent implements OnInit {
     this.getProductcarts();
   }
 
-  addtoCart() {
+  getProductcarts() {
+    this.productService.userService()
+      .pipe(takeUntil(this.destroy$)).subscribe(response => {
+        this.product = response["data"].data;
+        console.log("check productCart User Service =====>", this.product);
+      }, (error) => {
+        console.log("Data productCart User Service ====>", error);
+      });
+  }
+
+
+  addtoCartd(data): void {
     const dialogRef = this.dialog.open(OpenCartComponent, {
       panelClass: 'app-full-bleed-dialog',
-      height: ''
+      data: {
+        data: data
+      }
     });
     dialogRef.afterClosed()
   }
@@ -58,37 +74,5 @@ export class CartComponent implements OnInit {
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
-  }
-
-  getProductcarts() {
-    this.productService.userService()
-      .pipe(takeUntil(this.destroy$)).subscribe(response => {
-        this.product = response["data"].data;
-        console.log("check productCart User Service =====>", this.product);
-        this.productId = this.product[0].id;
-        console.log('productId ====>', this.productId);
-      }, (error) => {
-        console.log("Data productCart User Service ====>", error);
-      });
-  }
-  /**
-    * @Purpose : Product add to cart
-  **/
-  addToRegistration(productId) {
-    console.log('Add to cart productId =====>', productId);
-    var body = {
-      "productId": productId
-    }
-    console.log('Add to cart productId body check ====>', body);
-
-    this.productService.addToCart(body).subscribe(
-      data => {
-        this.snackbar.open('Cart added successfully......!', 'Done...!', { duration: 3000 });
-        console.log('Cart added successfully ==========>', data);
-      },
-      error => {
-        this.snackbar.open('Error while cart ......!', 'Error', { duration: 3000 });
-        console.log("Error something wrong while cart adding ", error)
-      });
   }
 }

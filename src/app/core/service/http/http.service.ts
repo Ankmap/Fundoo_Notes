@@ -433,20 +433,18 @@ export class HttpService {
   }
 
   /**
-   * @Purpose : Product Carts
+   * @Purpose : get user service
    **/
   postDataForuserService(path) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': localStorage.getItem('token')
       })
     };
-    console.log('token ==================>', localStorage.getItem('token'));
     return this.http.get(environment.baseUrl + path, httpOptions);
   }
   /**
-   * @Purpose : Question And Answer Notes
+   * @Purpose : Add product to cart
    **/
 
   postDataaddToCart(path, body) {
@@ -454,11 +452,9 @@ export class HttpService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': localStorage.getItem('token')
       })
     };
-    console.log('token ==================>', localStorage.getItem('token'));
-    return this.http.post(environment.baseUrl + path, body, httpOptions);
+    return this.http.post(environment.baseUrl + path, this.getEncodData(body), httpOptions);
   }
 
 }

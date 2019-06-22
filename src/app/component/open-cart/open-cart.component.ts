@@ -11,6 +11,7 @@ import { Subject } from 'rxjs';
 export class OpenCartComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
+  cartData: [];
 
   constructor(
     private router: Router,
@@ -19,10 +20,12 @@ export class OpenCartComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.cartData = this.data["data"]
+    console.log('Cart Data in dialog box=====>', this.cartData);
   }
 
-  cartGo(): void {
-    this.router.navigateByUrl('/registration');
+  cartGo(name): void {
+    this.router.navigateByUrl('/registration/' + name);
     this.dialogRef.close();
   }
   cartBack(): void {

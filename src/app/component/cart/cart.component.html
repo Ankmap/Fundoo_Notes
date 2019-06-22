@@ -1,38 +1,39 @@
 <div fxLayout="column" fxLayoutGap="25px" fxLayoutAlign="center center">
-  <mat-toolbar class="navbar">
-    <div fxFlex=3></div>
-    <div fxFlex=14>
-      <h2>FundooNotes</h2>
-    </div>
-    <div fxFlex=83></div>
-  </mat-toolbar>
-  <h3>Which fundooNotes service package do you want ?</h3>
-
-  <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="150px">
-    <div *ngFor="let data of product">
-      <div class="cartMain" (click)="addtoCart()" [@simpleFadeAnimation]="'in'">
-        <div class="addCart">
-          <mat-card>
-            <h5>ADD TO CART</h5>
-          </mat-card>
-        </div>
-        <div class="cartSub">
-          <mat-card>
-            <div style="height:1vh;"></div>
-            <h2>${{data.price}} Per Month</h2>
-            <div fxLayoutAlign="start">
-              <button mat-button (click)="addToRegistration(data.id)">{{data.name}}</button>
-              <!-- <div>{{data.id}}</div> -->
-            </div>
-            <div fxLayout="column" fxLayoutGap="25px">
-              <li>Unlimited Wall Space</li>
-              <li>Nice Interface</li>
-              <li>$6.99/Month</li>
-              <li>{{data.description}}</li>
-            </div>
-          </mat-card>
+    <mat-toolbar class="navbar">
+      <div fxFlex=3></div>
+      <div fxFlex=14>
+        <h2>FundooNotes</h2>
+      </div>
+      <div fxFlex=83></div>
+    </mat-toolbar>
+    <h3>Which fundooNotes service package do you want ?</h3>
+  
+    <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="150px">
+      <div *ngFor="let data of product">
+        <div class="cartMain" (click)="addtoCartd(data)" [@simpleFadeAnimation]="'in'">
+          <div class="addCart">
+            <mat-card>
+              <h5>ADD TO CART</h5>
+            </mat-card>
+          </div>
+          <div class="cartSub">
+            <mat-card>
+              <div style="height:1vh;"></div>
+              <h2>${{data.price}} Per Month</h2>
+              <div fxLayoutAlign="start">
+                <button mat-button>{{data.name}}</button>
+                <!-- <div>{{data.id}}</div> -->
+              </div>
+              <div fxLayout="column" fxLayoutGap="25px">
+                <li>Unlimited Wall Space</li>
+                <li>Nice Interface</li>
+                <li>$6.99/Month</li>
+                <li>{{data.description}}</li>
+              </div>
+            </mat-card>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+  

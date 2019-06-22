@@ -1,6 +1,7 @@
 .navbar{
     background-color: orange;
 }
+
 .fundooNotes{
     border-radius: 25px 25px 25px 25px;
     border-style: hidden; 
@@ -8,44 +9,44 @@
     background-color: orange;
     margin-top: 24px;
 }
+
 .cart{
     height:100px;
     width:120px;
     background-color: gray;
     border-radius: 5px;
 }
+
 .endcart{
     height:100px;
     width:200px;
     background-color: lightgray;
 }
+
 .divider{
     width: 800px
 }
-// @media only screen
-// and (min-device-width : 360px)
-// and (max-device-width : 640px) {
-// /* STYLES GO HERE */
-// .divider{
-//     width: 100px
-//     }
-// }
+
 .price{
     margin-left: 430px;
 }
+
 .opacity{
     opacity: 0.7;
 }
+
 .box{
     padding: 12px;
     border: groove 1px; 
     width: 850px;
     height: 300px;
 }
+
 .box1{
     padding: 12px;
     border: groove 1px; 
     width: 500px;
+    height: 100px;
     margin-top: -85px;
     margin-left: 55px;
 }
@@ -54,4 +55,8 @@
     padding: 12px;
     border: groove 1px; 
     width: 850px;
+}
+button{
+    outline: none;
+    color:blue;
 }
