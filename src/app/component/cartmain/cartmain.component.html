@@ -56,135 +56,150 @@
       <div [ngSwitch]="content" fxLayout="row" fxLayoutGap="20px">
         <div *ngSwitchDefault fxLayout="column" fxLayoutGap="20px">
           <strong>Shopping Cart</strong>
-          <div fxLayout="row" fxLayoutGap="150px">
-            <p class="price">Price</p>
-            <p>Validity</p>
+          <div fxFlex=100 fxLayoutAlign="space-between center">
+            <div fxFlex=80></div>
+            <div fxFlex=5 fxFlex=row fxLayoutAlign="space-evenly start">
+              <p class="price">Price</p>
+              <p class="price">Validity</p>
+            </div>
+            <div fxFlex=5></div>
           </div>
-          <div class="divider">
-            <mat-divider></mat-divider>
-          </div>
-          <div fxFlex=70 fxLayoutGap="50px">
+          <div class="divider"></div>
+          <div fxFlex=100 fxLayoutAlign="space-between center">
             <div fxFlex=90>
-              <div fxFlex=100 fxLayoutGap="70px">
+              <div fxFlex=100 fxLayoutGap="20px">
                 <div fxFlex=15>
                   <mat-card class="cart">
+                    ${{getDetails.price}} Per Month
+                    {{getDetails.name}}
                   </mat-card>
                 </div>
-                <div fxFlex=55>
-                  <p> Advance Pack Details </p>
-                  <div>
-                    <div fxFlex=50>
-                      <li>cart1</li>
-                      <li>cart1</li>
+                <div fxFlex=70>
+                  <p style="color:blue"> {{getDetails.name}} Pack Details </p>
+                  <div fxLayoutGap="20px">
+                    <div fxFlex=50 fxFlex="column" fxLayoutGap="30px">
+                      <li>Unlimited Wall Space</li>
+                      <li>Nice Interface</li>
                     </div>
-                    <div fxFlex=50>
-                      <li>cart1</li>
-                      <li>cart1</li>
+                    <div fxFlex=50 fxFlex="column" fxLayoutGap="30px">
+                      <li>${{getDetails.price}}/Month</li>
+                      <li>{{getDetails.description}}</li>
                     </div>
                   </div>
                 </div>
-
-                <div fxFlex=15>
-                  $ 6.99
-                </div>
-                <div fxFlex=15>
-                  <button mat-button>per Month</button>
+                <div fxFlex=5 fxFlex=row fxLayoutAlign="space-evenly start">
+                  $ {{getDetails.price}}
+                  <button mat-button style="color:blue">per Month</button>
                 </div>
               </div>
             </div>
             <div fxFlex=10>
-              <div class="endcart">
+              <div class="endcart" fxLayoutAlign="space-evenly center" fxLayout="column">
+                <p> Subtotal (1 item): $ {{getDetails.price}}</p>
                 <button mat-button>Proceed to checkout</button>
               </div>
             </div>
           </div>
-          <div class="divider">
-            <mat-divider></mat-divider>
+          <div class="divider"></div>
+          <div fxFlex=100 fxLayoutAlign="space-between center">
+            <div fxFlex=70></div>
+            <div fxFlex=30>
+              <p> Subtotal (1 item): $ {{getDetails.price}}</p>
+            </div>
           </div>
         </div>
         <div *ngSwitchCase="'showSubContent'" fxLayout="column" fxLayoutGap="20px">
           <strong>Shopping Cart</strong>
-          <div fxLayout="row" fxLayoutGap="150px">
-            <p class="price">Price</p>
-            <p>Validity</p>
+          <div fxFlex=100 fxLayoutAlign="space-between center">
+            <div fxFlex=80></div>
+            <div fxFlex=5 fxFlex=row fxLayoutAlign="space-evenly start">
+              <p class="price">Price</p>
+              <p class="price">Validity</p>
+            </div>
+            <div fxFlex=5></div>
           </div>
-          <div class="divider">
-            <mat-divider></mat-divider>
-          </div>
-          <div fxFlex=70 fxLayoutGap="50px">
+          <div class="divider"></div>
+          <div fxFlex=100 fxLayoutAlign="space-between center">
             <div fxFlex=90>
-              <div fxFlex=100 fxLayoutGap="70px">
+              <div fxFlex=100 fxLayoutGap="20px">
                 <div fxFlex=15>
                   <mat-card class="cart">
+                    ${{getDetails.price}} Per Month
+                    {{getDetails.name}}
                   </mat-card>
                 </div>
-                <div fxFlex=55>
-                  <p> Advance Pack Details </p>
-                  <div>
-                    <div fxFlex=50>
-                      <li>cart1</li>
-                      <li>cart1</li>
+                <div fxFlex=70>
+                  <p style="color:blue"> {{getDetails.name}} Pack Details </p>
+                  <div fxLayoutGap="20px">
+                    <div fxFlex=50 fxFlex="column" fxLayoutGap="30px">
+                      <li>Unlimited Wall Space</li>
+                      <li>Nice Interface</li>
                     </div>
-                    <div fxFlex=50>
-                      <li>cart1</li>
-                      <li>cart1</li>
+                    <div fxFlex=50 fxFlex="column" fxLayoutGap="30px">
+                      <li>${{getDetails.price}}/Month</li>
+                      <li>{{getDetails.description}}</li>
                     </div>
                   </div>
                 </div>
-
-                <div fxFlex=15>
-                  $ 6.99
-                </div>
-                <div fxFlex=15>
-                  per Month
+                <div fxFlex=5 fxFlex=row fxLayoutAlign="space-evenly start">
+                  $ {{getDetails.price}}
+                  <button mat-button style="color:blue">per Month</button>
                 </div>
               </div>
             </div>
             <div fxFlex=10>
-              <div class="endcart">
+              <div class="endcart" fxLayoutAlign="space-evenly center" fxLayout="column">
+                <p> Subtotal (1 item): $ {{getDetails.price}}</p>
                 <button mat-button>Proceed to checkout</button>
               </div>
             </div>
           </div>
-          <div class="divider">
-            <mat-divider></mat-divider>
+          <div class="divider"></div>
+          <div fxFlex=100 fxLayoutAlign="space-between center">
+            <div fxFlex=70></div>
+            <div fxFlex=30>
+              <p> Subtotal (1 item): $ {{getDetails.price}}</p>
+            </div>
           </div>
         </div>
         <div *ngSwitchCase="'showSubContentTwo'">
           <h6><strong>Review your order</strong></h6>
           <p class="opacity">By clicking on the 'Place your order and pay button you agree to fundooNotes</p>
-          <div class="box">
-            <div fxFlex='5'></div>
-            <div fxFlex=100 fxLayoutGap="70px">
-              <div fxFlex=15>
-                <mat-card class="cart">
-                </mat-card>
-              </div>
-              <div fxFlex=55>
-                <p> Advance Pack Details </p>
-                <div>
-                  <div fxFlex=50>
-                    <li>cart1</li>
-                    <li>cart1</li>
-                  </div>
-                  <div fxFlex=50>
-                    <li>cart1</li>
-                    <li>cart1</li>
+          <div class="mainBox">
+            <div fxLayout="column" fxLayoutAlign="space-evenly center">
+              <div>
+                <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                  <div fxFlex=100>
+                    <div fxFlex=30>
+                      <mat-card class="cart">
+                        ${{getDetails.price}} Per Month
+                        {{getDetails.name}}
+                      </mat-card>
+                    </div>
+                    <div fxFlex=70>
+                      <p style="color:blue"> {{getDetails.name}} Pack Details </p>
+                      <div fxLayoutGap="20px">
+                        <div fxFlex=50 fxFlex="column" fxLayoutGap="30px">
+                          <li>Unlimited Wall Space</li>
+                          <li>Nice Interface</li>
+                        </div>
+                        <div fxFlex=50 fxFlex="column" fxLayoutGap="30px">
+                          <li>${{getDetails.price}}/Month</li>
+                          <li>{{getDetails.description}}</li>
+                        </div>
+                      </div>
+                    </div>
+                    <div fxFlex=30>
+                      <div fxFlex="column">
+                        $ {{getDetails.price}}
+                        <button mat-button style="color:blue">per Month</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div fxFlex=15>
-                $ 6.99
-              </div>
-              <div fxFlex=15>
-                <button mat-button>per Month</button>
-              </div>
             </div>
-            <div fxFlex='5'></div>
           </div>
-          <mat-divider></mat-divider>
-          <p>Daily Address</p>
-          <div class="box1"></div>
         </div>
         <div *ngSwitchCase="'showSubContentThree'">
           <h6><strong>Order list</strong></h6>
@@ -193,25 +208,27 @@
             <div fxFlex=100 fxLayoutGap="70px">
               <div fxFlex=20>
                 <mat-card class="cart">
+                  ${{getDetails.price}} Per Month
+                  {{getDetails.name}}
                 </mat-card>
               </div>
               <div fxFlex=70>
-                <p> Advance Pack Details </p>
-                <div>
-                  <div fxFlex=50>
-                    <li>cart1</li>
-                    <li>cart1</li>
+                <p style="color:blue"> {{getDetails.name}} Pack Details </p>
+                <div fxLayoutGap="20px">
+                  <div fxFlex=50 fxFlex="column" fxLayoutGap="30px">
+                    <li>Unlimited Wall Space</li>
+                    <li>Nice Interface</li>
                   </div>
-                  <div fxFlex=50>
-                    <li>cart1</li>
-                    <li>cart1</li>
+                  <div fxFlex=50 fxFlex="column" fxLayoutGap="30px">
+                    <li>${{getDetails.price}}/Month</li>
+                    <li>{{getDetails.description}}</li>
                   </div>
                 </div>
               </div>
               <div fxFlex=10>
                 <div fxLayout="column" fxLayoutGap="20px">
                   <div fxFlex=20>
-                    <button mat-button>$ 6.99</button>
+                    <button mat-button>${{getDetails.price}}</button>
                     <button mat-button>per Month</button>
                   </div>
                   <div fxFlex=10>

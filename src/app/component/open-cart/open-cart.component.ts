@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { Subject } from 'rxjs';
+import { ProductService } from 'src/app/core/service/productCarts/product.service';
 
 @Component({
   selector: 'app-open-cart',
@@ -13,7 +14,12 @@ export class OpenCartComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
   cartData: [];
 
+  private getCartDetails;
+  private getCartDetailsId;
+  
   constructor(
+    private productService: ProductService,
+    private snackbar: MatSnackBar,
     private router: Router,
     public dialogRef: MatDialogRef<OpenCartComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -22,11 +28,30 @@ export class OpenCartComponent implements OnInit {
   ngOnInit() {
     this.cartData = this.data["data"]
     console.log('Cart Data in dialog box=====>', this.cartData);
+    console.log('Cart Id in dialog box=====>', this.cartData["id"]);
   }
 
-  cartGo(name): void {
-    this.router.navigateByUrl('/registration/' + name);
-    this.dialogRef.close();
+  cartGo() {
+    console.log('Add to cart productId =====>', this.cartData["id"]);
+    var body = {
+      "productId": this.cartData["id"]
+    }
+    console.log('Add to cart productId body check ====>', body);
+    this.productService.addToCart(body).subscribe(
+      data => {
+        this.snackbar.open('Cart added successfully......!', 'Done...!', { duration: 3000 });
+        console.log('Cart added successfully ==========>', data);
+        this.getCartDetails = data["data"].details;
+        console.log('Get Cart Details after adding cart ====>', this.getCartDetails);
+        this.getCartDetailsId = this.getCartDetails['id'];
+        console.log('Get cartId to proceed to registration ====>', this.getCartDetailsId);
+        this.router.navigateByUrl('registration/'+this.getCartDetailsId);
+        this.dialogRef.close();
+      },
+      error => {
+        this.snackbar.open('Error while cart ......!', 'Error', { duration: 3000 });
+        console.log("Error something wrong while cart adding ", error)
+      });
   }
   cartBack(): void {
     this.dialogRef.close();

@@ -1,34 +1,23 @@
-.navbar{
-    background-color: orange;
-}
 
-.fundooNotes{
-    border-radius: 25px 25px 25px 25px;
-    border-style: hidden; 
-    outline: none;
-    background-color: orange;
-    margin-top: 24px;
-}
 
 .cart{
-    height:100px;
-    width:120px;
+    height:80px;
+    width:100px;
     background-color: gray;
     border-radius: 5px;
+    color: white;
+    font-size: 14px;
 }
 
 .endcart{
-    height:100px;
+    height:120px;
     width:200px;
     background-color: lightgray;
+    border-radius: 5px;
 }
 
 .divider{
     width: 800px
-}
-
-.price{
-    margin-left: 430px;
 }
 
 .opacity{
@@ -59,4 +48,41 @@
 button{
     outline: none;
     color:blue;
+}
+li{
+    font-size: 14px;
+}
+.navbar{
+    background-color: orange;
+}
+
+.fundooNotes{
+    border-radius: 25px 25px 25px 25px;
+    border-style: hidden; 
+    outline: none;
+    background-color: orange;
+    margin-top: 24px;
+}
+.divider
+{
+    border-left-style: hidden;
+    border-right-style: hidden;
+    outline: none;
+    border: groove 1px;
+}
+.hr{
+    border-left-style: hidden;
+    border-right-style: hidden;
+    border-top-style: hidden;
+    outline: none;
+    border: groove 1px;
+}
+.price{
+    display: flex;
+    // margin-left: 420px;
+    font-size: 12px;
+}
+.mainBox{
+    border: groove 1px;
+    padding: 8px;
 }

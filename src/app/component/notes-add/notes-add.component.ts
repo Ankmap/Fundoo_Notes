@@ -133,7 +133,7 @@ export class NotesAddComponent implements OnInit {
         .subscribe(
           data => {
             this.snackbar.open('Note added successfully......!', 'Done...!', { duration: 3000 });
-            console.log('Register infor ==========>', data);
+            console.log('Note added successfully ==========>', data);
             this.dataService.getAllNote();
             this.dataService.changeMessage('')
           },

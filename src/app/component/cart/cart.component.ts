@@ -54,9 +54,9 @@ export class CartComponent implements OnInit {
     this.productService.userService()
       .pipe(takeUntil(this.destroy$)).subscribe(response => {
         this.product = response["data"].data;
-        console.log("check productCart User Service =====>", this.product);
+        console.log("check product Cart User Service =====>", this.product);
       }, (error) => {
-        console.log("Data productCart User Service ====>", error);
+        console.log("Data product Cart User Service ====>", error);
       });
   }
 

@@ -448,13 +448,21 @@ export class HttpService {
    **/
 
   postDataaddToCart(path, body) {
-    console.log(body);
+    console.log('add to cart data in http ====>', body);
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',
       })
     };
-    return this.http.post(environment.baseUrl + path, this.getEncodData(body), httpOptions);
+    return this.http.post(environment.baseUrl + path, body, httpOptions);
   }
 
+  postDatagetCartDetails(path) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+    return this.http.get(environment.baseUrl + path, httpOptions);
+  }
 }

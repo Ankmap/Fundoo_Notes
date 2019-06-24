@@ -31,7 +31,7 @@ export class ProductService {
   **/
 
   getCartDetails(cartId) {
-    return this.service.postDataaddToCart("/productcarts/getCartDetails/", + cartId)
+    return this.service.postDatagetCartDetails("productcarts/getCartDetails/"+cartId)
   }
 
   /**

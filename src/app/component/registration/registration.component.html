@@ -8,7 +8,7 @@
 **************************************************************************************************/
  -->
 <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="6%">
-    <div fxLayout='column' fxFlex="60" fxLayoutGap="6%">
+    <div fxLayout='column' fxFlex="60" fxLayoutGap="5%">
         <div fxFlex.lg="100%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
         <!-- Registration form start -->
         <mat-card>
@@ -28,7 +28,7 @@
                             <span class="red">e</span>
                             <span class="navy">s</span>
                         </h4>
-                        <p>Create your Fundoo Account</p>
+                        <h5>Create your Fundoo Account</h5>
                     </mat-card-title>
                 </div>
                 <mat-card-content>
@@ -92,47 +92,17 @@
                 <mat-card-actions>
                     <div>
                         <div fxLayout="column" fxLayoutGap="3%" fxLayout.xs="column wrap" fxLayout.md="column wrap">
-                            <!-- <div class="butttons" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="4%">
-                                <p>
-                                    <mat-button-toggle-group appearance="legacy" name="fontStyle"
-                                        aria-label="Font Style" [formControl]="advancedService"
-                                        [(ngModel)]="register.service">
-                                        <mat-button-toggle value="advance" (click)="currentLesson = '1'"
-                                            [disabled]="currentLesson !== '1'" class="primair">Advanced
-                                        </mat-button-toggle>
-                                    </mat-button-toggle-group>
-                                    <mat-error *ngIf="advancedService.invalid">{{advancedServiceValidation()}}
-                                    </mat-error>
-                                </p>
-                                <p>
-                                    <mat-button-toggle-group appearance="legacy" name="fontStyle"
-                                        aria-label="Font Style" [formControl]="basicService"
-                                        [(ngModel)]="register.service">
-                                        <mat-button-toggle value="basic" (click)="currentLesson = '2'"
-                                            [disabled]="currentLesson !== '2'" class="primair">Basic</mat-button-toggle>
-                                    </mat-button-toggle-group>
-                                    <mat-error *ngIf="basicService.invalid">{{basicServiceValidation()}}
-                                    </mat-error>
-                                </p>
-                            </div> -->
-                            <div fxFlex='10'></div>
-                            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="50px"
+                            <div class="butttons" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="50px"
                                 fxLayout.xs="column wrap">
-                                <div fxFlex='2'></div>
+                                <div fxFlex=2></div>
                                 <div *ngFor="let data of product">
                                     <div class="cartMain">
                                         <div class="addCart">
-                                            <mat-card>
-                                                <div class="select">
-                                                    <div *ngIf="data.name === addCartId">
-                                                        <p class="p">SELECTED</p>
-                                                    </div>
-                                                </div>
-                                                <div class="notSelect">
-                                                    <div *ngIf="data.name !=addCartId">
-                                                        <p class="p">ADD TO CART</p>
-                                                    </div>
-                                                </div>
+                                            <mat-card class="select" *ngIf="data.id == getDetails.id">
+                                                <p class="p">SELECTED</p>
+                                            </mat-card>
+                                            <mat-card class="notSelect" *ngIf="data.id != getDetails.id">
+                                                <p class="p">ADD TO CART</p>
                                             </mat-card>
                                         </div>
                                         <div class="cartSub">
@@ -153,21 +123,20 @@
                                     </div>
                                 </div>
                             </div>
-                            <div fxFlex='10'></div>
                             <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="40%">
                                 <div>
-                                    <p class="sign" mat-button routerLink="/login">Sign in instead</p>
+                                    <p style="margin-left:18px;" mat-button routerLink="/login">Sign in instead</p>
                                 </div>
-                                <div fxLayoutAlign="end end" *ngFor="let data of product">
-                                    <button class="signup" mat-flat-button color="primary" (click)="submit(register)"
+                                <div fxLayoutAlign="end end">
+                                    <button mat-flat-button color="primary" (click)="submit(register)"
                                         [disabled]="email.invalid || firstName.invalid || lastName.invalid || password.invalid || confirmPassword.invalid"
                                         (click)="submit(register)" (click)="submit(register)"
                                         routerLink="/mainCart/{{addCartId}}">signup</button>
                                 </div>
                             </div>
-                        </div>
-                        <div>
-                            <button mat-button (click)="gotoCart()">Go to cart</button>
+                            <div>
+                                <button mat-button routerLink="/cart">Go To Cart</button>
+                            </div>
                         </div>
                         <div fxLayoutAlign="end" fxHide fxShow.gt-md fxLayout.md='row' fxFlex.md="10px"
                             fxLayout.sm='row' fxFlex.sm="50px">

@@ -14,7 +14,7 @@ import { UserService } from 'src/app/core/service/user/user.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ProductService } from 'src/app/core/service/productCarts/product.service';
-import { Product } from 'src/app/core/model/productCart/product';
+import { Product, ProductDeatils } from 'src/app/core/model/productCart/product';
 
 @Component({
   selector: 'app-registration',
@@ -24,7 +24,9 @@ import { Product } from 'src/app/core/model/productCart/product';
 export class RegistrationComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
-
+  product: Product[] = [];
+  ProductDeatils = '';
+  getDetails='';
   register: User = new User();
   constructor(
     private userService: UserService,
@@ -33,8 +35,7 @@ export class RegistrationComponent implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductService
   ) {
-    /*Enable and disabel Button Button*/
-    this.currentLesson = this.classes[0].currentLesson
+
   }
   /*Validation*/
   firstName = new FormControl('', [Validators.required]);
@@ -42,8 +43,6 @@ export class RegistrationComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]);
   password = new FormControl('', [Validators.required, Validators.minLength(4)]);
   confirmPassword = new FormControl('', [Validators.required, Validators.minLength(4)])
-  // advancedService = new FormControl('', [Validators.required]);
-  // basicService = new FormControl('', [Validators.required]);
 
   firstNameValidation() {
     return this.firstName.hasError('required') ? 'You must enter a firstName' :
@@ -65,33 +64,21 @@ export class RegistrationComponent implements OnInit {
     return this.confirmPassword.hasError('required') ? 'You must enter a confirmPassword' :
       this.confirmPassword.hasError('confirmPassword') ? 'Enter min 4 digit confirmPassword' : '';
   }
-  // advancedServiceValidation() {
-  //   return this.advancedService.hasError('required') ? 'You must choose a value' : '';
-  // }
-  // basicServiceValidation() {
-  //   return this.basicService.hasError('required') ? 'You must choose a value' : '';
-  // }
-  /**Enable and disabel Button**/
-  currentLesson: string;
-  classes = [
-    {
-      name: 'string',
-      level: 'string',
-      code: 'number',
-      currentLesson: ''
-    }]
 
   private addCartId = '';
   @Input() id;
 
   ngOnInit() {
     /* Get  cart Id */
-    this.getProductcarts();
+    this.route.params
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((params: Params) => {
+        this.addCartId = params['id'];
+        console.log('Check cart Id after proceed to cart ====>', this.addCartId);
+      });
 
-    this.route.params.subscribe((params: Params) => {
-      this.addCartId = params['name'];
-      console.log('Check cart name ====>', this.addCartId);
-    });
+    this.getCartDetails(this.addCartId);
+    this.getProductcarts();
   }
 
   submit() {
@@ -101,7 +88,7 @@ export class RegistrationComponent implements OnInit {
       "email": this.register.email,
       "password": this.register.password,
       "confirmPassword": this.register.confirmPassword,
-      "service": this.addCartId
+      "service": this.ProductDeatils["product"].name
     }
     console.log('console registration body check ====>', body);
     try {
@@ -128,21 +115,29 @@ export class RegistrationComponent implements OnInit {
   }
 
   /***************************************************************************** */
-  product: Product[] = [];
-  private productId;
+ 
   getProductcarts() {
     this.productService.userService()
-      .pipe(takeUntil(this.destroy$)).subscribe(response => {
-        this.product = response["data"].data;
-        // this.productId = this.product[0].id;
-        // console.log('selected service id ===>', this.productId);
-      }, (error) => {
-        console.log("Data product Cart User Service ====>", error);
-      });
+      .pipe(takeUntil(this.destroy$)).subscribe(
+        response => {
+          this.product = response["data"].data;
+        }, (error) => {
+          console.log("Data product Cart User Service ====>", error);
+        });
   }
 
-  gotoCart(){
-    this.router.navigateByUrl('cart');
+  getCartDetails(cardId) {
+    console.log('cartId while get cart details ===========>', cardId);
+    this.productService.getCartDetails(cardId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        data => {
+          this.ProductDeatils = data['data'];
+          console.log('getCartDetails in registration ===>', this.ProductDeatils);
+          this.getDetails = this.ProductDeatils["product"]
+        }, (error) => {
+          console.log("getCartDetails in registration error xxxx>", error);
+        });
   }
   ngOnDestroy() {
     this.destroy$.next(true);
