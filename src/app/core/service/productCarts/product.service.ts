@@ -31,7 +31,7 @@ export class ProductService {
   **/
 
   getCartDetails(cartId) {
-    return this.service.postDatagetCartDetails("productcarts/getCartDetails/"+cartId)
+    return this.service.postDatagetCartDetails("productcarts/getCartDetails/" + cartId)
   }
 
   /**
@@ -42,4 +42,20 @@ export class ProductService {
     return this.service.postDataForuserService("/productcarts/userCartList")
   }
 
+  /**
+  *5. @Purpose : Complete order
+  **/
+
+  adminCompleteOrder(body) {
+    return this.service.postDataproductcartsComplete("/productcarts/adminCompleteOrder", body)
+  }
+
+
+  /**
+  *6. @Purpose : Complete order
+  **/
+
+  placeOrder(body) {
+    return this.service.postDataproductcartsComplete("/productcarts/placeOrder", body)
+  }
 }

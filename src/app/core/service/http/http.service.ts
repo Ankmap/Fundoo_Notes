@@ -457,6 +457,9 @@ export class HttpService {
     return this.http.post(environment.baseUrl + path, body, httpOptions);
   }
 
+  /**
+   * @Purpose : Get cart details according selection
+   **/
   postDatagetCartDetails(path) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -465,4 +468,20 @@ export class HttpService {
     };
     return this.http.get(environment.baseUrl + path, httpOptions);
   }
+
+  /**
+   * @Purpose : Question And Answer Notes
+   **/
+  postDataproductcartsComplete(path, body) {
+    console.log(body);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      })
+    };
+    console.log('token ==================>', localStorage.getItem('token'));
+    return this.http.post(environment.baseUrl + path, body, httpOptions);
+  }
+
 }

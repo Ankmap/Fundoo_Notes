@@ -6,7 +6,7 @@
  *@since   - 22/04/2019
 **************************************************************************************************/
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, Params, ActivatedRoute } from '@angular/router';
 import { NotesService } from '../../core/service/notes/notes.service';
 import { DataService } from '../../core/service/data/data.service'
 import { MatDialog } from '@angular/material';
@@ -33,6 +33,7 @@ export class NavbarComponent implements OnInit {
   lastName = localStorage.getItem("lastname");
   email = localStorage.getItem("email");
   image = localStorage.getItem("userImage");
+  productCartId = localStorage.getItem("productCartId");
 
   // image = 'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
   // image = 'http://34.213.106.173/'+this.imageUrl;
@@ -73,8 +74,10 @@ export class NavbarComponent implements OnInit {
     private router: Router,
     private noteService: NotesService,
     private dialog: MatDialog,
-    private data: DataService
+    private data: DataService,
+    private route: ActivatedRoute
   ) { }
+  private addCartId = '';
 
   ngOnInit() {
     /* Show Name */
@@ -100,11 +103,21 @@ export class NavbarComponent implements OnInit {
     this.data.currentMessageLabel
       .pipe(takeUntil(this.destroy$))
       .subscribe(message => {
-      this.message = message;
+        this.message = message;
         if (this.message != "default") {
           this.router.navigateByUrl('/getlabel/' + this.message);
           this.navbarName(this.message)
         }
+      });
+
+    /**
+     * @Purpose : Take id thrugh param
+     **/
+    this.route.params
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((params: Params) => {
+        this.addCartId = params['id'];
+        console.log('check param id in home i.e dashboard====>', this.addCartId);
       });
   }
 
@@ -113,6 +126,9 @@ export class NavbarComponent implements OnInit {
     this.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
   }
 
+  addShoppingCart() {
+    this.router.navigateByUrl('/mainCart');
+  }
   /**
    * @Purpose : Logout
    **/
@@ -127,7 +143,8 @@ export class NavbarComponent implements OnInit {
         localStorage.removeItem("lastname");
         localStorage.removeItem("email");
         // localStorage.removeItem("userImage");
-        this.router.navigateByUrl('/login');
+        localStorage.removeItem("productCartId")
+        this.router.navigateByUrl('/cart');
       });
   }
 

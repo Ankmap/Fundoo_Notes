@@ -26,7 +26,7 @@ export class RegistrationComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
   product: Product[] = [];
   ProductDeatils = '';
-  getDetails='';
+  getDetails = '';
   register: User = new User();
   constructor(
     private userService: UserService,
@@ -67,17 +67,19 @@ export class RegistrationComponent implements OnInit {
 
   private addCartId = '';
   @Input() id;
-
+  // productCartId = localStorage.getItem("this.getCartDetailsId");
+  productCartId = localStorage.getItem("productCartId");
+  //productCartId
   ngOnInit() {
     /* Get  cart Id */
-    this.route.params
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((params: Params) => {
-        this.addCartId = params['id'];
-        console.log('Check cart Id after proceed to cart ====>', this.addCartId);
-      });
+    // this.route.params
+    //   .pipe(takeUntil(this.destroy$))
+    //   .subscribe((params: Params) => {
+    //     this.addCartId = params['id'];
+    //     console.log('Check cart Id in registration ====>', this.addCartId);
+    //   });
 
-    this.getCartDetails(this.addCartId);
+    this.getCartDetails();
     this.getProductcarts();
   }
 
@@ -88,34 +90,40 @@ export class RegistrationComponent implements OnInit {
       "email": this.register.email,
       "password": this.register.password,
       "confirmPassword": this.register.confirmPassword,
-      "service": this.ProductDeatils["product"].name
+      "service": this.ProductDeatils["product"].name,    
+      "cartId": this.productCartId
     }
     console.log('console registration body check ====>', body);
-    try {
-      if (this.password.value == this.confirmPassword.value)
-        this.userService.userSignup(body)
-          .pipe(takeUntil(this.destroy$))
-          .subscribe(
-            data => {
-              this.snackbar.open('Register done successfully......!', 'Done...!', { duration: 3000 });
-              // this.router.navigateByUrl('login');
-              console.log('Register done successfully ==========>', data);
-            },
-            error => {
-              this.snackbar.open('Error while creating account......!', 'Error', { duration: 3000 });
-              console.log("Error something wrong: ", error)
-            });
-      else {
-        this.snackbar.open('password and confirmpassword does not match......!', 'Error...!', { duration: 3000 });
-        console.log("password and confirmpassword does not match");
-      }
-    } catch (error) {
-      this.snackbar.open('error', "", { duration: 3000 });
-    }
+    // try {
+    //   if (this.password.value == this.confirmPassword.value)
+    //     this.userService.userSignup(body)
+    //       .pipe(takeUntil(this.destroy$))
+    //       .subscribe(
+    //         data => {
+    //           this.snackbar.open('Register done successfully......!', 'Done...!', { duration: 3000 });
+    //           // this.router.navigateByUrl('login');
+    //           console.log('Register done successfully ==========>', data);
+    //         },
+    //         error => {
+    //           this.snackbar.open('Error while creating account......!', 'Error', { duration: 3000 });
+    //           console.log("Error something wrong: ", error)
+    //         });
+    //   else {
+    //     this.snackbar.open('password and confirmpassword does not match......!', 'Error...!', { duration: 3000 });
+    //     console.log("password and confirmpassword does not match");
+    //   }
+    // } catch (error) {
+    //   this.snackbar.open('error', "", { duration: 3000 });
+    // }
+    this.userService.userSignup(body).subscribe(
+      response => {
+        this.snackbar.open('Register done successfully......!', 'Done...!', { duration: 3000 });
+        console.log('registration done successfully ===>', response);
+      })
   }
 
   /***************************************************************************** */
- 
+
   getProductcarts() {
     this.productService.userService()
       .pipe(takeUntil(this.destroy$)).subscribe(
@@ -126,15 +134,19 @@ export class RegistrationComponent implements OnInit {
         });
   }
 
-  getCartDetails(cardId) {
-    console.log('cartId while get cart details ===========>', cardId);
-    this.productService.getCartDetails(cardId)
+  getCartDetails() {
+    console.log('cartId while get cart details ===========>', this.productCartId);
+    this.productService.getCartDetails(this.productCartId)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         data => {
           this.ProductDeatils = data['data'];
           console.log('getCartDetails in registration ===>', this.ProductDeatils);
-          this.getDetails = this.ProductDeatils["product"]
+          this.getDetails = this.ProductDeatils["product"];
+          console.log('id to pass registration ===>', this.ProductDeatils["product"].id);
+          console.log('name to pass registration ===>', this.ProductDeatils["product"].name);
+          console.log('Get productCartId grom localstorage ===>',localStorage.getItem("productCartId"));
+          
         }, (error) => {
           console.log("getCartDetails in registration error xxxx>", error);
         });

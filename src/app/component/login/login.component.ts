@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { User } from '../../core/model/user/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UserService } from 'src/app/core/service/user/user.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -25,7 +25,13 @@ export class LoginComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   register: User = new User();
-  constructor(private userService: UserService, private snackbar: MatSnackBar, private router: Router) { }
+  productCartId = localStorage.getItem("productCartId");
+  constructor(
+    private userService: UserService,
+    private snackbar: MatSnackBar,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) { }
 
   /**
    * @Purpose : Validation for login page
@@ -43,8 +49,15 @@ export class LoginComponent implements OnInit {
   /**
   * @Purpose :ngOnInit function is called whenever the component is loaded.
   */
+ private addCartId = '';
   ngOnInit() {
-
+    /* Get  cart Id */
+    this.route.params
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((params: Params) => {
+        this.addCartId = params['id'];
+        console.log('Check cart Id in login ====>', this.addCartId);
+      });
   }
 
   /*
@@ -54,7 +67,7 @@ export class LoginComponent implements OnInit {
     var body = {
       "email": this.register.email,
       "password": this.register.password,
-      "userId": this.register.id
+      "cartId": this.productCartId
     }
     console.log('Console for Login Account ======>', body);
     try {
@@ -72,6 +85,7 @@ export class LoginComponent implements OnInit {
             this.snackbar.open('Login done successfully......!', 'Done...!', {
               duration: 3000, panelClass: 'center',
             });
+            // this.router.navigateByUrl('home/'+this.addCartId);
             this.router.navigateByUrl('/home');
           },
           error => {

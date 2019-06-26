@@ -45,16 +45,23 @@
             </div>
             <!-- 2 -->
 
-            <!-- 3 -->
+            <!-- 3 routerLink="/mainCart/{{addCartId}}"-->
             <div fxFlex="21%" fxLayoutAlign="space-evenly center">
-                <div fxFlex="7"  fxShow fxHide.sm fxShow fxHide.xs>
+                <div fxFlex="5" fxShow fxHide.sm fxShow fxHide.xs>
+                    <abbr title="Refresh">
+                        <button style="outline: none;" mat-icon-button (click)="addShoppingCart()">
+                            <i class="material-icons">shopping_cart</i>
+                        </button>
+                    </abbr>
+                </div>
+                <div fxFlex="5" fxShow fxHide.sm fxShow fxHide.xs>
                     <abbr title="Refresh">
                         <button style="outline: none;" mat-icon-button (click)="refresh()">
                             <i class="material-icons">refresh</i>
                         </button>
                     </abbr>
                 </div>
-                <div fxFlex="7"  fxShow fxHide.sm fxShow fxHide.xs>
+                <div fxFlex="5" fxShow fxHide.sm fxShow fxHide.xs>
                     <abbr title="Grid">
                         <button style="outline: none;" mat-icon-button *ngIf=list (click)=changeView() fxShow="true">
                             <img src="../../../assets/grid.svg" height="35" width="35">
@@ -64,7 +71,7 @@
                         </button>
                     </abbr>
                 </div>
-                <div fxFlex="7" fxShow fxHide.sm  fxShow fxHide.xs>
+                <div fxFlex="5" fxShow fxHide.sm fxShow fxHide.xs>
                     <abbr title="Google Account">
                         <button style="outline: none;" mat-icon-button (click)="account()">
                             <div mat-card-avatar
@@ -83,7 +90,7 @@
 <mat-divider></mat-divider>
 
 <!-- **************************** SignOutCard ********************************************* -->
-<mat-card class="account" *ngIf="signoutCard"  fxShow fxHide.sm fxShow fxHide.xs>
+<mat-card class="account" *ngIf="signoutCard" fxShow fxHide.sm fxShow fxHide.xs>
     <div>
         <mat-card-header>
             <div mat-card-avatar
@@ -113,7 +120,7 @@
                     <h5 class="name">Notes</h5>
                 </div>
             </button>
-            <!-- Notes End -->  
+            <!-- Notes End -->
             <!-- Reminder start -->
             <button type="button" class="button" mat-button (click)="navbarName('Reminders')" routerLink="/reminder">
                 <div fxLayout="row" fxLayoutGap="25px">
@@ -126,10 +133,10 @@
         <mat-divider></mat-divider>
 
         <!-- 2nd div LABELS, Edit labels -->
-         <div fxLayout="column">
+        <div fxLayout="column">
             <p class="labels">LABELS</p>
-            <button class="button" mat-button *ngFor="let data of labelList" routerLink="/getlabel/{{data}}" (click)="navbarName(data)"
-                routerLinkActive=active>
+            <button class="button" mat-button *ngFor="let data of labelList" routerLink="/getlabel/{{data}}"
+                (click)="navbarName(data)" routerLinkActive=active>
                 <div fxLayout="row" fxLayoutGap="25px">
                     <img class="labelImg" src="../../../assets/outline-label-24px.svg">
                     <h5>{{data}}</h5>

@@ -3,7 +3,8 @@ import { Subject } from 'rxjs';
 import { Product } from 'src/app/core/model/productCart/product';
 import { takeUntil } from 'rxjs/operators';
 import { ProductService } from 'src/app/core/service/productCarts/product.service';
-import { Params, ActivatedRoute } from '@angular/router';
+import { Params, ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-cartmain',
@@ -17,12 +18,16 @@ export class CartmainComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
+    private snackbar: MatSnackBar,
+    private router :Router
   ) { }
   private addCartId = '';
   @Input() id;
   product: Product[] = [];
+  products: Product = new Product();
   ProductDeatils = '';
   getDetails = '';
+  productCartId = localStorage.getItem("productCartId");
 
   ngOnInit() {
     /* Get  cart Id */
@@ -32,7 +37,7 @@ export class CartmainComponent implements OnInit {
     });
 
     this.getProductcarts();
-    this.getCartDetails(this.addCartId);
+    this.getCartDetails();
   }
 
 
@@ -47,19 +52,44 @@ export class CartmainComponent implements OnInit {
       });
   }
 
-  getCartDetails(cardId) {
-    console.log('cartId while get cart details ===========>', cardId);
-    this.productService.getCartDetails(cardId)
+  getCartDetails() {
+    console.log('cartId while get cart details ===========>', this.productCartId);
+    this.productService.getCartDetails(this.productCartId)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         data => {
           this.ProductDeatils = data['data'];
           console.log('getCartDetails in sign in proceed ===>', this.ProductDeatils);
           this.getDetails = this.ProductDeatils["product"];
-          console.log('get card details in proceed cart ===>',this.getDetails); 
+          console.log('get card details in proceed cart ===>', this.getDetails);
         }, (error) => {
           console.log("getCartDetails in  sign in proceed error ===>", error);
         });
+  }
+
+  placeOrder(){
+    console.log('Id while place order ====>', this.productCartId);
+    var body = {
+      "cartId": this.productCartId,
+      "address": this.products.address
+    }
+    this.productService.placeOrder(body).subscribe(
+      response => {
+        console.log('Place order successfully', response);
+        this.snackbar.open('Place order successfully.......!', 'Done...!', { duration: 3000 });
+      })
+  }
+
+  completeOrder() {
+    console.log('Id while complete order ====>', this.productCartId);
+    var body = {
+      "cartId": this.productCartId
+    }
+    this.productService.adminCompleteOrder(body).subscribe(
+      response => {
+        console.log('Order complete successfully', response);
+        this.snackbar.open('Order complete successfully.......!', 'Done...!', { duration: 3000 });
+      })
   }
   ngOnDestroy() {
     this.destroy$.next(true);

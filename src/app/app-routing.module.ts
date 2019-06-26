@@ -34,14 +34,15 @@ import { CartmainComponent } from './component/cartmain/cartmain.component';
 
 /*Routing path set*/
 const appRoutes: Routes = [
+ 
   { path: '', redirectTo: 'cart', pathMatch: 'full' },
   { path: 'cart', component:CartComponent},
   { path: 'login', component: LoginComponent },
-  { path: 'registration/:id', component: RegistrationComponent },
+  { path: 'registration', component: RegistrationComponent },
   { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'resetpassword/:token', component: ResetPasswordComponent },
   { path: 'opencart', component:OpenCartComponent},
-  { path: 'mainCart/:id', component:CartmainComponent},
+  { path: 'mainCart', component:CartmainComponent},
   {
     /*Apply AuthGuard*/
     path: '', component: NavbarComponent, canActivate: [AuthGuard],

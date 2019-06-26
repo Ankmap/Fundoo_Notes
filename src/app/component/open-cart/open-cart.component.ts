@@ -45,7 +45,8 @@ export class OpenCartComponent implements OnInit {
         console.log('Get Cart Details after adding cart ====>', this.getCartDetails);
         this.getCartDetailsId = this.getCartDetails['id'];
         console.log('Get cartId to proceed to registration ====>', this.getCartDetailsId);
-        this.router.navigateByUrl('registration/'+this.getCartDetailsId);
+        localStorage.setItem('productCartId', this.getCartDetailsId);
+        this.router.navigateByUrl('/registration');
         this.dialogRef.close();
       },
       error => {
