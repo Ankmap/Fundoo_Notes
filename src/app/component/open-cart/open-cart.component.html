@@ -3,8 +3,8 @@
     <h4><strong>Advanced pack details</strong></h4>
     <p>${{cartData.price}} Per Month</p>
   </div>
-  <div fxLayout="column">
-    <div fxLayout="row" fxLayoutAlign="space-around center">
+  <div fxLayout="column" fxLayoutGap="20px">
+    <!-- <div fxLayout="row" fxLayoutAlign="space-around center">
       <div (click)="content='showSubContent'" class="feature">Feature1</div>
       <div (click)="content='showSubContentTwo'" class="feature">Feature2</div>
       <div (click)="content='showSubContentThree'" class="feature">Feature3</div>
@@ -32,7 +32,12 @@
           at its layout.
         </div>
       </div>
-    </div>
+    </div> -->
+    <mat-tab-group>
+      <mat-tab label="Feature1">{{cartData.description}}</mat-tab>
+      <mat-tab label="Feature2">{{cartData.description}}</mat-tab>
+      <mat-tab label="Feature3">{{cartData.description}}</mat-tab>
+    </mat-tab-group>
   </div>
   <div fxFlex=10></div>
   <div fxLayout="row" fxLayoutGap="350px" class="btn">

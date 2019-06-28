@@ -41,8 +41,8 @@ const appRoutes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'resetpassword/:token', component: ResetPasswordComponent },
-  { path: 'opencart', component:OpenCartComponent},
-  { path: 'mainCart', component:CartmainComponent},
+  // { path: 'opencart', component:OpenCartComponent},
+  // { path: 'mainCart', component:CartmainComponent},
   {
     /*Apply AuthGuard*/
     path: '', component: NavbarComponent, canActivate: [AuthGuard],
@@ -60,7 +60,9 @@ const appRoutes: Routes = [
       { path: 'image', component: ImageCropComponent},
       { path: 'getlabel/:label', component:GetlabelComponent},
       { path: 'pin', component:PinComponent},
-      { path: 'askquestion/:id', component:QuestionanswerComponent}
+      { path: 'askquestion/:id', component:QuestionanswerComponent},
+      { path: 'opencart', component:OpenCartComponent},
+      { path: 'mainCart', component:CartmainComponent},
     ]
   },
   /*Componnet Lifecycle Demo path set*/

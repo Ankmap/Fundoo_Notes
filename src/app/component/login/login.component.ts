@@ -81,7 +81,8 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('lastname', data['lastName']);
             localStorage.setItem('email', data['email']);
             localStorage.setItem('userId', data['userId']);
-            localStorage.setItem('userImage', data['imageUrl'])
+            localStorage.setItem('userImage', data['imageUrl']);
+            localStorage.setItem("productCartId",data['productCartId']);
             this.snackbar.open('Login done successfully......!', 'Done...!', {
               duration: 3000, panelClass: 'center',
             });
