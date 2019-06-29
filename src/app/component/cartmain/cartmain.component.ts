@@ -19,7 +19,7 @@ export class CartmainComponent implements OnInit {
     private productService: ProductService,
     // private route: ActivatedRoute,
     private snackbar: MatSnackBar,
-    private router :Router
+    private router: Router
   ) { }
   // private addCartId = '';
   @Input() id;
@@ -27,18 +27,27 @@ export class CartmainComponent implements OnInit {
   products: Product = new Product();
   ProductDeatils = '';
   getDetails = '';
+  userCartList: '';
+  userList = '';
+  userListId = '';
   productCartId = localStorage.getItem("productCartId");
 
   ngOnInit() {
-    /* Get  cart Id */
-    // this.route.params.subscribe((params: Params) => {
-    //   this.addCartId = params['id'];
-    //   console.log('Check cart Id after registartion ====>', this.addCartId);
-    // });
 
     this.getProductcarts();
-    // this.getCartDetails();
+    this.getCartDetails();
     this.mycart();
+    this.productService.userCartList().subscribe(
+      data => {
+        console.log('product service ===>', data);
+        this.userCartList = data["data"];
+        console.log('userCartList ====>', this.userCartList);
+        this.userList = this.userCartList[0];
+        console.log('check cartMain ====>', this.userList);
+        this.userListId = this.userList['id'];
+        console.log('check cartMain id  ====>', this.userListId);
+      }
+    )
   }
 
 
@@ -53,37 +62,43 @@ export class CartmainComponent implements OnInit {
       });
   }
 
-  // getCartDetails() {
-  //   console.log('cartId while get cart details ===========>', this.productCartId);
-  //   this.productService.getCartDetails(this.productCartId)
-  //     .pipe(takeUntil(this.destroy$))
-  //     .subscribe(
-  //       data => {
-  //         this.ProductDeatils = data['data'];
-  //         console.log('getCartDetails in sign in proceed ===>', this.ProductDeatils);
-  //         this.getDetails = this.ProductDeatils["product"];
-  //         console.log('get card details in proceed cart ===>', this.getDetails);
-  //       }, (error) => {
-  //         console.log("getCartDetails in  sign in proceed error ===>", error);
-  //       });
-  // }
+  getCartDetails() {
+    console.log('cartId while get cart details ===========>', this.productCartId);
+    this.productService.getCartDetails(this.productCartId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        data => {
+          this.ProductDeatils = data['data'];
+          console.log('getCartDetails in sign in proceed ===>', this.ProductDeatils);
+          this.getDetails = this.ProductDeatils["product"];
+          console.log('get card details in proceed cart ===>', this.getDetails);
+        }, (error) => {
+          console.log("getCartDetails in  sign in proceed error ===>", error);
+        });
+  }
 
-  mycarts='';
-  mycarts1='';
-  resultMycart=''
-  mycart(){
+  mycarts = '';
+  mycarts1 = '';
+  resultMycart = ''
+  mycart() {
     this.productService.mycart().subscribe(
-      data =>{
+      data => {
         this.mycarts = data['data'];
-        console.log('get my cart 1 ===>',this.mycarts);
+        console.log('get my cart 1 ===>', this.mycarts);
         this.mycarts1 = this.mycarts[0];
-        this.resultMycart=this.mycarts1["product"]
-        console.log('get my cart @@@@@@@@@@====>',this.resultMycart);
+        this.resultMycart = this.mycarts1["product"]
+        console.log('get my cart @@@@@@@@@@====>', this.resultMycart);
       }
     )
   }
-  placeOrder(){
+  placeOrder() {
     console.log('Id while place order ====>', this.mycarts1['id']);
+    if (this.products.address == '') {
+      this.snackbar.open("failed", "please enter address", {
+        duration: 2000,
+      });
+      return;
+    }
     var body = {
       "cartId": this.mycarts1['id'],
       "address": this.products.address

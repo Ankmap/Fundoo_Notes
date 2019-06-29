@@ -39,7 +39,7 @@ export class ProductService {
   **/
 
   userCartList() {
-    return this.service.postDataForuserService("/productcarts/userCartList")
+    return this.service.postDatagetNotesDetail("/productcarts/userCartList")
   }
 
   /**

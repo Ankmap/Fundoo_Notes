@@ -38,6 +38,10 @@ export class CartComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   product: Product[] = []
+  productArray = [];
+  serviceDetails: '';
+  private getCartDetails;
+  private getCartDetailsId;
 
   constructor(
     private dialog: MatDialog,
@@ -53,34 +57,33 @@ export class CartComponent implements OnInit {
   getProductcarts() {
     this.productService.userService()
       .pipe(takeUntil(this.destroy$)).subscribe(response => {
-        this.product = response["data"].data;
-        console.log("check product Cart User Service =====>", this.product);
-        // console.log('Add to cart Data =====>', this.product[0]);
-        // console.log('Add to cart productId =====>', this.product[0].id);
-
+        this.productArray = response["data"].data;
+        console.log("check product Cart User Service =====>", this.productArray);
+        console.log('Advance data =====>', this.productArray[0]);
+        console.log('Advance id =====>', this.productArray[0].id);
+        console.log('Basic data =====>', this.productArray[1]);
+        console.log('Basic id =====>', this.productArray[1].id);
       }, (error) => {
         console.log("Data product Cart User Service ====>", error);
       });
   }
 
-  productArray = [];
   serviceOpen(value) {
-    console.log('serviceOpen ===>', value);
-
-    // if (value == "Advance") {
-    //   this.product = this.productArray[0]
-    //   this.addtoCartd(this.productArray[0].id)
-    // } else {
-    //   this.product = this.productArray[1]
-    //   this.addtoCartd(this.productArray[1].id)
-    // }
+    console.log('Check value after service open ===>',value);
+    if (value == "advance") {
+      this.serviceDetails = this.productArray[0]
+      this.addtoCartd(this.productArray[0].id)
+    } else {
+      this.serviceDetails = this.productArray[1]
+      this.addtoCartd(this.productArray[1].id)
+    }
   }
-  private getCartDetails;
-  private getCartDetailsId;
-  addtoCartd() {
-    console.log('Add to cart productId =====>', this.product[0].id);
+
+  
+  addtoCartd(value) {
+    console.log('@@@@@@@@@@@@@@@ Add to cart productId @@@@@@@@@@@@@', value);
     var body = {
-      "productId": this.product[0].id
+      "productId": value
     }
     this.productService.addToCart(body).subscribe(
       data => {

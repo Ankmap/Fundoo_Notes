@@ -9,8 +9,8 @@
   <h3>Which fundooNotes service package do you want ?</h3>
 
   <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="150px">
-    <div *ngFor="let data of product">
-      <div class="cartMain" (click)="serviceOpen(value)" [@simpleFadeAnimation]="'in'">
+    <div>
+      <div class="cartMain" (click)="serviceOpen(productArray[0].name)" [@simpleFadeAnimation]="'in'">
         <div class="addCart">
           <mat-card>
             <h5>ADD TO CART</h5>
@@ -19,16 +19,39 @@
         <div class="cartSub">
           <mat-card>
             <div style="height:1vh;"></div>
-            <h2>${{data.price}} Per Month</h2>
+            <h2>${{productArray[0].price}} Per Month</h2>
             <div fxLayoutAlign="start">
-              <button mat-button>{{data.name}}</button>
-              <!-- <div>{{data.id}}</div> -->
+              <button mat-button>{{productArray[0].name | uppercase}}</button>
             </div>
             <div fxLayout="column" fxLayoutGap="25px">
               <li>Unlimited Wall Space</li>
               <li>Nice Interface</li>
-              <li>${{data.price}}/Month</li>
-              <li>{{data.description}}</li>
+              <li>${{productArray[0].price}}/Month</li>
+              <li>{{productArray[0].description}}</li>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="cartMain" (click)="serviceOpen(productArray[1].name)" [@simpleFadeAnimation]="'in'">
+        <div class="addCart">
+          <mat-card>
+            <h5>ADD TO CART</h5>
+          </mat-card>
+        </div>
+        <div class="cartSub">
+          <mat-card>
+            <div style="height:1vh;"></div>
+            <h2>${{productArray[1].price}} Per Month</h2>
+            <div fxLayoutAlign="start">
+              <button mat-button>{{productArray[1].name | uppercase}}</button>
+            </div>
+            <div fxLayout="column" fxLayoutGap="25px">
+              <li>Unlimited Wall Space</li>
+              <li>Nice Interface</li>
+              <li>${{productArray[1].price}}/Month</li>
+              <li>{{productArray[1].description}}</li>
             </div>
           </mat-card>
         </div>
