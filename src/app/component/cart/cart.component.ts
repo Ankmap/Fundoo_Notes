@@ -55,20 +55,54 @@ export class CartComponent implements OnInit {
       .pipe(takeUntil(this.destroy$)).subscribe(response => {
         this.product = response["data"].data;
         console.log("check product Cart User Service =====>", this.product);
+        // console.log('Add to cart Data =====>', this.product[0]);
+        // console.log('Add to cart productId =====>', this.product[0].id);
+
       }, (error) => {
         console.log("Data product Cart User Service ====>", error);
       });
   }
 
+  productArray = [];
+  serviceOpen(value) {
+    console.log('serviceOpen ===>', value);
 
-  addtoCartd(data): void {
-    const dialogRef = this.dialog.open(OpenCartComponent, {
-      panelClass: 'app-full-bleed-dialog',
-      data: {
-        data: data
-      }
-    });
-    dialogRef.afterClosed()
+    // if (value == "Advance") {
+    //   this.product = this.productArray[0]
+    //   this.addtoCartd(this.productArray[0].id)
+    // } else {
+    //   this.product = this.productArray[1]
+    //   this.addtoCartd(this.productArray[1].id)
+    // }
+  }
+  private getCartDetails;
+  private getCartDetailsId;
+  addtoCartd() {
+    console.log('Add to cart productId =====>', this.product[0].id);
+    var body = {
+      "productId": this.product[0].id
+    }
+    this.productService.addToCart(body).subscribe(
+      data => {
+        this.snackbar.open('Cart added successfully......!', 'Done...!', { duration: 3000 });
+        console.log('Cart added successfully ==========>', data);
+        this.getCartDetails = data["data"].details;
+        console.log('Get Cart Details after adding cart ====>', this.getCartDetails);
+        this.getCartDetailsId = this.getCartDetails['id'];
+        console.log('Get cartId to proceed to registration ====>', this.getCartDetailsId);
+        localStorage.setItem('productCartId', this.getCartDetailsId);
+        const dialogRef = this.dialog.open(OpenCartComponent, {
+          panelClass: 'app-full-bleed-dialog',
+          data: {
+            data: data
+          }
+        });
+        dialogRef.afterClosed()
+      },
+      error => {
+        this.snackbar.open('Error while cart ......!', 'Error', { duration: 3000 });
+        console.log("Error something wrong while cart adding ", error)
+      });
   }
 
   ngOnDestroy() {

@@ -10,7 +10,7 @@
 
   <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="150px">
     <div *ngFor="let data of product">
-      <div class="cartMain" (click)="addtoCartd(data)" [@simpleFadeAnimation]="'in'">
+      <div class="cartMain" (click)="serviceOpen(value)" [@simpleFadeAnimation]="'in'">
         <div class="addCart">
           <mat-card>
             <h5>ADD TO CART</h5>

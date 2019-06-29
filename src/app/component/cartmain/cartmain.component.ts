@@ -17,11 +17,11 @@ export class CartmainComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute,
+    // private route: ActivatedRoute,
     private snackbar: MatSnackBar,
     private router :Router
   ) { }
-  private addCartId = '';
+  // private addCartId = '';
   @Input() id;
   product: Product[] = [];
   products: Product = new Product();
@@ -31,13 +31,14 @@ export class CartmainComponent implements OnInit {
 
   ngOnInit() {
     /* Get  cart Id */
-    this.route.params.subscribe((params: Params) => {
-      this.addCartId = params['id'];
-      console.log('Check cart Id after registartion ====>', this.addCartId);
-    });
+    // this.route.params.subscribe((params: Params) => {
+    //   this.addCartId = params['id'];
+    //   console.log('Check cart Id after registartion ====>', this.addCartId);
+    // });
 
     this.getProductcarts();
-    this.getCartDetails();
+    // this.getCartDetails();
+    this.mycart();
   }
 
 
@@ -52,25 +53,39 @@ export class CartmainComponent implements OnInit {
       });
   }
 
-  getCartDetails() {
-    console.log('cartId while get cart details ===========>', this.productCartId);
-    this.productService.getCartDetails(this.productCartId)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        data => {
-          this.ProductDeatils = data['data'];
-          console.log('getCartDetails in sign in proceed ===>', this.ProductDeatils);
-          this.getDetails = this.ProductDeatils["product"];
-          console.log('get card details in proceed cart ===>', this.getDetails);
-        }, (error) => {
-          console.log("getCartDetails in  sign in proceed error ===>", error);
-        });
-  }
+  // getCartDetails() {
+  //   console.log('cartId while get cart details ===========>', this.productCartId);
+  //   this.productService.getCartDetails(this.productCartId)
+  //     .pipe(takeUntil(this.destroy$))
+  //     .subscribe(
+  //       data => {
+  //         this.ProductDeatils = data['data'];
+  //         console.log('getCartDetails in sign in proceed ===>', this.ProductDeatils);
+  //         this.getDetails = this.ProductDeatils["product"];
+  //         console.log('get card details in proceed cart ===>', this.getDetails);
+  //       }, (error) => {
+  //         console.log("getCartDetails in  sign in proceed error ===>", error);
+  //       });
+  // }
 
+  mycarts='';
+  mycarts1='';
+  resultMycart=''
+  mycart(){
+    this.productService.mycart().subscribe(
+      data =>{
+        this.mycarts = data['data'];
+        console.log('get my cart 1 ===>',this.mycarts);
+        this.mycarts1 = this.mycarts[0];
+        this.resultMycart=this.mycarts1["product"]
+        console.log('get my cart @@@@@@@@@@====>',this.resultMycart);
+      }
+    )
+  }
   placeOrder(){
-    console.log('Id while place order ====>', this.productCartId);
+    console.log('Id while place order ====>', this.mycarts1['id']);
     var body = {
-      "cartId": this.productCartId,
+      "cartId": this.mycarts1['id'],
       "address": this.products.address
     }
     this.productService.placeOrder(body).subscribe(

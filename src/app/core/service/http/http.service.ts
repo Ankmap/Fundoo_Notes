@@ -415,7 +415,7 @@ export class HttpService {
         'Authorization': localStorage.getItem('token')
       })
     };
-    console.log('token ==================>', localStorage.getItem('token'));
+    console.log('token ************>', localStorage.getItem('token'));
     return this.http.get(environment.baseUrl + path, httpOptions);
   }
 

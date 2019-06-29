@@ -58,4 +58,8 @@ export class ProductService {
   placeOrder(body) {
     return this.service.postDataproductcartsComplete("/productcarts/placeOrder", body)
   }
+
+  mycart(){
+    return this.service.postDatagetNotesDetail("/productcarts/myCart")
+  }
 }

@@ -1,7 +1,7 @@
 <div fxLayout="column" fxLayoutGap="20px">
   <div class="navbar" fxLayout="row">
     <h4><strong>Advanced pack details</strong></h4>
-    <p>${{cartData.price}} Per Month</p>
+    <p>${{getDetails.price}} Per Month</p>
   </div>
   <div fxLayout="column" fxLayoutGap="20px">
     <!-- <div fxLayout="row" fxLayoutAlign="space-around center">
@@ -14,29 +14,29 @@
     <div fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="space-around center">
       <div [ngSwitch]="content" class="textp">
         <div *ngSwitchDefault>
-          {{cartData.description}}
+          {{getDetails.description}}
           Lorem Ipsum is simply dummy text of the printing and typesetting industry.
         </div>
         <div *ngSwitchCase="'showSubContent'">
-          {{cartData.description}}
+          {{getDetails.description}}
           Lorem Ipsum is simply dummy text of the printing and typesetting industry.
         </div>
         <div *ngSwitchCase="'showSubContentTwo'">
-          {{cartData.description}}
+          {{getDetails.description}}
           Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
           galley of type and scrambled it to make a type specimen book.
         </div>
         <div *ngSwitchCase="'showSubContentThree'">
-          {{cartData.description}}
+          {{getDetails.description}}
           It is a long established fact that a reader will be distracted by the readable content of a page when looking
           at its layout.
         </div>
       </div>
     </div> -->
     <mat-tab-group>
-      <mat-tab label="Feature1">{{cartData.description}}</mat-tab>
-      <mat-tab label="Feature2">{{cartData.description}}</mat-tab>
-      <mat-tab label="Feature3">{{cartData.description}}</mat-tab>
+      <mat-tab label="Feature1">{{getDetails.description}}</mat-tab>
+      <mat-tab label="Feature2">{{getDetails.description}}</mat-tab>
+      <mat-tab label="Feature3">{{getDetails.description}}</mat-tab>
     </mat-tab-group>
   </div>
   <div fxFlex=10></div>

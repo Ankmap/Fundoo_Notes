@@ -55,7 +55,7 @@
                         <p routerLink="/forgotPassword">Forgot password?</p>
                         <br>
                         <div fxLayoutAlign="start start">
-                            <p mat-button routerLink="/cart">Create account</p>
+                            <p mat-button (click)="account1()">Create account</p>
                         </div>
                         <div fxLayoutAlign="end end">
                             <!-- For Onclick disable button routerLink="/home/{{addCartId}}"-->
@@ -68,6 +68,45 @@
             </mat-card>
             <!-- Login Form End -->
         </div>
+        <!-- Service -->
+        <div *ngIf=productCartId class=gray_background fxFlex.lg="30%" fxFlex.md="55%" fxFlex.sm="80%" fxFlex.xs="100%"
+            fxLayout=column fxLayoutGap="20%">
+            <div></div>
+            <div fxLayoutAlign=center>
+                <h4><strong>Service</strong></h4>
+            </div>
+            <div fxLayout=row fxLayoutAlign=center fxLayoutGap="10%">
+                <div *ngFor="let data of product">
+                    <div class="cartMain">
+                        <div class="addCart">
+                            <mat-card class="select" *ngIf="data.id == getDetails.id">
+                                <p class="p">SELECTED</p>
+                            </mat-card>
+                            <mat-card class="notSelect" *ngIf="data.id != getDetails.id">
+                                <p class="p">ADD TO CART</p>
+                            </mat-card>
+                        </div>
+                        <div class="cartSub">
+                            <mat-card>
+                                <p class="p1">${{data.price}} Per Month</p>
+                                <div fxLayoutAlign="start start">
+                                    <button mat-button class="p2" style=" margin-top: -22px;">{{data.name}}</button>
+                                </div>
+                                <div fxLayout="column">
+                                    <li>Unlimited Wall Space</li>
+                                    <li>Nice Interface</li>
+                                    <li>$6.99/Month</li>
+                                    <li>{{data.description}}</li>
+                                </div>
+                            </mat-card>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div></div>
+
+        </div>
+        <!-- Service -->
         <div fxFlex.lg="35%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
     </div>
     <div fxFlex.lg="20%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>

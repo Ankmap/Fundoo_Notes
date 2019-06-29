@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { Subject } from 'rxjs';
 import { ProductService } from 'src/app/core/service/productCarts/product.service';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-open-cart',
@@ -12,51 +13,47 @@ import { ProductService } from 'src/app/core/service/productCarts/product.servic
 export class OpenCartComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
-  cartData: [];
-
-  private getCartDetails;
-  private getCartDetailsId;
-  
+  productCartId = localStorage.getItem("productCartId");
+  ProductDeatils = '';
+  getDetails = '';
   constructor(
-    private productService: ProductService,
-    private snackbar: MatSnackBar,
+    private productService:ProductService,
     private router: Router,
     public dialogRef: MatDialogRef<OpenCartComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit() {
-    this.cartData = this.data["data"]
-    console.log('Cart Data in dialog box=====>', this.cartData);
-    console.log('Cart Id in dialog box=====>', this.cartData["id"]);
+   this.getCartDetails()
+  }
+
+  getCartDetails() {
+    console.log('cartId while get cart details ===========>', this.productCartId);
+    this.productService.getCartDetails(this.productCartId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        data => {
+          this.ProductDeatils = data['data'];
+          console.log('getCartDetails in registration ===>', this.ProductDeatils);
+          this.getDetails = this.ProductDeatils["product"];
+          console.log('id to pass registration ===>', this.ProductDeatils["product"].id);
+          console.log('name to pass registration ===>', this.ProductDeatils["product"].name);
+          console.log('Get productCartId grom localstorage ===>',localStorage.getItem("productCartId"));
+          
+        }, (error) => {
+          console.log("getCartDetails in registration error xxxx>", error);
+        });
   }
 
   cartGo() {
-    console.log('Add to cart productId =====>', this.cartData["id"]);
-    var body = {
-      "productId": this.cartData["id"]
-    }
-    console.log('Add to cart productId body check ====>', body);
-    this.productService.addToCart(body).subscribe(
-      data => {
-        this.snackbar.open('Cart added successfully......!', 'Done...!', { duration: 3000 });
-        console.log('Cart added successfully ==========>', data);
-        this.getCartDetails = data["data"].details;
-        console.log('Get Cart Details after adding cart ====>', this.getCartDetails);
-        this.getCartDetailsId = this.getCartDetails['id'];
-        console.log('Get cartId to proceed to registration ====>', this.getCartDetailsId);
-        localStorage.setItem('productCartId', this.getCartDetailsId);
         this.router.navigateByUrl('/registration');
         this.dialogRef.close();
-      },
-      error => {
-        this.snackbar.open('Error while cart ......!', 'Error', { duration: 3000 });
-        console.log("Error something wrong while cart adding ", error)
-      });
   }
   cartBack(): void {
+    localStorage.removeItem("productCartId")
     this.dialogRef.close();
   }
+  
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();

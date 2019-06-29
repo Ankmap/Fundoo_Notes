@@ -24,249 +24,254 @@
 </div>
 <div style="height:5vh"></div> -->
 <!-- navbar end -->
-<div fxLayout="row" fxLayoutGap="50px">
-  <div fxFlex=8></div>
-  <div fxFlex=70>
-    <div fxLayout="column" fxLayoutGap="20px">
-      <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
-        <div>
-          <button class="fundooNotes" mat-button>FundooNotes</button>
-        </div>
-        <div>
-          <mat-tab-group>
-            <mat-tab>
-              <ng-template mat-tab-label>
-                <mat-icon class="example-tab-icon" (click)="content='showSubContent'">shopping_cart</mat-icon>
-              </ng-template>
-              SIGN IN
-            </mat-tab>
-            <mat-tab>
-              <ng-template mat-tab-label>
-                <mat-icon class="example-tab-icon" (click)="content='showSubContentTwo'">shopping_cart</mat-icon>
-              </ng-template>
-              PLACE ORDER
-            </mat-tab>
-            <mat-tab>
-              <ng-template mat-tab-label>
-                <mat-icon class="example-tab-icon" (click)="content='showSubContentThree'">shopping_cart</mat-icon>
-              </ng-template>
-              COMPLETE PAYMENT
-            </mat-tab>
-          </mat-tab-group>
-        </div>
-      </div>
-      <div [ngSwitch]="content" fxLayout="row" fxLayoutGap="20px">
-        <div *ngSwitchDefault fxLayout="column" fxLayoutGap="20px">
-          <strong>Shopping Cart</strong>
-          <div fxFlex=100 fxLayoutAlign="space-between center">
-            <div fxFlex=80></div>
-            <div fxFlex=5 fxFlex=row fxLayoutAlign="space-evenly start">
-              <p class="price">Price</p>
-              <p class="price">Validity</p>
-            </div>
-            <div fxFlex=5></div>
+<div *ngIf="mycarts.length > 0">
+  <div fxLayout="row" fxLayoutGap="50px">
+    <div fxFlex=8></div>
+    <div fxFlex=70>
+      <div fxLayout="column" fxLayoutGap="20px">
+        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+          <div>
+            <button class="fundooNotes" mat-button>FundooNotes</button>
           </div>
-          <div class="divider"></div>
-          <div fxFlex=100 fxLayoutAlign="space-between center">
-            <div fxFlex=90>
-              <div fxFlex=100 fxLayoutGap="20px">
-                <div fxFlex=15>
-                  <mat-card class="cart">
-                    ${{getDetails.price}} Per Month
-                    {{getDetails.name}}
-                  </mat-card>
-                </div>
-                <div fxFlex=70>
-                  <p style="color:blue"> {{getDetails.name}} Pack Details </p>
-                  <div fxLayoutGap="20px">
-                    <div fxFlex=50 fxFlex="column" fxLayoutGap="30px">
-                      <li>Unlimited Wall Space</li>
-                      <li>Nice Interface</li>
-                    </div>
-                    <div fxFlex=50 fxFlex="column" fxLayoutGap="30px">
-                      <li>${{getDetails.price}}/Month</li>
-                      <li>{{getDetails.description}}</li>
-                    </div>
+          <div>
+            <mat-tab-group>
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <mat-icon class="example-tab-icon" (click)="content='showSubContent'">shopping_cart</mat-icon>
+                </ng-template>
+                SIGN IN
+              </mat-tab>
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <mat-icon class="example-tab-icon" (click)="content='showSubContentTwo'">shopping_cart</mat-icon>
+                </ng-template>
+                PLACE ORDER
+              </mat-tab>
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <mat-icon class="example-tab-icon" (click)="content='showSubContentThree'">shopping_cart</mat-icon>
+                </ng-template>
+                COMPLETE PAYMENT
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+        <div [ngSwitch]="content" fxLayout="row" fxLayoutGap="20px">
+          <div *ngSwitchDefault fxLayout="column" fxLayoutGap="20px">
+            <strong>Shopping Cart</strong>
+            <div fxFlex=100 fxLayoutAlign="space-between center">
+              <div fxFlex=80></div>
+              <div fxFlex=5 fxFlex=row fxLayoutAlign="space-evenly start">
+                <p class="price">Price</p>
+                <p class="price">Validity</p>
+              </div>
+              <div fxFlex=5></div>
+            </div>
+            <div class="divider"></div>
+            <div fxFlex=100 fxLayoutAlign="space-between center">
+              <div fxFlex=90>
+                <div fxFlex=100 fxLayoutGap="20px">
+                  <div fxFlex=15>
+                    <mat-card class="cart">
+                      ${{resultMycart.price}} Per Month
+                      {{resultMycart.name}}
+                    </mat-card>
                   </div>
-                </div>
-                <div fxFlex=5 fxFlex=row fxLayoutAlign="space-evenly start">
-                  $ {{getDetails.price}}
-                  <button mat-button style="color:blue">per Month</button>
-                </div>
-              </div>
-            </div>
-            <div fxFlex=10>
-              <div class="endcart" fxLayoutAlign="space-evenly center" fxLayout="column">
-                <p> Subtotal (1 item): $ {{getDetails.price}}</p>
-                <button mat-button (click)="content='showSubContentTwo'">Proceed to checkout</button>
-              </div>
-            </div>
-          </div>
-          <div class="divider"></div>
-          <div fxFlex=100 fxLayoutAlign="space-between center">
-            <div fxFlex=70></div>
-            <div fxFlex=30>
-              <p> Subtotal (1 item): $ {{getDetails.price}}</p>
-            </div>
-          </div>
-        </div>
-        <div *ngSwitchCase="'showSubContent'" fxLayout="column" fxLayoutGap="20px">
-          <strong>Shopping Cart</strong>
-          <div fxFlex=100 fxLayoutAlign="space-between center">
-            <div fxFlex=80></div>
-            <div fxFlex=5 fxFlex=row fxLayoutAlign="space-evenly start">
-              <p class="price">Price</p>
-              <p class="price">Validity</p>
-            </div>
-            <div fxFlex=5></div>
-          </div>
-          <div class="divider"></div>
-          <div fxFlex=100 fxLayoutAlign="space-between center">
-            <div fxFlex=90>
-              <div fxFlex=100 fxLayoutGap="20px">
-                <div fxFlex=15>
-                  <mat-card class="cart">
-                    ${{getDetails.price}} Per Month
-                    {{getDetails.name}}
-                  </mat-card>
-                </div>
-                <div fxFlex=70>
-                  <p style="color:blue"> {{getDetails.name}} Pack Details </p>
-                  <div fxLayoutGap="20px">
-                    <div fxFlex=50 fxFlex="column" fxLayoutGap="30px">
-                      <li>Unlimited Wall Space</li>
-                      <li>Nice Interface</li>
-                    </div>
-                    <div fxFlex=50 fxFlex="column" fxLayoutGap="30px">
-                      <li>${{getDetails.price}}/Month</li>
-                      <li>{{getDetails.description}}</li>
-                    </div>
-                  </div>
-                </div>
-                <div fxFlex=5 fxFlex="column" fxLayoutAlign="space-evenly start">
-                  $ {{getDetails.price}}
-                  <button mat-button style="color:blue">per Month</button>
-                </div>
-              </div>
-            </div>
-            <div fxFlex=10>
-              <div class="endcart" fxLayoutAlign="space-evenly center" fxLayout="column">
-                <p> Subtotal (1 item): $ {{getDetails.price}}</p>
-                <button mat-button (click)="content='showSubContentTwo'">Proceed to checkout</button>
-              </div>
-            </div>
-          </div>
-          <div class="divider"></div>
-          <div fxFlex=100 fxLayoutAlign="space-between center">
-            <div fxFlex=70></div>
-            <div fxFlex=30>
-              <p> Subtotal (1 item): $ {{getDetails.price}}</p>
-            </div>
-          </div>
-        </div>
-        <div *ngSwitchCase="'showSubContentTwo'">
-          <h6><strong>Review your order</strong></h6>
-          <p class="opacity">By clicking on the 'Place your order and pay button you agree to fundooNotes</p>
-          <div fxLayout="row" fxLayoutGap="20px">
-            <div fxFlex="90">
-              <div class="mainBox">
-                <div fxLayout="column" fxLayoutGap="20px">
-                  <div>
-                    <div fxLayout="row" fxLayoutAlign="space-evenly center">
-                      <div fxFlex=100>
-                        <div fxFlex=30>
-                          <mat-card class="cart">
-                            ${{getDetails.price}} Per Month
-                            {{getDetails.name}}
-                          </mat-card>
-                        </div>
-                        <div fxFlex=70>
-                          <p style="color:blue"> {{getDetails.name}} Pack Details </p>
-                          <div fxLayoutGap="20px">
-                            <div fxFlex=50 fxFlex="column" fxLayoutGap="30px">
-                              <li>Unlimited Wall Space</li>
-                              <li>Nice Interface</li>
-                            </div>
-                            <div fxFlex=50 fxFlex="column" fxLayoutGap="30px">
-                              <li>${{getDetails.price}}/Month</li>
-                              <li>{{getDetails.description}}</li>
-                            </div>
-                          </div>
-                        </div>
-                        <div fxFlex=30>
-                          <div fxFlex="column">
-                            $ {{getDetails.price}}
-                            <button mat-button style="color:blue">per Month</button>
-                          </div>
-                        </div>
+                  <div fxFlex=70>
+                    <p style="color:blue"> {{resultMycart.name}} Pack Details </p>
+                    <div fxLayoutGap="20px">
+                      <div fxFlex=50 fxFlex="column" fxLayoutGap="30px">
+                        <li>Unlimited Wall Space</li>
+                        <li>Nice Interface</li>
+                      </div>
+                      <div fxFlex=50 fxFlex="column" fxLayoutGap="30px">
+                        <li>${{resultMycart.price}}/Month</li>
+                        <li>{{resultMycart.description}}</li>
                       </div>
                     </div>
                   </div>
-                  <mat-divider></mat-divider>
-                  <div>
-                    <p style="margin-left:50px;">Delivery Address</p>
-                    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
-                      <textarea class="mainBox1" [(ngModel)]="products.address"></textarea>
-                      <div fxLayout="column">
-                        <p><strong>Payment Method</strong></p>
-                        <p>Cash on Delivery</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div fxFlex="10">
-              <div class="order" fxLayoutAlign="space-evenly center" fxLayout="column">
-                <button mat-flat-button color="primary" (click)="content='showSubContentThree'"
-                  (click)="placeOrder()">Place your order</button>
-                <p> Subtotal (1 item): $ {{getDetails.price}}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div *ngSwitchCase="'showSubContentThree'">
-          <h6><strong>Order list</strong></h6>
-          <div class="box3">
-            <div fxFlex='5'></div>
-            <div fxFlex=100 fxLayoutGap="70px">
-              <div fxFlex=20>
-                <mat-card class="cart">
-                  ${{getDetails.price}} Per Month
-                  {{getDetails.name}}
-                </mat-card>
-              </div>
-              <div fxFlex=70>
-                <p style="color:blue"> {{getDetails.name}} Pack Details </p>
-                <div fxLayoutGap="20px">
-                  <div fxFlex=50 fxFlex="column" fxLayoutGap="30px">
-                    <li>Unlimited Wall Space</li>
-                    <li>Nice Interface</li>
-                  </div>
-                  <div fxFlex=50 fxFlex="column" fxLayoutGap="30px">
-                    <li>${{getDetails.price}}/Month</li>
-                    <li>{{getDetails.description}}</li>
+                  <div fxFlex=5 fxFlex=row fxLayoutAlign="space-evenly start">
+                    $ {{resultMycart.price}}
+                    <button mat-button style="color:blue">per Month</button>
                   </div>
                 </div>
               </div>
               <div fxFlex=10>
-                <div fxLayout="column" fxLayoutGap="20px">
-                  <div fxFlex=20>
-                    <button mat-button>${{getDetails.price}}</button>
-                    <button mat-button>per Month</button>
-                  </div>
-                  <div fxFlex=10>
-                    <button mat-button (click)="completeOrder()">Pending</button>
-                  </div>
-                  <div fxFlex=2></div>
+                <div class="endcart" fxLayoutAlign="space-evenly center" fxLayout="column">
+                  <p> Subtotal (1 item): $ {{resultMycart.price}}</p>
+                  <button mat-button (click)="content='showSubContentTwo'">Proceed to checkout</button>
                 </div>
               </div>
             </div>
-            <div fxFlex='5'></div>
+            <div class="divider"></div>
+            <div fxFlex=100 fxLayoutAlign="space-between center">
+              <div fxFlex=70></div>
+              <div fxFlex=30>
+                <p> Subtotal (1 item): $ {{resultMycart.price}}</p>
+              </div>
+            </div>
+          </div>
+          <div *ngSwitchCase="'showSubContent'" fxLayout="column" fxLayoutGap="20px">
+            <strong>Shopping Cart</strong>
+            <div fxFlex=100 fxLayoutAlign="space-between center">
+              <div fxFlex=80></div>
+              <div fxFlex=5 fxFlex=row fxLayoutAlign="space-evenly start">
+                <p class="price">Price</p>
+                <p class="price">Validity</p>
+              </div>
+              <div fxFlex=5></div>
+            </div>
+            <div class="divider"></div>
+            <div fxFlex=100 fxLayoutAlign="space-between center">
+              <div fxFlex=90>
+                <div fxFlex=100 fxLayoutGap="20px">
+                  <div fxFlex=15>
+                    <mat-card class="cart">
+                      ${{resultMycart.price}} Per Month
+                      {{resultMycart.name}}
+                    </mat-card>
+                  </div>
+                  <div fxFlex=70>
+                    <p style="color:blue"> {{resultMycart.name}} Pack Details </p>
+                    <div fxLayoutGap="20px">
+                      <div fxFlex=50 fxFlex="column" fxLayoutGap="30px">
+                        <li>Unlimited Wall Space</li>
+                        <li>Nice Interface</li>
+                      </div>
+                      <div fxFlex=50 fxFlex="column" fxLayoutGap="30px">
+                        <li>${{resultMycart.price}}/Month</li>
+                        <li>{{resultMycart.description}}</li>
+                      </div>
+                    </div>
+                  </div>
+                  <div fxFlex=5 fxFlex="column" fxLayoutAlign="space-evenly start">
+                    $ {{resultMycart.price}}
+                    <button mat-button style="color:blue">per Month</button>
+                  </div>
+                </div>
+              </div>
+              <div fxFlex=10>
+                <div class="endcart" fxLayoutAlign="space-evenly center" fxLayout="column">
+                  <p> Subtotal (1 item): $ {{resultMycart.price}}</p>
+                  <button mat-button (click)="content='showSubContentTwo'">Proceed to checkout</button>
+                </div>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div fxFlex=100 fxLayoutAlign="space-between center">
+              <div fxFlex=70></div>
+              <div fxFlex=30>
+                <p> Subtotal (1 item): $ {{resultMycart.price}}</p>
+              </div>
+            </div>
+          </div>
+          <div *ngSwitchCase="'showSubContentTwo'">
+            <h6><strong>Review your order</strong></h6>
+            <p class="opacity">By clicking on the 'Place your order and pay button you agree to fundooNotes</p>
+            <div fxLayout="row" fxLayoutGap="20px">
+              <div fxFlex="90">
+                <div class="mainBox">
+                  <div fxLayout="column" fxLayoutGap="20px">
+                    <div>
+                      <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                        <div fxFlex=100>
+                          <div fxFlex=30>
+                            <mat-card class="cart">
+                              ${{resultMycart.price}} Per Month
+                              {{resultMycart.name}}
+                            </mat-card>
+                          </div>
+                          <div fxFlex=70>
+                            <p style="color:blue"> {{resultMycart.name}} Pack Details </p>
+                            <div fxLayoutGap="20px">
+                              <div fxFlex=50 fxFlex="column" fxLayoutGap="30px">
+                                <li>Unlimited Wall Space</li>
+                                <li>Nice Interface</li>
+                              </div>
+                              <div fxFlex=50 fxFlex="column" fxLayoutGap="30px">
+                                <li>${{resultMycart.price}}/Month</li>
+                                <li>{{resultMycart.description}}</li>
+                              </div>
+                            </div>
+                          </div>
+                          <div fxFlex=30>
+                            <div fxFlex="column">
+                              $ {{resultMycart.price}}
+                              <button mat-button style="color:blue">per Month</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div>
+                      <p style="margin-left:50px;">Delivery Address</p>
+                      <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+                        <textarea class="mainBox1" [(ngModel)]="products.address"></textarea>
+                        <div fxLayout="column">
+                          <p><strong>Payment Method</strong></p>
+                          <p>Cash on Delivery</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div fxFlex="10">
+                <div class="order" fxLayoutAlign="space-evenly center" fxLayout="column">
+                  <button mat-flat-button color="primary" (click)="content='showSubContentThree'"
+                    (click)="placeOrder()">Place your order</button>
+                  <p> Subtotal (1 item): $ {{resultMycart.price}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngSwitchCase="'showSubContentThree'">
+            <h6><strong>Order list</strong></h6>
+            <div class="box3">
+              <div fxFlex='5'></div>
+              <div fxFlex=100 fxLayoutGap="70px">
+                <div fxFlex=20>
+                  <mat-card class="cart">
+                    ${{resultMycart.price}} Per Month
+                    {{resultMycart.name}}
+                  </mat-card>
+                </div>
+                <div fxFlex=70>
+                  <p style="color:blue"> {{resultMycart.name}} Pack Details </p>
+                  <div fxLayoutGap="20px">
+                    <div fxFlex=50 fxFlex="column" fxLayoutGap="30px">
+                      <li>Unlimited Wall Space</li>
+                      <li>Nice Interface</li>
+                    </div>
+                    <div fxFlex=50 fxFlex="column" fxLayoutGap="30px">
+                      <li>${{resultMycart.price}}/Month</li>
+                      <li>{{resultMycart.description}}</li>
+                    </div>
+                  </div>
+                </div>
+                <div fxFlex=10>
+                  <div fxLayout="column" fxLayoutGap="20px">
+                    <div fxFlex=20>
+                      <button mat-button>${{resultMycart.price}}</button>
+                      <button mat-button>per Month</button>
+                    </div>
+                    <div fxFlex=10>
+                      <button mat-button (click)="completeOrder()">Pending</button>
+                    </div>
+                    <div fxFlex=2></div>
+                  </div>
+                </div>
+              </div>
+              <div fxFlex='5'></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <div fxFlex=22></div>
   </div>
-  <div fxFlex=22></div>
+</div>
+<div *ngIf="!mycarts.length > 0">
+  <strong>Your Cart is Empty</strong>
 </div>
