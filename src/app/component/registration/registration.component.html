@@ -91,6 +91,7 @@
                 </mat-card-content>
                 <mat-card-actions>
                     <div>
+                        <!-- Get cart service start -->
                         <div fxLayout="column" fxLayoutGap="3%" fxLayout.xs="column wrap" fxLayout.md="column wrap">
                             <div class="butttons" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="50px"
                                 fxLayout.xs="column wrap">
@@ -129,19 +130,14 @@
                                 </div>
                                 <div fxLayoutAlign="end end">
                                     <button mat-flat-button color="primary" (click)="submit(register)"
-                                        [disabled]="email.invalid || firstName.invalid || lastName.invalid || password.invalid || confirmPassword.invalid"
-                                        (click)="submit(register)" (click)="submit(register)"
-                                        routerLink="/login/{{addCartId}}">signup</button>
-                                    <!-- <button mat-flat-button color="primary" (click)="submit(register)"
-                                        [disabled]="email.invalid || firstName.invalid || lastName.invalid || password.invalid || confirmPassword.invalid"
-                                        (click)="submit(register)" (click)="submit(register)"
-                                        routerLink="/mainCart/{{addCartId}}">signup</button> -->
+                                        [disabled]="email.invalid || firstName.invalid || lastName.invalid || password.invalid || confirmPassword.invalid">signup</button>
                                 </div>
                             </div>
                             <div>
-                                <button mat-button routerLink="/cart">Go To Cart</button>
+                                <button mat-button (click)="goTocart()">Go To Cart</button>
                             </div>
                         </div>
+                        <!-- Get cart service end -->
                         <div fxLayoutAlign="end" fxHide fxShow.gt-md fxLayout.md='row' fxFlex.md="10px"
                             fxLayout.sm='row' fxFlex.sm="50px">
                             <img src="https://ssl.gstatic.com/accounts/signup/glif/account.svg">

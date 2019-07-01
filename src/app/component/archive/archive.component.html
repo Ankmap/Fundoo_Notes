@@ -1,10 +1,3 @@
-<!-- /*****************************************************************************************************
- *@Purpose - FundoNotes.
- *@file    - archive.componet.html
- *@author  - Ankita Mapari <mapariit@gmail.com>
- *@version - 1.0
- *@since   - 22/04/2019
-**************************************************************************************************/ -->
 <div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign="center center">
     <div class="cardSub" *ngFor="let data of notes" [ngClass]=" direction =='row' ? 'cardSub':'cardSub2' " cdkDrag>
         <div *ngIf="data.isArchive != true && data.isDeleted != true && data.isPined != true">

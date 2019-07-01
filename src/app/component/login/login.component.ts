@@ -29,6 +29,8 @@ export class LoginComponent implements OnInit {
   register: User = new User();
   productCartId = localStorage.getItem("productCartId");
   product: Product[] = [];
+  ProductDeatils = '';
+  getDetails = '';
 
   constructor(
     private userService: UserService,
@@ -66,7 +68,7 @@ export class LoginComponent implements OnInit {
     var body = {
       "email": this.register.email,
       "password": this.register.password,
-      "cartId":this.productCartId
+      "cartId": this.productCartId
     }
     console.log('Console for Login Account ======>', body);
     try {
@@ -81,11 +83,9 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('email', data['email']);
             localStorage.setItem('userId', data['userId']);
             localStorage.setItem('userImage', data['imageUrl']);
-            // localStorage.setItem("productCartId", data['productCartId']);
             this.snackbar.open('Login done successfully......!', 'Done...!', {
               duration: 3000, panelClass: 'center',
             });
-            // this.router.navigateByUrl('home/'+this.addCartId);
             this.router.navigateByUrl('/home');
           },
           error => {
@@ -105,14 +105,13 @@ export class LoginComponent implements OnInit {
       .pipe(takeUntil(this.destroy$)).subscribe(
         response => {
           this.product = response["data"].data;
-          // console.log("Data product Cart User Service ====>", this.product);
+          console.log("Data product Cart User Service ====>", this.product);
           console.log("Data product Cart User Service id====>", this.product[0].id);
         }, (error) => {
           console.log("Data product Cart User Service ====>", error);
         });
   }
-  ProductDeatils = '';
-  getDetails = '';
+
   getCartDetails() {
     console.log('cartId while get cart details ===========>', this.productCartId);
     this.productService.getCartDetails(this.productCartId)
@@ -121,10 +120,10 @@ export class LoginComponent implements OnInit {
         data => {
           this.ProductDeatils = data['data'];
           this.getDetails = this.ProductDeatils["product"];
-          // console.log('getCartDetails in login ===>', this.getDetails);
-          // console.log('id to pass login ===>', this.ProductDeatils["product"].id);
-          // console.log('name to pass login ===>', this.ProductDeatils["product"].name);
-          // console.log('Get productCartId grom localstorage ===>', localStorage.getItem("productCartId"));
+          console.log('getCartDetails in login ===>', this.getDetails);
+          console.log('id to pass login ===>', this.ProductDeatils["product"].id);
+          console.log('name to pass login ===>', this.ProductDeatils["product"].name);
+          console.log('Get productCartId grom localstorage ===>', localStorage.getItem("productCartId"));
         }, (error) => {
           console.log("getCartDetails in login error xxxx>", error);
         });
@@ -134,6 +133,7 @@ export class LoginComponent implements OnInit {
     localStorage.removeItem("productCartId")
     this.router.navigateByUrl('/cart');
   }
+
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();

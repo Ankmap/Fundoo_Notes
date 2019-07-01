@@ -1,10 +1,3 @@
-/*****************************************************************************************************
- *@Purpose - FundoNotes.
- *@file    - archive.componet.ts
- *@author  - Ankita Mapari <mapariit@gmail.com>
- *@version - 1.0
- *@since   - 22/04/2019
-**************************************************************************************************/
 import { Component, OnInit } from '@angular/core';
 import { NotesService } from 'src/app/core/service/notes/notes.service';
 import { takeUntil } from 'rxjs/operators';
@@ -22,7 +15,7 @@ import { DataService } from 'src/app/core/service/data/data.service';
 export class ArchiveComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
-  
+
   constructor(
     private noteService: NotesService,
     private snackbar: MatSnackBar,
@@ -54,7 +47,7 @@ export class ArchiveComponent implements OnInit {
   }
 
   /**
-   * @Purpose : Archive Note
+   * @Purpose : Get Archive Note
    **/
   getArchivedList() {
     this.noteService.getArchivedList()

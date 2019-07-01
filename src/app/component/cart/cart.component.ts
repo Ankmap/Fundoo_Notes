@@ -5,7 +5,6 @@ import { OpenCartComponent } from '../open-cart/open-cart.component';
 import { Subject } from 'rxjs';
 import { ProductService } from 'src/app/core/service/productCarts/product.service';
 import { takeUntil } from 'rxjs/operators';
-import { Router } from '@angular/router';
 import { Product } from 'src/app/core/model/productCart/product';
 
 @Component({
@@ -22,12 +21,12 @@ import { Product } from 'src/app/core/model/productCart/product';
       // fade in when created. this could also be written as transition('void => *')
       transition(':enter', [
         style({ opacity: 0 }),
-        animate(600)
+        animate(1000)
       ]),
 
       // fade out when destroyed. this could also be written as transition('void => *')
       transition(':leave',
-        animate(600, style({ opacity: 0 })))
+        animate(1000, style({ opacity: 0 })))
     ])
   ]
 })
@@ -40,20 +39,22 @@ export class CartComponent implements OnInit {
   product: Product[] = []
   productArray = [];
   serviceDetails: '';
-  private getCartDetails;
-  private getCartDetailsId;
+  getCartDetails: '';
+  getCartDetailsId: '';
 
   constructor(
     private dialog: MatDialog,
     private productService: ProductService,
     private snackbar: MatSnackBar,
-    private router: Router
   ) { }
 
   ngOnInit() {
     this.getProductcarts();
   }
 
+  /**
+    * @Purpose : Get User Service
+  **/
   getProductcarts() {
     this.productService.userService()
       .pipe(takeUntil(this.destroy$)).subscribe(response => {
@@ -68,8 +69,11 @@ export class CartComponent implements OnInit {
       });
   }
 
+  /**
+    * @Purpose : Open the selected User Service
+  **/
   serviceOpen(value) {
-    console.log('Check value after service open ===>',value);
+    console.log('Check value after service open ===>', value);
     if (value == "advance") {
       this.serviceDetails = this.productArray[0]
       this.addtoCartd(this.productArray[0].id)
@@ -79,7 +83,10 @@ export class CartComponent implements OnInit {
     }
   }
 
-  
+
+  /**
+    * @Purpose : Add User Service to cart
+  **/
   addtoCartd(value) {
     console.log('@@@@@@@@@@@@@@@ Add to cart productId @@@@@@@@@@@@@', value);
     var body = {
@@ -94,6 +101,9 @@ export class CartComponent implements OnInit {
         this.getCartDetailsId = this.getCartDetails['id'];
         console.log('Get cartId to proceed to registration ====>', this.getCartDetailsId);
         localStorage.setItem('productCartId', this.getCartDetailsId);
+        /**
+         * @Purpose : Open Dialog component
+         **/
         const dialogRef = this.dialog.open(OpenCartComponent, {
           panelClass: 'app-full-bleed-dialog',
           data: {

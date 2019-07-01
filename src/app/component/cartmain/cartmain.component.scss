@@ -1,5 +1,3 @@
-
-
 .cart{
     height:80px;
     width:100px;
@@ -39,19 +37,23 @@
     margin-top: -85px;
     margin-left: 55px;
 }
+
 .box3{
     height: 150px;
     padding: 12px;
     border: groove 1px; 
     width: 850px;
 }
+
 button{
     outline: none;
     color:blue;
 }
+
 li{
     font-size: 14px;
 }
+
 .navbar{
     background-color: orange;
 }
@@ -63,6 +65,7 @@ li{
     background-color: orange;
     margin-top: 24px;
 }
+
 .divider
 {
     border-left-style: hidden;
@@ -70,6 +73,7 @@ li{
     outline: none;
     border: groove 1px;
 }
+
 .hr{
     border-left-style: hidden;
     border-right-style: hidden;
@@ -77,22 +81,24 @@ li{
     outline: none;
     border: groove 1px;
 }
+
 .price{
     display: flex;
-    // margin-left: 420px;
     font-size: 12px;
 }
+
 .mainBox{
     border: groove 1px;
     padding: 6px;
 }
+
 .mainBox1{
     border: groove 1px;
     padding: 25px;
     display: flex;
     text-align: center;
-    // width: 500px;
 }
+
 .order{
     width:250px;
     height: 100px;

@@ -1,4 +1,4 @@
-<div *ngIf="userCartList.length > 0">
+<div *ngIf="mycarts1.length!=0">
   <div fxLayout="row" fxLayoutGap="50px">
     <div fxFlex=8></div>
     <div fxFlex=70>
@@ -179,9 +179,10 @@
                     </div>
                     <mat-divider></mat-divider>
                     <div>
-                      <p style="margin-left:50px;">Delivery Address</p>
+                      <p style="margin-left:50px;">Delivery address</p>
                       <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
-                        <textarea class="mainBox1" [(ngModel)]="products.address"></textarea>
+                        <!-- <textarea class="mainBox1" [(ngModel)]="products.address"></textarea> -->
+                        <textarea [(ngModel)]="address" name="address" class="mainBox1"></textarea>
                         <div fxLayout="column">
                           <p><strong>Payment Method</strong></p>
                           <p>Cash on Delivery</p>
@@ -231,7 +232,7 @@
                       <button mat-button>per Month</button>
                     </div>
                     <div fxFlex=10>
-                      <button mat-button (click)="completeOrder()">Pending</button>
+                      <button mat-button>Pending</button>
                     </div>
                     <div fxFlex=2></div>
                   </div>
@@ -247,8 +248,9 @@
   </div>
 </div>
 <div style="height:1vh;"></div>
-<div *ngIf="!userCartList.length > 0">
-  <div fxLayoutAlign="center center">
+<div *ngIf="mycarts1.length==0">
+  <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="70px">
     <h1><strong>Your Cart is Empty</strong></h1>
+    <p style="opacity: 0.7">Please select the cart while login</p>
   </div>
 </div>

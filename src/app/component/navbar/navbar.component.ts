@@ -126,22 +126,7 @@ export class NavbarComponent implements OnInit {
     this.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
   }
 
-  // addShoppingCart(productCartId) {
-  //   console.log("product cart id ==>" + productCartId);
-  //   let value = localStorage.getItem("productCartId");
-  //   console.log("-------" + value);
-  //   if (value == undefined) {
-  //     value == 'Cart is not there';
-  //     console.log('check ==>', value);
-
-  //   }
-  //   else {
-  //     this.router.navigateByUrl('/mainCart');
-  //   }
-  // }
-  // private viewHide=false;
   addShoppingCart() {
-    // this.viewHide=false;
     this.router.navigateByUrl('/mainCart');
   }
   /**
@@ -157,7 +142,6 @@ export class NavbarComponent implements OnInit {
         localStorage.removeItem("firstname");
         localStorage.removeItem("lastname");
         localStorage.removeItem("email");
-        // localStorage.removeItem("userImage");
         localStorage.removeItem("productCartId")
         this.router.navigateByUrl('/cart');
       });
