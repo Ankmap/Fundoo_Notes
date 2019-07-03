@@ -1,54 +1,19 @@
-/*****************************************************************************************************
- *@Purpose - FundoNotes.
- *@file    - registration.componet.scss
- *@author  - Ankita Mapari <mapariit@gmail.com>
- *@version - 1.0
- *@since   - 22/04/2019
-**************************************************************************************************/
 @import '../../core/scss/color.scss';
+@import '../../core/scss/mixin';
+
+.username{
+    width: 458px;
+}
 
 mat-icon{
     margin-top: 2%;
-    font-size: 250%;
+    font-size: 200%;
 }
-img{
-    margin-right: 70px;
-    margin-top: -450px;
-}
-.username{
-    width: 462px;
-}
-.password{
-    width: 200px;
-}
+
 .name{
     width: 225px;
 }
-.butttons{
-    margin-left: 12px;
-}
-/**
-@Purpose : Media Query
-*/ 
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
-    button{
-        margin-left: 230px;
-    }
-    mat-icon{
-        margin-left: 495px;
-        margin-top: -20px;
-    }
-}
 
-@media (min-width: 320px) and (max-width: 600px) and (orientation: landscape) {
-    body {
-        background-color: olive;
-    }
-    .username{
-        width: 200px;
-    }  
-}
-// 
 
 .addCart mat-card{
     width: 120px;
@@ -99,4 +64,13 @@ li{
 }
 .cartMain .notSelect{
     background-color: gray;
+}
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 360px)
+and (max-device-width : 640px) {
+/* STYLES GO HERE */
+.username{
+    width: 220px;
+  }
 }
