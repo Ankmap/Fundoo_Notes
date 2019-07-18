@@ -227,7 +227,7 @@ export class NoteListComponent implements OnInit {
   openDialog(data: any): void {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '800px',
-      height: '',
+      height: '500px',
       data: {
         'title': data.title,
         'description': data.description,
