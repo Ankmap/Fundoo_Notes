@@ -3,9 +3,12 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { OpenCartComponent } from '../open-cart/open-cart.component';
 import { Subject } from 'rxjs';
-import { ProductService } from 'src/app/core/service/productCarts/product.service';
+// import { ProductService } from 'src/app/core/service/productCarts/product.service';
+import { ProductService } from '../../core/service/productCarts/product.service';
+
 import { takeUntil } from 'rxjs/operators';
-import { Product } from 'src/app/core/model/productCart/product';
+// import { Product } from 'src/app/core/model/productCart/product';
+import { Product } from '../../core/model/productCart/product';
 
 @Component({
   selector: 'app-cart',

@@ -27,6 +27,7 @@ import { FilterPipe } from './core/pipe/filter/filter.pipe';
 import { CartComponent } from './component/cart/cart.component';
 import { OpenCartComponent } from './component/open-cart/open-cart.component';
 import { CartmainComponent } from './component/cartmain/cartmain.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { CartmainComponent } from './component/cartmain/cartmain.component';
   ],
   imports: [
     MaterialDesignModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,7 +3,8 @@ import { Note } from '../../core/model/note/note'
 import { DataService } from '../../core/service/data/data.service'
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { NotesService } from 'src/app/core/service/notes/notes.service';
+// import { NotesService } from 'src/app/core/service/notes/notes.service';
+import { NotesService } from '../../core/service/notes/notes.service';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { DialogComponent } from '../dialog/dialog.component';
 

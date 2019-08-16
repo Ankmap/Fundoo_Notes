@@ -14,7 +14,8 @@ import { MatDialogRef } from "@angular/material";
 import { NavbarComponent } from '../navbar/navbar.component'
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { DataService } from 'src/app/core/service/data/data.service';
+// import { DataService } from 'src/app/core/service/data/data.service';
+import { DataService } from '../../core/service/data/data.service';
 
 @Component({
   selector: 'app-label',

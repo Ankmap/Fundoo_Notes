@@ -10,9 +10,10 @@ import { FormControl, Validators } from '@angular/forms';
 import { User } from '../../core/model/user/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/core/service/user/user.service';
+// import { UserService } from 'src/app/core/service/user/user.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { UserService } from '../../core/service/user/user.service';
 
 @Component({
   selector: 'app-forgot-password',

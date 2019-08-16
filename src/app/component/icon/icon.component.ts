@@ -9,11 +9,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CollaboratorComponent } from '../collaborator/collaborator.component'
 import { MatDialog } from '@angular/material';
 import { Subject } from 'rxjs';
-import { Label } from 'src/app/core/model/label/label';
+// import { Label } from 'src/app/core/model/label/label';
 import { takeUntil } from 'rxjs/operators';
-import { NotesService } from 'src/app/core/service/notes/notes.service';
-import { DataService } from 'src/app/core/service/data/data.service';
+// import { NotesService } from 'src/app/core/service/notes/notes.service';
+// import { DataService } from 'src/app/core/service/data/data.service';
 import { Router } from '@angular/router';
+import { Label } from '../../core/model/label/label';
+import { NotesService } from '../../core/service/notes/notes.service';
+import { DataService } from '../../core/service/data/data.service';
 
 @Component({
   selector: 'app-icon',
@@ -47,16 +50,17 @@ export class IconComponent implements OnInit {
 
   /* Archive */
   isArchive: boolean = false;
-
+  timePick = '';
+  note = '';
 
   /* Reminder */
   currentDate = new Date;
 
   /* Label Model*/
-  private labelList;
-  private labelArray = [];
-  private Array = [];
-  private label: Label[] = [];
+   labelList;
+   labelArray = [];
+   Array = [];
+   label: Label[] = [];
 
   /* Color Code with name*/
   arrayOfColors = [

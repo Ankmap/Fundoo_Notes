@@ -13,9 +13,12 @@ import { MatDialog } from '@angular/material';
 import { LabelComponent } from '../../component/label/label.component';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { Label } from 'src/app/core/model/label/label';
+// import { Label } from 'src/app/core/model/label/label';
+import { Label } from '../../core/model/label/label';
 import { ImageCropComponent } from '../image-crop/image-crop.component';
-import { environment } from 'src/environments/environment';
+// import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
+
 import { UserService } from '../../core/service/user/user.service'
 
 @Component({
@@ -39,14 +42,14 @@ export class NavbarComponent implements OnInit {
   // image = 'http://34.213.106.173/'+this.imageUrl;
 
   /* label */
-  private label: Label[] = [];
-  private labelList = [];
+   label: Label[] = [];
+   labelList = [];
 
   /* signOut */
-  private signoutCard: boolean = false;
+   signoutCard: boolean = false;
 
   /* search the note */
-  private searchValue: any;
+   searchValue: any;
 
   /* Grid */
   list: boolean = true;
@@ -56,13 +59,13 @@ export class NavbarComponent implements OnInit {
 
   /* Show Name */
   appName: String;
-  private labelShow: boolean = false;
-  private labelValue = '';
+   labelShow: boolean = false;
+   labelValue = '';
 
   /* Profile img uploader */
-  private img;
-  private width;
-  private message: string
+   img;
+   width;
+   message: string
 
   /**
   * @Purpose : Inject the UserserviceService, Router, NotesService, 
@@ -77,7 +80,7 @@ export class NavbarComponent implements OnInit {
     private data: DataService,
     private route: ActivatedRoute
   ) { }
-  private addCartId = '';
+   addCartId = '';
 
   ngOnInit() {
     /* Show Name */

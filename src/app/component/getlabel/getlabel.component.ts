@@ -6,12 +6,15 @@
  *@since   - 22/04/2019
 **************************************************************************************************/
 import { Component, OnInit, Input } from '@angular/core';
-import { NotesService } from 'src/app/core/service/notes/notes.service';
+// import { NotesService } from 'src/app/core/service/notes/notes.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { Label } from 'src/app/core/model/label/label';
+// import { Label } from 'src/app/core/model/label/label';
 import { Params, ActivatedRoute } from '@angular/router';
-import { DataService } from 'src/app/core/service/data/data.service';
+// import { DataService } from 'src/app/core/service/data/data.service';
+import { DataService } from '../../core/service/data/data.service';
+import { NotesService } from '../../core/service/notes/notes.service';
+import { Label } from '../../core/model/label/label';
 
 @Component({
   selector: 'app-getlabel',
@@ -30,7 +33,7 @@ export class GetlabelComponent implements OnInit {
   ) { }
 
   /* Model */
-  private label: Label[] = [];
+   label: Label[] = [];
   private labelName = '';
 
   /* Grid View */

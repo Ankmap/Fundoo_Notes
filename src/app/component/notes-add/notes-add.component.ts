@@ -8,7 +8,9 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { NotesService } from '../../core/service/notes/notes.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { DataService } from 'src/app/core/service/data/data.service';
+// import { DataService } from 'src/app/core/service/data/data.service';
+import { DataService } from '../../core/service/data/data.service';
+
 import { Note } from '../../core/model/note/note';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -63,9 +65,9 @@ export class NotesAddComponent implements OnInit {
   /**
    * @Purpose : Notecard open
    **/
-  private notecard: boolean = true;
+   notecard: boolean = true;
 
-  private listNote: boolean = true;
+   listNote: boolean = true;
 
   /**
    * @Purpose : For new Notecard open

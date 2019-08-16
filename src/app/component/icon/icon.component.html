@@ -113,12 +113,12 @@
       <button mat-menu-item routerLink="/askquestion/{{card?.id}}" routerLinkActive="active-link">
         <span>Ask a Question</span>
       </button>
-      <button mat-menu-item [matMenuTriggerFor]="labelmenu" (click)="showLabel(note)">
+      <button mat-menu-item [matMenuTriggerFor]="labelmenu" (click)="showLabel()">
         <span>Add Label Note </span>
       </button>
-      <button mat-menu-item (click)="checkbox(note)">
+      <!-- <button mat-menu-item (click)="checkbox()">
         <span>Show checkbox</span>
-      </button>
+      </button> -->
     </mat-menu>
   </abbr>
   <!-- show label -->

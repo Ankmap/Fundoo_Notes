@@ -1,8 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Product } from 'src/app/core/model/productCart/product';
+// import { Product } from 'src/app/core/model/productCart/product';
+import { Product } from '../../core/model/productCart/product';
+
 import { takeUntil } from 'rxjs/operators';
-import { ProductService } from 'src/app/core/service/productCarts/product.service';
+// import { ProductService } from 'src/app/core/service/productCarts/product.service';
+import { ProductService } from '../../core/service/productCarts/product.service';
+
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 

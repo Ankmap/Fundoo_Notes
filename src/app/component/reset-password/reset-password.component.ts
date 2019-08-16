@@ -10,7 +10,9 @@ import { FormControl, Validators } from '@angular/forms';
 import { User } from '../../core/model/user/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserService } from 'src/app/core/service/user/user.service';
+// import { UserService } from 'src/app/core/service/user/user.service';
+import { UserService } from '../../core/service/user/user.service';
+
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -25,6 +27,8 @@ export class ResetPasswordComponent implements OnInit {
 
   register: User = new User();
   model: any;
+  hide = true;
+  
   constructor(private userService: UserService, private snackbar: MatSnackBar, private router: Router, private activeRoute: ActivatedRoute) { }
   /**
    * @Purpose : To get a token 

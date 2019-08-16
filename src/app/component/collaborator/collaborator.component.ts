@@ -6,13 +6,19 @@
  *@since   - 22/04/2019
 **************************************************************************************************/
 import { Component, OnInit, Inject, Input, Output } from '@angular/core';
-import { NotesService } from 'src/app/core/service/notes/notes.service';
-import { DataService } from 'src/app/core/service/data/data.service';
+// import { NotesService } from 'src/app/core/service/notes/notes.service';
+// import { DataService } from 'src/app/core/service/data/data.service';
 import { MatDialog, MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { environment } from 'src/environments/environment';
-import { UserService } from 'src/app/core/service/user/user.service';
+// import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
+
+// import { UserService } from 'src/app/core/service/user/user.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { NotesService } from '../../core/service/notes/notes.service';
+import { DataService } from '../../core/service/data/data.service';
+import { UserService } from '../../core/service/user/user.service';
+
 
 @Component({
   selector: 'app-collaborator',
@@ -34,7 +40,7 @@ export class CollaboratorComponent implements OnInit {
 
   /* Add Collaborators */
   collabData: any[];
-  private collaborators = [];
+   collaborators = [];
 
   constructor(
     private snackbar: MatSnackBar,

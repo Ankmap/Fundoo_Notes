@@ -6,12 +6,16 @@
  *@since   - 22/04/2019
 **************************************************************************************************/
 import { Component, OnInit } from '@angular/core';
-import { NotesService } from 'src/app/core/service/notes/notes.service';
-import { Note } from 'src/app/core/model/note/note';
+// import { NotesService } from 'src/app/core/service/notes/notes.service';
+import { NotesService } from '../../core/service/notes/notes.service';
+import { Note } from '../../core/model/note/note';
+
+// import { Note } from 'src/app/core/model/note/note';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { DataService } from 'src/app/core/service/data/data.service';
+// import { DataService } from 'src/app/core/service/data/data.service';
 import { MatSnackBar } from '@angular/material';
+import { DataService } from '../../core/service/data/data.service';
 
 @Component({
   selector: 'app-reminder',
@@ -26,10 +30,10 @@ export class ReminderComponent implements OnInit {
 
   /* Reminder */
   // private reminderArray = [];
-  private array = [];
+   array = [];
 
   /* Note model */
-  private notes: Note[] = [];
+   notes: Note[] = [];
 
   /* Grid View and list view */
   direction: String = "row";

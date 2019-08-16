@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { NotesService } from 'src/app/core/service/notes/notes.service';
+// import { NotesService } from 'src/app/core/service/notes/notes.service';
 import { takeUntil } from 'rxjs/operators';
-import { Note } from 'src/app/core/model/note/note';
+// import { Note } from 'src/app/core/model/note/note';
+import { Note } from '../../core/model/note/note';
+
 import { Subject } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
-import { DataService } from 'src/app/core/service/data/data.service';
+// import { DataService } from 'src/app/core/service/data/data.service';
+import { NotesService } from '../../core/service/notes/notes.service';
+import { DataService } from '../../core/service/data/data.service';
 
 @Component({
   selector: 'app-archive',
@@ -23,7 +27,7 @@ export class ArchiveComponent implements OnInit {
   ) { }
 
   /* Note Model */
-  private notes: Note[] = []
+   notes: Note[] = []
 
   /* Archive Note */
   isArchived = false;

@@ -2,7 +2,9 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Subject } from 'rxjs';
-import { ProductService } from 'src/app/core/service/productCarts/product.service';
+// import { ProductService } from 'src/app/core/service/productCarts/product.service';
+import { ProductService } from '../../core/service/productCarts/product.service';
+
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -16,7 +18,7 @@ export class OpenCartComponent implements OnInit {
 
   productCartId = localStorage.getItem("productCartId");
   ProductDeatils = '';
-  getDetails = '';
+  getDetails;
 
   constructor(
     private productService: ProductService,

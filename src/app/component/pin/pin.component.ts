@@ -13,7 +13,7 @@ export class PinComponent implements OnInit {
 
   @Input() card
   @Output() onChangePin = new EventEmitter;
-  private isPined: boolean = false;
+   isPined: boolean = false;
 
   constructor() { }
 

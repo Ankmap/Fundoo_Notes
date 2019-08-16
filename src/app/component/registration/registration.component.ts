@@ -10,12 +10,14 @@ import { FormControl, Validators } from '@angular/forms';
 import { User } from '../../core/model/user/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/core/service/user/user.service';
+// import { UserService } from 'src/app/core/service/user/user.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { ProductService } from 'src/app/core/service/productCarts/product.service';
-import { Product } from 'src/app/core/model/productCart/product';
-
+// import { ProductService } from 'src/app/core/service/productCarts/product.service';
+// import { Product } from 'src/app/core/model/productCart/product';
+import { UserService } from '../../core/service/user/user.service';
+import { ProductService } from '../../core/service/productCarts/product.service';
+import { Product } from '../../core/model/productCart/product';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -30,6 +32,7 @@ export class RegistrationComponent implements OnInit {
   ProductDeatils = '';
   getDetails = '';
   register: User = new User();
+  hide = true;
 
   constructor(
     private userService: UserService,

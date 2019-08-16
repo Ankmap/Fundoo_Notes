@@ -27,8 +27,8 @@ export class SearchNoteComponent implements OnInit {
     private searchService: NotesService
   ) { }
 
-  private notes: Note[] = [];
-  private message: string
+   notes: Note[] = [];
+   message: string
 
   ngOnInit() {
     /* For get all Note */

@@ -1,12 +1,17 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { QuestionService } from 'src/app/core/service/question/question.service';
-import { Question, Reply } from 'src/app/core/model/question/question';
+// import { QuestionService } from 'src/app/core/service/question/question.service';
+// import { Question, Reply } from 'src/app/core/model/question/question';
+import { QuestionService } from '../../core/service/question/question.service';
+import { Question, Reply } from '../../core/model/question/question';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import { NotesService } from 'src/app/core/service/notes/notes.service';
-import { environment } from 'src/environments/environment';
-import { DataService } from 'src/app/core/service/data/data.service';
+// import { NotesService } from 'src/app/core/service/notes/notes.service';
+import { NotesService } from '../../core/service/notes/notes.service';
+// import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
+// import { DataService } from 'src/app/core/service/data/data.service';
+import { DataService } from '../../core/service/data/data.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -30,12 +35,12 @@ export class QuestionanswerComponent implements OnInit {
   replyQue: Reply = new Reply();
 
   /* Get Notes Detail */
-  private noteList;
-  private questionData = '';
-  private questionDisplay;
-  private parentId;
-  private questionRate;
-  private questionLike;
+   noteList;
+   questionData = '';
+   questionDisplay;
+   parentId;
+   questionRate;
+   questionLike;
 
   /* Binding the message */
   message = new FormControl('')
@@ -44,9 +49,9 @@ export class QuestionanswerComponent implements OnInit {
   @Input() id;
 
   /* Notecard open conditions */
-  private notecard: boolean = true;
-  private notecardreply: boolean = true;
-  private notecardAnswer: boolean = true
+   notecard: boolean = true;
+   notecardreply: boolean = true;
+   notecardAnswer: boolean = true
 
   /* Rate the question */
   title = 'Star Rating';
@@ -54,7 +59,7 @@ export class QuestionanswerComponent implements OnInit {
   rating: number;
 
   /* Like the question */
-  private like: boolean = true;
+   like: boolean = true;
 
   constructor(
     private questionService: QuestionService,

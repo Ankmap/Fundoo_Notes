@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
-import { Note } from 'src/app/core/model/note/note';
-import { NotesService } from 'src/app/core/service/notes/notes.service';
+// import { Note } from 'src/app/core/model/note/note';
+// import { NotesService } from 'src/app/core/service/notes/notes.service';
 import { Subject } from 'rxjs';
-import { DataService } from 'src/app/core/service/data/data.service';
+// import { DataService } from 'src/app/core/service/data/data.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import { Note } from '../../core/model/note/note';
+import { NotesService } from '../../core/service/notes/notes.service';
+import { DataService } from '../../core/service/data/data.service';
 
 @Component({
   selector: 'app-trash',
@@ -25,7 +28,7 @@ export class TrashComponent implements OnInit {
     private snackbar: MatSnackBar
   ) { }
 
-  private notes: Note[] = []
+   notes: Note[] = []
 
   /* Grid View*/
   direction: String = "row";
@@ -65,7 +68,7 @@ export class TrashComponent implements OnInit {
   /**
    * @Purpose : Delete Note Forever 
    **/
-  private isDeleted: boolean = false;
+   isDeleted: boolean = false;
 
   deleteNoteForever(data) {
     var body = {

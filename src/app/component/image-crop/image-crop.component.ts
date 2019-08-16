@@ -9,7 +9,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { UserService } from 'src/app/core/service/user/user.service';
+// import { UserService } from 'src/app/core/service/user/user.service';
+import { UserService } from '../../core/service/user/user.service';
 
 @Component({
   selector: 'app-image-crop',
@@ -26,12 +27,12 @@ export class ImageCropComponent implements OnInit {
     private UserService: UserService,
     private dialogRef: MatDialogRef<ImageCropComponent>,
     @Inject(MAT_DIALOG_DATA)
-    private data: any
+    public data: any
   ) { }
 
   /* Image Crop */
-  private apiImage;
-  private croppedImage;
+   apiImage;
+   croppedImage;
 
   ngOnInit() {
   }

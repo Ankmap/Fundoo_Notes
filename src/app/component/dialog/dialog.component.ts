@@ -8,12 +8,14 @@
 import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormControl } from '@angular/forms';
-import { Note } from 'src/app/core/model/note/note';
-import { NotesService } from 'src/app/core/service/notes/notes.service';
-import { DataService } from 'src/app/core/service/data/data.service';
+// import { Note } from 'src/app/core/model/note/note';
+// import { NotesService } from 'src/app/core/service/notes/notes.service';
+// import { DataService } from 'src/app/core/service/data/data.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-
+import { Note } from '../../core/model/note/note';
+import { NotesService } from '../../core/service/notes/notes.service';
+import { DataService } from '../../core/service/data/data.service';
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
